@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield } from "lucide-react";
+import SignupModal from "./SignupModal";
 
 const CTA = () => {
+  const [signupOpen, setSignupOpen] = useState(false);
+
   return (
     <section className="py-24 bg-hero relative overflow-hidden">
-      {/* Background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--cream)) 1px, transparent 0)`,
@@ -29,11 +32,11 @@ const CTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button variant="hero" size="xl">
+            <Button variant="hero" size="xl" onClick={() => setSignupOpen(true)}>
               Request Early Access
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button variant="heroOutline" size="xl">
+            <Button variant="heroOutline" size="xl" onClick={() => setSignupOpen(true)}>
               Schedule a Consultation
             </Button>
           </div>
@@ -47,6 +50,8 @@ const CTA = () => {
           </div>
         </div>
       </div>
+
+      <SignupModal open={signupOpen} onOpenChange={setSignupOpen} />
     </section>
   );
 };
