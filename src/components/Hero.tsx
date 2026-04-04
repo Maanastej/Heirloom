@@ -1,14 +1,22 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import SignupModal from "./SignupModal";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Hero = () => {
-  const [signupOpen, setSignupOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const handleCTA = () => {
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/auth");
+    }
+  };
 
   return (
     <section className="relative min-h-screen bg-hero flex items-center justify-center overflow-hidden">
-      {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--cream)) 1px, transparent 0)`,
@@ -16,7 +24,6 @@ const Hero = () => {
         }} />
       </div>
 
-      {/* Gradient orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-bronze/10 rounded-full blur-3xl animate-pulse-soft" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-bronze/5 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1.5s' }} />
 
@@ -37,8 +44,8 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            <Button variant="hero" size="xl" onClick={() => setSignupOpen(true)}>
-              Begin Your Legacy
+            <Button variant="hero" size="xl" onClick={handleCTA}>
+              {user ? "Go to Dashboard" : "Begin Your Legacy"}
               <ArrowRight className="w-5 h-5" />
             </Button>
           </div>
@@ -60,10 +67,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
-
-      <SignupModal open={signupOpen} onOpenChange={setSignupOpen} />
     </section>
   );
 };
