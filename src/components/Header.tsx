@@ -1,10 +1,11 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
-import SignupModal from "./SignupModal";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Header = () => {
-  const [signupOpen, setSignupOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-cream/10">
@@ -23,11 +24,10 @@ const Header = () => {
           <a href="#access" className="text-cream/70 hover:text-cream transition-colors text-sm font-medium">Family Access</a>
         </nav>
 
-        <Button variant="hero" size="sm" onClick={() => setSignupOpen(true)}>
-          Request Access
+        <Button variant="hero" size="sm" onClick={() => navigate(user ? "/dashboard" : "/auth")}>
+          {user ? "Dashboard" : "Request Access"}
         </Button>
       </div>
-      <SignupModal open={signupOpen} onOpenChange={setSignupOpen} />
     </header>
   );
 };

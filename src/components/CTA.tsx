@@ -1,10 +1,13 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield } from "lucide-react";
-import SignupModal from "./SignupModal";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const CTA = () => {
-  const [signupOpen, setSignupOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const handleCTA = () => navigate(user ? "/dashboard" : "/auth");
 
   return (
     <section className="py-24 bg-hero relative overflow-hidden">
@@ -32,12 +35,9 @@ const CTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button variant="hero" size="xl" onClick={() => setSignupOpen(true)}>
-              Request Early Access
+            <Button variant="hero" size="xl" onClick={handleCTA}>
+              {user ? "Go to Dashboard" : "Request Early Access"}
               <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button variant="heroOutline" size="xl" onClick={() => setSignupOpen(true)}>
-              Schedule a Consultation
             </Button>
           </div>
 
@@ -50,8 +50,6 @@ const CTA = () => {
           </div>
         </div>
       </div>
-
-      <SignupModal open={signupOpen} onOpenChange={setSignupOpen} />
     </section>
   );
 };
