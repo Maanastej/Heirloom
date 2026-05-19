@@ -24,6 +24,7 @@ const Auth = () => {
   const [invitedRole, setInvitedRole] = useState("editor");
   const [invitedRelationship, setInvitedRelationship] = useState("Family Member");
   const [invitedFamilyName, setInvitedFamilyName] = useState("");
+  const [invitedFamilyId, setInvitedFamilyId] = useState<string | null>(null);
 
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
@@ -54,6 +55,7 @@ const Auth = () => {
     const roleParam = searchParams.get("role");
     const relationshipParam = searchParams.get("relationship");
     const familyParam = searchParams.get("family");
+    const familyIdParam = searchParams.get("family_id");
 
     if (signupParam === "join" && emailParam) {
       setIsLogin(false); // Switch directly to Register mode
@@ -64,6 +66,7 @@ const Auth = () => {
       if (roleParam) setInvitedRole(roleParam);
       if (relationshipParam) setInvitedRelationship(relationshipParam);
       if (familyParam) setInvitedFamilyName(familyParam);
+      if (familyIdParam) setInvitedFamilyId(familyIdParam);
 
       toast({
         title: "Invitation Found",
@@ -125,6 +128,9 @@ const Auth = () => {
           metadata.family_name = invitedFamilyName;
           metadata.role = invitedRole;
           metadata.relationship = invitedRelationship;
+          if (invitedFamilyId) {
+            metadata.family_id = invitedFamilyId;
+          }
 
           const { error } = await supabase.auth.signUp({
             email,
@@ -264,6 +270,18 @@ const Auth = () => {
                 placeholder="e.g. The Sterling Family Legacy"
                 required={!isLogin && signupMode === "create"}
                 className="bg-cream/5 border-cream/10 text-cream placeholder:text-cream/30 focus-visible:ring-bronze h-10 text-xs"
+              />
+            </div>
+          )}
+
+          {!isLogin && signupMode === "join" && (
+            <div className="space-y-2 animate-fade-in">
+              <Label htmlFor="familyNameReadOnly" className="text-cream/80 text-xs font-semibold">Joining Family Legacy</Label>
+              <Input
+                id="familyNameReadOnly"
+                value={invitedFamilyName}
+                readOnly
+                className="bg-cream/5 border-cream/10 text-cream/70 h-10 text-xs cursor-not-allowed opacity-80"
               />
             </div>
           )}

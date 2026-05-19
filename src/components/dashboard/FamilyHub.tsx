@@ -45,6 +45,7 @@ export default function FamilyHub() {
   
   // State variables
   const [familyName, setFamilyName] = useState("The Sterling Family Legacy");
+  const [familyId, setFamilyId] = useState<string | null>(null);
   const [isInherited, setIsInherited] = useState(false);
   const [members, setMembers] = useState<FamilyMember[]>([]);
   const [invites, setInvites] = useState<FamilyInvite[]>([]);
@@ -90,6 +91,7 @@ export default function FamilyHub() {
           .maybeSingle();
 
         if (profileData?.family_id) {
+          setFamilyId(profileData.family_id);
           const { data: famData } = await supabase
             .from("families")
             .select("family_name, is_inherited")
@@ -193,13 +195,31 @@ export default function FamilyHub() {
 
     setInviteLoading(true);
     
-    // Generate a premium pre-filled link
+    // Fetch family_id dynamically to guarantee the invite contains the exact UUID
+    let currentFamilyId = familyId;
+    if (!currentFamilyId && user) {
+      try {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("family_id")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (profile?.family_id) {
+          currentFamilyId = profile.family_id;
+          setFamilyId(profile.family_id);
+        }
+      } catch (err) {
+        console.warn("Could not fetch family id on invite:", err);
+      }
+    }
+
     const encodedEmail = encodeURIComponent(inviteEmail.trim());
     const encodedRole = encodeURIComponent(inviteRole);
     const encodedRel = encodeURIComponent(inviteRelationship);
     const encodedFamily = encodeURIComponent(familyName);
+    const encodedFamilyId = currentFamilyId ? encodeURIComponent(currentFamilyId) : "";
     
-    const inviteUrl = `${window.location.origin}/auth?signup=join&email=${encodedEmail}&role=${encodedRole}&relationship=${encodedRel}&family=${encodedFamily}`;
+    const inviteUrl = `${window.location.origin}/auth?signup=join&email=${encodedEmail}&role=${encodedRole}&relationship=${encodedRel}&family=${encodedFamily}${encodedFamilyId ? `&family_id=${encodedFamilyId}` : ""}`;
 
     const newInvite: FamilyInvite = {
       id: "invite-" + Date.now(),

@@ -28,7 +28,9 @@ BEGIN
   END IF;
 
   -- Create or find family
-  IF u_role = 'owner' THEN
+  IF NEW.raw_user_meta_data ->> 'family_id' IS NOT NULL AND (NEW.raw_user_meta_data ->> 'family_id') <> '' THEN
+    f_id := (NEW.raw_user_meta_data ->> 'family_id')::UUID;
+  ELSIF u_role = 'owner' THEN
     -- Patriarch creates a new family unit
     INSERT INTO public.families (family_name)
     VALUES (f_name)
