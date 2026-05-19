@@ -123,9 +123,16 @@ const DocumentVault = () => {
   useEffect(() => {
     const personalMap = new Map<string, DocumentMeta>();
 
+    const getFileUniqueKey = (name: string) => {
+      const cleanName = name.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
+      const timestamp = name.match(/^\d+/)?.[0] || name;
+      return `${timestamp}_${cleanName}`;
+    };
+
     // 1. Add current user's documents from Supabase storage (if online)
     documents.forEach(d => {
-      personalMap.set(d.name, {
+      const key = getFileUniqueKey(d.name);
+      personalMap.set(key, {
         name: d.name,
         created_at: d.created_at,
         isShared: d.name.includes("_shared_") || sharedFiles.includes(d.name),
@@ -139,9 +146,17 @@ const DocumentVault = () => {
       const isMine = d.ownerId === user?.id || d.ownerId === "me";
       const updatedOwnerId = isMine ? (user?.id || "me") : d.ownerId;
       const isShared = d.name.includes("_shared_") || d.isShared;
+      const key = getFileUniqueKey(d.name);
 
-      if (!personalMap.has(d.name)) {
-        personalMap.set(d.name, {
+      if (personalMap.has(key)) {
+        const existing = personalMap.get(key)!;
+        personalMap.set(key, {
+          ...existing,
+          name: isMine ? d.name : existing.name, // Prefer local status to reflect instant UI toggles
+          isShared: existing.isShared || isShared
+        });
+      } else {
+        personalMap.set(key, {
           ...d,
           ownerId: updatedOwnerId,
           isShared
@@ -165,8 +180,9 @@ const DocumentVault = () => {
               data.forEach(f => {
                 // Only load if it's marked shared
                 if (f.name.includes("_shared_")) {
-                  if (!personalMap.has(f.name)) {
-                    personalMap.set(f.name, {
+                  const key = getFileUniqueKey(f.name);
+                  if (!personalMap.has(key)) {
+                    personalMap.set(key, {
                       name: f.name,
                       created_at: f.created_at,
                       isShared: true,
@@ -174,6 +190,15 @@ const DocumentVault = () => {
                       ownerId: member.user_id
                     });
                     updated = true;
+                  } else {
+                    const existing = personalMap.get(key)!;
+                    if (!existing.isShared) {
+                      personalMap.set(key, {
+                        ...existing,
+                        isShared: true
+                      });
+                      updated = true;
+                    }
                   }
                 }
               });
@@ -296,10 +321,15 @@ const DocumentVault = () => {
     const cleanName = fileName.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
     const timestamp = fileName.match(/^\d+/)?.[0] || Date.now().toString();
     const targetName = `${timestamp}_${isShared ? "private" : "shared"}_${cleanName}`;
+    const targetKey = `${timestamp}_${cleanName}`;
 
     // Update in local cache first to ensure smooth offline fallback
     const updatedDocs = localVaultDocs.map(d => {
-      if (d.name === fileName) {
+      const dCleanName = d.name.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
+      const dTimestamp = d.name.match(/^\d+/)?.[0] || d.name;
+      const dKey = `${dTimestamp}_${dCleanName}`;
+
+      if (d.name === fileName || dKey === targetKey) {
         return {
           ...d,
           name: targetName,

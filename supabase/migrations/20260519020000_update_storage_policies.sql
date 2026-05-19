@@ -26,7 +26,7 @@ CREATE POLICY "View own or family shared documents"
       OR
       -- Family shared files
       (
-        name LIKE '%/shared/%'
+        name LIKE '%_shared_%'
         AND EXISTS (
           SELECT 1 FROM public.profiles p1
           JOIN public.profiles p2 ON p1.family_id = p2.family_id
@@ -48,7 +48,7 @@ CREATE POLICY "View own or family shared videos"
       OR
       -- Family shared files
       (
-        name LIKE '%/shared/%'
+        name LIKE '%_shared_%'
         AND EXISTS (
           SELECT 1 FROM public.profiles p1
           JOIN public.profiles p2 ON p1.family_id = p2.family_id

@@ -123,9 +123,16 @@ const VideoLegacyDash = () => {
   useEffect(() => {
     const personalMap = new Map<string, VideoMeta>();
 
+    const getFileUniqueKey = (name: string) => {
+      const cleanName = name.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
+      const timestamp = name.match(/^\d+/)?.[0] || name;
+      return `${timestamp}_${cleanName}`;
+    };
+
     // 1. Add current user's videos from Supabase storage (if online)
     videos.forEach(v => {
-      personalMap.set(v.name, {
+      const key = getFileUniqueKey(v.name);
+      personalMap.set(key, {
         name: v.name,
         created_at: v.created_at,
         isShared: v.name.includes("_shared_") || sharedVideos.includes(v.name),
@@ -139,9 +146,17 @@ const VideoLegacyDash = () => {
       const isMine = v.ownerId === user?.id || v.ownerId === "me";
       const updatedOwnerId = isMine ? (user?.id || "me") : v.ownerId;
       const isShared = v.name.includes("_shared_") || v.isShared;
+      const key = getFileUniqueKey(v.name);
 
-      if (!personalMap.has(v.name)) {
-        personalMap.set(v.name, {
+      if (personalMap.has(key)) {
+        const existing = personalMap.get(key)!;
+        personalMap.set(key, {
+          ...existing,
+          name: isMine ? v.name : existing.name, // Prefer local status to reflect instant UI toggles
+          isShared: existing.isShared || isShared
+        });
+      } else {
+        personalMap.set(key, {
           ...v,
           ownerId: updatedOwnerId,
           isShared
@@ -165,8 +180,9 @@ const VideoLegacyDash = () => {
               data.forEach(f => {
                 // Only load if it's marked shared
                 if (f.name.includes("_shared_")) {
-                  if (!personalMap.has(f.name)) {
-                    personalMap.set(f.name, {
+                  const key = getFileUniqueKey(f.name);
+                  if (!personalMap.has(key)) {
+                    personalMap.set(key, {
                       name: f.name,
                       created_at: f.created_at,
                       isShared: true,
@@ -174,6 +190,15 @@ const VideoLegacyDash = () => {
                       ownerId: member.user_id
                     });
                     updated = true;
+                  } else {
+                    const existing = personalMap.get(key)!;
+                    if (!existing.isShared) {
+                      personalMap.set(key, {
+                        ...existing,
+                        isShared: true
+                      });
+                      updated = true;
+                    }
                   }
                 }
               });
@@ -296,10 +321,15 @@ const VideoLegacyDash = () => {
     const cleanName = fileName.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
     const timestamp = fileName.match(/^\d+/)?.[0] || Date.now().toString();
     const targetName = `${timestamp}_${isShared ? "private" : "shared"}_${cleanName}`;
+    const targetKey = `${timestamp}_${cleanName}`;
 
     // Update in local cache first to ensure smooth offline fallback
     const updatedDocs = localVaultVideos.map(d => {
-      if (d.name === fileName) {
+      const dCleanName = d.name.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
+      const dTimestamp = d.name.match(/^\d+/)?.[0] || d.name;
+      const dKey = `${dTimestamp}_${dCleanName}`;
+
+      if (d.name === fileName || dKey === targetKey) {
         return {
           ...d,
           name: targetName,
