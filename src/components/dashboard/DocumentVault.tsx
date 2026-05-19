@@ -380,7 +380,7 @@ const DocumentVault = () => {
   };
 
   const myDocuments = familyDocuments.filter(d => d.ownerId === user?.id || d.ownerId === "me");
-  const sharedFamilyDocuments = familyDocuments.filter(d => d.ownerId !== user?.id && d.ownerId !== "me");
+  const sharedFamilyDocuments = familyDocuments.filter(d => d.isShared);
 
   return (
     <div className="space-y-8">

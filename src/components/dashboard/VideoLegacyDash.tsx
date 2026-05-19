@@ -380,7 +380,7 @@ const VideoLegacyDash = () => {
   };
 
   const myVideos = familyVideos.filter(v => v.ownerId === user?.id || v.ownerId === "me");
-  const sharedFamilyVideos = familyVideos.filter(v => v.ownerId !== user?.id && v.ownerId !== "me");
+  const sharedFamilyVideos = familyVideos.filter(v => v.isShared);
 
   return (
     <div className="space-y-8">
