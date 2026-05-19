@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Shield, Video, FileText, BarChart3, LogOut, Home, Brain, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Shield, Video, FileText, BarChart3, LogOut, Home, Brain, Menu, X, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import VideoLegacyDash from "@/components/dashboard/VideoLegacyDash";
 import DocumentVault from "@/components/dashboard/DocumentVault";
 import AssetManager from "@/components/dashboard/AssetManager";
 import DecisionDNA from "@/components/dashboard/DecisionDNA";
+import FamilyHub from "@/components/dashboard/FamilyHub";
 
 const tabs = [
   { id: "videos", label: "Video Legacy", icon: Video },
   { id: "documents", label: "Document Vault", icon: FileText },
   { id: "assets", label: "Asset Manager", icon: BarChart3 },
   { id: "dna", label: "Decision DNA", icon: Brain },
+  { id: "family", label: "Family Hub", icon: Users },
 ] as const;
 
 type TabId = typeof tabs[number]["id"];
@@ -157,6 +159,7 @@ const Dashboard = () => {
             {activeTab === "documents" && <DocumentVault />}
             {activeTab === "assets" && <AssetManager />}
             {activeTab === "dna" && <DecisionDNA />}
+            {activeTab === "family" && <FamilyHub />}
           </div>
         </div>
       </main>
