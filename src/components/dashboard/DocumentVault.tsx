@@ -25,6 +25,7 @@ const DocumentVault = () => {
   const [sharedFiles, setSharedFiles] = useState<string[]>([]);
   const [familyDocuments, setFamilyDocuments] = useState<DocumentMeta[]>([]);
   const [localVaultDocs, setLocalVaultDocs] = useState<DocumentMeta[]>([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const cachedShared = localStorage.getItem("heirloom_shared_documents");
@@ -54,6 +55,58 @@ const DocumentVault = () => {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      // Offline check
+      const cachedMembers = localStorage.getItem("heirloom_family_members");
+      if (cachedMembers) {
+        const membersList = JSON.parse(cachedMembers);
+        const currentUser = membersList.find((m: any) => m.email === user.email || m.isCurrentUser);
+        if (currentUser && currentUser.role === "owner") {
+          setIsAdmin(true);
+        }
+      }
+
+      // Online check
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("user_id", user.id)
+        .maybeSingle()
+        .then(({ data }) => {
+          if (data?.role === "owner") {
+            setIsAdmin(true);
+          }
+        });
+    }
+  }, [user]);
+
+  // Fetch family members to discover other accounts in the family
+  const { data: familyMembers = [] } = useQuery({
+    queryKey: ["family-members", user?.id],
+    queryFn: async () => {
+      if (!user) return [];
+      try {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("family_id")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (!profile?.family_id) return [];
+        
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("id, full_name, user_id, role, relationship")
+          .eq("family_id", profile.family_id);
+        return profiles || [];
+      } catch (err) {
+        console.warn("Could not query profiles:", err);
+        return [];
+      }
+    },
+    enabled: !!user,
+  });
+
   const { data: documents = [], isLoading } = useQuery({
     queryKey: ["documents", user?.id],
     queryFn: async () => {
@@ -75,67 +128,116 @@ const DocumentVault = () => {
       personalMap.set(d.name, {
         name: d.name,
         created_at: d.created_at,
-        isShared: sharedFiles.includes(d.name),
-        uploadedBy: user?.user_metadata?.full_name || "You",
+        isShared: d.name.includes("_shared_") || sharedFiles.includes(d.name),
+        uploadedBy: "You",
         ownerId: user?.id || "me"
       });
     });
 
-    // 2. Add/Merge files from local storage (handles offline mode + files from other users in local demo)
+    // 2. Add/Merge files from local storage cache
     localVaultDocs.forEach(d => {
       const isMine = d.ownerId === user?.id || d.ownerId === "me";
       const updatedOwnerId = isMine ? (user?.id || "me") : d.ownerId;
+      const isShared = d.name.includes("_shared_") || d.isShared;
 
       if (!personalMap.has(d.name)) {
         personalMap.set(d.name, {
           ...d,
           ownerId: updatedOwnerId,
-          isShared: sharedFiles.includes(d.name) || d.isShared
+          isShared
         });
       }
     });
 
-    const combinedList = Array.from(personalMap.values());
+    // 3. Query other family members' files if we are online and have familyMembers
+    const fetchOtherFamilyDocs = async () => {
+      const otherMembers = familyMembers.filter(m => m.user_id && m.user_id !== user?.id);
+      let updated = false;
 
-    // 3. Mock some shared family documents from other members for high-fidelity demo
-    const defaultFamilyDocs: DocumentMeta[] = [
-      {
-        name: "Eleanor_Sterling_Last_Will_Draft.pdf",
-        created_at: new Date(Date.now() - 172800000).toISOString(),
-        isShared: true,
-        uploadedBy: "Eleanor Sterling (Matriarch)",
-        ownerId: "eleanor-1"
-      },
-      {
-        name: "Grandpa_Richard_Heritage_Farm_Deeds.pdf",
-        created_at: new Date(Date.now() - 345600000).toISOString(),
-        isShared: true,
-        uploadedBy: "Grandpa Richard (Grandfather)",
-        ownerId: "grandpa-1"
+      await Promise.all(
+        otherMembers.map(async (member) => {
+          try {
+            const { data, error } = await supabase.storage
+              .from("documents")
+              .list(`${member.user_id}/`, { limit: 100 });
+            
+            if (!error && data) {
+              data.forEach(f => {
+                // Only load if it's marked shared
+                if (f.name.includes("_shared_")) {
+                  if (!personalMap.has(f.name)) {
+                    personalMap.set(f.name, {
+                      name: f.name,
+                      created_at: f.created_at,
+                      isShared: true,
+                      uploadedBy: member.full_name || `${member.relationship}`,
+                      ownerId: member.user_id
+                    });
+                    updated = true;
+                  }
+                }
+              });
+            }
+          } catch (e) {
+            console.warn("Could not list other member folder:", e);
+          }
+        })
+      );
+
+      if (updated) {
+        setFamilyDocuments(compileFilteredList(Array.from(personalMap.values())));
       }
-    ];
+    };
 
-    // Filter list to keep only:
-    // - Current user's files (shared or private)
-    // - Other family members' files ONLY IF they are shared
-    const filteredList = combinedList.filter(d => {
-      const isMine = d.ownerId === user?.id || d.ownerId === "me";
-      return isMine || d.isShared;
-    });
+    const compileFilteredList = (list: DocumentMeta[]) => {
+      // Mock some shared family documents from other members for high-fidelity demo
+      const defaultFamilyDocs: DocumentMeta[] = [
+        {
+          name: "Eleanor_Sterling_Last_Will_Draft.pdf",
+          created_at: new Date(Date.now() - 172800000).toISOString(),
+          isShared: true,
+          uploadedBy: "Eleanor Sterling (Matriarch)",
+          ownerId: "eleanor-1"
+        },
+        {
+          name: "Grandpa_Richard_Heritage_Farm_Deeds.pdf",
+          created_at: new Date(Date.now() - 345600000).toISOString(),
+          isShared: true,
+          uploadedBy: "Grandpa Richard (Grandfather)",
+          ownerId: "grandpa-1"
+        }
+      ];
 
-    setFamilyDocuments([...filteredList, ...defaultFamilyDocs]);
-  }, [documents, localVaultDocs, sharedFiles, user]);
+      const filteredList = list.filter(d => {
+        const isMine = d.ownerId === user?.id || d.ownerId === "me";
+        return isMine || d.isShared;
+      });
+
+      return [...filteredList, ...defaultFamilyDocs];
+    };
+
+    // Initialize with current local/storage mapping
+    setFamilyDocuments(compileFilteredList(Array.from(personalMap.values())));
+
+    if (user && familyMembers.length > 0) {
+      fetchOtherFamilyDocs();
+    }
+  }, [documents, localVaultDocs, sharedFiles, user, familyMembers]);
 
   const deleteMutation = useMutation({
-    mutationFn: async (name: string) => {
+    mutationFn: async ({ name, ownerId }: { name: string; ownerId: string }) => {
       try {
-        const { error } = await supabase.storage.from("documents").remove([`${user!.id}/${name}`]);
+        const folder = ownerId === "me" ? user!.id : ownerId;
+        const { error } = await supabase.storage
+          .from("documents")
+          .remove([`${folder}/${name}`]);
         if (error) console.warn("Could not delete from storage bucket:", error.message);
       } catch (err) {
         console.warn("Storage delete error:", err);
       }
     },
-    onSuccess: (_, name) => {
+    onSuccess: (_, variables) => {
+      const { name } = variables;
       saveSharedFilesState(sharedFiles.filter(f => f !== name));
       const updatedDocs = localVaultDocs.filter(d => d.name !== name);
       setLocalVaultDocs(updatedDocs);
@@ -149,7 +251,8 @@ const DocumentVault = () => {
     const file = e.target.files?.[0];
     if (!file || !user) return;
     setUploading(true);
-    const fileName = `${Date.now()}_${file.name}`;
+    // Add _private_ prefix to make file private by default
+    const fileName = `${Date.now()}_private_${file.name.replace(/\s+/g, "_")}`;
     const path = `${user.id}/${fileName}`;
     const { error } = await supabase.storage.from("documents").upload(path, file);
     setUploading(false);
@@ -181,40 +284,88 @@ const DocumentVault = () => {
   };
 
   const handleDownload = async (name: string, ownerId: string) => {
-    // If own document, fetch pre-signed URL from current directory
-    if (ownerId === user?.id || ownerId === "me") {
-      const { data } = await supabase.storage.from("documents").createSignedUrl(`${user!.id}/${name}`, 60);
-      if (data?.signedUrl) window.open(data.signedUrl, "_blank");
-    } else {
-      // Direct mock file visual preview download for demo since it belongs to other family members
-      toast({
-        title: "Downloading Shared Asset",
-        description: `Accessing encrypted document from ${ownerId === 'eleanor-1' ? 'Eleanor' : 'Richard'}'s secure vault...`,
-      });
-      setTimeout(() => {
-        window.open("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "_blank");
-      }, 1000);
+    const targetFolder = ownerId === "me" || ownerId === user?.id ? user?.id : ownerId;
+    
+    if (targetFolder && targetFolder !== "eleanor-1" && targetFolder !== "grandpa-1") {
+      try {
+        const { data } = await supabase.storage
+          .from("documents")
+          .createSignedUrl(`${targetFolder}/${name}`, 60);
+        if (data?.signedUrl) {
+          window.open(data.signedUrl, "_blank");
+          return;
+        }
+      } catch (err) {
+        console.warn("Could not download file:", err);
+      }
     }
+    
+    // Fallback for mock files or if storage call fails
+    toast({
+      title: "Downloading Shared Asset",
+      description: `Accessing encrypted document from family vault...`,
+    });
+    setTimeout(() => {
+      window.open("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "_blank");
+    }, 1000);
   };
 
-  const toggleShare = (fileName: string) => {
-    let updated: string[];
-    const currentlyShared = sharedFiles.includes(fileName);
-    
-    if (currentlyShared) {
-      updated = sharedFiles.filter(f => f !== fileName);
-      toast({
-        title: "Marked Private",
-        description: "This document is now strictly private to your personal account.",
-      });
-    } else {
-      updated = [...sharedFiles, fileName];
-      toast({
-        title: "Shared with Family",
-        description: "All authorized family members can now view and download this document.",
-      });
+  const toggleShare = async (fileName: string) => {
+    const isShared = fileName.includes("_shared_");
+    const cleanName = fileName.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
+    const timestamp = fileName.match(/^\d+/)?.[0] || Date.now().toString();
+    const targetName = `${timestamp}_${isShared ? "private" : "shared"}_${cleanName}`;
+
+    // Update in local cache first to ensure smooth offline fallback
+    const updatedDocs = localVaultDocs.map(d => {
+      if (d.name === fileName) {
+        return {
+          ...d,
+          name: targetName,
+          isShared: !isShared
+        };
+      }
+      return d;
+    });
+    setLocalVaultDocs(updatedDocs);
+    localStorage.setItem("heirloom_vault_documents", JSON.stringify(updatedDocs));
+
+    // Update shared list
+    const updatedSharedList = !isShared
+      ? [...sharedFiles, targetName].filter(name => name !== fileName)
+      : sharedFiles.filter(name => name !== fileName);
+    saveSharedFilesState(updatedSharedList);
+
+    // Online move in storage bucket
+    if (user) {
+      try {
+        const fromPath = `${user.id}/${fileName}`;
+        const toPath = `${user.id}/${targetName}`;
+        
+        const { error } = await supabase.storage
+          .from("documents")
+          .move(fromPath, toPath);
+        
+        if (error) {
+          console.warn("Could not rename file in storage bucket:", error.message);
+        }
+      } catch (err) {
+        console.warn("Storage move error:", err);
+      }
     }
-    saveSharedFilesState(updated);
+
+    queryClient.invalidateQueries({ queryKey: ["documents"] });
+    
+    toast({
+      title: !isShared ? "Shared with Family" : "Marked Private",
+      description: !isShared 
+        ? "All authorized family members can now view and download this document."
+        : "This document is now strictly private to your personal account.",
+    });
+  };
+
+  const cleanDisplayName = (name: string) => {
+    return name.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
   };
 
   const myDocuments = familyDocuments.filter(d => d.ownerId === user?.id || d.ownerId === "me");
@@ -265,8 +416,8 @@ const DocumentVault = () => {
                         <FileText className="w-5 h-5 text-bronze" />
                       </div>
                       <div className="min-w-0">
-                        <h4 className="text-xs font-semibold text-foreground truncate max-w-[280px]" title={d.name.replace(/^\d+_/, "")}>
-                          {d.name.replace(/^\d+_/, "")}
+                        <h4 className="text-xs font-semibold text-foreground truncate max-w-[280px]" title={cleanDisplayName(d.name)}>
+                          {cleanDisplayName(d.name)}
                         </h4>
                         <span className="text-[10px] text-muted-foreground mt-0.5 block">
                           Uploaded on {new Date(d.created_at).toLocaleDateString()}
@@ -311,7 +462,7 @@ const DocumentVault = () => {
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => deleteMutation.mutate(d.name)}
+                        onClick={() => deleteMutation.mutate({ name: d.name, ownerId: d.ownerId })}
                         className="h-8 w-8 text-red-400 hover:text-red-500 hover:bg-red-50"
                         title="Remove Document"
                       >
@@ -342,8 +493,8 @@ const DocumentVault = () => {
                     <div className="flex items-center gap-3">
                       <FileText className="w-5 h-5 text-bronze flex-shrink-0" />
                       <div className="min-w-0">
-                        <h4 className="text-xs font-semibold text-foreground truncate" title={d.name}>
-                          {d.name}
+                        <h4 className="text-xs font-semibold text-foreground truncate" title={cleanDisplayName(d.name)}>
+                          {cleanDisplayName(d.name)}
                         </h4>
                         <span className="text-[9px] text-muted-foreground block mt-0.5">
                           Published by {d.uploadedBy}
@@ -355,15 +506,28 @@ const DocumentVault = () => {
                       <span className="text-[10px] text-muted-foreground">
                         {new Date(d.created_at).toLocaleDateString()}
                       </span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDownload(d.name, d.ownerId)}
-                        className="h-7 text-[10px] px-2.5"
-                      >
-                        <Download className="w-3 h-3 mr-1" />
-                        Download
-                      </Button>
+                      <div className="flex items-center gap-1.5">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDownload(d.name, d.ownerId)}
+                          className="h-7 text-[10px] px-2.5"
+                        >
+                          <Download className="w-3 h-3 mr-1" />
+                          Download
+                        </Button>
+                        {isAdmin && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => deleteMutation.mutate({ name: d.name, ownerId: d.ownerId })}
+                            className="h-7 w-7 text-red-400 hover:text-red-500 hover:bg-red-50"
+                            title="Delete other user's shared document (Admin)"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Users, UserPlus, Key, Shield, ShieldAlert, Heart, Calendar, ArrowRight, UserCheck, Trash2, Mail, CheckCircle2, Copy, Check, ExternalLink, Loader2, Sparkles } from "lucide-react";
+import { Users, UserPlus, UserMinus, Key, Shield, ShieldAlert, Heart, Calendar, ArrowRight, UserCheck, Trash2, Mail, CheckCircle2, Copy, Check, ExternalLink, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
@@ -151,15 +151,40 @@ export default function FamilyHub() {
     if (cachedInherited) setIsInherited(cachedInherited === "true");
     else localStorage.setItem("heirloom_is_inherited", String(isInherited));
 
+    let activeMembersList: FamilyMember[] = [];
     if (cachedMembers) {
-      setMembers(JSON.parse(cachedMembers));
+      activeMembersList = JSON.parse(cachedMembers);
     } else {
-      setMembers(defaultMembers);
+      activeMembersList = defaultMembers;
       localStorage.setItem("heirloom_family_members", JSON.stringify(defaultMembers));
     }
+    
+    // Merge database profiles if loaded, keeping real emails from registry
+    const currentMembersState = members.length > 0 ? members : activeMembersList;
+    setMembers(currentMembersState);
 
     if (cachedInvites) {
-      setInvites(JSON.parse(cachedInvites));
+      const parsedInvites: FamilyInvite[] = JSON.parse(cachedInvites);
+      
+      // Determine all active emails including those in browser cache registry
+      const activeEmails = new Set<string>();
+      activeMembersList.forEach(m => {
+        if (m.email) activeEmails.add(m.email.toLowerCase());
+      });
+      currentMembersState.forEach(m => {
+        if (m.email && m.email !== "member@sterling-legacy.com") {
+          activeEmails.add(m.email.toLowerCase());
+        }
+      });
+      if (user?.email) {
+        activeEmails.add(user.email.toLowerCase());
+      }
+
+      const filteredInvites = parsedInvites.filter(i => !activeEmails.has(i.email.toLowerCase()));
+      setInvites(filteredInvites);
+      if (filteredInvites.length !== parsedInvites.length) {
+        localStorage.setItem("heirloom_family_invites", JSON.stringify(filteredInvites));
+      }
     } else {
       setInvites([]);
       localStorage.setItem("heirloom_family_invites", JSON.stringify([]));
@@ -419,13 +444,14 @@ export default function FamilyHub() {
                     {/* Actions: Only the patriarch owner can manage profiles */}
                     {isPremiumAdmin && !member.isCurrentUser && (
                       <Button
-                        variant="ghost"
-                        size="icon"
+                        variant="outline"
+                        size="sm"
                         onClick={() => handleRemoveMember(member.id)}
-                        className="text-red-400 hover:text-red-500 hover:bg-red-50/50"
-                        title="Remove member"
+                        className="text-red-400 hover:text-red-500 border-red-200 hover:border-red-300 hover:bg-red-50/50 h-7 text-[10px] px-2 flex items-center gap-1"
+                        title="Remove from family"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <UserMinus className="w-3.5 h-3.5" />
+                        Remove
                       </Button>
                     )}
                   </div>

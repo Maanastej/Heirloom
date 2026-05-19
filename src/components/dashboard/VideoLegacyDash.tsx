@@ -25,6 +25,7 @@ const VideoLegacyDash = () => {
   const [sharedVideos, setSharedVideos] = useState<string[]>([]);
   const [familyVideos, setFamilyVideos] = useState<VideoMeta[]>([]);
   const [localVaultVideos, setLocalVaultVideos] = useState<VideoMeta[]>([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const cachedShared = localStorage.getItem("heirloom_shared_videos");
@@ -36,6 +37,58 @@ const VideoLegacyDash = () => {
       setLocalVaultVideos(JSON.parse(cachedDocs));
     }
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      // Offline check
+      const cachedMembers = localStorage.getItem("heirloom_family_members");
+      if (cachedMembers) {
+        const membersList = JSON.parse(cachedMembers);
+        const currentUser = membersList.find((m: any) => m.email === user.email || m.isCurrentUser);
+        if (currentUser && currentUser.role === "owner") {
+          setIsAdmin(true);
+        }
+      }
+
+      // Online check
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("user_id", user.id)
+        .maybeSingle()
+        .then(({ data }) => {
+          if (data?.role === "owner") {
+            setIsAdmin(true);
+          }
+        });
+    }
+  }, [user]);
+
+  // Fetch family members to discover other accounts in the family
+  const { data: familyMembers = [] } = useQuery({
+    queryKey: ["family-members", user?.id],
+    queryFn: async () => {
+      if (!user) return [];
+      try {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("family_id")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (!profile?.family_id) return [];
+        
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("id, full_name, user_id, role, relationship")
+          .eq("family_id", profile.family_id);
+        return profiles || [];
+      } catch (err) {
+        console.warn("Could not query profiles:", err);
+        return [];
+      }
+    },
+    enabled: !!user,
+  });
 
   const saveSharedVideosState = (updated: string[]) => {
     setSharedVideos(updated);
@@ -75,67 +128,116 @@ const VideoLegacyDash = () => {
       personalMap.set(v.name, {
         name: v.name,
         created_at: v.created_at,
-        isShared: sharedVideos.includes(v.name),
-        uploadedBy: user?.user_metadata?.full_name || "You",
+        isShared: v.name.includes("_shared_") || sharedVideos.includes(v.name),
+        uploadedBy: "You",
         ownerId: user?.id || "me"
       });
     });
 
-    // 2. Add/Merge files from local storage (handles offline mode + files from other users in local demo)
+    // 2. Add/Merge files from local storage cache
     localVaultVideos.forEach(v => {
       const isMine = v.ownerId === user?.id || v.ownerId === "me";
       const updatedOwnerId = isMine ? (user?.id || "me") : v.ownerId;
+      const isShared = v.name.includes("_shared_") || v.isShared;
 
       if (!personalMap.has(v.name)) {
         personalMap.set(v.name, {
           ...v,
           ownerId: updatedOwnerId,
-          isShared: sharedVideos.includes(v.name) || v.isShared
+          isShared
         });
       }
     });
 
-    const combinedList = Array.from(personalMap.values());
+    // 3. Query other family members' files if we are online and have familyMembers
+    const fetchOtherFamilyVideos = async () => {
+      const otherMembers = familyMembers.filter(m => m.user_id && m.user_id !== user?.id);
+      let updated = false;
 
-    // 3. Mock some shared family videos from other members for high-fidelity demo
-    const defaultFamilyVideos: VideoMeta[] = [
-      {
-        name: "Grandpa_Richard_Advice_To_Grandchildren_1998.mp4",
-        created_at: new Date(Date.now() - 259200000).toISOString(),
-        isShared: true,
-        uploadedBy: "Grandpa Richard (Grandfather)",
-        ownerId: "grandpa-1"
-      },
-      {
-        name: "Eleanor_Sterling_Legacy_Reflections.mp4",
-        created_at: new Date(Date.now() - 518400000).toISOString(),
-        isShared: true,
-        uploadedBy: "Eleanor Sterling (Matriarch)",
-        ownerId: "eleanor-1"
+      await Promise.all(
+        otherMembers.map(async (member) => {
+          try {
+            const { data, error } = await supabase.storage
+              .from("videos")
+              .list(`${member.user_id}/`, { limit: 100 });
+            
+            if (!error && data) {
+              data.forEach(f => {
+                // Only load if it's marked shared
+                if (f.name.includes("_shared_")) {
+                  if (!personalMap.has(f.name)) {
+                    personalMap.set(f.name, {
+                      name: f.name,
+                      created_at: f.created_at,
+                      isShared: true,
+                      uploadedBy: member.full_name || `${member.relationship}`,
+                      ownerId: member.user_id
+                    });
+                    updated = true;
+                  }
+                }
+              });
+            }
+          } catch (e) {
+            console.warn("Could not list other member folder:", e);
+          }
+        })
+      );
+
+      if (updated) {
+        setFamilyVideos(compileFilteredList(Array.from(personalMap.values())));
       }
-    ];
+    };
 
-    // Filter list to keep only:
-    // - Current user's files (shared or private)
-    // - Other family members' files ONLY IF they are shared
-    const filteredList = combinedList.filter(v => {
-      const isMine = v.ownerId === user?.id || v.ownerId === "me";
-      return isMine || v.isShared;
-    });
+    const compileFilteredList = (list: VideoMeta[]) => {
+      // Seed default shared videos from other family members for high-fidelity demonstration
+      const defaultFamilyVideos: VideoMeta[] = [
+        {
+          name: "Grandpa_Richard_Advice_To_Grandchildren_1998.mp4",
+          created_at: new Date(Date.now() - 259200000).toISOString(),
+          isShared: true,
+          uploadedBy: "Grandpa Richard (Grandfather)",
+          ownerId: "grandpa-1"
+        },
+        {
+          name: "Eleanor_Sterling_Legacy_Reflections.mp4",
+          created_at: new Date(Date.now() - 518400000).toISOString(),
+          isShared: true,
+          uploadedBy: "Eleanor Sterling (Matriarch)",
+          ownerId: "eleanor-1"
+        }
+      ];
 
-    setFamilyVideos([...filteredList, ...defaultFamilyVideos]);
-  }, [videos, localVaultVideos, sharedVideos, user]);
+      const filteredList = list.filter(v => {
+        const isMine = v.ownerId === user?.id || v.ownerId === "me";
+        return isMine || v.isShared;
+      });
+
+      return [...filteredList, ...defaultFamilyVideos];
+    };
+
+    // Initialize with current local/storage mapping
+    setFamilyVideos(compileFilteredList(Array.from(personalMap.values())));
+
+    if (user && familyMembers.length > 0) {
+      fetchOtherFamilyVideos();
+    }
+  }, [videos, localVaultVideos, sharedVideos, user, familyMembers]);
 
   const deleteMutation = useMutation({
-    mutationFn: async (name: string) => {
+    mutationFn: async ({ name, ownerId }: { name: string; ownerId: string }) => {
       try {
-        const { error } = await supabase.storage.from("videos").remove([`${user!.id}/${name}`]);
+        const folder = ownerId === "me" ? user!.id : ownerId;
+        const { error } = await supabase.storage
+          .from("videos")
+          .remove([`${folder}/${name}`]);
         if (error) console.warn("Could not delete from storage bucket:", error.message);
       } catch (err) {
         console.warn("Storage delete error:", err);
       }
     },
-    onSuccess: (_, name) => {
+    onSuccess: (_, variables) => {
+      const { name } = variables;
       saveSharedVideosState(sharedVideos.filter(v => v !== name));
       const updatedDocs = localVaultVideos.filter(d => d.name !== name);
       setLocalVaultVideos(updatedDocs);
@@ -149,7 +251,8 @@ const VideoLegacyDash = () => {
     const file = e.target.files?.[0];
     if (!file || !user) return;
     setUploading(true);
-    const fileName = `${Date.now()}_${file.name}`;
+    // Add _private_ prefix to make video private by default
+    const fileName = `${Date.now()}_private_${file.name.replace(/\s+/g, "_")}`;
     const path = `${user.id}/${fileName}`;
     const { error } = await supabase.storage.from("videos").upload(path, file);
     setUploading(false);
@@ -181,38 +284,88 @@ const VideoLegacyDash = () => {
   };
 
   const handleView = async (name: string, ownerId: string) => {
-    if (ownerId === user?.id || ownerId === "me") {
-      const { data } = await supabase.storage.from("videos").createSignedUrl(`${user!.id}/${name}`, 60);
-      if (data?.signedUrl) window.open(data.signedUrl, "_blank");
-    } else {
-      toast({
-        title: "Streaming Legacy Video",
-        description: `Establishing secure connection to ${ownerId === 'eleanor-1' ? 'Eleanor' : 'Richard'}'s private media nodes...`,
-      });
-      setTimeout(() => {
-        window.open("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", "_blank");
-      }, 1000);
+    const targetFolder = ownerId === "me" || ownerId === user?.id ? user?.id : ownerId;
+    
+    if (targetFolder && targetFolder !== "eleanor-1" && targetFolder !== "grandpa-1") {
+      try {
+        const { data } = await supabase.storage
+          .from("videos")
+          .createSignedUrl(`${targetFolder}/${name}`, 60);
+        if (data?.signedUrl) {
+          window.open(data.signedUrl, "_blank");
+          return;
+        }
+      } catch (err) {
+        console.warn("Could not preview video:", err);
+      }
     }
+    
+    // Fallback for mock files or if storage call fails
+    toast({
+      title: "Streaming Legacy Video",
+      description: `Establishing secure connection to private media nodes...`,
+    });
+    setTimeout(() => {
+      window.open("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", "_blank");
+    }, 1000);
   };
 
-  const toggleShare = (fileName: string) => {
-    let updated: string[];
-    const currentlyShared = sharedVideos.includes(fileName);
-    
-    if (currentlyShared) {
-      updated = sharedVideos.filter(v => v !== fileName);
-      toast({
-        title: "Marked Private",
-        description: "This video is now strictly private to your personal dashboard.",
-      });
-    } else {
-      updated = [...sharedVideos, fileName];
-      toast({
-        title: "Shared with Family",
-        description: "All authorized family members can now view and play this legacy video.",
-      });
+  const toggleShare = async (fileName: string) => {
+    const isShared = fileName.includes("_shared_");
+    const cleanName = fileName.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
+    const timestamp = fileName.match(/^\d+/)?.[0] || Date.now().toString();
+    const targetName = `${timestamp}_${isShared ? "private" : "shared"}_${cleanName}`;
+
+    // Update in local cache first to ensure smooth offline fallback
+    const updatedDocs = localVaultVideos.map(d => {
+      if (d.name === fileName) {
+        return {
+          ...d,
+          name: targetName,
+          isShared: !isShared
+        };
+      }
+      return d;
+    });
+    setLocalVaultVideos(updatedDocs);
+    localStorage.setItem("heirloom_vault_videos", JSON.stringify(updatedDocs));
+
+    // Update shared list
+    const updatedSharedList = !isShared
+      ? [...sharedVideos, targetName].filter(name => name !== fileName)
+      : sharedVideos.filter(name => name !== fileName);
+    saveSharedVideosState(updatedSharedList);
+
+    // Online move in storage bucket
+    if (user) {
+      try {
+        const fromPath = `${user.id}/${fileName}`;
+        const toPath = `${user.id}/${targetName}`;
+        
+        const { error } = await supabase.storage
+          .from("videos")
+          .move(fromPath, toPath);
+        
+        if (error) {
+          console.warn("Could not rename file in storage bucket:", error.message);
+        }
+      } catch (err) {
+        console.warn("Storage move error:", err);
+      }
     }
-    saveSharedVideosState(updated);
+
+    queryClient.invalidateQueries({ queryKey: ["videos"] });
+    
+    toast({
+      title: !isShared ? "Shared with Family" : "Marked Private",
+      description: !isShared 
+        ? "All authorized family members can now view and play this legacy video."
+        : "This video is now strictly private to your personal dashboard.",
+    });
+  };
+
+  const cleanDisplayName = (name: string) => {
+    return name.replace(/^\d+_(private_|shared_)/, "").replace(/^\d+_(?!private|shared)/, "");
   };
 
   const myVideos = familyVideos.filter(v => v.ownerId === user?.id || v.ownerId === "me");
@@ -261,8 +414,8 @@ const VideoLegacyDash = () => {
                     <div>
                       <div className="flex items-center gap-3">
                         <Video className="w-5 h-5 text-bronze flex-shrink-0" />
-                        <span className="text-xs font-semibold text-foreground truncate block max-w-[180px]" title={v.name.replace(/^\d+_/, "")}>
-                          {v.name.replace(/^\d+_/, "")}
+                        <span className="text-xs font-semibold text-foreground truncate block max-w-[180px]" title={cleanDisplayName(v.name)}>
+                          {cleanDisplayName(v.name)}
                         </span>
                       </div>
                       <span className="text-[10px] text-muted-foreground mt-1.5 block">
@@ -296,7 +449,7 @@ const VideoLegacyDash = () => {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => deleteMutation.mutate(v.name)}
+                          onClick={() => deleteMutation.mutate({ name: v.name, ownerId: v.ownerId })}
                           className="h-8 w-8 text-red-400 hover:text-red-500 hover:bg-red-50"
                           title="Delete Video"
                         >
@@ -329,8 +482,8 @@ const VideoLegacyDash = () => {
                       <div className="flex items-center gap-3">
                         <Video className="w-5 h-5 text-bronze flex-shrink-0" />
                         <div className="min-w-0">
-                          <h4 className="text-xs font-semibold text-foreground truncate" title={v.name}>
-                            {v.name}
+                          <h4 className="text-xs font-semibold text-foreground truncate" title={cleanDisplayName(v.name)}>
+                            {cleanDisplayName(v.name)}
                           </h4>
                           <span className="text-[9px] text-muted-foreground block mt-0.5">
                             Recorded by {v.uploadedBy}
@@ -343,15 +496,28 @@ const VideoLegacyDash = () => {
                       <span className="text-[9px] text-muted-foreground">
                         {new Date(v.created_at).toLocaleDateString()}
                       </span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleView(v.name, v.ownerId)}
-                        className="h-7 text-[10px] px-2.5"
-                      >
-                        <Play className="w-3 h-3 mr-1" />
-                        Stream
-                      </Button>
+                      <div className="flex items-center gap-1.5">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleView(v.name, v.ownerId)}
+                          className="h-7 text-[10px] px-2.5"
+                        >
+                          <Play className="w-3.5 h-3.5 mr-1" />
+                          Stream
+                        </Button>
+                        {isAdmin && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => deleteMutation.mutate({ name: v.name, ownerId: v.ownerId })}
+                            className="h-7 w-7 text-red-400 hover:text-red-500 hover:bg-red-50"
+                            title="Delete other user's shared video (Admin)"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
