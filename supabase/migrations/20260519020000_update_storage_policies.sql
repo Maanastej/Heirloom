@@ -14,6 +14,8 @@ DROP POLICY IF EXISTS "Insert own documents" ON storage.objects;
 DROP POLICY IF EXISTS "Insert own videos" ON storage.objects;
 DROP POLICY IF EXISTS "Delete own or admin documents" ON storage.objects;
 DROP POLICY IF EXISTS "Delete own or admin videos" ON storage.objects;
+DROP POLICY IF EXISTS "Update own documents" ON storage.objects;
+DROP POLICY IF EXISTS "Update own videos" ON storage.objects;
 
 -- 1. Document SELECT Policy (Own files OR family shared files in 'shared/' path)
 CREATE POLICY "View own or family shared documents"
@@ -105,4 +107,19 @@ CREATE POLICY "Delete own or admin videos"
         WHERE profiles.user_id = auth.uid() AND profiles.role = 'owner'
       )
     )
+  );
+
+-- 5. UPDATE Policies (Own folder only)
+CREATE POLICY "Update own documents"
+  ON storage.objects FOR UPDATE
+  USING (
+    bucket_id = 'documents' 
+    AND auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+CREATE POLICY "Update own videos"
+  ON storage.objects FOR UPDATE
+  USING (
+    bucket_id = 'videos' 
+    AND auth.uid()::text = (storage.foldername(name))[1]
   );
