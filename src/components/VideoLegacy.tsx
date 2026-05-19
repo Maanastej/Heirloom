@@ -69,7 +69,7 @@ const VideoLegacy = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-elegant bg-navy-light border border-cream/10">
               <div className="aspect-video bg-gradient-to-br from-navy-light to-navy flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-bronze/20 flex items-center justify-center mx-auto mb-4 animate-pulse-soft">
+                  <div className="w-20 h-20 rounded-full bg-bronze/20 flex items-center justify-center mx-auto mb-4">
                     <Video className="w-10 h-10 text-bronze" />
                   </div>
                   <p className="text-cream/60 text-sm">Video Legacy Preview</p>
@@ -90,13 +90,6 @@ const VideoLegacy = () => {
               </div>
             </div>
 
-            {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 rounded-xl bg-bronze/20 backdrop-blur-sm border border-bronze/30 flex items-center justify-center animate-float">
-              <div className="text-center">
-                <div className="text-2xl font-serif text-bronze">4K</div>
-                <div className="text-bronze/70 text-xs">Quality</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

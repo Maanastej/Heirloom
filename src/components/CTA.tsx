@@ -10,43 +10,40 @@ const CTA = () => {
   const handleCTA = () => navigate(user ? "/dashboard" : "/auth");
 
   return (
-    <section className="py-24 bg-hero relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--cream)) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
+    <section className="py-32 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-bronze/10 rounded-full blur-[120px] animate-pulse-soft" />
       </div>
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-bronze/30 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-2xl bg-bronze/20 flex items-center justify-center mx-auto mb-8">
-            <Shield className="w-8 h-8 text-bronze" />
+        <div className="max-w-5xl mx-auto p-12 md:p-20 rounded-[3rem] bg-navy-light/30 border border-cream/10 backdrop-blur-xl shadow-elegant text-center relative overflow-hidden group">
+          {/* Decorative Corner */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-bronze/20 to-transparent pointer-events-none" />
+          
+          <div className="w-20 h-20 rounded-3xl bg-gradient-bronze flex items-center justify-center mx-auto mb-10 shadow-bronze group-hover:rotate-12 transition-transform duration-700">
+            <Shield className="w-10 h-10 text-white" />
           </div>
 
-          <h2 className="font-serif text-4xl md:text-5xl text-cream leading-tight mb-6">
-            Your Family's Legacy
-            <span className="block text-bronze-light">Deserves Forever</span>
+          <h2 className="font-serif text-5xl md:text-7xl text-cream leading-[1.1] mb-8">
+            Your Family's Legacy <br />
+            <span className="text-gradient-bronze">Deserves Permanence.</span>
           </h2>
 
-          <p className="text-cream/70 text-lg mb-10 max-w-xl mx-auto">
-            Join founding families in preserving what matters most. Early access includes personalized onboarding and lifetime founder pricing.
+          <p className="text-cream/60 text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            We are currently accepting a limited number of founding families into our private beta. Secure your lineage's future today.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button variant="hero" size="xl" onClick={handleCTA}>
-              {user ? "Go to Dashboard" : "Request Early Access"}
-              <ArrowRight className="w-5 h-5" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+            <Button variant="hero" size="xl" onClick={handleCTA} className="px-16 py-8 text-xl shadow-bronze group/btn">
+              {user ? "Go to Dashboard" : "Request Founding Access"}
+              <ArrowRight className="w-6 h-6 ml-2 group-hover/btn:translate-x-1 transition-transform" />
             </Button>
           </div>
 
-          <div className="flex items-center justify-center gap-6 text-cream/50 text-sm">
-            <span>No credit card required</span>
-            <span className="w-1 h-1 rounded-full bg-current" />
-            <span>Private beta access</span>
-            <span className="w-1 h-1 rounded-full bg-current" />
-            <span>Family-first approach</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-cream/40 text-xs font-bold uppercase tracking-[2px]">
+            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-bronze" /> Sovereign Data Ownership</span>
+            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-bronze" /> 50+ Year Accessibility Node</span>
+            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-bronze" /> Decision DNA Integration</span>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { Upload, Video, Trash2 } from "lucide-react";
+import { Upload, Video, Trash2, Play } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -52,6 +52,11 @@ const VideoLegacyDash = () => {
     if (fileRef.current) fileRef.current.value = "";
   };
 
+  const handleView = async (name: string) => {
+    const { data } = await supabase.storage.from("videos").createSignedUrl(`${user!.id}/${name}`, 60);
+    if (data?.signedUrl) window.open(data.signedUrl, "_blank");
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -82,16 +87,28 @@ const VideoLegacyDash = () => {
             <div key={v.name} className="bg-card rounded-xl border border-border p-4 space-y-3">
               <div className="flex items-center gap-3">
                 <Video className="w-5 h-5 text-bronze flex-shrink-0" />
-                <span className="text-sm text-foreground truncate">{v.name.replace(/^\d+_/, "")}</span>
+                <span className="text-sm text-foreground truncate" title={v.name.replace(/^\d+_/, "")}>
+                  {v.name.replace(/^\d+_/, "")}
+                </span>
               </div>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="flex items-center justify-between text-xs text-muted-foreground pt-2 border-t border-border mt-2">
                 <span>{new Date(v.created_at).toLocaleDateString()}</span>
-                <button
-                  onClick={() => deleteMutation.mutate(v.name)}
-                  className="text-destructive hover:text-destructive/80 transition-colors"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleView(v.name)}
+                    className="text-foreground hover:text-bronze transition-colors flex items-center justify-center p-2 hover:bg-bronze/10 rounded-full"
+                    title="Watch / Download"
+                  >
+                    <Play className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => deleteMutation.mutate(v.name)}
+                    className="text-destructive hover:text-destructive/80 transition-colors p-2 hover:bg-destructive/10 rounded-full"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -102,3 +119,4 @@ const VideoLegacyDash = () => {
 };
 
 export default VideoLegacyDash;
+

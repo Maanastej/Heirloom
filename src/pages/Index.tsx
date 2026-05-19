@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import DecisionDNASection from "@/components/DecisionDNASection";
 import Features from "@/components/Features";
 import VideoLegacy from "@/components/VideoLegacy";
 import Security from "@/components/Security";
@@ -12,6 +13,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <DecisionDNASection />
       <Features />
       <VideoLegacy />
       <Security />

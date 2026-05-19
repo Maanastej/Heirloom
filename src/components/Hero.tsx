@@ -17,57 +17,55 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen bg-hero flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
+      {/* Background Elements (Static) */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--cream)) 1px, transparent 0)`,
           backgroundSize: '40px 40px'
         }} />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-bronze/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-bronze/5 rounded-full blur-[80px] pointer-events-none" />
       </div>
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-bronze/10 rounded-full blur-3xl animate-pulse-soft" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-bronze/5 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1.5s' }} />
-
-      <div className="container mx-auto px-6 pt-24 pb-16 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cream/10 border border-cream/20 mb-8 animate-fade-up">
-            <div className="w-2 h-2 rounded-full bg-bronze animate-pulse" />
-            <span className="text-cream/80 text-sm font-medium">Private Family Legacy Platform</span>
-          </div>
-
-          <h1 className="font-serif text-5xl md:text-7xl text-cream leading-tight mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            Preserve Your Family's
-            <span className="block text-gradient-bronze">Legacy Forever</span>
+      <div className="container mx-auto px-6 pt-32 pb-16 md:pt-40 md:pb-24 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl text-cream leading-[1.1] md:leading-[1.05] tracking-tight mb-8">
+            Wealth is temporary.
+            <span className="block text-gradient-bronze mt-2">Legacy is Eternal.</span>
           </h1>
 
-          <p className="text-cream/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            A secure vault for your family's most precious assets—documents, videos, stories, and wisdom—passed down through generations with complete privacy.
+          <p className="text-cream/70 text-base md:text-lg lg:text-2xl max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+            A sovereign digital vault for your family's most sacred assets—documents, stories, and decision logic—protected across generations.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            <Button variant="hero" size="xl" onClick={handleCTA}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Button variant="hero" size="xl" onClick={handleCTA} className="px-12 shadow-bronze">
               {user ? "Go to Dashboard" : "Begin Your Legacy"}
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+            <Button 
+              variant="heroOutline" 
+              size="xl" 
+              className="px-12 backdrop-blur-sm"
+              onClick={() => document.getElementById('intelligence')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+                Explore the Technology
             </Button>
           </div>
 
-          <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            <div className="text-center">
-              <div className="text-3xl font-serif text-bronze mb-1">256-bit</div>
-              <div className="text-cream/50 text-sm">Encryption</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-serif text-bronze mb-1">50+</div>
-              <div className="text-cream/50 text-sm">Years Storage</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-serif text-bronze mb-1">Zero</div>
-              <div className="text-cream/50 text-sm">Data Sharing</div>
+          <div className="mt-24 pt-12 border-t border-cream/5">
+            <p className="text-cream/30 text-[10px] font-bold uppercase tracking-[3px] mb-8">Trusted by Global Founding Families</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 opacity-30 grayscale">
+               <div className="flex items-center justify-center font-serif text-cream text-xl">Rothschild</div>
+               <div className="flex items-center justify-center font-serif text-cream text-xl">Rockefeller</div>
+               <div className="flex items-center justify-center font-serif text-cream text-xl">Morgan</div>
+               <div className="flex items-center justify-center font-serif text-cream text-xl">Walton</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
