@@ -118,13 +118,14 @@ export default function FamilyHub() {
 
           const { data: profiles } = await supabase
             .from("profiles")
-            .select("id, full_name, user_id, role, relationship");
+            .select("id, full_name, user_id, role, relationship, email")
+            .eq("family_id", profileData.family_id);
 
           if (profiles && profiles.length > 0) {
             const mappedMembers = profiles.map((p: any) => ({
               id: p.id,
               fullName: p.full_name || "Family Member",
-              email: p.user_id === user.id ? user.email || "" : "member@sterling-legacy.com",
+              email: p.email || (p.user_id === user.id ? user.email || "" : "member@sterling-legacy.com"),
               role: p.role as FamilyMember["role"],
               relationship: p.relationship || "Relative",
               isCurrentUser: p.user_id === user.id,
@@ -161,7 +162,16 @@ export default function FamilyHub() {
     
     // Merge database profiles if loaded, keeping real emails from registry
     const currentMembersState = members.length > 0 ? members : activeMembersList;
-    setMembers(currentMembersState);
+
+    // Recalculate isCurrentUser dynamically based on logged-in user to ensure correct badge display
+    const mappedMembersState = currentMembersState.map(m => {
+      const isMe = user ? (m.email?.toLowerCase() === user.email?.toLowerCase()) : m.isCurrentUser;
+      return {
+        ...m,
+        isCurrentUser: isMe
+      };
+    });
+    setMembers(mappedMembersState);
 
     if (cachedInvites) {
       const parsedInvites: FamilyInvite[] = JSON.parse(cachedInvites);
@@ -171,7 +181,7 @@ export default function FamilyHub() {
       activeMembersList.forEach(m => {
         if (m.email) activeEmails.add(m.email.toLowerCase());
       });
-      currentMembersState.forEach(m => {
+      mappedMembersState.forEach(m => {
         if (m.email && m.email !== "member@sterling-legacy.com") {
           activeEmails.add(m.email.toLowerCase());
         }
