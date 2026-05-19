@@ -190,30 +190,12 @@ const VideoLegacyDash = () => {
     };
 
     const compileFilteredList = (list: VideoMeta[]) => {
-      // Seed default shared videos from other family members for high-fidelity demonstration
-      const defaultFamilyVideos: VideoMeta[] = [
-        {
-          name: "Grandpa_Richard_Advice_To_Grandchildren_1998.mp4",
-          created_at: new Date(Date.now() - 259200000).toISOString(),
-          isShared: true,
-          uploadedBy: "Grandpa Richard (Grandfather)",
-          ownerId: "grandpa-1"
-        },
-        {
-          name: "Eleanor_Sterling_Legacy_Reflections.mp4",
-          created_at: new Date(Date.now() - 518400000).toISOString(),
-          isShared: true,
-          uploadedBy: "Eleanor Sterling (Matriarch)",
-          ownerId: "eleanor-1"
-        }
-      ];
-
       const filteredList = list.filter(v => {
         const isMine = v.ownerId === user?.id || v.ownerId === "me";
         return isMine || v.isShared;
       });
 
-      return [...filteredList, ...defaultFamilyVideos];
+      return filteredList;
     };
 
     // Initialize with current local/storage mapping
@@ -285,8 +267,7 @@ const VideoLegacyDash = () => {
 
   const handleView = async (name: string, ownerId: string) => {
     const targetFolder = ownerId === "me" || ownerId === user?.id ? user?.id : ownerId;
-    
-    if (targetFolder && targetFolder !== "eleanor-1" && targetFolder !== "grandpa-1") {
+    if (targetFolder) {
       try {
         const { data } = await supabase.storage
           .from("videos")

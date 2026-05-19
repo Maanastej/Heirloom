@@ -95,3 +95,27 @@ CREATE POLICY "Allow users to update own profile"
 CREATE POLICY "Allow users to insert own profile"
   ON public.profiles FOR INSERT
   WITH CHECK (user_id = auth.uid());
+
+-- 6. Retroactive data repair for existing test accounts
+DO $$
+DECLARE
+  first_fam_id UUID;
+BEGIN
+  SELECT id INTO first_fam_id FROM public.families LIMIT 1;
+  IF first_fam_id IS NULL THEN
+    INSERT INTO public.families (family_name) VALUES ('The Sterling Family Legacy') RETURNING id INTO first_fam_id;
+  END IF;
+  
+  -- Update all profiles to be in this family
+  UPDATE public.profiles SET family_id = first_fam_id WHERE family_id IS NULL;
+  
+  -- Ensure maanastej is owner and others are editors/viewers
+  UPDATE public.profiles 
+  SET role = 'owner', relationship = 'Patriarch' 
+  WHERE email = 'maanastej706786@gmail.com' OR full_name ILIKE '%maanastej%';
+  
+  UPDATE public.profiles 
+  SET role = 'editor', relationship = 'Son' 
+  WHERE email = 'maanastej.birudukota_2027@woxsen.edu.in' OR full_name ILIKE '%maanu%';
+END $$;
+

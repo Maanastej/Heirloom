@@ -63,30 +63,15 @@ export default function FamilyHub() {
   const [inviteLoading, setInviteLoading] = useState(false);
   const [inheritanceLoading, setInheritanceLoading] = useState(false);
 
-  // Default Fallback Seeding
+  // Default Fallback Seeding (Only includes current user, no mock values)
   const defaultMembers: FamilyMember[] = [
     {
       id: "owner-1",
-      fullName: user?.user_metadata?.full_name || "Arthur Sterling",
-      email: user?.email || "arthur@sterling-legacy.com",
+      fullName: user?.user_metadata?.full_name || "Family Member",
+      email: user?.email || "",
       role: "owner",
       relationship: "Patriarch",
       isCurrentUser: true,
-    },
-    {
-      id: "editor-1",
-      fullName: "Eleanor Sterling",
-      email: "eleanor@sterling-legacy.com",
-      role: "editor",
-      relationship: "Matriarch",
-    },
-    {
-      id: "locked-1",
-      fullName: "Clara Sterling",
-      email: "clara.sterling@gmail.com",
-      role: "time_locked",
-      relationship: "Granddaughter (Future Heir)",
-      dob: "2012-08-14",
     }
   ];
 
@@ -361,7 +346,7 @@ export default function FamilyHub() {
 
   // Detect subscription role: ONLY the primary patriarch owner holds administrative keys
   const currentMember = members.find(m => m.isCurrentUser || m.email === user?.email);
-  const userRole = currentMember?.role || "owner";
+  const userRole = currentMember?.role || "viewer";
   const isPremiumAdmin = userRole === "owner"; // Patriarch subscription tier
 
   return (

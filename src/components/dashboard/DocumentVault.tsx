@@ -190,30 +190,12 @@ const DocumentVault = () => {
     };
 
     const compileFilteredList = (list: DocumentMeta[]) => {
-      // Mock some shared family documents from other members for high-fidelity demo
-      const defaultFamilyDocs: DocumentMeta[] = [
-        {
-          name: "Eleanor_Sterling_Last_Will_Draft.pdf",
-          created_at: new Date(Date.now() - 172800000).toISOString(),
-          isShared: true,
-          uploadedBy: "Eleanor Sterling (Matriarch)",
-          ownerId: "eleanor-1"
-        },
-        {
-          name: "Grandpa_Richard_Heritage_Farm_Deeds.pdf",
-          created_at: new Date(Date.now() - 345600000).toISOString(),
-          isShared: true,
-          uploadedBy: "Grandpa Richard (Grandfather)",
-          ownerId: "grandpa-1"
-        }
-      ];
-
       const filteredList = list.filter(d => {
         const isMine = d.ownerId === user?.id || d.ownerId === "me";
         return isMine || d.isShared;
       });
 
-      return [...filteredList, ...defaultFamilyDocs];
+      return filteredList;
     };
 
     // Initialize with current local/storage mapping
@@ -285,8 +267,7 @@ const DocumentVault = () => {
 
   const handleDownload = async (name: string, ownerId: string) => {
     const targetFolder = ownerId === "me" || ownerId === user?.id ? user?.id : ownerId;
-    
-    if (targetFolder && targetFolder !== "eleanor-1" && targetFolder !== "grandpa-1") {
+    if (targetFolder) {
       try {
         const { data } = await supabase.storage
           .from("documents")
