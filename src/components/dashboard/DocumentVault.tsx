@@ -21,20 +21,37 @@ const DocumentVault = () => {
   const [uploading, setUploading] = useState(false);
   const queryClient = useQueryClient();
 
-  // Local state to track shared statuses in localStorage as fallback/primary
+  // Local state to track shared statuses and local vault cache (to support offline mode and multi-profile demo)
   const [sharedFiles, setSharedFiles] = useState<string[]>([]);
   const [familyDocuments, setFamilyDocuments] = useState<DocumentMeta[]>([]);
+  const [localVaultDocs, setLocalVaultDocs] = useState<DocumentMeta[]>([]);
 
   useEffect(() => {
     const cachedShared = localStorage.getItem("heirloom_shared_documents");
     if (cachedShared) {
       setSharedFiles(JSON.parse(cachedShared));
     }
+    const cachedDocs = localStorage.getItem("heirloom_vault_documents");
+    if (cachedDocs) {
+      setLocalVaultDocs(JSON.parse(cachedDocs));
+    }
   }, []);
 
   const saveSharedFilesState = (updated: string[]) => {
     setSharedFiles(updated);
     localStorage.setItem("heirloom_shared_documents", JSON.stringify(updated));
+
+    // Also update the local vault docs list if present
+    const cachedDocs = localStorage.getItem("heirloom_vault_documents");
+    if (cachedDocs) {
+      const docs: DocumentMeta[] = JSON.parse(cachedDocs);
+      const updatedDocs = docs.map(d => ({
+        ...d,
+        isShared: updated.includes(d.name)
+      }));
+      setLocalVaultDocs(updatedDocs);
+      localStorage.setItem("heirloom_vault_documents", JSON.stringify(updatedDocs));
+    }
   };
 
   const { data: documents = [], isLoading } = useQuery({
@@ -51,16 +68,36 @@ const DocumentVault = () => {
 
   // Compile combined view of Personal Documents + other Family Members' shared documents
   useEffect(() => {
-    // 1. Map current user's documents
-    const personal: DocumentMeta[] = documents.map(d => ({
-      name: d.name,
-      created_at: d.created_at,
-      isShared: sharedFiles.includes(d.name),
-      uploadedBy: user?.user_metadata?.full_name || "You",
-      ownerId: user?.id || "me"
-    }));
+    const personalMap = new Map<string, DocumentMeta>();
 
-    // 2. Mock some shared family documents from other members for high-fidelity demo
+    // 1. Add current user's documents from Supabase storage (if online)
+    documents.forEach(d => {
+      personalMap.set(d.name, {
+        name: d.name,
+        created_at: d.created_at,
+        isShared: sharedFiles.includes(d.name),
+        uploadedBy: user?.user_metadata?.full_name || "You",
+        ownerId: user?.id || "me"
+      });
+    });
+
+    // 2. Add/Merge files from local storage (handles offline mode + files from other users in local demo)
+    localVaultDocs.forEach(d => {
+      const isMine = d.ownerId === user?.id || d.ownerId === "me";
+      const updatedOwnerId = isMine ? (user?.id || "me") : d.ownerId;
+
+      if (!personalMap.has(d.name)) {
+        personalMap.set(d.name, {
+          ...d,
+          ownerId: updatedOwnerId,
+          isShared: sharedFiles.includes(d.name) || d.isShared
+        });
+      }
+    });
+
+    const combinedList = Array.from(personalMap.values());
+
+    // 3. Mock some shared family documents from other members for high-fidelity demo
     const defaultFamilyDocs: DocumentMeta[] = [
       {
         name: "Eleanor_Sterling_Last_Will_Draft.pdf",
@@ -78,17 +115,31 @@ const DocumentVault = () => {
       }
     ];
 
-    setFamilyDocuments([...personal, ...defaultFamilyDocs]);
-  }, [documents, sharedFiles, user]);
+    // Filter list to keep only:
+    // - Current user's files (shared or private)
+    // - Other family members' files ONLY IF they are shared
+    const filteredList = combinedList.filter(d => {
+      const isMine = d.ownerId === user?.id || d.ownerId === "me";
+      return isMine || d.isShared;
+    });
+
+    setFamilyDocuments([...filteredList, ...defaultFamilyDocs]);
+  }, [documents, localVaultDocs, sharedFiles, user]);
 
   const deleteMutation = useMutation({
     mutationFn: async (name: string) => {
-      const { error } = await supabase.storage.from("documents").remove([`${user!.id}/${name}`]);
-      if (error) throw error;
+      try {
+        const { error } = await supabase.storage.from("documents").remove([`${user!.id}/${name}`]);
+        if (error) console.warn("Could not delete from storage bucket:", error.message);
+      } catch (err) {
+        console.warn("Storage delete error:", err);
+      }
     },
     onSuccess: (_, name) => {
-      // Clean shared list
       saveSharedFilesState(sharedFiles.filter(f => f !== name));
+      const updatedDocs = localVaultDocs.filter(d => d.name !== name);
+      setLocalVaultDocs(updatedDocs);
+      localStorage.setItem("heirloom_vault_documents", JSON.stringify(updatedDocs));
       queryClient.invalidateQueries({ queryKey: ["documents"] });
       toast({ title: "Document deleted" });
     },
@@ -102,8 +153,26 @@ const DocumentVault = () => {
     const path = `${user.id}/${fileName}`;
     const { error } = await supabase.storage.from("documents").upload(path, file);
     setUploading(false);
+
+    // Save to local cache to support offline and multi-profile demo
+    const newDoc: DocumentMeta = {
+      name: fileName,
+      created_at: new Date().toISOString(),
+      isShared: false,
+      uploadedBy: user?.user_metadata?.full_name || "You",
+      ownerId: user.id
+    };
+
+    const updatedDocs = [newDoc, ...localVaultDocs];
+    setLocalVaultDocs(updatedDocs);
+    localStorage.setItem("heirloom_vault_documents", JSON.stringify(updatedDocs));
+
     if (error) {
-      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+      console.warn("Live upload failed, using local storage fallback:", error.message);
+      toast({
+        title: "Document Saved (Local Fallback)",
+        description: "Private by default. Saved to browser storage because live storage is unconfigured."
+      });
     } else {
       toast({ title: "Document uploaded successfully", description: "Private by default. You can share it with family anytime." });
       queryClient.invalidateQueries({ queryKey: ["documents"] });

@@ -31,8 +31,21 @@ const Auth = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) navigate("/dashboard", { replace: true });
-  }, [user, navigate]);
+    const emailParam = searchParams.get("email");
+    if (user) {
+      if (emailParam && user.email?.toLowerCase() !== emailParam.toLowerCase()) {
+        // Automatically sign out if trying to access a different user's invite link
+        supabase.auth.signOut().then(() => {
+          toast({
+            title: "Switching Accounts",
+            description: "Signing out of your current account to accept the new family invitation.",
+          });
+        });
+      } else {
+        navigate("/dashboard", { replace: true });
+      }
+    }
+  }, [user, navigate, searchParams]);
 
   // Decode URL parameters for direct email-link signups
   useEffect(() => {

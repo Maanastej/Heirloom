@@ -21,20 +21,37 @@ const VideoLegacyDash = () => {
   const [uploading, setUploading] = useState(false);
   const queryClient = useQueryClient();
 
-  // Local state to track shared statuses in localStorage as fallback/primary
+  // Local state to track shared statuses and local vault cache (to support offline mode and multi-profile demo)
   const [sharedVideos, setSharedVideos] = useState<string[]>([]);
   const [familyVideos, setFamilyVideos] = useState<VideoMeta[]>([]);
+  const [localVaultVideos, setLocalVaultVideos] = useState<VideoMeta[]>([]);
 
   useEffect(() => {
     const cachedShared = localStorage.getItem("heirloom_shared_videos");
     if (cachedShared) {
       setSharedVideos(JSON.parse(cachedShared));
     }
+    const cachedDocs = localStorage.getItem("heirloom_vault_videos");
+    if (cachedDocs) {
+      setLocalVaultVideos(JSON.parse(cachedDocs));
+    }
   }, []);
 
   const saveSharedVideosState = (updated: string[]) => {
     setSharedVideos(updated);
     localStorage.setItem("heirloom_shared_videos", JSON.stringify(updated));
+
+    // Also update the local vault videos list if present
+    const cachedDocs = localStorage.getItem("heirloom_vault_videos");
+    if (cachedDocs) {
+      const docs: VideoMeta[] = JSON.parse(cachedDocs);
+      const updatedDocs = docs.map(d => ({
+        ...d,
+        isShared: updated.includes(d.name)
+      }));
+      setLocalVaultVideos(updatedDocs);
+      localStorage.setItem("heirloom_vault_videos", JSON.stringify(updatedDocs));
+    }
   };
 
   const { data: videos = [], isLoading } = useQuery({
@@ -51,16 +68,36 @@ const VideoLegacyDash = () => {
 
   // Compile combined view of Personal Videos + other Family Members' shared videos
   useEffect(() => {
-    // 1. Map current user's videos
-    const personal: VideoMeta[] = videos.map(v => ({
-      name: v.name,
-      created_at: v.created_at,
-      isShared: sharedVideos.includes(v.name),
-      uploadedBy: user?.user_metadata?.full_name || "You",
-      ownerId: user?.id || "me"
-    }));
+    const personalMap = new Map<string, VideoMeta>();
 
-    // 2. Seed default shared videos from other family members for high-fidelity demonstration
+    // 1. Add current user's videos from Supabase storage (if online)
+    videos.forEach(v => {
+      personalMap.set(v.name, {
+        name: v.name,
+        created_at: v.created_at,
+        isShared: sharedVideos.includes(v.name),
+        uploadedBy: user?.user_metadata?.full_name || "You",
+        ownerId: user?.id || "me"
+      });
+    });
+
+    // 2. Add/Merge files from local storage (handles offline mode + files from other users in local demo)
+    localVaultVideos.forEach(v => {
+      const isMine = v.ownerId === user?.id || v.ownerId === "me";
+      const updatedOwnerId = isMine ? (user?.id || "me") : v.ownerId;
+
+      if (!personalMap.has(v.name)) {
+        personalMap.set(v.name, {
+          ...v,
+          ownerId: updatedOwnerId,
+          isShared: sharedVideos.includes(v.name) || v.isShared
+        });
+      }
+    });
+
+    const combinedList = Array.from(personalMap.values());
+
+    // 3. Mock some shared family videos from other members for high-fidelity demo
     const defaultFamilyVideos: VideoMeta[] = [
       {
         name: "Grandpa_Richard_Advice_To_Grandchildren_1998.mp4",
@@ -78,16 +115,31 @@ const VideoLegacyDash = () => {
       }
     ];
 
-    setFamilyVideos([...personal, ...defaultFamilyVideos]);
-  }, [videos, sharedVideos, user]);
+    // Filter list to keep only:
+    // - Current user's files (shared or private)
+    // - Other family members' files ONLY IF they are shared
+    const filteredList = combinedList.filter(v => {
+      const isMine = v.ownerId === user?.id || v.ownerId === "me";
+      return isMine || v.isShared;
+    });
+
+    setFamilyVideos([...filteredList, ...defaultFamilyVideos]);
+  }, [videos, localVaultVideos, sharedVideos, user]);
 
   const deleteMutation = useMutation({
     mutationFn: async (name: string) => {
-      const { error } = await supabase.storage.from("videos").remove([`${user!.id}/${name}`]);
-      if (error) throw error;
+      try {
+        const { error } = await supabase.storage.from("videos").remove([`${user!.id}/${name}`]);
+        if (error) console.warn("Could not delete from storage bucket:", error.message);
+      } catch (err) {
+        console.warn("Storage delete error:", err);
+      }
     },
     onSuccess: (_, name) => {
       saveSharedVideosState(sharedVideos.filter(v => v !== name));
+      const updatedDocs = localVaultVideos.filter(d => d.name !== name);
+      setLocalVaultVideos(updatedDocs);
+      localStorage.setItem("heirloom_vault_videos", JSON.stringify(updatedDocs));
       queryClient.invalidateQueries({ queryKey: ["videos"] });
       toast({ title: "Video deleted" });
     },
@@ -101,8 +153,26 @@ const VideoLegacyDash = () => {
     const path = `${user.id}/${fileName}`;
     const { error } = await supabase.storage.from("videos").upload(path, file);
     setUploading(false);
+
+    // Save to local cache to support offline and multi-profile demo
+    const newDoc: VideoMeta = {
+      name: fileName,
+      created_at: new Date().toISOString(),
+      isShared: false,
+      uploadedBy: user?.user_metadata?.full_name || "You",
+      ownerId: user.id
+    };
+
+    const updatedDocs = [newDoc, ...localVaultVideos];
+    setLocalVaultVideos(updatedDocs);
+    localStorage.setItem("heirloom_vault_videos", JSON.stringify(updatedDocs));
+
     if (error) {
-      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+      console.warn("Live upload failed, using local storage fallback:", error.message);
+      toast({
+        title: "Video Saved (Local Fallback)",
+        description: "Private by default. Saved to browser storage because live storage is unconfigured."
+      });
     } else {
       toast({ title: "Video uploaded successfully", description: "This video is private. Toggle 'Share with Family' to publish it." });
       queryClient.invalidateQueries({ queryKey: ["videos"] });
