@@ -496,7 +496,7 @@ export default function DecisionDNA() {
     ]);
   };
 
-  const handleAsk = (e: React.FormEvent) => {
+  const handleAsk = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim() || !activeProfileId) return;
 
@@ -508,11 +508,108 @@ export default function DecisionDNA() {
     const activeProfile = profiles.find(p => p.id === activeProfileId);
     if (!activeProfile) return;
 
-    // Advanced RAP Model Response Simulation
+    const riskVal = activeProfile.scores.risk;
+    const ethicsVal = activeProfile.scores.ethics;
+    const horizonVal = activeProfile.scores.horizon;
+
+    // Calculate static diagnostic steps for UI
+    let riskReasoning = "";
+    if (riskVal <= 2) {
+      riskReasoning = `Evaluating through stability preference (${riskVal}/5): Taking high-stakes risks threatens our structural security. We should prioritize long-term consolidation.`;
+    } else if (riskVal >= 4) {
+      riskReasoning = `Evaluating through trailblazing preference (${riskVal}/5): Risk is the primary generator of legacy. Remaining completely safe is a slow decay. We must adapt and step forward.`;
+    } else {
+      riskReasoning = `Evaluating through balanced risk metric (${riskVal}/5): We should seek to balance the growth opportunity with a reliable safety buffer.`;
+    }
+
+    let ethicalReasoning = "";
+    if (ethicsVal >= 4) {
+      ethicalReasoning = `Filtering through relationship anchors (${ethicsVal}/5): In any legacy choice, people and core family loyalty represent our primary duty. Compassion overrides strict parameters.`;
+    } else {
+      ethicalReasoning = `Filtering through rules anchors (${ethicsVal}/5): Institutional strength relies on consistent alignment with absolute laws and structural agreements. Compromise degrades authority.`;
+    }
+
+    let horizonReasoning = `Reflecting on the legacy horizon (${horizonVal}/5): Legacy is built on choices that project 20 to 30 years out, completely discounting immediate convenience or short-term noise.`;
+
+    const steps = [riskReasoning, ethicalReasoning, horizonReasoning];
+    const memorySnippet = activeProfile.answers.experiences;
+
+    const groqApiKey = import.meta.env.VITE_GROQ_API_KEY;
+
+    if (groqApiKey) {
+      try {
+        const systemPrompt = `You are emulating the Decision DNA simulated persona of ${activeProfile.name} (${activeProfile.relationship}), whose cognitive archetype is "${activeProfile.archetype}".
+
+Your decision profile parameters are:
+- Risk Preference: ${activeProfile.scores.risk}/5
+- Trust/Alliance Focus: ${activeProfile.scores.trust}/5
+- Horizon (Long-term vision): ${activeProfile.scores.horizon}/5
+- Adversity Resilience: ${activeProfile.scores.adversity}/5
+- Ethical Anchor: ${activeProfile.scores.ethics}/5
+
+Core Values you guide your life by:
+"${activeProfile.answers.values}"
+
+Strict Decision Rules you enforce:
+"${activeProfile.answers.rules}"
+
+Key Life Experience / Memory Lesson you reference:
+"${activeProfile.answers.experiences}"
+
+Instructions for your behavior (Strict Hallucination Control):
+1. Speak in a natural, wise, conversational, and direct tone. Never sound like a generic AI assistant. Address the user's query immediately without standard AI preamble (e.g., "As an AI..." or "Based on your scores...").
+2. Your advice MUST be grounded in your values, rules, and scores. Do NOT hallucinate rules or values that contradict your blueprint. If the user asks you to violate one of your strict rules, you must reject it explicitly.
+3. Reference your life experience / memory lesson only if it is naturally relevant to the dilemma.
+4. Maintain consistency with prior conversational turns (use the provided chat history).
+5. Provide clear, actionable guidance. Keep your response concise (2-3 paragraphs max) and format it beautifully.`;
+
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${groqApiKey}`
+          },
+          body: JSON.stringify({
+            model: "llama3-70b-8192",
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...chatHistory.map(msg => ({
+                role: msg.role === "user" ? "user" : "assistant",
+                content: msg.content
+              })),
+              { role: "user", content: userQ }
+            ],
+            temperature: 0.2, // Low temperature for high fidelity / hallucination control
+            max_tokens: 800
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const responseContent = data.choices?.[0]?.message?.content || "";
+          
+          if (responseContent.trim()) {
+            setChatHistory(prev => [
+              ...prev,
+              {
+                role: "ai",
+                content: responseContent,
+                steps,
+                memory: memorySnippet
+              }
+            ]);
+            setIsTyping(false);
+            return; // Successful Groq integration!
+          }
+        }
+      } catch (err) {
+        console.error("Groq API Call Failed: ", err);
+      }
+    }
+
+    // Fallback Dynamic Simulation Generator (Local Heuristic Engine)
     setTimeout(() => {
       const q = userQ.toLowerCase();
-      
-      // 1. Context Category Detection
       let category = "general";
       if (q.includes("money") || q.includes("financial") || q.includes("draining") || q.includes("struggling") || q.includes("capital") || q.includes("debt") || q.includes("sell") || q.includes("buy") || q.includes("poor") || q.includes("cost")) {
         category = "financial";
@@ -526,7 +623,6 @@ export default function DecisionDNA() {
       
       const isFamilyVsCompany = (q.includes("family") && q.includes("company")) || q.includes("betray") || (q.includes("sell") && q.includes("family"));
 
-      // 2. Persona Intro
       let intro = "";
       if (activeProfile.isSelf) {
         if (isFamilyVsCompany) {
@@ -558,7 +654,6 @@ export default function DecisionDNA() {
         }
       }
 
-      // 3. Archetype Perspective Paragraph
       let archetypeTone = "";
       switch (activeProfile.archetype) {
         case "The Legacy Builder":
@@ -582,7 +677,6 @@ export default function DecisionDNA() {
           break;
       }
 
-      // 4. Core Values & Decision Rules weaving
       const valStr = activeProfile.answers.values.trim();
       const valuesRef = valStr 
         ? `Looking at my core values—which are centered around "${valStr}"—this choice must align with that standard.` 
@@ -593,7 +687,6 @@ export default function DecisionDNA() {
         ? `Remember the rules I live by: "${ruleStr}". In moments of high stress, these strict boundaries are not optional; they are the shields that prevent us from making catastrophic errors.`
         : `In moments of crisis, we must abide by consistent rules. We never make permanent structural decisions under temporary emotional duress.`;
 
-      // 5. Connect to Life Experience
       const expStr = activeProfile.answers.experiences.trim();
       let experienceRef = "";
       if (expStr) {
@@ -602,7 +695,6 @@ export default function DecisionDNA() {
         experienceRef = `History shows us that every challenge we survive is an opportunity to calibrate our digital twin and harden our resolve for the generations to follow.`;
       }
 
-      // 6. Final recommendation block
       let finalRec = "";
       if (isFamilyVsCompany) {
         if (activeProfile.archetype === "The Compassionate Guardian" || activeProfile.archetype === "The Legacy Builder") {
@@ -618,7 +710,6 @@ export default function DecisionDNA() {
         finalRec = `**My Deep Recommendation:** Take a step back to detach from the immediate pressure. Map out a structured contingency, protect your key relationships, and then move forward step-by-step.`;
       }
 
-      // 7. Assemble response content
       const responseContent = `**${intro}**
 
 ${archetypeTone}
@@ -632,32 +723,6 @@ ${archetypeTone}
 
 ${finalRec}`;
 
-      // 8. Cognitive Reasoning Trail Steps
-      const riskVal = activeProfile.scores.risk;
-      const ethicsVal = activeProfile.scores.ethics;
-      const horizonVal = activeProfile.scores.horizon;
-
-      let riskReasoning = "";
-      if (riskVal <= 2) {
-        riskReasoning = `Evaluating through stability preference (${riskVal}/5): Taking high-stakes risks threatens our structural security. We should prioritize long-term consolidation.`;
-      } else if (riskVal >= 4) {
-        riskReasoning = `Evaluating through trailblazing preference (${riskVal}/5): Risk is the primary generator of legacy. Remaining completely safe is a slow decay. We must adapt and step forward.`;
-      } else {
-        riskReasoning = `Evaluating through balanced risk metric (${riskVal}/5): We should seek to balance the growth opportunity with a reliable safety buffer.`;
-      }
-
-      let ethicalReasoning = "";
-      if (ethicsVal >= 4) {
-        ethicalReasoning = `Filtering through relationship anchors (${ethicsVal}/5): In any legacy choice, people and core family loyalty represent our primary duty. Compassion overrides strict parameters.`;
-      } else {
-        ethicalReasoning = `Filtering through rules anchors (${ethicsVal}/5): Institutional strength relies on consistent alignment with absolute laws and structural agreements. Compromise degrades authority.`;
-      }
-
-      let horizonReasoning = `Reflecting on the legacy horizon (${horizonVal}/5): Legacy is built on choices that project 20 to 30 years out, completely discounting immediate convenience or short-term noise.`;
-
-      const steps = [riskReasoning, ethicalReasoning, horizonReasoning];
-      const memorySnippet = activeProfile.answers.experiences;
-
       setChatHistory(prev => [
         ...prev,
         {
@@ -668,7 +733,7 @@ ${finalRec}`;
         }
       ]);
       setIsTyping(false);
-    }, 2500);
+    }, 2000);
   };
 
   const renderWorldviewMap = (scores: { risk: number; trust: number; horizon: number; adversity: number; ethics: number }) => {
