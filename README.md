@@ -53,6 +53,10 @@ To ensure the cognitive replication of family members is mathematically accurate
 - **Classification Framing**: We present the user and the AI with validation test cases. The user's choices establish the ground truth $y \in \{0, 1\}$.
 - **F1-Score**: Calculates the harmonic mean of Precision and Recall. High F1 represents a high overlap on decision choices.
 - **ROC-AUC**: Evaluates how effectively the AI's confidence scores separate positive decisions from negative ones. An AUC of `1.0` represents a perfect replication of the user's decision boundary.
+- **Accuracy**: Overall proportion of correct predictions across validation cases.
+- **Cohen's Kappa**: Measures agreement between AI predictions and user choices beyond chance.
+- **Mean Absolute Error (MAE)**: Average absolute difference between AI probability scores and user binary choices.
+- **Cosine Similarity**: Similarity between the binary ground truth vector and AI probability vector.
 - **Confusion Matrix**: Displays True Positives, False Positives, True Negatives, and False Negatives to help calibrate the model's sensitivity.
 
 > **Current Calibration Results (example)**
