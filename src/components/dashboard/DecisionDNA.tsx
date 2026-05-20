@@ -239,13 +239,43 @@ interface ValidationCase {
   getAIProbability: (scores: any) => number;
 }
 
-const validationCases: ValidationCase[] = Array.from({ length: 20 }, (_, i) => ({
-  id: i + 1,
-  question: `Validation Case ${i + 1}: Strategic Decision Scenario`,
-  optionA: "Option A",
-  optionB: "Option B",
-  getAIProbability: (scores) => 0.5 + (Math.sin(scores.risk + i) * 0.4)
-}));
+const validationCases: ValidationCase[] = [
+  {
+    id: 1,
+    question: "A family business opportunity requires selling a beloved legacy property to raise capital. Do you...",
+    optionA: "Preserve the legacy asset and grow more slowly.",
+    optionB: "Sell the property to fund the opportunity while it is available.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.14 - (scores.ethics - 3) * 0.06, 0.05), 0.95)
+  },
+  {
+    id: 2,
+    question: "A close relative asks for a no-strings-attached loan for a risky venture. Do you...",
+    optionA: "Say no until there is a formal repayment agreement.",
+    optionB: "Help them based on family trust and goodwill.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.15 - (scores.risk - 3) * 0.05, 0.05), 0.95)
+  },
+  {
+    id: 3,
+    question: "A profitable partnership requires bending an internal ethical rule. Do you...",
+    optionA: "Reject it to protect the family's values and reputation.",
+    optionB: "Accept it because the profit secures the family's future.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 - (scores.ethics - 3) * 0.18 + (scores.horizon - 3) * 0.08, 0.05), 0.95)
+  },
+  {
+    id: 4,
+    question: "A younger family member wants control of the legacy venture now. Do you...",
+    optionA: "Delay transition until they prove stable leadership.",
+    optionB: "Empower them quickly to preserve momentum and innovation.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.14 - (scores.trust - 3) * 0.04, 0.05), 0.95)
+  },
+  {
+    id: 5,
+    question: "The family heirloom can be fully insured at a higher cost. Do you...",
+    optionA: "Buy only basic coverage and retain cash for emergencies.",
+    optionB: "Buy full coverage to fully protect the heirloom.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.12 + (scores.ethics - 3) * 0.06, 0.05), 0.95)
+  }
+];
 
 export default function DecisionDNA() {
   const { user } = useAuth();
