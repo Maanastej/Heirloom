@@ -639,6 +639,38 @@ export default function DecisionDNA() {
     ]);
   };
 
+  const deleteAIProfile = async (profileId: string) => {
+    const profileToDelete = profiles.find(p => p.id === profileId);
+    if (!profileToDelete) return;
+
+    const remaining = profiles.filter(p => p.id !== profileId);
+    setProfiles(remaining);
+    setHasTrainedSelf(remaining.some((p) => p.isSelf));
+    localStorage.setItem("heirloom_dna_profiles", JSON.stringify(remaining));
+    localStorage.removeItem(`heirloom_calibration_${profileId}`);
+
+    if (activeProfileId === profileId) {
+      setActiveProfileId(null);
+      setStep("list");
+      setChatHistory([]);
+      setCalibrationResults(null);
+      setCalibrationAnswers({});
+    }
+
+    try {
+      if (user) {
+        await supabase.from("dna_profiles").delete().eq("id", profileId);
+      }
+    } catch (err) {
+      console.error("Failed to delete AI profile from Supabase:", err);
+    }
+  };
+
+  const deleteAndRebuildAI = async (profileId: string) => {
+    await deleteAIProfile(profileId);
+    startNewAI();
+  };
+
   const handleAsk = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim() || !activeProfileId) return;
@@ -1018,9 +1050,23 @@ ${finalRec}`;
                   </div>
                 </div>
 
-                <Button variant={p.isSelf ? "outline" : "hero"} className="w-full mt-4 h-10 shadow-card" onClick={() => openChat(p.id)}>
-                  <MessageSquare className="w-4 h-4 mr-2" /> Consult Advisor
-                </Button>
+                <div className="space-y-3">
+                  <Button variant={p.isSelf ? "outline" : "hero"} className="w-full h-10 shadow-card" onClick={() => openChat(p.id)}>
+                    <MessageSquare className="w-4 h-4 mr-2" /> Consult Advisor
+                  </Button>
+                  {p.isSelf && (
+                    <Button
+                      variant="outline"
+                      className="w-full h-10 shadow-card text-[11px]"
+                      onClick={() => {
+                        if (!window.confirm("Delete this advisor and build a new one?")) return;
+                        deleteAndRebuildAI(p.id);
+                      }}
+                    >
+                      Delete & Build New Advisor
+                    </Button>
+                  )}
+                </div>
               </div>
             ))}
           </div>
