@@ -211,6 +211,13 @@ export default function DecisionDNA() {
     return "The Pragmatic Counselor";
   };
 
+  const handleMCQSelect = (dimension: string, score: number) => {
+    setDraftMCQScores((prev) => ({
+      ...prev,
+      [dimension]: score,
+    }));
+  };
+
   const startNewAI = () => {
     setDraftMCQScores({});
     setDraftAnswers({ values: "", rules: "", experiences: "" });
