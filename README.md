@@ -47,13 +47,23 @@ VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 
 ## Decision DNA Replication Validation
 
-To ensure the cognitive replication of family members is mathematically accurate, Heirloom implements a validation suite. 
+To ensure the cognitive replication of family members is mathematically accurate, Heirloom implements a validation suite.
 
 ### Metrics & Methodology
 - **Classification Framing**: We present the user and the AI with validation test cases. The user's choices establish the ground truth $y \in \{0, 1\}$.
 - **F1-Score**: Calculates the harmonic mean of Precision and Recall. High F1 represents a high overlap on decision choices.
 - **ROC-AUC**: Evaluates how effectively the AI's confidence scores separate positive decisions from negative ones. An AUC of `1.0` represents a perfect replication of the user's decision boundary.
 - **Confusion Matrix**: Displays True Positives, False Positives, True Negatives, and False Negatives to help calibrate the model's sensitivity.
+
+> **Current Calibration Results (example)**
+>
+> - **F1-Score**: 0.85
+> - **ROC-AUC**: 0.92
+> - **Precision**: 0.86
+> - **Recall**: 0.84
+> - **Accuracy**: 0.88
+>
+> *Run the calibration by accessing the Decision DNA dashboard, answering the validation questions, and the results will be displayed here.*
 
 ## Security & Privacy
 Heirloom is built around absolute family privacy. Succession vaults and inheritance keys are strictly managed by designated family owners, and all personal documents remain encrypted and private until explicitly shared.

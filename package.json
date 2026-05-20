@@ -1,7 +1,11 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "heirloom",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A sovereign digital vault for preserving multi-generational family legacy — documents, videos, and AI-powered decision replication.",
+  "author": "Maanastej",
+  "license": "MIT",
+  "homepage": "https://github.com/Maanastej/Heirloom",
   "type": "module",
   "scripts": {
     "dev": "vite",

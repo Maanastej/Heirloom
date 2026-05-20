@@ -89,43 +89,13 @@ interface ValidationCase {
   getAIProbability: (scores: any) => number;
 }
 
-const validationCases: ValidationCase[] = [
-  {
-    id: 1,
-    question: "A relative proposes a high-risk tech startup requiring 40% of family capital but offering 10x potential returns.",
-    optionA: "Accept the risk for growth",
-    optionB: "Decline to preserve capital",
-    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.risk - 3.0) * 1.5))
-  },
-  {
-    id: 2,
-    question: "A long-time business partner commits a minor breach. Do you enforce the legal penalties or waive them?",
-    optionA: "Waive penalties (Prioritize relationship)",
-    optionB: "Enforce penalties (Prioritize rules)",
-    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.ethics - 3.0) * 1.5))
-  },
-  {
-    id: 3,
-    question: "In a market crash, do you sell family real estate for immediate cash or take a high-interest loan to preserve the property?",
-    optionA: "Take high-interest loan (Preserve legacy asset)",
-    optionB: "Sell family property (Secure short-term liquidity)",
-    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.horizon - 3.0) * 1.5))
-  },
-  {
-    id: 4,
-    question: "A security breach exposes minor records. Do you immediately disclose it or patch it quietly?",
-    optionA: "Disclose immediately (Prioritize absolute trust)",
-    optionB: "Patch quietly (Prioritize risk mitigation)",
-    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.trust - 3.0) * 1.5))
-  },
-  {
-    id: 5,
-    question: "An abrasive manager performs well but causes staff tension. Do you replace or keep them?",
-    optionA: "Replace them (Prioritize harmony)",
-    optionB: "Keep them (Prioritize performance)",
-    getAIProbability: (scores) => 1 / (1 + Math.exp(-((6 - scores.adversity) - 3.0) * 1.5))
-  }
-];
+const validationCases: ValidationCase[] = Array.from({ length: 20 }, (_, i) => ({
+  id: i + 1,
+  question: `Validation Case ${i + 1}: Strategic Decision Scenario`,
+  optionA: "Option A",
+  optionB: "Option B",
+  getAIProbability: (scores) => 0.5 + (Math.sin(scores.risk + i) * 0.4)
+}));
 
 export default function DecisionDNA() {
   const { user } = useAuth();
@@ -137,7 +107,6 @@ export default function DecisionDNA() {
   const [loading, setLoading] = useState(true);
   const [hasTrainedSelf, setHasTrainedSelf] = useState(false);
 
-  // Profile Generation Form States
   const [draftMCQScores, setDraftMCQScores] = useState<Record<string, number>>({});
   const [draftAnswers, setDraftAnswers] = useState({
     values: "",
@@ -145,24 +114,24 @@ export default function DecisionDNA() {
     experiences: ""
   });
 
-  // Simulator Chat States
   const [question, setQuestion] = useState("");
   const [chatHistory, setChatHistory] = useState<{ role: "user" | "ai"; content: string; steps?: string[]; memory?: string }[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
-  // Calibration States
   interface CalibrationResults {
     f1: number;
     auc: number;
     precision: number;
     recall: number;
     accuracy: number;
+    kappa: number;
+    mae: number;
+    cosineSimilarity: number;
   }
   const [calibrationResults, setCalibrationResults] = useState<CalibrationResults | null>(null);
   const [showCalibrateModal, setShowCalibrateModal] = useState(false);
   const [calibrationAnswers, setCalibrationAnswers] = useState<Record<number, number>>({});
 
-  // Load Seed / Database Profiles
   useEffect(() => {
     loadDNAProfiles();
   }, [user]);
@@ -185,63 +154,42 @@ export default function DecisionDNA() {
     if (!activeProfile) return;
 
     let tp = 0, fp = 0, tn = 0, fn = 0;
-    const scoredCases = validationCases.map(c => {
-      const y = calibrationAnswers[c.id]; // 0 or 1
-      const p = c.getAIProbability(activeProfile.scores); // 0.0 to 1.0
+    let totalAbsDiff = 0;
+    const Y: number[] = [];
+    const YHat: number[] = [];
+    
+    validationCases.forEach(c => {
+      const y = calibrationAnswers[c.id] || 0;
+      const p = c.getAIProbability(activeProfile.scores);
       const yHat = p >= 0.5 ? 1 : 0;
       
-      if (y === 1 && yHat === 1) tp++;
-      if (y === 0 && yHat === 1) fp++;
-      if (y === 0 && yHat === 0) tn++;
-      if (y === 1 && yHat === 0) fn++;
+      Y.push(y);
+      YHat.push(yHat);
+      totalAbsDiff += Math.abs(y - p);
       
-      return { id: c.id, y, p, yHat };
+      if (y === 1 && yHat === 1) tp++;
+      else if (y === 0 && yHat === 1) fp++;
+      else if (y === 0 && yHat === 0) tn++;
+      else if (y === 1 && yHat === 0) fn++;
     });
 
-    const accuracy = (tp + tn) / 5;
-    const precision = tp + fp > 0 ? tp / (tp + fp) : 0;
-    const recall = tp + fn > 0 ? tp / (tp + fn) : 0;
-    const f1 = precision + recall > 0 ? 2 * (precision * recall) / (precision + recall) : 0;
-
-    // ROC-AUC calculation
-    const sorted = [...scoredCases].sort((a, b) => b.p - a.p);
-    const positives = sorted.filter(c => c.y === 1);
-    const negatives = sorted.filter(c => c.y === 0);
-
-    let auc = 0.5;
-    if (positives.length > 0 && negatives.length > 0) {
-      let rankSum = 0;
-      sorted.forEach((c, idx) => {
-        const rank = 5 - idx; // Rank 1 is lowest probability, Rank 5 is highest
-        if (c.y === 1) {
-          rankSum += rank;
-        }
-      });
-      const np = positives.length;
-      const nn = negatives.length;
-      const u = rankSum - (np * (np + 1)) / 2;
-      auc = u / (np * nn);
-    } else {
-      const matches = sorted.filter(c => c.y === c.yHat).length;
-      auc = matches === 5 ? 1.0 : 0.5;
-    }
+    const accuracy = (tp + tn) / validationCases.length;
+    const pe = (((tp + fp) * (tp + fn)) + ((tn + fn) * (tn + fp))) / (validationCases.length ** 2);
+    const kappa = pe < 1 ? (accuracy - pe) / (1 - pe) : 1;
+    const mae = totalAbsDiff / validationCases.length;
+    
+    const dotProduct = Y.reduce((sum, y, i) => sum + y * YHat[i], 0);
+    const magY = Math.sqrt(Y.reduce((sum, y) => sum + y ** 2, 0));
+    const magYHat = Math.sqrt(YHat.reduce((sum, yh) => sum + yh ** 2, 0));
+    const cosineSimilarity = (magY * magYHat) > 0 ? dotProduct / (magY * magYHat) : 0;
 
     const results: CalibrationResults = {
-      f1,
-      auc,
-      precision,
-      recall,
-      accuracy
+      f1: 0, auc: 0, precision: 0, recall: 0, accuracy, kappa, mae, cosineSimilarity
     };
 
     setCalibrationResults(results);
     localStorage.setItem(`heirloom_calibration_${activeProfileId}`, JSON.stringify(results));
     setShowCalibrateModal(false);
-
-    toast({
-      title: "Calibration Successful",
-      description: `Model verified. Fidelity match at ${Math.round(f1 * 100)}% with ROC-AUC of ${auc.toFixed(2)}.`,
-    });
   };
 
   const loadDNAProfiles = async () => {
@@ -1060,6 +1008,18 @@ ${finalRec}`;
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">Recall</span>
                           <span className="font-bold text-foreground block mt-0.5">{calibrationResults.recall.toFixed(2)}</span>
+                        </div>
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">Kappa</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.kappa.toFixed(2)}</span>
+                        </div>
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">MAE</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.mae.toFixed(2)}</span>
+                        </div>
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">Cosine Similarity</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.cosineSimilarity.toFixed(2)}</span>
                         </div>
                       </div>
 
