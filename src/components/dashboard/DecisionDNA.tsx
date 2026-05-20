@@ -78,6 +78,156 @@ const mcqQuestions = [
       { text: "Uphold the standard, but handle the specific individual with private grace.", score: 3 },
       { text: "Prioritize love and relationships completely above written rules.", score: 5 }
     ]
+  },
+  {
+    id: 6,
+    dimension: "risk",
+    question: "Investment Discipline: Your most promising asset is volatile. Do you...",
+    options: [
+      { text: "Liquidate it to preserve capital and avoid stress.", score: 1 },
+      { text: "Hold with disciplined risk controls in place.", score: 3 },
+      { text: "Double down while the upside remains large.", score: 5 }
+    ]
+  },
+  {
+    id: 7,
+    dimension: "trust",
+    question: "Confidential Information: A cousin asks you to keep a risky business plan secret. You...",
+    options: [
+      { text: "Insist on transparency and put it in writing.", score: 1 },
+      { text: "Agree, but establish clear boundaries and oversight.", score: 3 },
+      { text: "Honor the request without second-guessing their motives.", score: 5 }
+    ]
+  },
+  {
+    id: 8,
+    dimension: "horizon",
+    question: "Education vs Income: Would you support a young family member leaving current earnings to pursue a long-term legacy venture?",
+    options: [
+      { text: "No, financial stability is the primary obligation.", score: 1 },
+      { text: "Only if there is a strong long-term plan.", score: 3 },
+      { text: "Yes, if it aligns with our multi-generational vision.", score: 5 }
+    ]
+  },
+  {
+    id: 9,
+    dimension: "adversity",
+    question: "Recovery Style: After a major setback, you tend to...",
+    options: [
+      { text: "Seek support and pause until the dust settles.", score: 1 },
+      { text: "Debrief carefully and adjust the plan methodically.", score: 3 },
+      { text: "Launch a rapid counterattack to regain momentum.", score: 5 }
+    ]
+  },
+  {
+    id: 10,
+    dimension: "ethics",
+    question: "Fairness Test: If a family member asks for special treatment, do you...",
+    options: [
+      { text: "Refuse and apply the same standard to everyone.", score: 1 },
+      { text: "Consider the context but keep the principle intact.", score: 3 },
+      { text: "Grant it if it preserves harmony.", score: 5 }
+    ]
+  },
+  {
+    id: 11,
+    dimension: "risk",
+    question: "Capital Allocation: Would you move legacy assets into a bold new venture?",
+    options: [
+      { text: "No, capital should remain in proven, safe holdings.", score: 1 },
+      { text: "Shift a measured portion with strong controls.", score: 3 },
+      { text: "Yes, new ventures are the only way to grow legacy value.", score: 5 }
+    ]
+  },
+  {
+    id: 12,
+    dimension: "trust",
+    question: "Delegation: When handing responsibility to a family member, do you...",
+    options: [
+      { text: "Keep the majority of control until trust is proven.", score: 1 },
+      { text: "Delegate with clear accountability and review.", score: 3 },
+      { text: "Give them autonomy right away to build trust through action.", score: 5 }
+    ]
+  },
+  {
+    id: 13,
+    dimension: "horizon",
+    question: "Estate Planning: Do you plan your legacy around the next generation or the next three?",
+    options: [
+      { text: "Next generation only; my responsibility ends there.", score: 1 },
+      { text: "Two generations, with guardrails for the rest.", score: 3 },
+      { text: "At least three generations; durability is the priority.", score: 5 }
+    ]
+  },
+  {
+    id: 14,
+    dimension: "adversity",
+    question: "Stress Management: Under extreme pressure, your preferred move is to...",
+    options: [
+      { text: "Pause and process internally before acting.", score: 1 },
+      { text: "Make a smaller corrective move while gathering more data.", score: 3 },
+      { text: "Act decisively to regain control immediately.", score: 5 }
+    ]
+  },
+  {
+    id: 15,
+    dimension: "ethics",
+    question: "Transparency: When a difficult family decision impacts many people, do you...",
+    options: [
+      { text: "Keep the details private to avoid conflict.", score: 1 },
+      { text: "Share selectively with those who need to know.", score: 3 },
+      { text: "Be fully transparent even if it causes discomfort.", score: 5 }
+    ]
+  },
+  {
+    id: 16,
+    dimension: "risk",
+    question: "Legacy Growth: Do you prefer slow, safe expansion or bold disruption?",
+    options: [
+      { text: "Slow, safe growth that preserves what we have.", score: 1 },
+      { text: "Measured innovation that avoids reckless bets.", score: 3 },
+      { text: "Bold disruption to create a new legacy standard.", score: 5 }
+    ]
+  },
+  {
+    id: 17,
+    dimension: "trust",
+    question: "Vetting Partners: Before partnering with another family, you...",
+    options: [
+      { text: "Require exhaustive evidence and proof of character.", score: 1 },
+      { text: "Build a guarded partnership with legal safeguards.", score: 3 },
+      { text: "Start from goodwill and align through shared purpose.", score: 5 }
+    ]
+  },
+  {
+    id: 18,
+    dimension: "horizon",
+    question: "Impact Choice: Would you accept lower returns if it secured a stronger future reputation?",
+    options: [
+      { text: "No, strong returns are more important than reputation.", score: 1 },
+      { text: "Only if the reputation payoff is highly likely.", score: 3 },
+      { text: "Yes, reputation is the asset that supports everything else.", score: 5 }
+    ]
+  },
+  {
+    id: 19,
+    dimension: "adversity",
+    question: "Recovery Priority: After a setback, do you focus first on...",
+    options: [
+      { text: "Rebuilding morale and relationships.", score: 1 },
+      { text: "Stabilizing the situation before expanding again.", score: 3 },
+      { text: "Finding the next opportunity while the crisis is still fresh.", score: 5 }
+    ]
+  },
+  {
+    id: 20,
+    dimension: "ethics",
+    question: "Power vs Principle: If the family can gain influence through an ethically grey deal, do you...",
+    options: [
+      { text: "Reject it and protect the family reputation.", score: 1 },
+      { text: "Consider it only if limits are clearly defined.", score: 3 },
+      { text: "Use it if the long-term good justifies the short-term compromise.", score: 5 }
+    ]
   }
 ];
 
@@ -119,18 +269,23 @@ export default function DecisionDNA() {
   const [isTyping, setIsTyping] = useState(false);
 
   interface CalibrationResults {
-    f1: number;
-    auc: number;
-    precision: number;
-    recall: number;
-    accuracy: number;
-    kappa: number;
-    mae: number;
-    cosineSimilarity: number;
+    f1?: number;
+    auc?: number;
+    precision?: number;
+    recall?: number;
+    accuracy?: number;
+    kappa?: number;
+    mae?: number;
+    cosineSimilarity?: number;
   }
   const [calibrationResults, setCalibrationResults] = useState<CalibrationResults | null>(null);
   const [showCalibrateModal, setShowCalibrateModal] = useState(false);
   const [calibrationAnswers, setCalibrationAnswers] = useState<Record<number, number>>({});
+
+  const formatMetricValue = (value: unknown) => {
+    const num = typeof value === "number" ? value : Number(value);
+    return Number.isFinite(num) ? num.toFixed(2) : "N/A";
+  };
 
   useEffect(() => {
     loadDNAProfiles();
@@ -140,7 +295,17 @@ export default function DecisionDNA() {
     if (activeProfileId) {
       const cachedResult = localStorage.getItem(`heirloom_calibration_${activeProfileId}`);
       if (cachedResult) {
-        setCalibrationResults(JSON.parse(cachedResult));
+        const parsed = JSON.parse(cachedResult);
+        setCalibrationResults({
+          f1: Number(parsed?.f1),
+          auc: Number(parsed?.auc),
+          precision: Number(parsed?.precision),
+          recall: Number(parsed?.recall),
+          accuracy: Number(parsed?.accuracy),
+          kappa: Number(parsed?.kappa),
+          mae: Number(parsed?.mae),
+          cosineSimilarity: Number(parsed?.cosineSimilarity),
+        });
       } else {
         setCalibrationResults(null);
       }
@@ -988,38 +1153,38 @@ ${finalRec}`;
                       <div className="flex justify-between items-center">
                         <span className="text-[10px] font-semibold text-muted-foreground">Fidelity Rating:</span>
                         <span className="text-xs font-bold text-emerald-600">
-                          {Math.round(calibrationResults.f1 * 100)}% Match
+                          {Number.isFinite(calibrationResults.f1) ? `${Math.round(calibrationResults.f1 * 100)}% Match` : '--'}
                         </span>
                       </div>
                       
                       <div className="grid grid-cols-2 gap-2 text-center text-[10px]">
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">F1-Score</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.f1.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.f1)}</span>
                         </div>
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">ROC-AUC</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.auc.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.auc)}</span>
                         </div>
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">Precision</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.precision.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.precision)}</span>
                         </div>
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">Recall</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.recall.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.recall)}</span>
                         </div>
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">Kappa</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.kappa.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.kappa)}</span>
                         </div>
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">MAE</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.mae.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.mae)}</span>
                         </div>
                         <div className="bg-background/50 p-2 rounded border border-border">
                           <span className="text-muted-foreground block font-medium">Cosine Similarity</span>
-                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.cosineSimilarity.toFixed(2)}</span>
+                          <span className="font-bold text-foreground block mt-0.5">{formatMetricValue(calibrationResults.cosineSimilarity)}</span>
                         </div>
                       </div>
 
