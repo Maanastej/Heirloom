@@ -102,11 +102,11 @@ const mcqQuestions = [
   {
     id: 8,
     dimension: "horizon",
-    question: "Education vs Income: Would you support a young family member leaving current earnings to pursue a long-term legacy venture?",
+    question: "Opportunity Horizon: Would you support a high-potential leader leaving current income to pursue a longer-term growth venture?",
     options: [
-      { text: "No, financial stability is the primary obligation.", score: 1 },
-      { text: "Only if there is a strong long-term plan.", score: 3 },
-      { text: "Yes, if it aligns with our multi-generational vision.", score: 5 }
+      { text: "No, short-term stability must be preserved.", score: 1 },
+      { text: "Only if the long-term payoff is very likely.", score: 3 },
+      { text: "Yes, investing in future growth is worth the short-term tradeoff.", score: 5 }
     ]
   },
   {
@@ -122,11 +122,11 @@ const mcqQuestions = [
   {
     id: 10,
     dimension: "ethics",
-    question: "Fairness Test: If a family member asks for special treatment, do you...",
+    question: "Fairness Test: If a stakeholder requests special treatment, do you...",
     options: [
       { text: "Refuse and apply the same standard to everyone.", score: 1 },
       { text: "Consider the context but keep the principle intact.", score: 3 },
-      { text: "Grant it if it preserves harmony.", score: 5 }
+      { text: "Grant it if it preserves the team and culture.", score: 5 }
     ]
   },
   {
@@ -142,7 +142,7 @@ const mcqQuestions = [
   {
     id: 12,
     dimension: "trust",
-    question: "Delegation: When handing responsibility to a family member, do you...",
+    question: "Delegation: When handing a major initiative to a colleague, do you...",
     options: [
       { text: "Keep the majority of control until trust is proven.", score: 1 },
       { text: "Delegate with clear accountability and review.", score: 3 },
@@ -172,7 +172,7 @@ const mcqQuestions = [
   {
     id: 15,
     dimension: "ethics",
-    question: "Transparency: When a difficult family decision impacts many people, do you...",
+    question: "Transparency: When a difficult organizational decision impacts many people, do you...",
     options: [
       { text: "Keep the details private to avoid conflict.", score: 1 },
       { text: "Share selectively with those who need to know.", score: 3 },
@@ -287,12 +287,23 @@ export default function DecisionDNA() {
   const [loading, setLoading] = useState(true);
   const [hasTrainedSelf, setHasTrainedSelf] = useState(false);
 
-  const [draftMCQScores, setDraftMCQScores] = useState<Record<string, number>>({});
+  const [draftMCQAnswers, setDraftMCQAnswers] = useState<Record<number, number>>({});
   const [draftAnswers, setDraftAnswers] = useState({
     values: "",
     rules: "",
     experiences: ""
   });
+
+  const aggregateDimensionScore = (dimension: string) => {
+    const answers = mcqQuestions
+      .filter((q) => q.dimension === dimension)
+      .map((q) => draftMCQAnswers[q.id])
+      .filter((score): score is number => typeof score === "number");
+
+    if (answers.length === 0) return 3;
+    const average = answers.reduce((sum, score) => sum + score, 0) / answers.length;
+    return Math.round(average) as number;
+  };
 
   const [question, setQuestion] = useState("");
   const [chatHistory, setChatHistory] = useState<{ role: "user" | "ai"; content: string; steps?: string[]; memory?: string }[]>([]);
@@ -489,21 +500,21 @@ export default function DecisionDNA() {
     return "The Pragmatic Counselor";
   };
 
-  const handleMCQSelect = (dimension: string, score: number) => {
-    setDraftMCQScores((prev) => ({
+  const handleMCQSelect = (questionId: number, score: number) => {
+    setDraftMCQAnswers((prev) => ({
       ...prev,
-      [dimension]: score,
+      [questionId]: score,
     }));
   };
 
   const startNewAI = () => {
-    setDraftMCQScores({});
+    setDraftMCQAnswers({});
     setDraftAnswers({ values: "", rules: "", experiences: "" });
     setStep("mcq");
   };
 
   const finishMCQ = () => {
-    const unanswered = mcqQuestions.filter(q => draftMCQScores[q.dimension] === undefined);
+    const unanswered = mcqQuestions.filter(q => draftMCQAnswers[q.id] === undefined);
     if (unanswered.length > 0) {
       toast({
         title: "Incomplete Diagnostic",
@@ -554,11 +565,11 @@ export default function DecisionDNA() {
   const finishTest = async () => {
     setStep("training");
 
-    const risk = draftMCQScores["risk"] || 3;
-    const trust = draftMCQScores["trust"] || 3;
-    const horizon = draftMCQScores["horizon"] || 3;
-    const adversity = draftMCQScores["adversity"] || 3;
-    const ethics = draftMCQScores["ethics"] || 3;
+    const risk = aggregateDimensionScore("risk");
+    const trust = aggregateDimensionScore("trust");
+    const horizon = aggregateDimensionScore("horizon");
+    const adversity = aggregateDimensionScore("adversity");
+    const ethics = aggregateDimensionScore("ethics");
 
     // Pull current user details
     const currentUserName = user?.user_metadata?.full_name || "Arthur Sterling";
@@ -1093,17 +1104,17 @@ ${finalRec}`;
                     <button
                       key={i}
                       type="button"
-                      onClick={() => handleMCQSelect(q.dimension, opt.score)}
+                      onClick={() => handleMCQSelect(q.id, opt.score)}
                       className={`w-full text-left p-4 rounded-lg border text-xs transition-all flex items-start gap-3.5 leading-relaxed ${
-                        draftMCQScores[q.dimension] === opt.score
+                        draftMCQAnswers[q.id] === opt.score
                           ? "bg-bronze/10 border-bronze text-foreground"
                           : "bg-background border-border text-muted-foreground hover:border-bronze/50"
                       }`}
                     >
                       <div className={`w-4 h-4 rounded-full border flex-shrink-0 flex items-center justify-center mt-0.5 ${
-                        draftMCQScores[q.dimension] === opt.score ? "border-bronze" : "border-muted-foreground"
+                        draftMCQAnswers[q.id] === opt.score ? "border-bronze" : "border-muted-foreground"
                       }`}>
-                        {draftMCQScores[q.dimension] === opt.score && <div className="w-2 h-2 rounded-full bg-bronze" />}
+                        {draftMCQAnswers[q.id] === opt.score && <div className="w-2 h-2 rounded-full bg-bronze" />}
                       </div>
                       <span>{opt.text}</span>
                     </button>
@@ -1113,7 +1124,8 @@ ${finalRec}`;
             ))}
           </div>
 
-          <div className="flex justify-end pt-6 border-t border-border">
+          <div className="flex justify-between items-center pt-6 border-t border-border">
+            <span className="text-[10px] text-muted-foreground">Answered {Object.keys(draftMCQAnswers).length} of {mcqQuestions.length}</span>
             <Button 
               variant="hero" 
               onClick={finishMCQ} 
