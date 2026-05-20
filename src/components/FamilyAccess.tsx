@@ -3,7 +3,7 @@ import { Crown, User, Users, Eye } from "lucide-react";
 const accessTiers = [
   {
     icon: Crown,
-    title: "Patriarch/Matriarch",
+    title: "Founder/Owner",
     level: "Full Access",
     color: "bronze",
     permissions: [

@@ -96,8 +96,8 @@ const Auth = () => {
 
         if (signupMode === "create") {
           metadata.family_name = familyName.trim();
-          metadata.role = "owner"; // Primary patriarch tier
-          metadata.relationship = "Patriarch";
+          metadata.role = "owner"; // Primary founder tier
+          metadata.relationship = "Founder";
           
           const { error } = await supabase.auth.signUp({
             email,
@@ -118,7 +118,7 @@ const Auth = () => {
             fullName: fullName,
             email: email,
             role: "owner" as const,
-            relationship: "Patriarch",
+            relationship: "Founder",
             isCurrentUser: true,
           };
           localStorage.setItem("heirloom_family_members", JSON.stringify([ownerMember]));

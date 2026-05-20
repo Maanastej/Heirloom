@@ -39,6 +39,66 @@ const RELATIONSHIP_OPTIONS = [
   "Relative"
 ];
 
+const getDisplayRelationship = (currentUser: FamilyMember | undefined, targetMember: FamilyMember) => {
+  if (!currentUser) return targetMember.relationship;
+
+  const cleanRel = (r: string) => (r || "").trim().toLowerCase();
+  const myRel = cleanRel(currentUser.relationship);
+  const targetRel = cleanRel(targetMember.relationship);
+  
+  // 1. Self view
+  if (targetMember.isCurrentUser || targetMember.id === currentUser.id || (targetMember.email && currentUser.email && targetMember.email.toLowerCase() === currentUser.email.toLowerCase())) {
+    if (targetMember.role === "owner") return "Founder (You)";
+    return `${targetMember.relationship} (You)`;
+  }
+
+  // 2. Viewing the Founder/Owner
+  if (targetMember.role === "owner") {
+    if (myRel === "son" || myRel === "daughter" || myRel === "child") {
+      return "Parent";
+    }
+    if (myRel === "grandson" || myRel === "granddaughter" || myRel === "grandchild") {
+      return "Grandparent";
+    }
+    if (myRel === "spouse" || myRel === "partner") {
+      return "Spouse / Partner";
+    }
+    if (myRel === "brother" || myRel === "sister" || myRel === "sibling") {
+      return "Sibling";
+    }
+    return "Founder";
+  }
+
+  // 3. Founder viewing other members
+  if (currentUser.role === "owner") {
+    return targetMember.relationship;
+  }
+
+  // 4. Member viewing another Member (both are non-owners)
+  const isChild = (r: string) => r === "son" || r === "daughter" || r === "child";
+
+  // Sibling relationship
+  if (isChild(myRel) && isChild(targetRel)) {
+    if (targetRel === "son") return "Brother";
+    if (targetRel === "daughter") return "Sister";
+    return "Sibling";
+  }
+
+  // Parent relationship (Target is Spouse/Partner of the Founder, Viewer is Child of the Founder)
+  if ((targetRel === "spouse" || targetRel === "partner") && isChild(myRel)) {
+    return "Parent";
+  }
+
+  // Child relationship (Viewer is Spouse/Partner of the Founder, Target is Child of the Founder)
+  if ((myRel === "spouse" || myRel === "partner") && isChild(targetRel)) {
+    if (targetRel === "son") return "Son";
+    if (targetRel === "daughter") return "Daughter";
+    return "Child";
+  }
+
+  return targetMember.relationship;
+};
+
 export default function FamilyHub() {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -71,7 +131,7 @@ export default function FamilyHub() {
       fullName: user?.user_metadata?.full_name || "Family Member",
       email: user?.email || "",
       role: "owner",
-      relationship: "Patriarch",
+      relationship: "Founder",
       isCurrentUser: true,
     }
   ];
@@ -268,7 +328,7 @@ export default function FamilyHub() {
 
     // Automatically trigger native mailto redirection to pre-fill client inbox!
     const subject = encodeURIComponent(`Access pre-authorization to join our private family vault`);
-    const body = encodeURIComponent(`Hello,\n\nYou have been invited by your Patriarch to join our private, highly-encrypted Family Vault on Heirloom as a ${inviteRelationship}.\n\nClick the secure pre-filled link below to complete your registration immediately:\n\n${inviteUrl}\n\nWarm regards,\nHeirloom Legacy Gateway`);
+    const body = encodeURIComponent(`Hello,\n\nYou have been invited by your Family Founder to join our private, highly-encrypted Family Vault on Heirloom as a ${inviteRelationship}.\n\nClick the secure pre-filled link below to complete your registration immediately:\n\n${inviteUrl}\n\nWarm regards,\nHeirloom Legacy Gateway`);
     
     setTimeout(() => {
       window.location.href = `mailto:${inviteEmail.trim()}?subject=${subject}&body=${body}`;
@@ -393,7 +453,7 @@ export default function FamilyHub() {
               : "bg-navy/10 text-navy border border-navy/20"
           }`}>
             <Shield className="w-3.5 h-3.5" />
-            {isPremiumAdmin ? "Tier 1: Patriarch (Premium)" : "Tier 2: Member Access"}
+            {isPremiumAdmin ? "Tier 1: Founder (Premium)" : "Tier 2: Member Access"}
           </span>
         </div>
       </div>
@@ -453,7 +513,7 @@ export default function FamilyHub() {
                       }`}>
                         {member.role === "time_locked" ? "Time-Locked" : member.role}
                       </span>
-                      <p className="text-xs text-muted-foreground mt-0.5 font-medium">{member.relationship}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5 font-medium">{getDisplayRelationship(currentMember, member)}</p>
                     </div>
 
                     {/* Actions: Only the patriarch owner can manage profiles */}
@@ -592,7 +652,7 @@ export default function FamilyHub() {
               <div>
                 <h3 className="font-serif text-base text-foreground font-semibold">Your family subscription is active</h3>
                 <p className="text-xs text-muted-foreground mt-1 max-w-md leading-relaxed">
-                  You are a member under the active legacy plan managed by your Patriarch. All central vault archives are fully protected under military-grade encryptions.
+                  You are a member under the active legacy plan managed by your Family Founder. All central vault archives are fully protected under military-grade encryptions.
                 </p>
               </div>
               <Heart className="w-10 h-10 text-bronze/40 flex-shrink-0 animate-pulse" />
@@ -660,7 +720,7 @@ export default function FamilyHub() {
                 </Button>
               ) : (
                 <div className="text-center p-3.5 border border-dashed border-border rounded-lg text-xs text-muted-foreground bg-muted/40 leading-relaxed font-semibold">
-                  Succession Vault release keys are managed strictly by your family Patriarch.
+                  Succession Vault release keys are managed strictly by your family Founder.
                 </div>
               )}
 

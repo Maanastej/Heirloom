@@ -233,7 +233,7 @@ export default function DecisionDNA() {
 
     // Pull current user details
     const currentUserName = user?.user_metadata?.full_name || "Arthur Sterling";
-    const currentUserRole = user?.user_metadata?.relationship || "Patriarch";
+    const currentUserRole = user?.user_metadata?.relationship || "Founder";
 
     const simulatedProfile: AIProfile = {
       id: "dna-" + Date.now(),
