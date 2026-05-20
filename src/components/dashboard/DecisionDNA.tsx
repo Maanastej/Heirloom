@@ -510,6 +510,129 @@ export default function DecisionDNA() {
 
     // Advanced RAP Model Response Simulation
     setTimeout(() => {
+      const q = userQ.toLowerCase();
+      
+      // 1. Context Category Detection
+      let category = "general";
+      if (q.includes("money") || q.includes("financial") || q.includes("draining") || q.includes("struggling") || q.includes("capital") || q.includes("debt") || q.includes("sell") || q.includes("buy") || q.includes("poor") || q.includes("cost")) {
+        category = "financial";
+      } else if (q.includes("family") || q.includes("betray") || q.includes("relationship") || q.includes("wife") || q.includes("husband") || q.includes("son") || q.includes("daughter") || q.includes("brother") || q.includes("sister") || q.includes("friend") || q.includes("kin")) {
+        category = "relationship";
+      } else if (q.includes("betray") || q.includes("honour") || q.includes("integrity") || q.includes("ethics") || q.includes("rules") || q.includes("lie") || q.includes("cheat") || q.includes("legal") || q.includes("stolen")) {
+        category = "moral";
+      } else if (q.includes("career") || q.includes("job") || q.includes("work") || q.includes("business") || q.includes("company") || q.includes("startup") || q.includes("employ")) {
+        category = "career";
+      }
+      
+      const isFamilyVsCompany = (q.includes("family") && q.includes("company")) || q.includes("betray") || (q.includes("sell") && q.includes("family"));
+
+      // 2. Persona Intro
+      let intro = "";
+      if (activeProfile.isSelf) {
+        if (isFamilyVsCompany) {
+          intro = `Analyzing this high-stakes tension between family preservation and corporate survival against your cognitive framework:`;
+        } else if (category === "financial") {
+          intro = `Processing your financial concerns against your decision scorecard:`;
+        } else if (category === "relationship") {
+          intro = `Evaluating this interpersonal family dilemma through your behavioral blueprint:`;
+        } else if (category === "moral") {
+          intro = `Testing this ethical crossroads against your core rules and values:`;
+        } else if (category === "career") {
+          intro = `Mapping this career choice to your legacy trajectory:`;
+        } else {
+          intro = `Reflecting on this dilemma using your synthesized Decision DNA:`;
+        }
+      } else {
+        if (isFamilyVsCompany) {
+          intro = `When you ask me about choosing between the family and the company, it goes straight to the foundation of what we've built. Here is how I, ${activeProfile.name}, evaluate this conflict:`;
+        } else if (category === "financial") {
+          intro = `I understand how heavy it feels when accounts are draining and the family is struggling. Under financial pressure, we must look at the bigger picture. Here is my perspective:`;
+        } else if (category === "relationship") {
+          intro = `Family relationships and trust are the ultimate bedrock. When they are tested, we need clear guidance. Here is how I see this:`;
+        } else if (category === "moral") {
+          intro = `This is a test of honor and integrity. In my life, I've found that character is the one asset you can never afford to lose. Here is how I think you should approach this:`;
+        } else if (category === "career") {
+          intro = `A career decision or business choice should align with a lifetime trajectory. Here is my counsel based on my experiences:`;
+        } else {
+          intro = `That is an important question. Let's look at this together through the values and rules I used to navigate my own life:`;
+        }
+      }
+
+      // 3. Archetype Perspective Paragraph
+      let archetypeTone = "";
+      switch (activeProfile.archetype) {
+        case "The Legacy Builder":
+          archetypeTone = `We must play the long game. Multi-generational legacy is built by taking short-term hits boldly to protect the long-term vision. Financial assets are easily replaced, but once family honour, trust, or the integrity of our name is compromised, the foundation of the house decays permanently. Absolute integrity and multi-decade impact override fast returns.`;
+          break;
+        case "The Compassionate Guardian":
+          archetypeTone = `Prioritize people and relationships above all else. A company is just a tool, but the family is the reason we build in the first place. I would rather see a business dissolve entirely than witness our kin split by betrayal or resentment. Focus on protecting the core, holding the family close, and rebuilding together.`;
+          break;
+        case "The Guarded Trailblazer":
+          archetypeTone = `We must look at this with cold, clear eyes. Risk is necessary, but blind trust is dangerous. Maintain guarded boundaries and ensure every alliance is structured legally. If a business or arrangement is dragging the family down, prune it strategically to protect our core assets, but do so with ironclad protection.`;
+          break;
+        case "The Strategic Pioneer":
+          archetypeTone = `Every crisis is an opportunity for a calculated pivot. We cannot let emotional sentimentality lock us into a sinking model. Detach from the immediate panic, analyze the coordinates, and take a bold, calculated leap. The goal is long-term strategic leverage and survival.`;
+          break;
+        case "The Stoic Defender":
+          archetypeTone = `In moments of severe adversity, we detach from emotional noise and act systematically. Enforce strict discipline: cut burn rates immediately, secure the perimeter, and abide strictly by the rules. We do not make compromises out of panic, and we never allow betrayal to compromise our operational security.`;
+          break;
+        case "The Pragmatic Counselor":
+        default:
+          archetypeTone = `We need a balanced, practical path forward. Avoid getting trapped in binary extremes (like total sacrifice vs total betrayal). We must seek a structured compromise—restructure the liabilities, draw clear lines of responsibility, and proceed with cautious, calculated steps.`;
+          break;
+      }
+
+      // 4. Core Values & Decision Rules weaving
+      const valStr = activeProfile.answers.values.trim();
+      const valuesRef = valStr 
+        ? `Looking at my core values—which are centered around "${valStr}"—this choice must align with that standard.` 
+        : `We must stay anchored to our core values, ensuring no temporary crisis makes us drift from our true north.`;
+
+      const ruleStr = activeProfile.answers.rules.trim();
+      const rulesRef = ruleStr
+        ? `Remember the rules I live by: "${ruleStr}". In moments of high stress, these strict boundaries are not optional; they are the shields that prevent us from making catastrophic errors.`
+        : `In moments of crisis, we must abide by consistent rules. We never make permanent structural decisions under temporary emotional duress.`;
+
+      // 5. Connect to Life Experience
+      const expStr = activeProfile.answers.experiences.trim();
+      let experienceRef = "";
+      if (expStr) {
+        experienceRef = `This reminds me deeply of the life lesson earned from: "${expStr}". That experience proved that when the storm hits, the only assets that remain standing are our character and our core alliances.`;
+      } else {
+        experienceRef = `History shows us that every challenge we survive is an opportunity to calibrate our digital twin and harden our resolve for the generations to follow.`;
+      }
+
+      // 6. Final recommendation block
+      let finalRec = "";
+      if (isFamilyVsCompany) {
+        if (activeProfile.archetype === "The Compassionate Guardian" || activeProfile.archetype === "The Legacy Builder") {
+          finalRec = `**My Deep Recommendation:** Choose the family. Restructure, sell, or even walk away from the company if you must, but protect family unity and honor. Assets are replaceable; family trust is not.`;
+        } else {
+          finalRec = `**My Deep Recommendation:** Act strategically. Protect the family's core financial survival. If the company cannot be salvaged without bankrupting the family, prune or liquidate it systematically before it drags everyone down.`;
+        }
+      } else if (category === "financial") {
+        finalRec = `**My Deep Recommendation:** Stop the bleeding immediately. Cut non-essential outlays and draw up a transparent recovery plan. Rely on strict contract audits and backups, and do not make high-risk plays out of panic.`;
+      } else if (category === "moral") {
+        finalRec = `**My Deep Recommendation:** Stand firm. Do not trade long-term respect for immediate relief. Choose the path of absolute honor, even if it is the harder road today.`;
+      } else {
+        finalRec = `**My Deep Recommendation:** Take a step back to detach from the immediate pressure. Map out a structured contingency, protect your key relationships, and then move forward step-by-step.`;
+      }
+
+      // 7. Assemble response content
+      const responseContent = `**${intro}**
+
+${archetypeTone}
+
+**Applying Our Core Framework:**
+*   **Values Alignment:** ${valuesRef}
+*   **Decision Rules:** ${rulesRef}
+*   **Hard-won Experience:** ${experienceRef}
+
+---
+
+${finalRec}`;
+
+      // 8. Cognitive Reasoning Trail Steps
       const riskVal = activeProfile.scores.risk;
       const ethicsVal = activeProfile.scores.ethics;
       const horizonVal = activeProfile.scores.horizon;
@@ -532,22 +655,8 @@ export default function DecisionDNA() {
 
       let horizonReasoning = `Reflecting on the legacy horizon (${horizonVal}/5): Legacy is built on choices that project 20 to 30 years out, completely discounting immediate convenience or short-term noise.`;
 
-      const memorySnippet = activeProfile.answers.experiences;
-
-      let recommendation = "";
-      if (activeProfile.archetype === "The Legacy Builder") {
-        recommendation = `My deep recommendation is to play the long game. Take the short-term hits boldly to protect the multi-generational legacy we are shaping. Focus on absolute integrity over fast returns.`;
-      } else if (activeProfile.archetype === "The Compassionate Guardian") {
-        recommendation = `My deep recommendation is to protect our core. Prioritize family peace, security, and close relationships above high-risk career leaps. Stay anchored to our core values.`;
-      } else {
-        recommendation = `Ensure you weigh both variables equally. Build a backup contingency first, secure your personal relationships, and then step forward carefully.`;
-      }
-
       const steps = [riskReasoning, ethicalReasoning, horizonReasoning];
-      
-      const responseContent = activeProfile.isSelf
-        ? `Here is my synthesized guidance based on your personal Decision DNA:\n\nBased on your assessment, you prioritize long-term vision. Let's analyze this step-by-step.\n\n**Synthesized Guidance:**\n${recommendation}`
-        : `Here's how I, ${activeProfile.name}, would think about this:\n\nWhen I evaluate this, I look at our foundations and values.\n\n**My Final Advice:**\n${recommendation}`;
+      const memorySnippet = activeProfile.answers.experiences;
 
       setChatHistory(prev => [
         ...prev,
@@ -559,7 +668,7 @@ export default function DecisionDNA() {
         }
       ]);
       setIsTyping(false);
-    }, 3000);
+    }, 2500);
   };
 
   const renderWorldviewMap = (scores: { risk: number; trust: number; horizon: number; adversity: number; ethics: number }) => {
