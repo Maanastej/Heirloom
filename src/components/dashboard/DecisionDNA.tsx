@@ -81,6 +81,52 @@ const mcqQuestions = [
   }
 ];
 
+interface ValidationCase {
+  id: number;
+  question: string;
+  optionA: string;
+  optionB: string;
+  getAIProbability: (scores: any) => number;
+}
+
+const validationCases: ValidationCase[] = [
+  {
+    id: 1,
+    question: "A relative proposes a high-risk tech startup requiring 40% of family capital but offering 10x potential returns.",
+    optionA: "Accept the risk for growth",
+    optionB: "Decline to preserve capital",
+    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.risk - 3.0) * 1.5))
+  },
+  {
+    id: 2,
+    question: "A long-time business partner commits a minor breach. Do you enforce the legal penalties or waive them?",
+    optionA: "Waive penalties (Prioritize relationship)",
+    optionB: "Enforce penalties (Prioritize rules)",
+    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.ethics - 3.0) * 1.5))
+  },
+  {
+    id: 3,
+    question: "In a market crash, do you sell family real estate for immediate cash or take a high-interest loan to preserve the property?",
+    optionA: "Take high-interest loan (Preserve legacy asset)",
+    optionB: "Sell family property (Secure short-term liquidity)",
+    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.horizon - 3.0) * 1.5))
+  },
+  {
+    id: 4,
+    question: "A security breach exposes minor records. Do you immediately disclose it or patch it quietly?",
+    optionA: "Disclose immediately (Prioritize absolute trust)",
+    optionB: "Patch quietly (Prioritize risk mitigation)",
+    getAIProbability: (scores) => 1 / (1 + Math.exp(-(scores.trust - 3.0) * 1.5))
+  },
+  {
+    id: 5,
+    question: "An abrasive manager performs well but causes staff tension. Do you replace or keep them?",
+    optionA: "Replace them (Prioritize harmony)",
+    optionB: "Keep them (Prioritize performance)",
+    getAIProbability: (scores) => 1 / (1 + Math.exp(-((6 - scores.adversity) - 3.0) * 1.5))
+  }
+];
+
 export default function DecisionDNA() {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -104,10 +150,99 @@ export default function DecisionDNA() {
   const [chatHistory, setChatHistory] = useState<{ role: "user" | "ai"; content: string; steps?: string[]; memory?: string }[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
+  // Calibration States
+  interface CalibrationResults {
+    f1: number;
+    auc: number;
+    precision: number;
+    recall: number;
+    accuracy: number;
+  }
+  const [calibrationResults, setCalibrationResults] = useState<CalibrationResults | null>(null);
+  const [showCalibrateModal, setShowCalibrateModal] = useState(false);
+  const [calibrationAnswers, setCalibrationAnswers] = useState<Record<number, number>>({});
+
   // Load Seed / Database Profiles
   useEffect(() => {
     loadDNAProfiles();
   }, [user]);
+
+  useEffect(() => {
+    if (activeProfileId) {
+      const cachedResult = localStorage.getItem(`heirloom_calibration_${activeProfileId}`);
+      if (cachedResult) {
+        setCalibrationResults(JSON.parse(cachedResult));
+      } else {
+        setCalibrationResults(null);
+      }
+      setCalibrationAnswers({});
+    }
+  }, [activeProfileId]);
+
+  const handleSubmitCalibration = () => {
+    if (!activeProfileId) return;
+    const activeProfile = profiles.find(p => p.id === activeProfileId);
+    if (!activeProfile) return;
+
+    let tp = 0, fp = 0, tn = 0, fn = 0;
+    const scoredCases = validationCases.map(c => {
+      const y = calibrationAnswers[c.id]; // 0 or 1
+      const p = c.getAIProbability(activeProfile.scores); // 0.0 to 1.0
+      const yHat = p >= 0.5 ? 1 : 0;
+      
+      if (y === 1 && yHat === 1) tp++;
+      if (y === 0 && yHat === 1) fp++;
+      if (y === 0 && yHat === 0) tn++;
+      if (y === 1 && yHat === 0) fn++;
+      
+      return { id: c.id, y, p, yHat };
+    });
+
+    const accuracy = (tp + tn) / 5;
+    const precision = tp + fp > 0 ? tp / (tp + fp) : 0;
+    const recall = tp + fn > 0 ? tp / (tp + fn) : 0;
+    const f1 = precision + recall > 0 ? 2 * (precision * recall) / (precision + recall) : 0;
+
+    // ROC-AUC calculation
+    const sorted = [...scoredCases].sort((a, b) => b.p - a.p);
+    const positives = sorted.filter(c => c.y === 1);
+    const negatives = sorted.filter(c => c.y === 0);
+
+    let auc = 0.5;
+    if (positives.length > 0 && negatives.length > 0) {
+      let rankSum = 0;
+      sorted.forEach((c, idx) => {
+        const rank = 5 - idx; // Rank 1 is lowest probability, Rank 5 is highest
+        if (c.y === 1) {
+          rankSum += rank;
+        }
+      });
+      const np = positives.length;
+      const nn = negatives.length;
+      const u = rankSum - (np * (np + 1)) / 2;
+      auc = u / (np * nn);
+    } else {
+      const matches = sorted.filter(c => c.y === c.yHat).length;
+      auc = matches === 5 ? 1.0 : 0.5;
+    }
+
+    const results: CalibrationResults = {
+      f1,
+      auc,
+      precision,
+      recall,
+      accuracy
+    };
+
+    setCalibrationResults(results);
+    localStorage.setItem(`heirloom_calibration_${activeProfileId}`, JSON.stringify(results));
+    setShowCalibrateModal(false);
+
+    toast({
+      title: "Calibration Successful",
+      description: `Model verified. Fidelity match at ${Math.round(f1 * 100)}% with ROC-AUC of ${auc.toFixed(2)}.`,
+    });
+  };
 
   const loadDNAProfiles = async () => {
     setLoading(true);
@@ -671,6 +806,68 @@ export default function DecisionDNA() {
                   </p>
                 </div>
               </div>
+
+              {/* Model Replication Fidelity */}
+              {activeProfile.isSelf && (
+                <div className="space-y-3 pt-4 border-t border-border">
+                  <span className="text-[10px] font-semibold text-muted-foreground uppercase block">Model Replication Fidelity</span>
+                  
+                  {calibrationResults ? (
+                    <div className="bg-muted p-3.5 rounded-lg border border-border space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] font-semibold text-muted-foreground">Fidelity Rating:</span>
+                        <span className="text-xs font-bold text-emerald-600">
+                          {Math.round(calibrationResults.f1 * 100)}% Match
+                        </span>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-2 text-center text-[10px]">
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">F1-Score</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.f1.toFixed(2)}</span>
+                        </div>
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">ROC-AUC</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.auc.toFixed(2)}</span>
+                        </div>
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">Precision</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.precision.toFixed(2)}</span>
+                        </div>
+                        <div className="bg-background/50 p-2 rounded border border-border">
+                          <span className="text-muted-foreground block font-medium">Recall</span>
+                          <span className="font-bold text-foreground block mt-0.5">{calibrationResults.recall.toFixed(2)}</span>
+                        </div>
+                      </div>
+
+                      <Button 
+                        type="button"
+                        variant="outline" 
+                        size="xs" 
+                        className="w-full text-[9px] h-7 font-semibold"
+                        onClick={() => setShowCalibrateModal(true)}
+                      >
+                        Recalibrate Digital Twin
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="bg-muted p-3.5 rounded-lg border border-border text-center space-y-2">
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        Verify the accuracy of your simulated persona against actual scenario choices.
+                      </p>
+                      <Button 
+                        type="button"
+                        variant="hero" 
+                        size="sm" 
+                        className="w-full text-[10px] h-8 font-semibold"
+                        onClick={() => setShowCalibrateModal(true)}
+                      >
+                        Verify & Calibrate
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             <Button variant="outline" size="sm" onClick={() => setStep("list")} className="w-full">
@@ -776,6 +973,98 @@ export default function DecisionDNA() {
             </form>
           </div>
 
+        </div>
+      )}
+
+      {showCalibrateModal && activeProfile && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-card border border-border rounded-xl w-full max-w-lg shadow-2xl overflow-hidden animate-scale-in">
+            <div className="bg-navy px-6 py-4 border-b border-cream/10 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <Brain className="w-5 h-5 text-bronze" />
+                <h3 className="font-serif text-cream text-base font-semibold">Calibrate & Verify Digital Twin</h3>
+              </div>
+              <Button 
+                type="button"
+                variant="ghost" 
+                className="text-cream/60 hover:text-cream h-8 w-8 p-0" 
+                onClick={() => setShowCalibrateModal(false)}
+              >
+                ✕
+              </Button>
+            </div>
+
+            <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Respond to these 5 validation scenarios. We will compare your actual choices against the AI model's computed probabilities to calculate replication metrics.
+              </p>
+
+              <div className="space-y-6 divide-y divide-border">
+                {validationCases.map((c, idx) => (
+                  <div key={c.id} className="pt-4 first:pt-0 space-y-3">
+                    <h4 className="font-medium text-foreground text-xs leading-relaxed">
+                      <span className="text-bronze font-bold mr-1.5">{idx + 1}.</span>
+                      {c.question}
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      <button
+                        type="button"
+                        onClick={() => setCalibrationAnswers(prev => ({ ...prev, [c.id]: 1 }))}
+                        className={`text-left p-3 rounded-lg border text-[11px] transition-all flex items-start gap-2.5 leading-normal ${
+                          calibrationAnswers[c.id] === 1
+                            ? "bg-bronze/10 border-bronze text-foreground"
+                            : "bg-background border-border text-muted-foreground hover:border-bronze/40"
+                        }`}
+                      >
+                        <div className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 flex items-center justify-center mt-0.5 ${
+                          calibrationAnswers[c.id] === 1 ? "border-bronze" : "border-muted-foreground"
+                        }`}>
+                          {calibrationAnswers[c.id] === 1 && <div className="w-1.5 h-1.5 rounded-full bg-bronze" />}
+                        </div>
+                        <span>{c.optionA}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCalibrationAnswers(prev => ({ ...prev, [c.id]: 0 }))}
+                        className={`text-left p-3 rounded-lg border text-[11px] transition-all flex items-start gap-2.5 leading-normal ${
+                          calibrationAnswers[c.id] === 0
+                            ? "bg-bronze/10 border-bronze text-foreground"
+                            : "bg-background border-border text-muted-foreground hover:border-bronze/40"
+                        }`}
+                      >
+                        <div className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 flex items-center justify-center mt-0.5 ${
+                          calibrationAnswers[c.id] === 0 ? "border-bronze" : "border-muted-foreground"
+                        }`}>
+                          {calibrationAnswers[c.id] === 0 && <div className="w-1.5 h-1.5 rounded-full bg-bronze" />}
+                        </div>
+                        <span>{c.optionB}</span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-border mt-4">
+                <Button 
+                  type="button"
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => setShowCalibrateModal(false)}
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  type="button"
+                  variant="hero" 
+                  size="sm" 
+                  onClick={handleSubmitCalibration} 
+                  disabled={Object.keys(calibrationAnswers).length < validationCases.length}
+                >
+                  Calculate Fidelity Metrics
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

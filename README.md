@@ -4,10 +4,10 @@ Heirloom is a premium, highly-secure React application designed for families to 
 
 ## Core Features
 
-- **Multi-Tier Family Hub**: Complete directory management with strict permissions. Tier 1 (Patriarch/Matriarch) accounts can dispatch automated email invitations, manage successions, and control manual inheritance locks.
-- **Decision DNA AI Synthesizer**: A robust cognitive assessment engine that builds a dynamic, simulated AI profile for each family member based on 5 worldview dimensions (Risk, Trust, Horizon, Adversity, Ethics). Family members can consult each other's simulated personas for advice.
+- **Multi-Tier Family Hub**: Complete directory management with strict permissions. Tier 1 (Founder/Owner) accounts can dispatch automated email invitations, manage successions, and control manual inheritance locks.
+- **Decision DNA AI Synthesizer**: A robust cognitive assessment engine that builds a dynamic, simulated AI profile for each family member based on 5 worldview dimensions (Risk, Trust, Horizon, Adversity, Ethics). Includes a built-in validation suite that quantifies model accuracy (F1-Score, ROC-AUC, Precision, Recall) using real-time validation scenarios. Family members can consult each other's simulated personas for advice.
 - **Secure Document & Video Vaults**: Private-by-default multimedia storage with the ability to toggle assets as "Shared with Family," publishing them to the family feed instantly.
-- **Automated Direct Onboarding**: Patriarchs generate pre-filled, secure onboarding links that trigger automated email dispatchers. Successors land on a locked registration flow that bypasses verification blocks and auto-links them to their family tree.
+- **Automated Direct Onboarding**: Founders generate pre-filled, secure onboarding links that trigger automated email dispatchers. Successors land on a locked registration flow that bypasses verification blocks and auto-links them to their family tree.
 - **Offline / Local Fallback Architecture**: Fully robust dual-state data engine. When Supabase cloud connections are unavailable, Heirloom falls back to a highly realistic simulated `localStorage` model, ensuring flawless demonstrations and functionality at all times.
 
 ## Technology Stack
@@ -44,6 +44,16 @@ For full production deployment, connect to a Supabase project and set the follow
 VITE_SUPABASE_URL=your-supabase-project-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
+
+## Decision DNA Replication Validation
+
+To ensure the cognitive replication of family members is mathematically accurate, Heirloom implements a validation suite. 
+
+### Metrics & Methodology
+- **Classification Framing**: We present the user and the AI with validation test cases. The user's choices establish the ground truth $y \in \{0, 1\}$.
+- **F1-Score**: Calculates the harmonic mean of Precision and Recall. High F1 represents a high overlap on decision choices.
+- **ROC-AUC**: Evaluates how effectively the AI's confidence scores separate positive decisions from negative ones. An AUC of `1.0` represents a perfect replication of the user's decision boundary.
+- **Confusion Matrix**: Displays True Positives, False Positives, True Negatives, and False Negatives to help calibrate the model's sensitivity.
 
 ## Security & Privacy
 Heirloom is built around absolute family privacy. Succession vaults and inheritance keys are strictly managed by designated family owners, and all personal documents remain encrypted and private until explicitly shared.
