@@ -360,8 +360,52 @@ export default function DecisionDNA() {
   };
 
   const finishMCQ = () => {
-    if (Object.keys(draftMCQScores).length < mcqQuestions.length) return;
+    const unanswered = mcqQuestions.filter(q => draftMCQScores[q.dimension] === undefined);
+    if (unanswered.length > 0) {
+      toast({
+        title: "Incomplete Diagnostic",
+        description: `Please answer all questions before proceeding. Unanswered questions: ${unanswered.map(q => q.id).join(", ")}.`,
+        variant: "destructive"
+      });
+      return;
+    }
     setStep("values");
+  };
+
+  const handleNextFromValues = () => {
+    if (!draftAnswers.values.trim()) {
+      toast({
+        title: "Input Required",
+        description: "Please share some details about your core values to proceed.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setStep("rules");
+  };
+
+  const handleNextFromRules = () => {
+    if (!draftAnswers.rules.trim()) {
+      toast({
+        title: "Input Required",
+        description: "Please share some details about your strict decision rules to proceed.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setStep("experiences");
+  };
+
+  const handleFinishFromExperiences = () => {
+    if (!draftAnswers.experiences.trim()) {
+      toast({
+        title: "Input Required",
+        description: "Please share some details about your life experiences to proceed.",
+        variant: "destructive"
+      });
+      return;
+    }
+    finishTest();
   };
 
   const finishTest = async () => {
@@ -580,6 +624,12 @@ export default function DecisionDNA() {
     );
   }
 
+  // Resolve currently active profile for rendering checks
+  const activeProfile = profiles.find(p => p.id === activeProfileId) ?? null;
+
+
+
+
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between border-b border-border pb-6">
@@ -704,7 +754,6 @@ export default function DecisionDNA() {
             <Button 
               variant="hero" 
               onClick={finishMCQ} 
-              disabled={Object.keys(draftMCQScores).length < mcqQuestions.length}
               className="h-10 px-6"
             >
               Next: Deep Interview <ArrowRight className="w-4 h-4 ml-2" />
@@ -750,17 +799,17 @@ export default function DecisionDNA() {
             {step === "experiences" && <Button variant="outline" onClick={() => setStep("rules")}>Back</Button>}
 
             {step === "values" && (
-              <Button variant="hero" onClick={() => setStep("rules")} disabled={!draftAnswers.values.trim()}>
+              <Button variant="hero" onClick={handleNextFromValues}>
                 Next <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             )}
             {step === "rules" && (
-              <Button variant="hero" onClick={() => setStep("experiences")} disabled={!draftAnswers.rules.trim()}>
+              <Button variant="hero" onClick={handleNextFromRules}>
                 Next <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             )}
             {step === "experiences" && (
-              <Button variant="hero" onClick={finishTest} disabled={!draftAnswers.experiences.trim()}>
+              <Button variant="hero" onClick={handleFinishFromExperiences}>
                 Synthesize Advisor <Brain className="w-4 h-4 ml-2" />
               </Button>
             )}
@@ -808,7 +857,7 @@ export default function DecisionDNA() {
               </div>
 
               {/* Model Replication Fidelity */}
-              {activeProfile.isSelf && (
+              {activeProfile && activeProfile.isSelf && (
                 <div className="space-y-3 pt-4 border-t border-border">
                   <span className="text-[10px] font-semibold text-muted-foreground uppercase block">Model Replication Fidelity</span>
                   
