@@ -128,7 +128,6 @@ const validationCases: ValidationCase[] = [
   { id: 54, question: "Your project fails publicly. First instinct:\nA. Defend your decisions\nB. Analyze what failed\nC. Protect team morale\nD. Withdraw temporarily", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.recovery_speed ?? 0.5) - 0.5) * 0.45 - ((s.passive_aggression ?? 0.5) - 0.5) * 0.2, 0.01), 0.99) },
   { id: 55, question: "A major opportunity appears with incomplete information. You:\nA. Move fast before others\nB. Research aggressively first\nC. Wait for stronger certainty\nD. Ask trusted people first", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.risk_tolerance ?? 0.5) - 0.5) * 0.45 - ((s.uncertainty_tolerance ?? 0.5) - 0.5) * 0.3, 0.01), 0.99) }
 ];
-];
 
 export default function DecisionDNA() {
   const { user } = useAuth();
