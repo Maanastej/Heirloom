@@ -250,6 +250,98 @@ export default function DecisionDNA() {
     return { traitScores, core };
   };
 
+  const loadDNAProfiles = async () => {
+    setLoading(true);
+    try {
+      if (user) {
+        const { data, error } = await (supabase as any)
+          .from("dna_profiles")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (data && data.length > 0) {
+          const mapped = data.map((d: any) => ({
+            id: d.id,
+            name: d.name,
+            relationship: d.relationship,
+            scores: {
+              // preserve normalized trait keys where available, otherwise core five as ints
+              risk: d.risk_score || 3,
+              trust: d.trust_score || 3,
+              horizon: d.horizon_score || 3,
+              adversity: d.adversity_score || 3,
+              ethics: d.ethics_score || 3,
+            },
+            answers: {
+              values: d.core_values,
+              rules: d.decision_rules,
+              experiences: d.life_experiences,
+            },
+            archetype: calculateArchetype(
+              d.risk_score || 3,
+              d.trust_score || 3,
+              d.horizon_score || 3,
+              d.adversity_score || 3,
+              d.ethics_score || 3
+            ),
+            embedding: d.profile_embedding ?? null,
+            isSelf: d.created_by === user.id,
+          }));
+          setProfiles(mapped);
+          setHasTrainedSelf(mapped.some((p: any) => p.isSelf));
+          setLoading(false);
+          return;
+        }
+      }
+    } catch (e) {
+      console.log("Supabase dna tables not available yet. Loading local storage mock data.");
+    }
+
+    // Local Storage Mock Seeding
+    const cached = localStorage.getItem("heirloom_dna_profiles");
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      setProfiles(parsed);
+      setHasTrainedSelf(parsed.some((p: any) => p.isSelf));
+      setLoading(false);
+      return;
+    }
+
+    // Seed example profiles
+    const currentUserName = user?.user_metadata?.full_name || "Arthur Sterling";
+    const seedProfiles: AIProfile[] = [];
+    seedProfiles.push({
+      id: "grandpa-1",
+      name: "Grandpa Richard",
+      relationship: "Grandfather",
+      scores: { risk: 2, trust: 4, horizon: 5, adversity: 3, ethics: 5 },
+      answers: {
+        values: "Hard work, faith, integrity, and absolute devotion to family legacy.",
+        rules: "Always save 30% of what you make, never go to sleep angry at your kin, and back up your words with consistent actions.",
+        experiences: "Rebuilding our family farm after a critical drought taught me the value of local community."
+      },
+      archetype: "The Compassionate Guardian",
+    });
+
+    seedProfiles.push({
+      id: "eleanor-1",
+      name: "Eleanor Sterling",
+      relationship: "Matriarch",
+      scores: { risk: 3, trust: 3, horizon: 4, adversity: 5, ethics: 4 },
+      answers: {
+        values: "Intellect, constant curiosity, relational harmony, and elegance.",
+        rules: "Learn something new every single day, never trade long-term respect for immediate wealth.",
+        experiences: "Leading community preservation projects taught me about stewardship."
+      },
+      archetype: "The Legacy Builder",
+    });
+
+    setProfiles(seedProfiles);
+    localStorage.setItem("heirloom_dna_profiles", JSON.stringify(seedProfiles));
+    setHasTrainedSelf(false);
+    setLoading(false);
+  };
+
   const [question, setQuestion] = useState("");
   const [chatHistory, setChatHistory] = useState<{ role: "user" | "ai"; content: string; steps?: string[]; memory?: string }[]>([]);
   const [isTyping, setIsTyping] = useState(false);
