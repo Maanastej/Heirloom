@@ -25,208 +25,219 @@ interface AIProfile {
     experiences: string;
   };
   archetype: string;
+  embedding?: number[] | null;
   isSelf?: boolean;
+}
+
+interface DecisionLog {
+  id: string;
+  dna_profile_id: string;
+  user_id: string;
+  question: string;
+  response: string;
+  created_at: string;
+  log_embedding?: number[] | null;
 }
 
 const mcqQuestions = [
   {
     id: 1,
     dimension: "risk",
-    question: "Risk vs Reward: You are offered a highly stable but low-growth opportunity versus a risky gamble with a massive legacy upside. What do you do?",
+    question: "Personal Growth vs Comfort: When offered a new challenge that could change your future, you...",
     options: [
-      { text: "Prioritize absolute stability. The risk isn't worth losing what's built.", score: 1 },
-      { text: "Take a carefully structured risk with backups.", score: 3 },
-      { text: "Take the leap boldly. Growth only comes from stepping into the unknown.", score: 5 }
+      { text: "Keep your current path and protect the stability you already have.", score: 1 },
+      { text: "Cautiously pursue the opportunity while keeping a backup plan ready.", score: 3 },
+      { text: "Embrace the challenge fully; growth requires leaving comfort behind.", score: 5 }
     ]
   },
   {
     id: 2,
     dimension: "trust",
-    question: "Trust & Alliances: When initiating a critical family alliance or business venture, your base assumption is to...",
+    question: "Trusted Advice: A person you care about asks for a risky favor. Your instinct is to...",
     options: [
-      { text: "Assume guarded boundaries. Make others earn trust slowly over time.", score: 1 },
-      { text: "Trust but verify with strict legal agreements and metrics.", score: 3 },
-      { text: "Trust them from the outset unless they give a reason not to.", score: 5 }
+      { text: "Politely decline until you know their intentions more clearly.", score: 1 },
+      { text: "Agree with safeguards, checks, and shared accountability.", score: 3 },
+      { text: "Help them immediately based on your relationship and goodwill.", score: 5 }
     ]
   },
   {
     id: 3,
     dimension: "horizon",
-    question: "Legacy Horizon: Would you accept a painful financial or career sacrifice today if it guaranteed a massive benefit for your family's future in 25 years?",
+    question: "Long-Term Planning: Would you sacrifice a happy present for a stronger family legacy decades from now?",
     options: [
-      { text: "No. The immediate well-being and peace of today must not be bartered.", score: 1 },
-      { text: "Only if the probability of the long-term legacy outcome is extremely high.", score: 3 },
-      { text: "Yes. Short-term sacrifices are standard requirements for legacy builders.", score: 5 }
+      { text: "No. Today’s wellbeing is too important to trade for a distant promise.", score: 1 },
+      { text: "Only if the future gain is nearly certain.", score: 3 },
+      { text: "Yes. Legacy and meaning are worth current sacrifice.", score: 5 }
     ]
   },
   {
     id: 4,
     dimension: "adversity",
-    question: "Adversity Response: When hit by a sudden, devastating crisis, your first instinct is to...",
+    question: "Stress Response: When a sudden setback hits, your first move is to...",
     options: [
-      { text: "Emotionally process the event fully with loved ones before trying to solve it.", score: 1 },
-      { text: "Assess the situation carefully, balancing emotional support with action.", score: 3 },
-      { text: "Emotionally detach immediately and engineer a precise recovery strategy.", score: 5 }
+      { text: "Pause, gather emotional support, and then decide.", score: 1 },
+      { text: "Assess carefully and act in small deliberate steps.", score: 3 },
+      { text: "Move quickly with clear direction and control the damage.", score: 5 }
     ]
   },
   {
     id: 5,
     dimension: "ethics",
-    question: "Ethical Anchor: If a family member makes a costly mistake that violates a strict rule, but did so out of love or good intentions, how do you handle it?",
+    question: "Values vs Outcome: If bending a rule helps someone you love, you...",
     options: [
-      { text: "The rules must stand. Letting it slide compromises structural integrity.", score: 1 },
-      { text: "Uphold the standard, but handle the specific individual with private grace.", score: 3 },
-      { text: "Prioritize love and relationships completely above written rules.", score: 5 }
+      { text: "Keep the rule; fairness and trust depend on consistency.", score: 1 },
+      { text: "Make a narrow exception while preserving the principle publicly.", score: 3 },
+      { text: "Prioritize people and compassion over the rule.", score: 5 }
     ]
   },
   {
     id: 6,
     dimension: "risk",
-    question: "Investment Discipline: Your most promising asset is volatile. Do you...",
+    question: "Health Decision: A promising new treatment has unknown long-term effects. You...",
     options: [
-      { text: "Liquidate it to preserve capital and avoid stress.", score: 1 },
-      { text: "Hold with disciplined risk controls in place.", score: 3 },
-      { text: "Double down while the upside remains large.", score: 5 }
+      { text: "Wait for more evidence before taking it.", score: 1 },
+      { text: "Try it if the benefits justify careful monitoring.", score: 3 },
+      { text: "Take it quickly if it offers the best chance for healing.", score: 5 }
     ]
   },
   {
     id: 7,
     dimension: "trust",
-    question: "Confidential Information: A cousin asks you to keep a risky business plan secret. You...",
+    question: "Team Delegation: You are asked to delegate a sensitive mission. You...",
     options: [
-      { text: "Insist on transparency and put it in writing.", score: 1 },
-      { text: "Agree, but establish clear boundaries and oversight.", score: 3 },
-      { text: "Honor the request without second-guessing their motives.", score: 5 }
+      { text: "Keep control until trust is proven.", score: 1 },
+      { text: "Delegate with clear checks and review points.", score: 3 },
+      { text: "Give autonomy and trust them to deliver.", score: 5 }
     ]
   },
   {
     id: 8,
     dimension: "horizon",
-    question: "Opportunity Horizon: Would you support a high-potential leader leaving current income to pursue a longer-term growth venture?",
+    question: "Legacy Investment: Would you invest in a slow-building tradition that pays off decades later?",
     options: [
-      { text: "No, short-term stability must be preserved.", score: 1 },
-      { text: "Only if the long-term payoff is very likely.", score: 3 },
-      { text: "Yes, investing in future growth is worth the short-term tradeoff.", score: 5 }
+      { text: "No, that future is too uncertain.", score: 1 },
+      { text: "Yes, if it aligns with a strong long-term plan.", score: 3 },
+      { text: "Yes, tradition and durability are the top priority.", score: 5 }
     ]
   },
   {
     id: 9,
     dimension: "adversity",
-    question: "Recovery Style: After a major setback, you tend to...",
+    question: "Public Pressure: If criticism is growing, you...",
     options: [
-      { text: "Seek support and pause until the dust settles.", score: 1 },
-      { text: "Debrief carefully and adjust the plan methodically.", score: 3 },
-      { text: "Launch a rapid counterattack to regain momentum.", score: 5 }
+      { text: "Respond gently and wait for emotions to cool.", score: 1 },
+      { text: "Acknowledge concerns and correct course deliberately.", score: 3 },
+      { text: "Act decisively to regain control and restore direction.", score: 5 }
     ]
   },
   {
     id: 10,
     dimension: "ethics",
-    question: "Fairness Test: If a stakeholder requests special treatment, do you...",
+    question: "Transparency: When a difficult truth may hurt people, you...",
     options: [
-      { text: "Refuse and apply the same standard to everyone.", score: 1 },
-      { text: "Consider the context but keep the principle intact.", score: 3 },
-      { text: "Grant it if it preserves the team and culture.", score: 5 }
+      { text: "Keep it quiet to protect them.", score: 1 },
+      { text: "Share the truth carefully with those who must know.", score: 3 },
+      { text: "Be fully honest even if it causes discomfort.", score: 5 }
     ]
   },
   {
     id: 11,
     dimension: "risk",
-    question: "Capital Allocation: Would you move legacy assets into a bold new venture?",
+    question: "Career Tradeoff: A meaningful purpose requires giving up stability. You...",
     options: [
-      { text: "No, capital should remain in proven, safe holdings.", score: 1 },
-      { text: "Shift a measured portion with strong controls.", score: 3 },
-      { text: "Yes, new ventures are the only way to grow legacy value.", score: 5 }
+      { text: "Choose safety and avoid the unknown.", score: 1 },
+      { text: "Take the opportunity only with fallback planning.", score: 3 },
+      { text: "Pursue the purpose fully despite the uncertainty.", score: 5 }
     ]
   },
   {
     id: 12,
     dimension: "trust",
-    question: "Delegation: When handing a major initiative to a colleague, do you...",
+    question: "Confidential Request: Someone asks you to keep a risky plan private. You...",
     options: [
-      { text: "Keep the majority of control until trust is proven.", score: 1 },
-      { text: "Delegate with clear accountability and review.", score: 3 },
-      { text: "Give them autonomy right away to build trust through action.", score: 5 }
+      { text: "Decline until you understand their true motives.", score: 1 },
+      { text: "Agree with boundaries and regular check-ins.", score: 3 },
+      { text: "Honor it unless it clearly endangers others.", score: 5 }
     ]
   },
   {
     id: 13,
     dimension: "horizon",
-    question: "Estate Planning: Do you plan your legacy around the next generation or the next three?",
+    question: "Education vs Earnings: Would you fund long-term training over immediate income?",
     options: [
-      { text: "Next generation only; my responsibility ends there.", score: 1 },
-      { text: "Two generations, with guardrails for the rest.", score: 3 },
-      { text: "At least three generations; durability is the priority.", score: 5 }
+      { text: "No, personal and financial stability come first.", score: 1 },
+      { text: "Yes, if the future payoff is likely.", score: 3 },
+      { text: "Yes. A stronger future is worth today’s sacrifice.", score: 5 }
     ]
   },
   {
     id: 14,
     dimension: "adversity",
-    question: "Stress Management: Under extreme pressure, your preferred move is to...",
+    question: "Recovery Style: After failure, do you...",
     options: [
-      { text: "Pause and process internally before acting.", score: 1 },
-      { text: "Make a smaller corrective move while gathering more data.", score: 3 },
-      { text: "Act decisively to regain control immediately.", score: 5 }
+      { text: "Step back and reflect before taking action.", score: 1 },
+      { text: "Adjust carefully and proceed steadily.", score: 3 },
+      { text: "Launch a rapid recovery and regain momentum.", score: 5 }
     ]
   },
   {
     id: 15,
     dimension: "ethics",
-    question: "Transparency: When a difficult organizational decision impacts many people, do you...",
+    question: "Favoritism: If someone close asks for special treatment, you...",
     options: [
-      { text: "Keep the details private to avoid conflict.", score: 1 },
-      { text: "Share selectively with those who need to know.", score: 3 },
-      { text: "Be fully transparent even if it causes discomfort.", score: 5 }
+      { text: "Respect the rules and treat everyone equally.", score: 1 },
+      { text: "Consider context while keeping the core principle.", score: 3 },
+      { text: "Grant it to preserve trust and harmony.", score: 5 }
     ]
   },
   {
     id: 16,
     dimension: "risk",
-    question: "Legacy Growth: Do you prefer slow, safe expansion or bold disruption?",
+    question: "Opportunity Horizon: A rare chance to scale influence appears, but it could stretch your resources. You...",
     options: [
-      { text: "Slow, safe growth that preserves what we have.", score: 1 },
-      { text: "Measured innovation that avoids reckless bets.", score: 3 },
-      { text: "Bold disruption to create a new legacy standard.", score: 5 }
+      { text: "Protect your safety net and say no.", score: 1 },
+      { text: "Pursue it carefully while preserving reserves.", score: 3 },
+      { text: "Seize it boldly and accept the pressure.", score: 5 }
     ]
   },
   {
     id: 17,
     dimension: "trust",
-    question: "Vetting Partners: Before partnering with another family, you...",
+    question: "Partner Vetting: Before working with a new collaborator, you...",
     options: [
-      { text: "Require exhaustive evidence and proof of character.", score: 1 },
-      { text: "Build a guarded partnership with legal safeguards.", score: 3 },
-      { text: "Start from goodwill and align through shared purpose.", score: 5 }
+      { text: "Require proof and wait until trust is earned.", score: 1 },
+      { text: "Start small with oversight and clear roles.", score: 3 },
+      { text: "Begin with shared purpose and build trust by doing.", score: 5 }
     ]
   },
   {
     id: 18,
     dimension: "horizon",
-    question: "Impact Choice: Would you accept lower returns if it secured a stronger future reputation?",
+    question: "Legacy Choice: Do you establish a new tradition that may outlive you?",
     options: [
-      { text: "No, strong returns are more important than reputation.", score: 1 },
-      { text: "Only if the reputation payoff is highly likely.", score: 3 },
-      { text: "Yes, reputation is the asset that supports everything else.", score: 5 }
+      { text: "No, keep things as they are.", score: 1 },
+      { text: "Yes, if it fits the family’s long-term values.", score: 3 },
+      { text: "Yes, lasting traditions are worth bold change.", score: 5 }
     ]
   },
   {
     id: 19,
     dimension: "adversity",
-    question: "Recovery Priority: After a setback, do you focus first on...",
+    question: "Crisis Decision: When chaos arrives, you...",
     options: [
-      { text: "Rebuilding morale and relationships.", score: 1 },
-      { text: "Stabilizing the situation before expanding again.", score: 3 },
-      { text: "Finding the next opportunity while the crisis is still fresh.", score: 5 }
+      { text: "Seek support and recover together.", score: 1 },
+      { text: "Stabilize the core and then move forward.", score: 3 },
+      { text: "Take immediate control and reset the direction.", score: 5 }
     ]
   },
   {
     id: 20,
     dimension: "ethics",
-    question: "Power vs Principle: If the family can gain influence through an ethically grey deal, do you...",
+    question: "Principle vs Win: If winning requires a morally grey choice, you...",
     options: [
-      { text: "Reject it and protect the family reputation.", score: 1 },
-      { text: "Consider it only if limits are clearly defined.", score: 3 },
-      { text: "Use it if the long-term good justifies the short-term compromise.", score: 5 }
+      { text: "Refuse and protect your integrity.", score: 1 },
+      { text: "Use strict boundaries to minimize harm.", score: 3 },
+      { text: "Accept it if it creates a greater good.", score: 5 }
     ]
   }
 ];
@@ -242,38 +253,73 @@ interface ValidationCase {
 const validationCases: ValidationCase[] = [
   {
     id: 1,
-    question: "A major growth initiative requires outside capital and will dilute ownership. Do you...",
-    optionA: "Preserve control and grow more slowly using internal resources.",
-    optionB: "Accept external funding and scale aggressively while sharing equity.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.16 + (scores.horizon - 3) * 0.08, 0.05), 0.95)
+    question: "A trusted mentor suggests taking a health risk for a long-term breakthrough. Do you...",
+    optionA: "Decline until the treatment is well-proven.",
+    optionB: "Proceed with the treatment if it offers a meaningful future benefit.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.14 + (scores.horizon - 3) * 0.09, 0.05), 0.95)
   },
   {
     id: 2,
-    question: "A strategic partner offers market access but asks to share proprietary IP. Do you...",
-    optionA: "Protect IP and walk away unless terms are very restrictive.",
-    optionB: "Move forward with the partnership to accelerate market entry.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.14 - (scores.ethics - 3) * 0.08, 0.05), 0.95)
+    question: "A close friend asks you to keep a delicate secret. Do you...",
+    optionA: "Protect the secret and honor your relationship.",
+    optionB: "Share the truth with someone who should know.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.16 - (scores.ethics - 3) * 0.08, 0.05), 0.95)
   },
   {
     id: 3,
-    question: "A large client wants steep discounts that would hurt margins. Do you...",
-    optionA: "Hold pricing firm and protect long-term profitability.",
-    optionB: "Offer the discount to secure the business and revenue.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 - (scores.risk - 3) * 0.12 - (scores.ethics - 3) * 0.06, 0.05), 0.95)
+    question: "A long-term legacy project will limit your freedom today. Do you...",
+    optionA: "Avoid it to preserve your current life quality.",
+    optionB: "Commit to the sacrifice because the future value matters.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.18 - (scores.adversity - 3) * 0.08, 0.05), 0.95)
   },
   {
     id: 4,
-    question: "A new market launch is delayed by compliance concerns. Do you...",
-    optionA: "Delay launch until compliance is fully confirmed.",
-    optionB: "Launch now with mitigations to capture momentum.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.1 + (scores.horizon - 3) * 0.12, 0.05), 0.95)
+    question: "If a public mistake threatens your reputation, do you...",
+    optionA: "Manage the optics quietly while minimizing damage.",
+    optionB: "Address it openly and take responsibility.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * 0.15 - (scores.trust - 3) * 0.07, 0.05), 0.95)
   },
   {
     id: 5,
-    question: "The executive team is split between hiring high performers or automating processes. Do you...",
-    optionA: "Invest in talent development and retain top people.",
-    optionB: "Invest in automation to reduce cost and increase efficiency.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.08 - (scores.trust - 3) * 0.05, 0.05), 0.95)
+    question: "Paying for expanded education delays your immediate earnings. Do you...",
+    optionA: "Keep earning now and postpone the training.",
+    optionB: "Invest now if the long-term return looks strong.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.15 - (scores.risk - 3) * 0.06, 0.05), 0.95)
+  },
+  {
+    id: 6,
+    question: "A colleague asks for an exception to an important rule. Do you...",
+    optionA: "Respect the standard and refuse the exception.",
+    optionB: "Make a compassionate exception in this case.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 - (scores.ethics - 3) * 0.16 + (scores.trust - 3) * 0.1, 0.05), 0.95)
+  },
+  {
+    id: 7,
+    question: "An uncertain breakthrough could change your industry, but it may fail. Do you...",
+    optionA: "Wait for clearer evidence before you commit.",
+    optionB: "Back it now to capture transformational upside.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.18 + (scores.adversity - 3) * 0.08, 0.05), 0.95)
+  },
+  {
+    id: 8,
+    question: "You can mentor a gifted person who is not yet fully trustworthy. Do you...",
+    optionA: "Keep them close until trust is built.",
+    optionB: "Trust them with responsibility and watch them grow.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.15 - (scores.risk - 3) * 0.06, 0.05), 0.95)
+  },
+  {
+    id: 9,
+    question: "Your child wants a risky passion project instead of a safe career. Do you...",
+    optionA: "Encourage security and postpone the risk.",
+    optionB: "Support their long-term purpose even if it is uncertain.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.14 - (scores.adversity - 3) * 0.05, 0.05), 0.95)
+  },
+  {
+    id: 10,
+    question: "An historic tradition is under threat. Would you...",
+    optionA: "Protect what exists and avoid big change.",
+    optionB: "Reinvent it for the future, even if it disrupts the past.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * 0.13 + (scores.horizon - 3) * 0.1, 0.05), 0.95)
   }
 ];
 
@@ -286,6 +332,7 @@ export default function DecisionDNA() {
   const [activeProfileId, setActiveProfileId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [hasTrainedSelf, setHasTrainedSelf] = useState(false);
+  const [decisionLogs, setDecisionLogs] = useState<DecisionLog[]>([]);
 
   const [draftMCQAnswers, setDraftMCQAnswers] = useState<Record<number, number>>({});
   const [draftAnswers, setDraftAnswers] = useState({
@@ -330,6 +377,7 @@ export default function DecisionDNA() {
 
   useEffect(() => {
     loadDNAProfiles();
+    loadDecisionLogs();
   }, [user]);
 
   useEffect(() => {
@@ -402,7 +450,7 @@ export default function DecisionDNA() {
     setLoading(true);
     try {
       if (user) {
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from("dna_profiles")
           .select("*")
           .order("created_at", { ascending: false });
@@ -491,6 +539,32 @@ export default function DecisionDNA() {
     setLoading(false);
   };
 
+  const loadDecisionLogs = async () => {
+    try {
+      if (user) {
+        const { data, error } = await (supabase as any)
+          .from("decision_logs")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(50);
+
+        if (!error && data) {
+          setDecisionLogs(data as DecisionLog[]);
+          return;
+        }
+      }
+    } catch (e) {
+      console.log("Could not load decision logs from Supabase:", e);
+    }
+
+    const cachedLogs = localStorage.getItem("heirloom_decision_logs");
+    if (cachedLogs) {
+      setDecisionLogs(JSON.parse(cachedLogs));
+    } else {
+      setDecisionLogs([]);
+    }
+  };
+
   const calculateArchetype = (r: number, t: number, h: number, a: number, e: number): string => {
     if (r >= 4 && t <= 2) return "The Guarded Trailblazer";
     if (h >= 4 && e >= 4) return "The Legacy Builder";
@@ -498,6 +572,55 @@ export default function DecisionDNA() {
     if (r >= 4 && h >= 4) return "The Strategic Pioneer";
     if (a >= 4 && t <= 2) return "The Stoic Defender";
     return "The Pragmatic Counselor";
+  };
+
+  const cosineSimilarity = (a: number[], b: number[]) => {
+    if (!a.length || !b.length || a.length !== b.length) return 0;
+    const dot = a.reduce((sum, value, idx) => sum + value * b[idx], 0);
+    const magA = Math.sqrt(a.reduce((sum, value) => sum + value * value, 0));
+    const magB = Math.sqrt(b.reduce((sum, value) => sum + value * value, 0));
+    return magA > 0 && magB > 0 ? dot / (magA * magB) : 0;
+  };
+
+  const summarizeProfile = (profile: AIProfile) => {
+    return `Name: ${profile.name}. Relationship: ${profile.relationship}. Scores: Risk ${profile.scores.risk}/5, Trust ${profile.scores.trust}/5, Horizon ${profile.scores.horizon}/5, Adversity ${profile.scores.adversity}/5, Ethics ${profile.scores.ethics}/5. Core values: ${profile.answers.values}. Decision rules: ${profile.answers.rules}. Life experience: ${profile.answers.experiences}.`;
+  };
+
+  const generateEmbedding = async (input: string) => {
+    const groqApiKey = import.meta.env.VITE_GROQ_API_KEY;
+    if (!groqApiKey || !input.trim()) return null;
+
+    try {
+      const response = await fetch("https://api.groq.com/openai/v1/embeddings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${groqApiKey}`
+        },
+        body: JSON.stringify({
+          model: "text-embedding-3-large",
+          input
+        })
+      });
+
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data?.[0]?.embedding ?? null;
+    } catch (err) {
+      console.error("Embedding generation failed:", err);
+      return null;
+    }
+  };
+
+  const getTopSimilarDecisions = (profile: AIProfile, logs: DecisionLog[]) => {
+    if (!profile.embedding || !logs.length) return [];
+    return logs
+      .map((log) => ({
+        ...log,
+        similarity: log.log_embedding ? cosineSimilarity(profile.embedding!, log.log_embedding) : 0
+      }))
+      .sort((a, b) => (b.similarity ?? 0) - (a.similarity ?? 0))
+      .slice(0, 3);
   };
 
   const handleMCQSelect = (questionId: number, score: number) => {
@@ -588,14 +711,15 @@ export default function DecisionDNA() {
     // Attempt to persist to Supabase
     try {
       if (user) {
-        const { data: prof } = await supabase
+        const { data: prof } = await (supabase as any)
           .from("profiles")
           .select("family_id, relationship")
           .eq("user_id", user.id)
           .maybeSingle();
 
         if (prof?.family_id) {
-          await supabase.from("dna_profiles").insert({
+          const profileEmbedding = await generateEmbedding(summarizeProfile(simulatedProfile));
+          await (supabase as any).from("dna_profiles").insert({
             family_id: prof.family_id,
             created_by: user.id,
             name: currentUserName,
@@ -607,7 +731,8 @@ export default function DecisionDNA() {
             ethics_score: ethics,
             core_values: draftAnswers.values,
             decision_rules: draftAnswers.rules,
-            life_experiences: draftAnswers.experiences
+            life_experiences: draftAnswers.experiences,
+            profile_embedding: profileEmbedding
           });
         }
       }
@@ -670,7 +795,7 @@ export default function DecisionDNA() {
 
     try {
       if (user) {
-        await supabase.from("dna_profiles").delete().eq("id", profileId);
+        await (supabase as any).from("dna_profiles").delete().eq("id", profileId);
       }
     } catch (err) {
       console.error("Failed to delete AI profile from Supabase:", err);
@@ -1279,7 +1404,7 @@ ${finalRec}`;
                       <Button 
                         type="button"
                         variant="outline" 
-                        size="xs" 
+                        size="sm" 
                         className="w-full text-[9px] h-7 font-semibold"
                         onClick={() => setShowCalibrateModal(true)}
                       >

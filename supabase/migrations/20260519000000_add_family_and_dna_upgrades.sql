@@ -9,6 +9,9 @@ CREATE TABLE IF NOT EXISTS public.families (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
+-- Enable pgvector for embedding storage and similarity search
+CREATE EXTENSION IF NOT EXISTS vector;
+
 -- 2. Refactor/Extend Profiles with family relationships and roles
 -- (Using IF NOT EXISTS logic to add columns safely)
 ALTER TABLE public.profiles 
@@ -45,6 +48,7 @@ CREATE TABLE IF NOT EXISTS public.dna_profiles (
   core_values TEXT NOT NULL,
   decision_rules TEXT NOT NULL,
   life_experiences TEXT NOT NULL,
+  profile_embedding vector(1536),
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
@@ -64,12 +68,23 @@ CREATE TABLE IF NOT EXISTS public.dna_chat_messages (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS public.decision_logs (
+  id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+  dna_profile_id UUID REFERENCES public.dna_profiles(id) ON DELETE CASCADE NOT NULL,
+  user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  question TEXT NOT NULL,
+  response TEXT NOT NULL,
+  log_embedding vector(1536),
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
+);
+
 -- 6. Setup Row Level Security for Families & Profiles
 ALTER TABLE public.families ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.dna_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.family_invites ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.dna_chat_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.dna_chat_messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.decision_logs ENABLE ROW LEVEL SECURITY;
 
 -- 7. Add Policies
 CREATE POLICY "Users can view their own family details"
@@ -98,4 +113,12 @@ CREATE POLICY "Owners and Editors can manage DNA profiles"
   USING (EXISTS (
     SELECT 1 FROM public.profiles 
     WHERE profiles.user_id = auth.uid() AND profiles.family_id = dna_profiles.family_id AND profiles.role IN ('owner', 'editor')
+  ));
+
+CREATE POLICY "Family members can view decision logs"
+  ON public.decision_logs FOR SELECT
+  USING (EXISTS (
+    SELECT 1 FROM public.profiles
+    JOIN public.dna_profiles ON dna_profiles.id = decision_logs.dna_profile_id
+    WHERE profiles.user_id = auth.uid() AND profiles.family_id = dna_profiles.family_id
   ));
