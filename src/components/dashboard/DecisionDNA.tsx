@@ -36,63 +36,63 @@ interface DecisionLog {
 }
 
 const mcqQuestions = [
-  // Risk Processing (5)
-  { id: 1, category: "risk_processing", trait: "uncertainty_tolerance", question: "Would you rather: A) Secure a smaller guaranteed outcome, B) Risk loss for larger upside?", options: [{ text: "A: Secure the smaller guaranteed outcome.", score: 1 }, { text: "B: Risk the loss for larger upside.", score: 5 }] },
-  { id: 2, category: "risk_processing", trait: "reward_sensitivity", question: "When offered a big reward with high chance of failure, you...", options: [{ text: "Avoid it.", score: 1 }, { text: "Pursue it selectively.", score: 3 }, { text: "Chase it aggressively.", score: 5 }] },
-  { id: 3, category: "risk_processing", trait: "loss_aversion", question: "A potential loss feels: A) Catastrophic, B) Manageable for gain.", options: [{ text: "Catastrophic — avoid moves that risk loss.", score: 1 }, { text: "Manageable with mitigation.", score: 3 }, { text: "Acceptable if upside is large.", score: 5 }] },
-  { id: 4, category: "risk_processing", trait: "risk_preference", question: "When resources are limited you...", options: [{ text: "Protect the reserve.", score: 1 }, { text: "Allocate some to experiment.", score: 3 }, { text: "Go all-in on the best bet.", score: 5 }] },
-  { id: 5, category: "risk_processing", trait: "downside_proactiveness", question: "Before risky moves you typically...", options: [{ text: "Delay until safe.", score: 1 }, { text: "Plan contingencies.", score: 3 }, { text: "Act now and adapt after.", score: 5 }] },
+  // Risk Processing (1–5)
+  { id: 1, category: "risk_processing", trait: "risk_tolerance", question: "Choose one: A. Guaranteed smaller reward\nB. Risky larger reward", options: [{ text: "A. Guaranteed smaller reward", score: 1 }, { text: "B. Risky larger reward", score: 5 }] },
+  { id: 2, category: "risk_processing", trait: "loss_aversion", question: "What feels worse?\nA. Missing a big opportunity\nB. Taking a bad risk", options: [{ text: "A. Missing a big opportunity", score: 5 }, { text: "B. Taking a bad risk", score: 1 }] },
+  { id: 3, category: "risk_processing", trait: "uncertainty_tolerance", question: "When uncertain, you usually:\nA. Act quickly\nB. Gather more information", options: [{ text: "A. Act quickly", score: 5 }, { text: "B. Gather more information", score: 1 }] },
+  { id: 4, category: "risk_processing", trait: "uncertainty_tolerance", question: "You trust more:\nA. Proven systems\nB. Unusual opportunities", options: [{ text: "A. Proven systems", score: 1 }, { text: "B. Unusual opportunities", score: 5 }] },
+  { id: 5, category: "risk_processing", trait: "reward_sensitivity", question: "You would rather:\nA. Preserve what you have\nB. Chase something bigger", options: [{ text: "A. Preserve what you have", score: 1 }, { text: "B. Chase something bigger", score: 5 }] },
 
-  // Decision Speed (4)
-  { id: 6, category: "decision_speed", trait: "impulsiveness", question: "In choices, you usually...", options: [{ text: "Delay and check options.", score: 1 }, { text: "Decide after some cues.", score: 3 }, { text: "Decide immediately.", score: 5 }] },
-  { id: 7, category: "decision_speed", trait: "processing_tempo", question: "You prefer decisions that are...", options: [{ text: "Slow and thorough.", score: 1 }, { text: "Balanced timing.", score: 3 }, { text: "Fast and decisive.", score: 5 }] },
-  { id: 8, category: "decision_speed", trait: "hesitation", question: "When stakes rise, you...", options: [{ text: "Hesitate more.", score: 1 }, { text: "Keep similar tempo.", score: 3 }, { text: "Act faster.", score: 5 }] },
-  { id: 9, category: "decision_speed", trait: "decisiveness", question: "Faced with ambiguity, you...", options: [{ text: "Wait for clarity.", score: 1 }, { text: "Make a provisional choice.", score: 3 }, { text: "Choose boldly and iterate.", score: 5 }] },
+  // Decision Speed (6–9)
+  { id: 6, category: "decision_speed", trait: "decisiveness", question: "Under pressure, you:\nA. Decide immediately\nB. Delay until clearer", options: [{ text: "A. Decide immediately", score: 5 }, { text: "B. Delay until clearer", score: 1 }] },
+  { id: 7, category: "decision_speed", trait: "risk_of_speed", question: "Which creates more problems?\nA. Slow decisions\nB. Fast wrong decisions", options: [{ text: "A. Slow decisions", score: 1 }, { text: "B. Fast wrong decisions", score: 5 }] },
+  { id: 8, category: "decision_speed", trait: "exploration_tendency", question: "When choices pile up, you:\nA. Narrow quickly\nB. Keep exploring options", options: [{ text: "A. Narrow quickly", score: 5 }, { text: "B. Keep exploring options", score: 1 }] },
+  { id: 9, category: "decision_speed", trait: "regret_bias", question: "You usually regret:\nA. Acting too fast\nB. Waiting too long", options: [{ text: "A. Acting too fast", score: 5 }, { text: "B. Waiting too long", score: 1 }] },
 
-  // Stress Response (5)
-  { id: 10, category: "stress_response", trait: "emotional_stability", question: "Under pressure you are...", options: [{ text: "Emotionally overwhelmed.", score: 1 }, { text: "Manageable but taxed.", score: 3 }, { text: "Calm and steady.", score: 5 }] },
-  { id: 11, category: "stress_response", trait: "cognitive_collapse", question: "Complex problems under stress cause you to...", options: [{ text: "Lose clarity.", score: 1 }, { text: "Slow but recoverable processing.", score: 3 }, { text: "Maintain cognitive focus.", score: 5 }] },
-  { id: 12, category: "stress_response", trait: "aggression_under_pressure", question: "When cornered you tend to...", options: [{ text: "Withdraw.", score: 1 }, { text: "Defend cautiously.", score: 3 }, { text: "Confront forcefully.", score: 5 }] },
-  { id: 13, category: "stress_response", trait: "recovery_speed", question: "After setbacks you...", options: [{ text: "Take long recovery.", score: 1 }, { text: "Recover in steps.", score: 3 }, { text: "Bounce back quickly.", score: 5 }] },
-  { id: 14, category: "stress_response", trait: "stress_flexibility", question: "Under rapid change you...", options: [{ text: "Break routines and struggle.", score: 1 }, { text: "Adjust with effort.", score: 3 }, { text: "Adapt seamlessly.", score: 5 }] },
+  // Stress Response (10–14)
+  { id: 10, category: "stress_response", trait: "stress_focus", question: "Unexpected problems make you:\nA. More focused\nB. More emotionally reactive", options: [{ text: "A. More focused", score: 5 }, { text: "B. More emotionally reactive", score: 1 }] },
+  { id: 11, category: "stress_response", trait: "recovery_speed", question: "When plans collapse, your first instinct is:\nA. Rebuild immediately\nB. Pause and process", options: [{ text: "A. Rebuild immediately", score: 5 }, { text: "B. Pause and process", score: 1 }] },
+  { id: 12, category: "stress_response", trait: "dominance_under_stress", question: "In chaos, you naturally:\nA. Take control\nB. Observe first", options: [{ text: "A. Take control", score: 5 }, { text: "B. Observe first", score: 1 }] },
+  { id: 13, category: "stress_response", trait: "stress_energy", question: "Pressure usually:\nA. Sharpens your thinking\nB. Drains your energy", options: [{ text: "A. Sharpens your thinking", score: 5 }, { text: "B. Drains your energy", score: 1 }] },
+  { id: 14, category: "stress_response", trait: "stress_coping", question: "When overwhelmed, you:\nA. Push harder\nB. Withdraw temporarily", options: [{ text: "A. Push harder", score: 5 }, { text: "B. Withdraw temporarily", score: 1 }] },
 
-  // Dominance & Control (5)
-  { id: 15, category: "dominance_control", trait: "leadership", question: "In groups you typically...", options: [{ text: "Follow.", score: 1 }, { text: "Lead when needed.", score: 3 }, { text: "Lead decisively.", score: 5 }] },
-  { id: 16, category: "dominance_control", trait: "control_need", question: "You prefer decisions that are...", options: [{ text: "Shared evenly.", score: 1 }, { text: "Guided with checks.", score: 3 }, { text: "Directed by you.", score: 5 }] },
-  { id: 17, category: "dominance_control", trait: "authority_orientation", question: "Authority is...", options: [{ text: "Distrustworthy.", score: 1 }, { text: "Useful with accountability.", score: 3 }, { text: "Essential for order.", score: 5 }] },
-  { id: 18, category: "dominance_control", trait: "influence_drive", question: "You seek roles that...", options: [{ text: "Keep low profile.", score: 1 }, { text: "Impact selectively.", score: 3 }, { text: "Shape broad direction.", score: 5 }] },
-  { id: 19, category: "dominance_control", trait: "directive_style", question: "When coaching others you...", options: [{ text: "Encourage independence.", score: 1 }, { text: "Give balanced guidance.", score: 3 }, { text: "Give firm directives.", score: 5 }] },
+  // Dominance & Control (15–19)
+  { id: 15, category: "dominance_control", trait: "leadership", question: "In groups, you naturally:\nA. Lead direction\nB. Support direction", options: [{ text: "A. Lead direction", score: 5 }, { text: "B. Support direction", score: 1 }] },
+  { id: 16, category: "dominance_control", trait: "control_sensitivity", question: "You dislike more:\nA. Being controlled\nB. Being unsupported", options: [{ text: "A. Being controlled", score: 5 }, { text: "B. Being unsupported", score: 1 }] },
+  { id: 17, category: "dominance_control", trait: "initiative", question: "If leadership is weak, you:\nA. Step in automatically\nB. Stay in your role", options: [{ text: "A. Step in automatically", score: 5 }, { text: "B. Stay in your role", score: 1 }] },
+  { id: 18, category: "dominance_control", trait: "influence_priority", question: "You care more about:\nA. Influence\nB. Stability", options: [{ text: "A. Influence", score: 5 }, { text: "B. Stability", score: 1 }] },
+  { id: 19, category: "dominance_control", trait: "decision_preference", question: "You prefer environments where:\nA. You decide\nB. Expectations are clear", options: [{ text: "A. You decide", score: 5 }, { text: "B. Expectations are clear", score: 1 }] },
 
-  // Social Dependency (4)
-  { id: 20, category: "social_dependency", trait: "independent_thinking", question: "You form opinions mainly from...", options: [{ text: "Others' views.", score: 1 }, { text: "Mixture of sources.", score: 3 }, { text: "Your own judgment.", score: 5 }] },
-  { id: 21, category: "social_dependency", trait: "conformity", question: "Group pressure causes you to...", options: [{ text: "Conform quickly.", score: 1 }, { text: "Weigh but sometimes conform.", score: 3 }, { text: "Resist and hold independent views.", score: 5 }] },
-  { id: 22, category: "social_dependency", trait: "external_validation", question: "You seek recognition to feel...", options: [{ text: "Secure and validated.", score: 1 }, { text: "Comfortable but cautious.", score: 3 }, { text: "Neutral; you act regardless.", score: 5 }] },
-  { id: 23, category: "social_dependency", trait: "relational_needs", question: "You rely on close others for decisions...", options: [{ text: "Always.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "Rarely.", score: 5 }] },
+  // Social Dependency (20–23)
+  { id: 20, category: "social_dependency", trait: "self_reliance", question: "Before major decisions, you:\nA. Trust yourself first\nB. Seek outside opinions", options: [{ text: "A. Trust yourself first", score: 5 }, { text: "B. Seek outside opinions", score: 1 }] },
+  { id: 21, category: "social_dependency", trait: "sensitivity_to_disapproval", question: "Disapproval from others:\nA. Rarely changes your decisions\nB. Strongly affects your thinking", options: [{ text: "A. Rarely changes your decisions", score: 5 }, { text: "B. Strongly affects your thinking", score: 1 }] },
+  { id: 22, category: "social_dependency", trait: "trust_speed", question: "You trust people:\nA. Quickly\nB. Slowly after proof", options: [{ text: "A. Quickly", score: 5 }, { text: "B. Slowly after proof", score: 1 }] },
+  { id: 23, category: "social_dependency", trait: "belonging_vs_independence", question: "You value more:\nA. Independence\nB. Belonging", options: [{ text: "A. Independence", score: 5 }, { text: "B. Belonging", score: 1 }] },
 
-  // Cognitive Style (5)
-  { id: 24, category: "cognitive_style", trait: "intuition_vs_analysis", question: "You decide more by...", options: [{ text: "Careful analysis.", score: 1 }, { text: "Blend of both.", score: 3 }, { text: "Intuition and pattern sense.", score: 5 }] },
-  { id: 25, category: "cognitive_style", trait: "abstraction", question: "You prefer tasks that are...", options: [{ text: "Concrete and practical.", score: 1 }, { text: "Mixed levels.", score: 3 }, { text: "Abstract and conceptual.", score: 5 }] },
-  { id: 26, category: "cognitive_style", trait: "pattern_recognition", question: "You excel at spotting...", options: [{ text: "Simple patterns only.", score: 1 }, { text: "Moderately complex patterns.", score: 3 }, { text: "Deep, abstract patterns.", score: 5 }] },
-  { id: 27, category: "cognitive_style", trait: "reflective_reasoning", question: "Before concluding you...", options: [{ text: "Act quickly.", score: 1 }, { text: "Pause and review.", score: 3 }, { text: "Reflect deeply then decide.", score: 5 }] },
-  { id: 28, category: "cognitive_style", trait: "integrative_thinking", question: "You combine diverse inputs to...", options: [{ text: "Rarely.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "Often and creatively.", score: 5 }] },
+  // Cognitive Style (24–28)
+  { id: 24, category: "cognitive_style", trait: "analysis_vs_intuition", question: "You rely more on:\nA. Logic\nB. Intuition", options: [{ text: "A. Logic", score: 1 }, { text: "B. Intuition", score: 5 }] },
+  { id: 25, category: "cognitive_style", trait: "learning_mode", question: "You learn best by:\nA. Experimenting\nB. Studying first", options: [{ text: "A. Experimenting", score: 5 }, { text: "B. Studying first", score: 1 }] },
+  { id: 26, category: "cognitive_style", trait: "structure_preference", question: "You prefer:\nA. Clear structure\nB. Flexible systems", options: [{ text: "A. Clear structure", score: 1 }, { text: "B. Flexible systems", score: 5 }] },
+  { id: 27, category: "cognitive_style", trait: "pattern_vs_detail", question: "You notice:\nA. Patterns\nB. Details", options: [{ text: "A. Patterns", score: 5 }, { text: "B. Details", score: 1 }] },
+  { id: 28, category: "cognitive_style", trait: "problem_sense", question: "You make sense of problems through:\nA. Analysis\nB. Instinctive understanding", options: [{ text: "A. Analysis", score: 1 }, { text: "B. Instinctive understanding", score: 5 }] },
 
-  // Adaptability (4)
-  { id: 29, category: "adaptability", trait: "flexibility", question: "When context changes you...", options: [{ text: "Struggle to adjust.", score: 1 }, { text: "Adjust with effort.", score: 3 }, { text: "Change naturally.", score: 5 }] },
-  { id: 30, category: "adaptability", trait: "rigidity_inverse", question: "You prefer rules that are...", options: [{ text: "Rigid always.", score: 1 }, { text: "Mostly stable.", score: 3 }, { text: "Flexible by design.", score: 5 }] },
-  { id: 31, category: "adaptability", trait: "environmental_adjustment", question: "New environments make you...", options: [{ text: "Uncomfortable.", score: 1 }, { text: "Manageable.", score: 3 }, { text: "Excited and quick to fit in.", score: 5 }] },
-  { id: 32, category: "adaptability", trait: "learning_agility", question: "You learn new skills...", options: [{ text: "Slowly and with effort.", score: 1 }, { text: "At a steady pace.", score: 3 }, { text: "Rapidly and autonomously.", score: 5 }] },
+  // Adaptability (29–32)
+  { id: 29, category: "adaptability", trait: "flexibility", question: "Sudden change usually feels:\nA. Energizing\nB. Stressful", options: [{ text: "A. Energizing", score: 5 }, { text: "B. Stressful", score: 1 }] },
+  { id: 30, category: "adaptability", trait: "variety_preference", question: "You prefer:\nA. Variety\nB. Predictability", options: [{ text: "A. Variety", score: 5 }, { text: "B. Predictability", score: 1 }] },
+  { id: 31, category: "adaptability", trait: "routine_adaptation", question: "When routines break:\nA. You adapt quickly\nB. You feel disrupted", options: [{ text: "A. You adapt quickly", score: 5 }, { text: "B. You feel disrupted", score: 1 }] },
+  { id: 32, category: "adaptability", trait: "work_fit", question: "You work best when:\nA. Conditions evolve\nB. Conditions stay stable", options: [{ text: "A. Conditions evolve", score: 5 }, { text: "B. Conditions stay stable", score: 1 }] },
 
-  // Delayed Gratification (4)
-  { id: 33, category: "delayed_gratification", trait: "long_term_optimization", question: "You prioritize outcomes that pay off...", options: [{ text: "Immediately.", score: 1 }, { text: "Balanced timeline.", score: 3 }, { text: "Far in the future.", score: 5 }] },
-  { id: 34, category: "delayed_gratification", trait: "patience", question: "When rewards are delayed you...", options: [{ text: "Give up.", score: 1 }, { text: "Wait with periodic checks.", score: 3 }, { text: "Wait patiently.", score: 5 }] },
-  { id: 35, category: "delayed_gratification", trait: "impulse_control", question: "You resist temptations...", options: [{ text: "Rarely.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "Usually.", score: 5 }] },
-  { id: 36, category: "delayed_gratification", trait: "delayed_reward_sensitivity", question: "You feel long-term rewards are...", options: [{ text: "Overrated.", score: 1 }, { text: "Sometimes worth it.", score: 3 }, { text: "Crucial to decisions.", score: 5 }] },
+  // Delayed Gratification (33–36)
+  { id: 33, category: "delayed_gratification", trait: "delay_discounting", question: "You prefer:\nA. Immediate results\nB. Long-term payoff", options: [{ text: "A. Immediate results", score: 1 }, { text: "B. Long-term payoff", score: 5 }] },
+  { id: 34, category: "delayed_gratification", trait: "saving_tendency", question: "You are more likely to:\nA. Spend now\nB. Save for future gain", options: [{ text: "A. Spend now", score: 1 }, { text: "B. Save for future gain", score: 5 }] },
+  { id: 35, category: "delayed_gratification", trait: "reward_sensitivity_long", question: "Progress motivates you more when:\nA. Rewards are immediate\nB. Rewards compound slowly", options: [{ text: "A. Rewards are immediate", score: 1 }, { text: "B. Rewards compound slowly", score: 5 }] },
+  { id: 36, category: "delayed_gratification", trait: "long_term_optimization", question: "You would rather:\nA. Win quickly\nB. Build something lasting", options: [{ text: "A. Win quickly", score: 1 }, { text: "B. Build something lasting", score: 5 }] },
 
-  // Conflict Processing (4)
-  { id: 37, category: "conflict_processing", trait: "confrontation_style", question: "When conflict arises you...", options: [{ text: "Avoid it.", score: 1 }, { text: "Address tactically.", score: 3 }, { text: "Confront directly.", score: 5 }] },
-  { id: 38, category: "conflict_processing", trait: "passive_aggression", question: "If upset you tend to...", options: [{ text: "Show passive signs.", score: 1 }, { text: "Voice concerns carefully.", score: 3 }, { text: "State issues openly.", score: 5 }] },
-  { id: 39, category: "conflict_processing", trait: "strategic_retaliation", question: "You respond to unfairness by...", options: [{ text: "Let it go.", score: 1 }, { text: "Document and respond later.", score: 3 }, { text: "Act strategically to correct.", score: 5 }] },
-  { id: 40, category: "conflict_processing", trait: "conflict_avoidance", question: "Do you prefer to sidestep disputes?", options: [{ text: "Yes, avoid.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "No, face them.", score: 5 }] }
+  // Conflict Processing (37–40)
+  { id: 37, category: "conflict_processing", trait: "confrontation_style", question: "When challenged unfairly, you:\nA. Respond immediately\nB. Stay controlled strategically", options: [{ text: "A. Respond immediately", score: 5 }, { text: "B. Stay controlled strategically", score: 1 }] },
+  { id: 38, category: "conflict_processing", trait: "conflict_directness", question: "Conflict usually makes you:\nA. More direct\nB. More avoidant", options: [{ text: "A. More direct", score: 5 }, { text: "B. More avoidant", score: 1 }] },
+  { id: 39, category: "conflict_processing", trait: "confrontation_dislike", question: "You dislike more:\nA. Open confrontation\nB. Hidden hostility", options: [{ text: "A. Open confrontation", score: 5 }, { text: "B. Hidden hostility", score: 1 }] },
+  { id: 40, category: "conflict_processing", trait: "boundary_response", question: "If someone repeatedly crosses boundaries, you:\nA. Escalate directly\nB. Distance yourself quietly", options: [{ text: "A. Escalate directly", score: 5 }, { text: "B. Distance yourself quietly", score: 1 }] }
 ];
 
 interface ValidationCase {
@@ -104,76 +104,30 @@ interface ValidationCase {
 }
 
 const validationCases: ValidationCase[] = [
-  {
-    id: 1,
-    question: "You are offered an unstable but high-potential job. Do you take it?",
-    optionA: "No, keep stability.",
-    optionB: "Yes, accept the uncertainty.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.2, 0.01), 0.99)
-  },
-  {
-    id: 2,
-    question: "A colleague asks you to keep a sensitive promise. Do you honor it?",
-    optionA: "No, insist on transparency.",
-    optionB: "Yes, if I trust them.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.22, 0.01), 0.99)
-  },
-  {
-    id: 3,
-    question: "Invest time in a multi-year project that reduces short-term rewards?",
-    optionA: "No, prefer short-term gains.",
-    optionB: "Yes, prioritize long-term payoff.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.2, 0.01), 0.99)
-  },
-  {
-    id: 4,
-    question: "When under severe pressure, do you act decisively?",
-    optionA: "No, step back and regroup.",
-    optionB: "Yes, take decisive control.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.18, 0.01), 0.99)
-  },
-  {
-    id: 5,
-    question: "Would you break a minor rule to produce a better outcome?",
-    optionA: "Never break the rule.",
-    optionB: "Accept minor bends for greater good.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * -0.2, 0.01), 0.99)
-  },
-  {
-    id: 6,
-    question: "Do you give new teammates full autonomy quickly?",
-    optionA: "No, oversee closely.",
-    optionB: "Yes, empower them early.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.18, 0.01), 0.99)
-  },
-  {
-    id: 7,
-    question: "Would you reallocate legacy resources into a new venture?",
-    optionA: "No, protect legacy assets.",
-    optionB: "Yes, take a bold reallocation.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.16 + (scores.horizon - 3) * 0.08, 0.01), 0.99)
-  },
-  {
-    id: 8,
-    question: "If a partner asks for preferential treatment, do you comply?",
-    optionA: "No, apply fairness.",
-    optionB: "Yes, if it preserves relationships.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * -0.14 + (scores.trust - 3) * 0.12, 0.01), 0.99)
-  },
-  {
-    id: 9,
-    question: "Do you prioritize rebuilding reputation openly after a public error?",
-    optionA: "No, quiet fixes preferred.",
-    optionB: "Yes, be openly accountable.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * 0.16 - (scores.trust - 3) * 0.06, 0.01), 0.99)
-  },
-  {
-    id: 10,
-    question: "Would you pursue a risky recovery strategy after a major loss?",
-    optionA: "No, avoid further risk.",
-    optionB: "Yes, pursue bold recovery moves.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.14 + (scores.risk - 3) * 0.12, 0.01), 0.99)
-  }
+  // Contradiction Checks (41–46)
+  { id: 41, question: "You rarely second-guess major decisions:", optionA: "True", optionB: "False", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.deciciveness ?? s.decisiveness ?? s.decision_tempo ?? 0.5) - 0.5) * 0.5, 0.01), 0.99) },
+  { id: 42, question: "You often replay past mistakes mentally:", optionA: "True", optionB: "False", getAIProbability: (s) => Math.min(Math.max(0.5 + ((0.5 - (s.emotional_stability ?? 0.5)))*0.6, 0.01), 0.99) },
+  { id: 43, question: "You stay calm when plans suddenly change:", optionA: "True", optionB: "False", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.stress_focus ?? 0.5) - 0.5) * 0.5, 0.01), 0.99) },
+  { id: 44, question: "You become mentally overloaded during uncertainty:", optionA: "True", optionB: "False", getAIProbability: (s) => Math.min(Math.max(0.5 + ((0.5 - (s.uncertainty_tolerance ?? 0.5)))*0.5, 0.01), 0.99) },
+  { id: 45, question: "You prefer making decisions alone:", optionA: "True", optionB: "False", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.self_reliance ?? 0.5) - 0.5) * 0.5, 0.01), 0.99) },
+  { id: 46, question: "You feel uncomfortable deciding without reassurance:", optionA: "True", optionB: "False", getAIProbability: (s) => Math.min(Math.max(0.5 + ((0.5 - (s.self_reliance ?? 0.5))) * 0.6, 0.01), 0.99) },
+
+  // Stress-State Inversions (47–50)
+  { id: 47, question: "Normally you trust:\nA. Your judgment\nB. External guidance", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.self_reliance ?? 0.5) - 0.5) * 0.4, 0.01), 0.99) },
+  { id: 48, question: "Under high pressure you trust:\nA. Your judgment\nB. External guidance", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.emotional_stability ?? 0.5) < 0.4 ? -0.2 : ((s.self_reliance ?? 0.5)-0.5)*0.4), 0.01), 0.99) },
+  { id: 49, question: "Normally you:\nA. Enjoy responsibility\nB. Avoid responsibility", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.leadership ?? 0.5) - 0.5) * 0.45, 0.01), 0.99) },
+  { id: 50, question: "When exhausted you:\nA. Avoid responsibility\nB. Take more control", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((0.5 - (s.recovery_speed ?? 0.5)))*0.5, 0.01), 0.99) },
+
+  // Temporal Consistency (51–53)
+  { id: 51, question: "At work you prefer:\nA. Structured systems\nB. Flexible systems", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.structure_preference ?? 0.5) - 0.5) * 0.4, 0.01), 0.99) },
+  { id: 52, question: "In personal life you prefer:\nA. Planned routines\nB. Spontaneous experiences", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.routine_adaptation ?? 0.5) - 0.5) * 0.35, 0.01), 0.99) },
+  { id: 53, question: "When learning skills you prefer:\nA. Clear instruction\nB. Self-directed exploration", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.learning_mode ?? 0.5) - 0.5) * 0.35, 0.01), 0.99) },
+
+  // Behavioral Simulation Checks (54–55)
+  // For the multi-choice simulation, map choice B (analyze) to the conservative outcome for the binary validator
+  { id: 54, question: "Your project fails publicly. First instinct:\nA. Defend your decisions\nB. Analyze what failed\nC. Protect team morale\nD. Withdraw temporarily", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.recovery_speed ?? 0.5) - 0.5) * 0.45 - ((s.passive_aggression ?? 0.5) - 0.5) * 0.2, 0.01), 0.99) },
+  { id: 55, question: "A major opportunity appears with incomplete information. You:\nA. Move fast before others\nB. Research aggressively first\nC. Wait for stronger certainty\nD. Ask trusted people first", optionA: "A", optionB: "B", getAIProbability: (s) => Math.min(Math.max(0.5 + ((s.risk_tolerance ?? 0.5) - 0.5) * 0.45 - ((s.uncertainty_tolerance ?? 0.5) - 0.5) * 0.3, 0.01), 0.99) }
+];
 ];
 
 export default function DecisionDNA() {
