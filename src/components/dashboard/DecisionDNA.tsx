@@ -12,13 +12,9 @@ interface AIProfile {
   id: string;
   name: string;
   relationship: string;
-  scores: {
-    risk: number;
-    trust: number;
-    horizon: number;
-    adversity: number;
-    ethics: number;
-  };
+  // scores contains both core five dimensions (1-5 integers) and
+  // a set of normalized trait keys (0..1 floats) for downstream models
+  scores: Record<string, number>;
   answers: {
     values: string;
     rules: string;
@@ -40,206 +36,63 @@ interface DecisionLog {
 }
 
 const mcqQuestions = [
-  {
-    id: 1,
-    dimension: "risk",
-    question: "Personal Growth vs Comfort: When offered a new challenge that could change your future, you...",
-    options: [
-      { text: "Keep your current path and protect the stability you already have.", score: 1 },
-      { text: "Cautiously pursue the opportunity while keeping a backup plan ready.", score: 3 },
-      { text: "Embrace the challenge fully; growth requires leaving comfort behind.", score: 5 }
-    ]
-  },
-  {
-    id: 2,
-    dimension: "trust",
-    question: "Trusted Advice: A person you care about asks for a risky favor. Your instinct is to...",
-    options: [
-      { text: "Politely decline until you know their intentions more clearly.", score: 1 },
-      { text: "Agree with safeguards, checks, and shared accountability.", score: 3 },
-      { text: "Help them immediately based on your relationship and goodwill.", score: 5 }
-    ]
-  },
-  {
-    id: 3,
-    dimension: "horizon",
-    question: "Long-Term Planning: Would you sacrifice a happy present for a stronger family legacy decades from now?",
-    options: [
-      { text: "No. Today’s wellbeing is too important to trade for a distant promise.", score: 1 },
-      { text: "Only if the future gain is nearly certain.", score: 3 },
-      { text: "Yes. Legacy and meaning are worth current sacrifice.", score: 5 }
-    ]
-  },
-  {
-    id: 4,
-    dimension: "adversity",
-    question: "Stress Response: When a sudden setback hits, your first move is to...",
-    options: [
-      { text: "Pause, gather emotional support, and then decide.", score: 1 },
-      { text: "Assess carefully and act in small deliberate steps.", score: 3 },
-      { text: "Move quickly with clear direction and control the damage.", score: 5 }
-    ]
-  },
-  {
-    id: 5,
-    dimension: "ethics",
-    question: "Values vs Outcome: If bending a rule helps someone you love, you...",
-    options: [
-      { text: "Keep the rule; fairness and trust depend on consistency.", score: 1 },
-      { text: "Make a narrow exception while preserving the principle publicly.", score: 3 },
-      { text: "Prioritize people and compassion over the rule.", score: 5 }
-    ]
-  },
-  {
-    id: 6,
-    dimension: "risk",
-    question: "Health Decision: A promising new treatment has unknown long-term effects. You...",
-    options: [
-      { text: "Wait for more evidence before taking it.", score: 1 },
-      { text: "Try it if the benefits justify careful monitoring.", score: 3 },
-      { text: "Take it quickly if it offers the best chance for healing.", score: 5 }
-    ]
-  },
-  {
-    id: 7,
-    dimension: "trust",
-    question: "Team Delegation: You are asked to delegate a sensitive mission. You...",
-    options: [
-      { text: "Keep control until trust is proven.", score: 1 },
-      { text: "Delegate with clear checks and review points.", score: 3 },
-      { text: "Give autonomy and trust them to deliver.", score: 5 }
-    ]
-  },
-  {
-    id: 8,
-    dimension: "horizon",
-    question: "Legacy Investment: Would you invest in a slow-building tradition that pays off decades later?",
-    options: [
-      { text: "No, that future is too uncertain.", score: 1 },
-      { text: "Yes, if it aligns with a strong long-term plan.", score: 3 },
-      { text: "Yes, tradition and durability are the top priority.", score: 5 }
-    ]
-  },
-  {
-    id: 9,
-    dimension: "adversity",
-    question: "Public Pressure: If criticism is growing, you...",
-    options: [
-      { text: "Respond gently and wait for emotions to cool.", score: 1 },
-      { text: "Acknowledge concerns and correct course deliberately.", score: 3 },
-      { text: "Act decisively to regain control and restore direction.", score: 5 }
-    ]
-  },
-  {
-    id: 10,
-    dimension: "ethics",
-    question: "Transparency: When a difficult truth may hurt people, you...",
-    options: [
-      { text: "Keep it quiet to protect them.", score: 1 },
-      { text: "Share the truth carefully with those who must know.", score: 3 },
-      { text: "Be fully honest even if it causes discomfort.", score: 5 }
-    ]
-  },
-  {
-    id: 11,
-    dimension: "risk",
-    question: "Career Tradeoff: A meaningful purpose requires giving up stability. You...",
-    options: [
-      { text: "Choose safety and avoid the unknown.", score: 1 },
-      { text: "Take the opportunity only with fallback planning.", score: 3 },
-      { text: "Pursue the purpose fully despite the uncertainty.", score: 5 }
-    ]
-  },
-  {
-    id: 12,
-    dimension: "trust",
-    question: "Confidential Request: Someone asks you to keep a risky plan private. You...",
-    options: [
-      { text: "Decline until you understand their true motives.", score: 1 },
-      { text: "Agree with boundaries and regular check-ins.", score: 3 },
-      { text: "Honor it unless it clearly endangers others.", score: 5 }
-    ]
-  },
-  {
-    id: 13,
-    dimension: "horizon",
-    question: "Education vs Earnings: Would you fund long-term training over immediate income?",
-    options: [
-      { text: "No, personal and financial stability come first.", score: 1 },
-      { text: "Yes, if the future payoff is likely.", score: 3 },
-      { text: "Yes. A stronger future is worth today’s sacrifice.", score: 5 }
-    ]
-  },
-  {
-    id: 14,
-    dimension: "adversity",
-    question: "Recovery Style: After failure, do you...",
-    options: [
-      { text: "Step back and reflect before taking action.", score: 1 },
-      { text: "Adjust carefully and proceed steadily.", score: 3 },
-      { text: "Launch a rapid recovery and regain momentum.", score: 5 }
-    ]
-  },
-  {
-    id: 15,
-    dimension: "ethics",
-    question: "Favoritism: If someone close asks for special treatment, you...",
-    options: [
-      { text: "Respect the rules and treat everyone equally.", score: 1 },
-      { text: "Consider context while keeping the core principle.", score: 3 },
-      { text: "Grant it to preserve trust and harmony.", score: 5 }
-    ]
-  },
-  {
-    id: 16,
-    dimension: "risk",
-    question: "Opportunity Horizon: A rare chance to scale influence appears, but it could stretch your resources. You...",
-    options: [
-      { text: "Protect your safety net and say no.", score: 1 },
-      { text: "Pursue it carefully while preserving reserves.", score: 3 },
-      { text: "Seize it boldly and accept the pressure.", score: 5 }
-    ]
-  },
-  {
-    id: 17,
-    dimension: "trust",
-    question: "Partner Vetting: Before working with a new collaborator, you...",
-    options: [
-      { text: "Require proof and wait until trust is earned.", score: 1 },
-      { text: "Start small with oversight and clear roles.", score: 3 },
-      { text: "Begin with shared purpose and build trust by doing.", score: 5 }
-    ]
-  },
-  {
-    id: 18,
-    dimension: "horizon",
-    question: "Legacy Choice: Do you establish a new tradition that may outlive you?",
-    options: [
-      { text: "No, keep things as they are.", score: 1 },
-      { text: "Yes, if it fits the family’s long-term values.", score: 3 },
-      { text: "Yes, lasting traditions are worth bold change.", score: 5 }
-    ]
-  },
-  {
-    id: 19,
-    dimension: "adversity",
-    question: "Crisis Decision: When chaos arrives, you...",
-    options: [
-      { text: "Seek support and recover together.", score: 1 },
-      { text: "Stabilize the core and then move forward.", score: 3 },
-      { text: "Take immediate control and reset the direction.", score: 5 }
-    ]
-  },
-  {
-    id: 20,
-    dimension: "ethics",
-    question: "Principle vs Win: If winning requires a morally grey choice, you...",
-    options: [
-      { text: "Refuse and protect your integrity.", score: 1 },
-      { text: "Use strict boundaries to minimize harm.", score: 3 },
-      { text: "Accept it if it creates a greater good.", score: 5 }
-    ]
-  }
+  // Risk Processing (5)
+  { id: 1, category: "risk_processing", trait: "uncertainty_tolerance", question: "Would you rather: A) Secure a smaller guaranteed outcome, B) Risk loss for larger upside?", options: [{ text: "A: Secure the smaller guaranteed outcome.", score: 1 }, { text: "B: Risk the loss for larger upside.", score: 5 }] },
+  { id: 2, category: "risk_processing", trait: "reward_sensitivity", question: "When offered a big reward with high chance of failure, you...", options: [{ text: "Avoid it.", score: 1 }, { text: "Pursue it selectively.", score: 3 }, { text: "Chase it aggressively.", score: 5 }] },
+  { id: 3, category: "risk_processing", trait: "loss_aversion", question: "A potential loss feels: A) Catastrophic, B) Manageable for gain.", options: [{ text: "Catastrophic — avoid moves that risk loss.", score: 1 }, { text: "Manageable with mitigation.", score: 3 }, { text: "Acceptable if upside is large.", score: 5 }] },
+  { id: 4, category: "risk_processing", trait: "risk_preference", question: "When resources are limited you...", options: [{ text: "Protect the reserve.", score: 1 }, { text: "Allocate some to experiment.", score: 3 }, { text: "Go all-in on the best bet.", score: 5 }] },
+  { id: 5, category: "risk_processing", trait: "downside_proactiveness", question: "Before risky moves you typically...", options: [{ text: "Delay until safe.", score: 1 }, { text: "Plan contingencies.", score: 3 }, { text: "Act now and adapt after.", score: 5 }] },
+
+  // Decision Speed (4)
+  { id: 6, category: "decision_speed", trait: "impulsiveness", question: "In choices, you usually...", options: [{ text: "Delay and check options.", score: 1 }, { text: "Decide after some cues.", score: 3 }, { text: "Decide immediately.", score: 5 }] },
+  { id: 7, category: "decision_speed", trait: "processing_tempo", question: "You prefer decisions that are...", options: [{ text: "Slow and thorough.", score: 1 }, { text: "Balanced timing.", score: 3 }, { text: "Fast and decisive.", score: 5 }] },
+  { id: 8, category: "decision_speed", trait: "hesitation", question: "When stakes rise, you...", options: [{ text: "Hesitate more.", score: 1 }, { text: "Keep similar tempo.", score: 3 }, { text: "Act faster.", score: 5 }] },
+  { id: 9, category: "decision_speed", trait: "decisiveness", question: "Faced with ambiguity, you...", options: [{ text: "Wait for clarity.", score: 1 }, { text: "Make a provisional choice.", score: 3 }, { text: "Choose boldly and iterate.", score: 5 }] },
+
+  // Stress Response (5)
+  { id: 10, category: "stress_response", trait: "emotional_stability", question: "Under pressure you are...", options: [{ text: "Emotionally overwhelmed.", score: 1 }, { text: "Manageable but taxed.", score: 3 }, { text: "Calm and steady.", score: 5 }] },
+  { id: 11, category: "stress_response", trait: "cognitive_collapse", question: "Complex problems under stress cause you to...", options: [{ text: "Lose clarity.", score: 1 }, { text: "Slow but recoverable processing.", score: 3 }, { text: "Maintain cognitive focus.", score: 5 }] },
+  { id: 12, category: "stress_response", trait: "aggression_under_pressure", question: "When cornered you tend to...", options: [{ text: "Withdraw.", score: 1 }, { text: "Defend cautiously.", score: 3 }, { text: "Confront forcefully.", score: 5 }] },
+  { id: 13, category: "stress_response", trait: "recovery_speed", question: "After setbacks you...", options: [{ text: "Take long recovery.", score: 1 }, { text: "Recover in steps.", score: 3 }, { text: "Bounce back quickly.", score: 5 }] },
+  { id: 14, category: "stress_response", trait: "stress_flexibility", question: "Under rapid change you...", options: [{ text: "Break routines and struggle.", score: 1 }, { text: "Adjust with effort.", score: 3 }, { text: "Adapt seamlessly.", score: 5 }] },
+
+  // Dominance & Control (5)
+  { id: 15, category: "dominance_control", trait: "leadership", question: "In groups you typically...", options: [{ text: "Follow.", score: 1 }, { text: "Lead when needed.", score: 3 }, { text: "Lead decisively.", score: 5 }] },
+  { id: 16, category: "dominance_control", trait: "control_need", question: "You prefer decisions that are...", options: [{ text: "Shared evenly.", score: 1 }, { text: "Guided with checks.", score: 3 }, { text: "Directed by you.", score: 5 }] },
+  { id: 17, category: "dominance_control", trait: "authority_orientation", question: "Authority is...", options: [{ text: "Distrustworthy.", score: 1 }, { text: "Useful with accountability.", score: 3 }, { text: "Essential for order.", score: 5 }] },
+  { id: 18, category: "dominance_control", trait: "influence_drive", question: "You seek roles that...", options: [{ text: "Keep low profile.", score: 1 }, { text: "Impact selectively.", score: 3 }, { text: "Shape broad direction.", score: 5 }] },
+  { id: 19, category: "dominance_control", trait: "directive_style", question: "When coaching others you...", options: [{ text: "Encourage independence.", score: 1 }, { text: "Give balanced guidance.", score: 3 }, { text: "Give firm directives.", score: 5 }] },
+
+  // Social Dependency (4)
+  { id: 20, category: "social_dependency", trait: "independent_thinking", question: "You form opinions mainly from...", options: [{ text: "Others' views.", score: 1 }, { text: "Mixture of sources.", score: 3 }, { text: "Your own judgment.", score: 5 }] },
+  { id: 21, category: "social_dependency", trait: "conformity", question: "Group pressure causes you to...", options: [{ text: "Conform quickly.", score: 1 }, { text: "Weigh but sometimes conform.", score: 3 }, { text: "Resist and hold independent views.", score: 5 }] },
+  { id: 22, category: "social_dependency", trait: "external_validation", question: "You seek recognition to feel...", options: [{ text: "Secure and validated.", score: 1 }, { text: "Comfortable but cautious.", score: 3 }, { text: "Neutral; you act regardless.", score: 5 }] },
+  { id: 23, category: "social_dependency", trait: "relational_needs", question: "You rely on close others for decisions...", options: [{ text: "Always.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "Rarely.", score: 5 }] },
+
+  // Cognitive Style (5)
+  { id: 24, category: "cognitive_style", trait: "intuition_vs_analysis", question: "You decide more by...", options: [{ text: "Careful analysis.", score: 1 }, { text: "Blend of both.", score: 3 }, { text: "Intuition and pattern sense.", score: 5 }] },
+  { id: 25, category: "cognitive_style", trait: "abstraction", question: "You prefer tasks that are...", options: [{ text: "Concrete and practical.", score: 1 }, { text: "Mixed levels.", score: 3 }, { text: "Abstract and conceptual.", score: 5 }] },
+  { id: 26, category: "cognitive_style", trait: "pattern_recognition", question: "You excel at spotting...", options: [{ text: "Simple patterns only.", score: 1 }, { text: "Moderately complex patterns.", score: 3 }, { text: "Deep, abstract patterns.", score: 5 }] },
+  { id: 27, category: "cognitive_style", trait: "reflective_reasoning", question: "Before concluding you...", options: [{ text: "Act quickly.", score: 1 }, { text: "Pause and review.", score: 3 }, { text: "Reflect deeply then decide.", score: 5 }] },
+  { id: 28, category: "cognitive_style", trait: "integrative_thinking", question: "You combine diverse inputs to...", options: [{ text: "Rarely.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "Often and creatively.", score: 5 }] },
+
+  // Adaptability (4)
+  { id: 29, category: "adaptability", trait: "flexibility", question: "When context changes you...", options: [{ text: "Struggle to adjust.", score: 1 }, { text: "Adjust with effort.", score: 3 }, { text: "Change naturally.", score: 5 }] },
+  { id: 30, category: "adaptability", trait: "rigidity_inverse", question: "You prefer rules that are...", options: [{ text: "Rigid always.", score: 1 }, { text: "Mostly stable.", score: 3 }, { text: "Flexible by design.", score: 5 }] },
+  { id: 31, category: "adaptability", trait: "environmental_adjustment", question: "New environments make you...", options: [{ text: "Uncomfortable.", score: 1 }, { text: "Manageable.", score: 3 }, { text: "Excited and quick to fit in.", score: 5 }] },
+  { id: 32, category: "adaptability", trait: "learning_agility", question: "You learn new skills...", options: [{ text: "Slowly and with effort.", score: 1 }, { text: "At a steady pace.", score: 3 }, { text: "Rapidly and autonomously.", score: 5 }] },
+
+  // Delayed Gratification (4)
+  { id: 33, category: "delayed_gratification", trait: "long_term_optimization", question: "You prioritize outcomes that pay off...", options: [{ text: "Immediately.", score: 1 }, { text: "Balanced timeline.", score: 3 }, { text: "Far in the future.", score: 5 }] },
+  { id: 34, category: "delayed_gratification", trait: "patience", question: "When rewards are delayed you...", options: [{ text: "Give up.", score: 1 }, { text: "Wait with periodic checks.", score: 3 }, { text: "Wait patiently.", score: 5 }] },
+  { id: 35, category: "delayed_gratification", trait: "impulse_control", question: "You resist temptations...", options: [{ text: "Rarely.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "Usually.", score: 5 }] },
+  { id: 36, category: "delayed_gratification", trait: "delayed_reward_sensitivity", question: "You feel long-term rewards are...", options: [{ text: "Overrated.", score: 1 }, { text: "Sometimes worth it.", score: 3 }, { text: "Crucial to decisions.", score: 5 }] },
+
+  // Conflict Processing (4)
+  { id: 37, category: "conflict_processing", trait: "confrontation_style", question: "When conflict arises you...", options: [{ text: "Avoid it.", score: 1 }, { text: "Address tactically.", score: 3 }, { text: "Confront directly.", score: 5 }] },
+  { id: 38, category: "conflict_processing", trait: "passive_aggression", question: "If upset you tend to...", options: [{ text: "Show passive signs.", score: 1 }, { text: "Voice concerns carefully.", score: 3 }, { text: "State issues openly.", score: 5 }] },
+  { id: 39, category: "conflict_processing", trait: "strategic_retaliation", question: "You respond to unfairness by...", options: [{ text: "Let it go.", score: 1 }, { text: "Document and respond later.", score: 3 }, { text: "Act strategically to correct.", score: 5 }] },
+  { id: 40, category: "conflict_processing", trait: "conflict_avoidance", question: "Do you prefer to sidestep disputes?", options: [{ text: "Yes, avoid.", score: 1 }, { text: "Sometimes.", score: 3 }, { text: "No, face them.", score: 5 }] }
 ];
 
 interface ValidationCase {
@@ -341,15 +194,60 @@ export default function DecisionDNA() {
     experiences: ""
   });
 
-  const aggregateDimensionScore = (dimension: string) => {
-    const answers = mcqQuestions
-      .filter((q) => q.dimension === dimension)
-      .map((q) => draftMCQAnswers[q.id])
-      .filter((score): score is number => typeof score === "number");
+  // Compute a detailed trait vector from the raw MCQ answers.
+  // Returns normalized trait scores (0..1) and core five dimensions (1..5 integers).
+  const computeTraitVector = (answers: Record<number, number>) => {
+    const sums: Record<string, { sum: number; count: number; rawSum: number }> = {};
+    mcqQuestions.forEach((q) => {
+      const raw = answers[q.id];
+      if (typeof raw !== "number") return;
+      const trait: string = (q as any).trait || (q as any).dimension || "misc";
+      if (!sums[trait]) sums[trait] = { sum: 0, count: 0, rawSum: 0 };
+      sums[trait].sum += (raw - 1) / 4; // normalize 1..5 -> 0..1
+      sums[trait].rawSum += raw; // keep raw for core aggregations
+      sums[trait].count += 1;
+    });
 
-    if (answers.length === 0) return 3;
-    const average = answers.reduce((sum, score) => sum + score, 0) / answers.length;
-    return Math.round(average) as number;
+    const traitScores: Record<string, number> = {};
+    Object.keys(sums).forEach((t) => {
+      traitScores[t] = sums[t].count > 0 ? Number((sums[t].sum / sums[t].count).toFixed(4)) : 0.5;
+    });
+
+    // Compute core five dimensions by averaging the raw question scores of categories
+    const categoryBuckets: Record<string, number[]> = {};
+    mcqQuestions.forEach((q) => {
+      const cat: string = (q as any).category || (q as any).dimension || "misc";
+      const raw = answers[q.id];
+      if (typeof raw !== "number") return;
+      if (!categoryBuckets[cat]) categoryBuckets[cat] = [];
+      categoryBuckets[cat].push(raw);
+    });
+
+    const avg = (arr: number[]) => arr.reduce((s, v) => s + v, 0) / (arr.length || 1);
+
+    // Map categories to core five: risk, trust, horizon, adversity, ethics
+    const coreRiskRelated = ["risk_processing"];
+    const coreTrustRelated = ["social_dependency"];
+    const coreHorizonRelated = ["delayed_gratification", "cognitive_style"];
+    const coreAdversityRelated = ["stress_response", "adaptability"];
+    const coreEthicsRelated = ["dominance_control", "conflict_processing"];
+
+    const riskVals: number[] = coreRiskRelated.flatMap(c => categoryBuckets[c] ?? []);
+    const trustVals: number[] = coreTrustRelated.flatMap(c => categoryBuckets[c] ?? []);
+    const horizonVals: number[] = coreHorizonRelated.flatMap(c => categoryBuckets[c] ?? []);
+    const adversityVals: number[] = coreAdversityRelated.flatMap(c => categoryBuckets[c] ?? []);
+    const ethicsVals: number[] = coreEthicsRelated.flatMap(c => categoryBuckets[c] ?? []);
+
+    const core: Record<string, number> = {
+      risk: Math.round(avg(riskVals) || 3),
+      trust: Math.round(avg(trustVals) || 3),
+      horizon: Math.round(avg(horizonVals) || 3),
+      adversity: Math.round(avg(adversityVals) || 3),
+      ethics: Math.round(avg(ethicsVals) || 3),
+    };
+
+    // Final vector: include normalized traitScores and core five (core keys are 1..5 ints)
+    return { traitScores, core };
   };
 
   const [question, setQuestion] = useState("");
@@ -412,78 +310,125 @@ export default function DecisionDNA() {
     const Y: number[] = [];
     const YHat: number[] = [];
     
-    validationCases.forEach(c => {
-      const y = calibrationAnswers[c.id] || 0;
-      const p = c.getAIProbability(activeProfile.scores);
-      const yHat = p >= 0.5 ? 1 : 0;
-      
-      Y.push(y);
-      YHat.push(yHat);
-      totalAbsDiff += Math.abs(y - p);
-      
-      if (y === 1 && yHat === 1) tp++;
-      else if (y === 0 && yHat === 1) fp++;
-      else if (y === 0 && yHat === 0) tn++;
-      else if (y === 1 && yHat === 0) fn++;
-    });
+    const validationCases: ValidationCase[] = [
+      // Contradiction Checks (6)
+      {
+        id: 1,
+        question: "Earlier you said you make fast decisions. When decisions are irreversible, do you delay longer than usual?",
+        optionA: "No, I remain fast.",
+        optionB: "Yes, I delay more when irreversible.",
+        getAIProbability: (scores) => {
+          const decisiveness = scores.deciciveness ?? scores.decisiveness ?? scores.decisiveness || scores.decisiveness || scores.deciciveness || scores.decisiveness || 3;
+          // fallback to decision_speed core if present
+          const ds = scores.deciciveness || scores.decisiveness || scores.decision_speed || 3;
+          return Math.min(Math.max(0.5 + (3 - ds) * 0.18, 0.01), 0.99);
+        }
+      },
+      {
+        id: 2,
+        question: "You claim to prefer independence. If a trusted friend asks for a risky favor, do you follow their lead?",
+        optionA: "No, I maintain independence.",
+        optionB: "Yes, I follow trusted friends.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.external_validation ? scores.external_validation - 0.5 : (scores.trust ? (scores.trust - 3) * 0.18 : 0)) , 0.01), 0.99)
+      },
+      {
+        id: 3,
+        question: "You say you avoid taking major losses. Could you accept a risky loss to secure long-term gain?",
+        optionA: "No, I avoid losses.",
+        optionB: "Yes, for clear long-term gain.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.reward_sensitivity ?? 0.5) - (scores.loss_aversion ?? 0.5)) * 0.5, 0.01), 0.99)
+      },
+      {
+        id: 4,
+        question: "You report being patient. When stakes rise, do you act impulsively?",
+        optionA: "No, I remain patient.",
+        optionB: "Yes, pressure makes me impulsive.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.patience ?? 0.5) - (scores.impulsiveness ?? 0.5)) * 0.4, 0.01), 0.99)
+      },
+      {
+        id: 5,
+        question: "You claim to be adaptable. In repeated failures do you become rigid?",
+        optionA: "No, I stay adaptable.",
+        optionB: "Yes, failures make me rigid.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.flexibility ?? 0.5) - (scores.rigidity_inverse ?? 0.5)) * 0.3, 0.01), 0.99)
+      },
+      {
+        id: 6,
+        question: "You say you value rules. If a loved one needs help, do you make exceptions often?",
+        optionA: "No, rules remain.",
+        optionB: "Yes, I make exceptions.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((0.5 - (scores.integrity ?? (scores.ethics ? (scores.ethics - 3) / 2 : 0.5))) ) * 0.6, 0.01), 0.99)
+      },
 
-    const accuracy = (tp + tn) / validationCases.length;
-    const pe = (((tp + fp) * (tp + fn)) + ((tn + fn) * (tn + fp))) / (validationCases.length ** 2);
-    const kappa = pe < 1 ? (accuracy - pe) / (1 - pe) : 1;
-    const mae = totalAbsDiff / validationCases.length;
-    
-    const dotProduct = Y.reduce((sum, y, i) => sum + y * YHat[i], 0);
-    const magY = Math.sqrt(Y.reduce((sum, y) => sum + y ** 2, 0));
-    const magYHat = Math.sqrt(YHat.reduce((sum, yh) => sum + yh ** 2, 0));
-    const cosineSimilarity = (magY * magYHat) > 0 ? dotProduct / (magY * magYHat) : 0;
+      // Stress-State Inversions (4)
+      {
+        id: 7,
+        question: "Normally you trust your instincts. When stakes are extremely high, do you rely heavily on external opinions?",
+        optionA: "No, I still trust instincts.",
+        optionB: "Yes, I seek external guidance under stress.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.emotional_stability ?? 0.5) < 0.4 ? 0.2 : -0.1) + ((scores.external_validation ?? 0.5) - 0.5) * 0.4, 0.01), 0.99)
+      },
+      {
+        id: 8,
+        question: "You normally act decisively. Under severe pressure do you delay and seek consensus?",
+        optionA: "No, still decisive.",
+        optionB: "Yes, I seek more consensus under pressure.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((0.5 - (scores.decisiveness ?? 0.5)) + (scores.emotional_stability ? (0.5 - scores.emotional_stability) : 0)) * 0.3, 0.01), 0.99)
+      },
+      {
+        id: 9,
+        question: "You are usually calm. Under attack do you become aggressive?",
+        optionA: "No, remain calm.",
+        optionB: "Yes, become aggressive.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.aggression_under_pressure ?? 0.5) - 0.5) * 0.6, 0.01), 0.99)
+      },
+      {
+        id: 10,
+        question: "If public shame occurs, do you withdraw rather than publicly repair?",
+        optionA: "No, I repair openly.",
+        optionB: "Yes, I withdraw.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((0.5 - (scores.recovery_speed ?? 0.5)) + (scores.conflict_avoidance ?? 0.5 - 0.5)) * 0.35, 0.01), 0.99)
+      },
 
-    const results: CalibrationResults = {
-      f1: 0, auc: 0, precision: 0, recall: 0, accuracy, kappa, mae, cosineSimilarity
-    };
+      // Temporal Consistency (3)
+      {
+        id: 11,
+        question: "At work you prefer structure. In personal life do you prefer spontaneous plans?",
+        optionA: "Yes, I differ by context.",
+        optionB: "No, I maintain the same preference.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.conformity ?? 0.5) - 0.5) * 0.25, 0.01), 0.99)
+      },
+      {
+        id: 12,
+        question: "You say you prioritize long-term goals at work. In family choices do you keep the same horizon?",
+        optionA: "No, family choices are short-term.",
+        optionB: "Yes, same long-term horizon.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.long_term_optimization ?? 0.5) - 0.5) * 0.4, 0.01), 0.99)
+      },
+      {
+        id: 13,
+        question: "You say you avoid risk professionally. At home would you accept more risk?",
+        optionA: "Yes, home is different.",
+        optionB: "No, consistent risk profile.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.risk_preference ?? 0.5) - 0.5) * 0.35, 0.01), 0.99)
+      },
 
-    setCalibrationResults(results);
-    localStorage.setItem(`heirloom_calibration_${activeProfileId}`, JSON.stringify(results));
-    setShowCalibrateModal(false);
-  };
-
-  const loadDNAProfiles = async () => {
-    setLoading(true);
-    try {
-      if (user) {
-        const { data, error } = await (supabase as any)
-          .from("dna_profiles")
-          .select("*")
-          .order("created_at", { ascending: false });
-
-        if (data && data.length > 0) {
-          const mapped = data.map((d: any) => ({
-            id: d.id,
-            name: d.name,
-            relationship: d.relationship,
-            scores: {
-              risk: d.risk_score || 3,
-              trust: d.trust_score || 3,
-              horizon: d.horizon_score || 3,
-              adversity: d.adversity_score || 3,
-              ethics: d.ethics_score || 3,
-            },
-            answers: {
-              values: d.core_values,
-              rules: d.decision_rules,
-              experiences: d.life_experiences
-            },
-            archetype: calculateArchetype(
-              d.risk_score || 3,
-              d.trust_score || 3,
-              d.horizon_score || 3,
-              d.adversity_score || 3,
-              d.ethics_score || 3
-            ),
-            isSelf: d.created_by === user.id
-          }));
-          setProfiles(mapped);
-          setHasTrainedSelf(mapped.some((p: any) => p.isSelf));
-          setLoading(false);
+      // Behavioral Simulation Checks (2)
+      {
+        id: 14,
+        question: "You discover your strategy failed publicly. First instinct:",
+        optionA: "Defend the decision.",
+        optionB: "Recalculate quietly.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.recovery_speed ?? 0.5) - 0.5) * 0.45 - ((scores.passive_aggression ?? 0.5) - 0.5) * 0.2, 0.01), 0.99)
+      },
+      {
+        id: 15,
+        question: "You discover your strategy failed publicly. First instinct:",
+        optionA: "Shift blame.",
+        optionB: "Withdraw temporarily.",
+        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.passive_aggression ?? 0.5) - 0.5) * 0.4 + ((scores.conflict_avoidance ?? 0.5) - 0.5) * 0.3, 0.01), 0.99)
+      }
+    ];
           return;
         }
       }
@@ -687,24 +632,23 @@ export default function DecisionDNA() {
 
   const finishTest = async () => {
     setStep("training");
-
-    const risk = aggregateDimensionScore("risk");
-    const trust = aggregateDimensionScore("trust");
-    const horizon = aggregateDimensionScore("horizon");
-    const adversity = aggregateDimensionScore("adversity");
-    const ethics = aggregateDimensionScore("ethics");
+    // Compute full trait vector (normalized traits + core five dimensions)
+    const { traitScores, core } = computeTraitVector(draftMCQAnswers);
 
     // Pull current user details
     const currentUserName = user?.user_metadata?.full_name || "Arthur Sterling";
     const currentUserRole = user?.user_metadata?.relationship || "Founder";
 
+    // Build the profile.scores object: include normalized trait keys and core five (1..5 ints)
+    const combinedScores: Record<string, number> = { ...traitScores, ...core };
+
     const simulatedProfile: AIProfile = {
       id: "dna-" + Date.now(),
       name: currentUserName,
       relationship: currentUserRole + " (Self)",
-      scores: { risk, trust, horizon, adversity, ethics },
+      scores: combinedScores,
       answers: draftAnswers,
-      archetype: calculateArchetype(risk, trust, horizon, adversity, ethics),
+      archetype: calculateArchetype(core.risk, core.trust, core.horizon, core.adversity, core.ethics),
       isSelf: true
     };
 
@@ -718,17 +662,19 @@ export default function DecisionDNA() {
           .maybeSingle();
 
         if (prof?.family_id) {
-          const profileEmbedding = await generateEmbedding(summarizeProfile(simulatedProfile));
+          // Persist a JSON embedding-friendly string of the trait vector for downstream models
+          const profileEmbedding = await generateEmbedding(JSON.stringify({ core, traitScores }));
           await (supabase as any).from("dna_profiles").insert({
             family_id: prof.family_id,
             created_by: user.id,
             name: currentUserName,
             relationship: prof.relationship || "Family Member",
-            risk_score: risk,
-            trust_score: trust,
-            horizon_score: horizon,
-            adversity_score: adversity,
-            ethics_score: ethics,
+            // Keep legacy fields for compatibility
+            risk_score: core.risk,
+            trust_score: core.trust,
+            horizon_score: core.horizon,
+            adversity_score: core.adversity,
+            ethics_score: core.ethics,
             core_values: draftAnswers.values,
             decision_rules: draftAnswers.rules,
             life_experiences: draftAnswers.experiences,
