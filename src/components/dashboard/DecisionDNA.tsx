@@ -5,6 +5,9 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { generateDecisionEmbedding } from "@/lib/behavioralEmbeddings";
+import { getRelevantBehavioralContext } from "@/lib/behavioralMemory";
+import type { DecisionEvent } from "@/integrations/supabase/types";
 
 type Step = "list" | "mcq" | "values" | "rules" | "experiences" | "training" | "chat";
 
@@ -685,6 +688,74 @@ export default function DecisionDNA() {
     const activeProfile = profiles.find(p => p.id === activeProfileId);
     if (!activeProfile) return;
 
+    // Build an inferred current decision event for memory and retrieval
+    const inferredStress = (() => {
+      // crude heuristic: combine stress-related trait scores
+      const s = activeProfile.scores;
+      const stress = (Number(s.stress_focus ?? 0.5) + (1 - Number(s.recovery_speed ?? 0.5)) + (1 - Number(s.uncertainty_tolerance ?? 0.5))) / 3;
+      return Number(Math.max(0, Math.min(1, stress)).toFixed(3));
+    })();
+
+    const currentEvent: DecisionEvent = {
+      profile_id: activeProfile.isSelf ? undefined : undefined,
+      situation_type: (() => {
+        const q = question.toLowerCase();
+        if (q.includes("money") || q.includes("pay") || q.includes("financial") || q.includes("debt")) return "financial_stress";
+        if (q.includes("family") || q.includes("marriage") || q.includes("child") || q.includes("kin")) return "social_conflict";
+        if (q.includes("job") || q.includes("career") || q.includes("promotion") || q.includes("hire")) return "career_decision";
+        return "general_decision";
+      })(),
+      user_input: question,
+      inferred_stress_level: inferredStress,
+      inferred_decision_style: (activeProfile.scores.decisiveness && activeProfile.scores.decisiveness > 3) ? "decisive" : "deliberative",
+      inferred_biases: [],
+      predicted_failure_modes: [],
+      generated_recommendations: [],
+      confidence_score: 0.5,
+    };
+
+    // generate and store decision embedding and memory
+    try {
+      const emb = await generateDecisionEmbedding({
+        situation: currentEvent.situation_type,
+        stress_level: currentEvent.inferred_stress_level,
+        decision_style: currentEvent.inferred_decision_style,
+        recent_question: currentEvent.user_input,
+      });
+      currentEvent.decision_embedding = emb as any;
+
+      // persist event to Supabase (best-effort)
+      if (user) {
+        await (supabase as any).from("decision_events").insert({
+          profile_id: activeProfile.isSelf ? user.id : null,
+          situation_type: currentEvent.situation_type,
+          user_input: currentEvent.user_input,
+          inferred_stress_level: currentEvent.inferred_stress_level,
+          inferred_decision_style: currentEvent.inferred_decision_style,
+          inferred_biases: JSON.stringify(currentEvent.inferred_biases || []),
+          predicted_failure_modes: JSON.stringify(currentEvent.predicted_failure_modes || []),
+          generated_recommendations: JSON.stringify(currentEvent.generated_recommendations || []),
+          confidence_score: currentEvent.confidence_score || 0,
+          decision_embedding: emb,
+        });
+      }
+
+      // local fallback caching
+      try {
+        const cached = localStorage.getItem("heirloom_decision_events");
+        const parsed = cached ? JSON.parse(cached) : [];
+        parsed.unshift({ ...currentEvent, id: "local-" + Date.now() });
+        localStorage.setItem("heirloom_decision_events", JSON.stringify(parsed.slice(0, 200)));
+      } catch (err) {
+        // ignore local storage errors
+      }
+    } catch (err) {
+      console.error("Failed to generate/persist decision event", err);
+    }
+
+    // Retrieve relevant behavioral context for RAG
+    const { context: behavioralContext } = await getRelevantBehavioralContext(currentEvent, 3);
+
     const riskVal = activeProfile.scores.risk;
     const ethicsVal = activeProfile.scores.ethics;
     const horizonVal = activeProfile.scores.horizon;
@@ -715,30 +786,25 @@ export default function DecisionDNA() {
 
     if (groqApiKey) {
       try {
-        const systemPrompt = `You are emulating the Decision DNA simulated persona of ${activeProfile.name} (${activeProfile.relationship}), whose cognitive archetype is "${activeProfile.archetype}".
+        // Behavior-focused system prompt: emphasize behavioral history and recent similar events
+        const similarSummary = behavioralContext && behavioralContext.length ? behavioralContext.map((c: any, i: number) => `(${i+1}) ${c.situation_type} — similarity:${Number(c.similarity ?? 0).toFixed(2)} — outcome:${c.outcome_status || 'unknown'}`).join("\n") : "No closely matching behavioral events found.";
 
-Your decision profile parameters are:
-- Risk Preference: ${activeProfile.scores.risk}/5
-- Trust/Alliance Focus: ${activeProfile.scores.trust}/5
-- Horizon (Long-term vision): ${activeProfile.scores.horizon}/5
-- Adversity Resilience: ${activeProfile.scores.adversity}/5
-- Ethical Anchor: ${activeProfile.scores.ethics}/5
+        const systemPrompt = `You are a tactical Behavioral Decision Intelligence agent for ${activeProfile.name} (${activeProfile.relationship}).
 
-Core Values you guide your life by:
-"${activeProfile.answers.values}"
+Focus ONLY on observable behaviors, stress-state indicators, prior decision outcomes, and repeatable patterns. Do NOT provide values-based narration, symbolic memories, or motivational statements.
 
-Strict Decision Rules you enforce:
-"${activeProfile.answers.rules}"
+Profile summary (minimal): Risk:${activeProfile.scores.risk}/5 Trust:${activeProfile.scores.trust}/5 Horizon:${activeProfile.scores.horizon}/5 Adversity:${activeProfile.scores.adversity}/5 Ethics:${activeProfile.scores.ethics}/5
 
-Key Life Experience / Memory Lesson you reference:
-"${activeProfile.answers.experiences}"
+Recent behavioral context (top similar events):\n${similarSummary}
 
-Instructions for your behavior (Strict Hallucination Control):
-1. Speak in a natural, wise, conversational, and direct tone. Never sound like a generic AI assistant. Address the user's query immediately without standard AI preamble (e.g., "As an AI..." or "Based on your scores...").
-2. Your advice MUST be grounded in your values, rules, and scores. Do NOT hallucinate rules or values that contradict your blueprint. If the user asks you to violate one of your strict rules, you must reject it explicitly.
-3. Reference your life experience / memory lesson only if it is naturally relevant to the dilemma.
-4. Maintain consistency with prior conversational turns (use the provided chat history).
-5. Provide clear, actionable guidance. Keep your response concise (2-3 paragraphs max) and format it beautifully.`;
+Instructions for response (MANDATORY):
+1) Start with a one-line Behavioral Inference: what behavior does the user likely display in this situation.
+2) Provide Cognitive Risk Analysis: list likely biases and stress-driven failure modes (brief bullets).
+3) Predict top 3 Failure Modes with confidence scores (0..1).
+4) Give 3 Tactical Recommendations directly tied to counters for the predicted biases — each recommendation must be operational and time-bound.
+5) Conclude with Confidence Notes (numerical confidence and whether this is based on repeated events or single instance).
+
+Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom', or 'alignment'. Keep tone analytical, probabilistic, and tactical.`;
 
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
           method: "POST",

@@ -1,3 +1,33 @@
+export interface DecisionEvent {
+  id?: string;
+  profile_id?: string | null;
+  timestamp?: string;
+  situation_type?: string;
+  user_input?: string;
+  inferred_stress_level?: number;
+  inferred_decision_style?: string;
+  inferred_biases?: Record<string, any>[];
+  predicted_failure_modes?: string[];
+  generated_recommendations?: Record<string, any>[];
+  confidence_score?: number;
+  outcome_status?: string;
+  outcome_notes?: string;
+  decision_embedding?: number[] | null;
+  created_at?: string;
+}
+
+export interface DecisionPrediction {
+  id?: string;
+  profile_id?: string;
+  decision_event_id?: string;
+  prediction_type?: string;
+  predicted_behavior?: string;
+  confidence?: number;
+  verification_status?: string;
+  actual_outcome?: Record<string, any> | null;
+  calibration_error?: number;
+  created_at?: string;
+}
 export type Json =
   | string
   | number
