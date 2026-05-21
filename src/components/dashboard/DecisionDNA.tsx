@@ -302,186 +302,61 @@ export default function DecisionDNA() {
 
   const handleSubmitCalibration = () => {
     if (!activeProfileId) return;
-    const activeProfile = profiles.find(p => p.id === activeProfileId);
+    const activeProfile = profiles.find((p) => p.id === activeProfileId);
     if (!activeProfile) return;
 
-    let tp = 0, fp = 0, tn = 0, fn = 0;
+    let tp = 0,
+      fp = 0,
+      tn = 0,
+      fn = 0;
     let totalAbsDiff = 0;
     const Y: number[] = [];
     const YHat: number[] = [];
-    
-    const validationCases: ValidationCase[] = [
-      // Contradiction Checks (6)
-      {
-        id: 1,
-        question: "Earlier you said you make fast decisions. When decisions are irreversible, do you delay longer than usual?",
-        optionA: "No, I remain fast.",
-        optionB: "Yes, I delay more when irreversible.",
-        getAIProbability: (scores) => {
-          const decisiveness = scores.deciciveness ?? scores.decisiveness ?? scores.decisiveness || scores.decisiveness || scores.deciciveness || scores.decisiveness || 3;
-          // fallback to decision_speed core if present
-          const ds = scores.deciciveness || scores.decisiveness || scores.decision_speed || 3;
-          return Math.min(Math.max(0.5 + (3 - ds) * 0.18, 0.01), 0.99);
-        }
-      },
-      {
-        id: 2,
-        question: "You claim to prefer independence. If a trusted friend asks for a risky favor, do you follow their lead?",
-        optionA: "No, I maintain independence.",
-        optionB: "Yes, I follow trusted friends.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.external_validation ? scores.external_validation - 0.5 : (scores.trust ? (scores.trust - 3) * 0.18 : 0)) , 0.01), 0.99)
-      },
-      {
-        id: 3,
-        question: "You say you avoid taking major losses. Could you accept a risky loss to secure long-term gain?",
-        optionA: "No, I avoid losses.",
-        optionB: "Yes, for clear long-term gain.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.reward_sensitivity ?? 0.5) - (scores.loss_aversion ?? 0.5)) * 0.5, 0.01), 0.99)
-      },
-      {
-        id: 4,
-        question: "You report being patient. When stakes rise, do you act impulsively?",
-        optionA: "No, I remain patient.",
-        optionB: "Yes, pressure makes me impulsive.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.patience ?? 0.5) - (scores.impulsiveness ?? 0.5)) * 0.4, 0.01), 0.99)
-      },
-      {
-        id: 5,
-        question: "You claim to be adaptable. In repeated failures do you become rigid?",
-        optionA: "No, I stay adaptable.",
-        optionB: "Yes, failures make me rigid.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.flexibility ?? 0.5) - (scores.rigidity_inverse ?? 0.5)) * 0.3, 0.01), 0.99)
-      },
-      {
-        id: 6,
-        question: "You say you value rules. If a loved one needs help, do you make exceptions often?",
-        optionA: "No, rules remain.",
-        optionB: "Yes, I make exceptions.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((0.5 - (scores.integrity ?? (scores.ethics ? (scores.ethics - 3) / 2 : 0.5))) ) * 0.6, 0.01), 0.99)
-      },
 
-      // Stress-State Inversions (4)
-      {
-        id: 7,
-        question: "Normally you trust your instincts. When stakes are extremely high, do you rely heavily on external opinions?",
-        optionA: "No, I still trust instincts.",
-        optionB: "Yes, I seek external guidance under stress.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.emotional_stability ?? 0.5) < 0.4 ? 0.2 : -0.1) + ((scores.external_validation ?? 0.5) - 0.5) * 0.4, 0.01), 0.99)
-      },
-      {
-        id: 8,
-        question: "You normally act decisively. Under severe pressure do you delay and seek consensus?",
-        optionA: "No, still decisive.",
-        optionB: "Yes, I seek more consensus under pressure.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((0.5 - (scores.decisiveness ?? 0.5)) + (scores.emotional_stability ? (0.5 - scores.emotional_stability) : 0)) * 0.3, 0.01), 0.99)
-      },
-      {
-        id: 9,
-        question: "You are usually calm. Under attack do you become aggressive?",
-        optionA: "No, remain calm.",
-        optionB: "Yes, become aggressive.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.aggression_under_pressure ?? 0.5) - 0.5) * 0.6, 0.01), 0.99)
-      },
-      {
-        id: 10,
-        question: "If public shame occurs, do you withdraw rather than publicly repair?",
-        optionA: "No, I repair openly.",
-        optionB: "Yes, I withdraw.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((0.5 - (scores.recovery_speed ?? 0.5)) + (scores.conflict_avoidance ?? 0.5 - 0.5)) * 0.35, 0.01), 0.99)
-      },
+    validationCases.forEach((c) => {
+      const y = calibrationAnswers[c.id] || 0;
+      const p = c.getAIProbability(activeProfile.scores);
+      const yHat = p >= 0.5 ? 1 : 0;
 
-      // Temporal Consistency (3)
-      {
-        id: 11,
-        question: "At work you prefer structure. In personal life do you prefer spontaneous plans?",
-        optionA: "Yes, I differ by context.",
-        optionB: "No, I maintain the same preference.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.conformity ?? 0.5) - 0.5) * 0.25, 0.01), 0.99)
-      },
-      {
-        id: 12,
-        question: "You say you prioritize long-term goals at work. In family choices do you keep the same horizon?",
-        optionA: "No, family choices are short-term.",
-        optionB: "Yes, same long-term horizon.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.long_term_optimization ?? 0.5) - 0.5) * 0.4, 0.01), 0.99)
-      },
-      {
-        id: 13,
-        question: "You say you avoid risk professionally. At home would you accept more risk?",
-        optionA: "Yes, home is different.",
-        optionB: "No, consistent risk profile.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.risk_preference ?? 0.5) - 0.5) * 0.35, 0.01), 0.99)
-      },
+      Y.push(y);
+      YHat.push(yHat);
+      totalAbsDiff += Math.abs(y - p);
 
-      // Behavioral Simulation Checks (2)
-      {
-        id: 14,
-        question: "You discover your strategy failed publicly. First instinct:",
-        optionA: "Defend the decision.",
-        optionB: "Recalculate quietly.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.recovery_speed ?? 0.5) - 0.5) * 0.45 - ((scores.passive_aggression ?? 0.5) - 0.5) * 0.2, 0.01), 0.99)
-      },
-      {
-        id: 15,
-        question: "You discover your strategy failed publicly. First instinct:",
-        optionA: "Shift blame.",
-        optionB: "Withdraw temporarily.",
-        getAIProbability: (scores) => Math.min(Math.max(0.5 + ((scores.passive_aggression ?? 0.5) - 0.5) * 0.4 + ((scores.conflict_avoidance ?? 0.5) - 0.5) * 0.3, 0.01), 0.99)
-      }
-    ];
-          return;
-        }
-      }
-    } catch (e) {
-      console.log("Supabase dna tables not available yet. Loading local storage mock data.");
-    }
+      if (y === 1 && yHat === 1) tp++;
+      else if (y === 0 && yHat === 1) fp++;
+      else if (y === 0 && yHat === 0) tn++;
+      else if (y === 1 && yHat === 0) fn++;
+    });
 
-    // Local Storage Mock Seeding
-    const cached = localStorage.getItem("heirloom_dna_profiles");
-    if (cached) {
-      const parsed = JSON.parse(cached);
-      setProfiles(parsed);
-      setHasTrainedSelf(parsed.some((p: any) => p.isSelf));
-    } else {
-      // Seed initial default profiles of family members
-      const activeFamilyList = JSON.parse(localStorage.getItem("heirloom_family_members") || "[]");
-      const currentUserName = user?.user_metadata?.full_name || "Arthur Sterling";
-      
-      const seedProfiles: AIProfile[] = [];
-      
-      // Let's seed Grandpa Richard as a family model that already exists!
-      seedProfiles.push({
-        id: "grandpa-1",
-        name: "Grandpa Richard",
-        relationship: "Grandfather",
-        scores: { risk: 2, trust: 4, horizon: 5, adversity: 3, ethics: 5 },
-        answers: {
-          values: "Hard work, faith, integrity, and absolute devotion to family legacy.",
-          rules: "Always save 30% of what you make, never go to sleep angry at your kin, and back up your words with consistent actions.",
-          experiences: "Rebuilding our family farm after a critical drought in 1982 taught me that local communities and family trust are the only assets that never lose valuation."
-        },
-        archetype: "The Compassionate Guardian"
-      });
+    const accuracy = (tp + tn) / validationCases.length;
+    const pe =
+      (((tp + fp) * (tp + fn)) + ((tn + fn) * (tn + fp))) / (validationCases.length ** 2);
+    const kappa = pe < 1 ? (accuracy - pe) / (1 - pe) : 1;
+    const mae = totalAbsDiff / validationCases.length;
 
-      // Let's seed Matriarch Eleanor Sterling as well
-      seedProfiles.push({
-        id: "eleanor-1",
-        name: "Eleanor Sterling",
-        relationship: "Matriarch",
-        scores: { risk: 3, trust: 3, horizon: 4, adversity: 5, ethics: 4 },
-        answers: {
-          values: "Intellect, constant curiosity, relational harmony, and elegance.",
-          rules: "Learn something new every single day, never trade long-term respect for immediate wealth.",
-          experiences: "Leading the city heritage preservation society in 1995 proved that historical preservation anchors families to a common foundation."
-        },
-        archetype: "The Legacy Builder"
-      });
+    const precision = tp + fp === 0 ? 0 : tp / (tp + fp);
+    const recall = tp + fn === 0 ? 0 : tp / (tp + fn);
+    const f1 = precision + recall === 0 ? 0 : (2 * precision * recall) / (precision + recall);
 
-      setProfiles(seedProfiles);
-      localStorage.setItem("heirloom_dna_profiles", JSON.stringify(seedProfiles));
-      setHasTrainedSelf(false);
-    }
-    setLoading(false);
+    const dotProduct = Y.reduce((sum, y, i) => sum + y * YHat[i], 0);
+    const magY = Math.sqrt(Y.reduce((sum, y) => sum + y ** 2, 0));
+    const magYHat = Math.sqrt(YHat.reduce((sum, yh) => sum + yh ** 2, 0));
+    const cosineSimilarity = magY * magYHat > 0 ? dotProduct / (magY * magYHat) : 0;
+
+    const results: CalibrationResults = {
+      f1,
+      auc: 0,
+      precision,
+      recall,
+      accuracy,
+      kappa,
+      mae,
+      cosineSimilarity,
+    };
+
+    setCalibrationResults(results);
+    localStorage.setItem(`heirloom_calibration_${activeProfileId}`, JSON.stringify(results));
+    setShowCalibrateModal(false);
   };
 
   const loadDecisionLogs = async () => {
