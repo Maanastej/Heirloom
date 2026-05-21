@@ -620,7 +620,7 @@ export default function DecisionDNA() {
       setChatHistory([
         {
           role: "ai",
-          content: `Greetings. I am your personal simulated Decision DNA model. Ask me any life or career question, and I will analyze it using your cognitive scorecard.`,
+          content: `Behavioral Decision Engine active. Ask a question about a decision and receive: (1) Behavioral inference, (2) Cognitive risk analysis, (3) Predicted failure modes, (4) Tactical recommendations, (5) Confidence notes.`,
         }
       ]);
 
@@ -639,7 +639,7 @@ export default function DecisionDNA() {
     setChatHistory([
       {
         role: "ai",
-        content: `Greetings. I am the Decision DNA model for ${prof.name} (${prof.relationship}). Ask me any life or career question, and I will analyze it through my cognitive worldview matrix.`,
+        content: `Behavioral Decision Engine for ${prof.name} active. Provide a decision scenario to get behaviorally-grounded predictions and tactical steps.`,
       }
     ]);
   };
@@ -866,105 +866,44 @@ Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom'
       
       const isFamilyVsCompany = (q.includes("family") && q.includes("company")) || q.includes("betray") || (q.includes("sell") && q.includes("family"));
 
-      let intro = "";
-      if (activeProfile.isSelf) {
-        if (isFamilyVsCompany) {
-          intro = `Analyzing this high-stakes tension between family preservation and corporate survival against your cognitive framework:`;
-        } else if (category === "financial") {
-          intro = `Processing your financial concerns against your decision scorecard:`;
-        } else if (category === "relationship") {
-          intro = `Evaluating this interpersonal family dilemma through your behavioral blueprint:`;
-        } else if (category === "moral") {
-          intro = `Testing this ethical crossroads against your core rules and values:`;
-        } else if (category === "career") {
-          intro = `Mapping this career choice to your legacy trajectory:`;
-        } else {
-          intro = `Reflecting on this dilemma using your synthesized Decision DNA:`;
-        }
-      } else {
-        if (isFamilyVsCompany) {
-          intro = `When you ask me about choosing between the family and the company, it goes straight to the foundation of what we've built. Here is how I, ${activeProfile.name}, evaluate this conflict:`;
-        } else if (category === "financial") {
-          intro = `I understand how heavy it feels when accounts are draining and the family is struggling. Under financial pressure, we must look at the bigger picture. Here is my perspective:`;
-        } else if (category === "relationship") {
-          intro = `Family relationships and trust are the ultimate bedrock. When they are tested, we need clear guidance. Here is how I see this:`;
-        } else if (category === "moral") {
-          intro = `This is a test of honor and integrity. In my life, I've found that character is the one asset you can never afford to lose. Here is how I think you should approach this:`;
-        } else if (category === "career") {
-          intro = `A career decision or business choice should align with a lifetime trajectory. Here is my counsel based on my experiences:`;
-        } else {
-          intro = `That is an important question. Let's look at this together through the values and rules I used to navigate my own life:`;
-        }
-      }
+      // Build a behavior-focused heuristic response following required 5-part format
+      const pattern = (() => {
+        // infer tendencies from scores
+        const s = activeProfile.scores as Record<string, any>;
+        const tendencies: string[] = [];
+        if ((s.risk ?? 3) >= 4) tendencies.push("higher risk-taking under pressure");
+        if ((s.risk ?? 3) <= 2) tendencies.push("risk-averse, delay tactics");
+        if ((s.decisiveness ?? 3) >= 4) tendencies.push("tends to act quickly without full info");
+        if ((s.recovery_speed ?? 0.5) <= 0.4) tendencies.push("slower recovery after negative outcomes");
+        if ((s.uncertainty_tolerance ?? 0.5) <= 0.4) tendencies.push("heightened avoidance when uncertainty rises");
+        return tendencies.slice(0, 3);
+      })();
 
-      let archetypeTone = "";
-      switch (activeProfile.archetype) {
-        case "The Legacy Builder":
-          archetypeTone = `We must play the long game. Multi-generational legacy is built by taking short-term hits boldly to protect the long-term vision. Financial assets are easily replaced, but once family honour, trust, or the integrity of our name is compromised, the foundation of the house decays permanently. Absolute integrity and multi-decade impact override fast returns.`;
-          break;
-        case "The Compassionate Guardian":
-          archetypeTone = `Prioritize people and relationships above all else. A company is just a tool, but the family is the reason we build in the first place. I would rather see a business dissolve entirely than witness our kin split by betrayal or resentment. Focus on protecting the core, holding the family close, and rebuilding together.`;
-          break;
-        case "The Guarded Trailblazer":
-          archetypeTone = `We must look at this with cold, clear eyes. Risk is necessary, but blind trust is dangerous. Maintain guarded boundaries and ensure every alliance is structured legally. If a business or arrangement is dragging the family down, prune it strategically to protect our core assets, but do so with ironclad protection.`;
-          break;
-        case "The Strategic Pioneer":
-          archetypeTone = `Every crisis is an opportunity for a calculated pivot. We cannot let emotional sentimentality lock us into a sinking model. Detach from the immediate panic, analyze the coordinates, and take a bold, calculated leap. The goal is long-term strategic leverage and survival.`;
-          break;
-        case "The Stoic Defender":
-          archetypeTone = `In moments of severe adversity, we detach from emotional noise and act systematically. Enforce strict discipline: cut burn rates immediately, secure the perimeter, and abide strictly by the rules. We do not make compromises out of panic, and we never allow betrayal to compromise our operational security.`;
-          break;
-        case "The Pragmatic Counselor":
-        default:
-          archetypeTone = `We need a balanced, practical path forward. Avoid getting trapped in binary extremes (like total sacrifice vs total betrayal). We must seek a structured compromise—restructure the liabilities, draw clear lines of responsibility, and proceed with cautious, calculated steps.`;
-          break;
-      }
+      const inferredBehaviors = pattern.length ? pattern.join("; ") : "no strong single tendency detected";
 
-      const valStr = activeProfile.answers.values.trim();
-      const valuesRef = valStr 
-        ? `Looking at my core values—which are centered around "${valStr}"—this choice must align with that standard.` 
-        : `We must stay anchored to our core values, ensuring no temporary crisis makes us drift from our true north.`;
+      // Cognitive risk heuristics
+      const risks = [] as string[];
+      if ((activeProfile.scores.uncertainty_tolerance ?? 0.5) < 0.45) risks.push("uncertainty-driven avoidance or information paralysis");
+      if ((activeProfile.scores.risk ?? 3) >= 4) risks.push("impulsive escalation without downside mitigation");
+      if ((activeProfile.scores.trust ?? 3) <= 2) risks.push("reduced help-seeking; over-reliance on self-decisions");
 
-      const ruleStr = activeProfile.answers.rules.trim();
-      const rulesRef = ruleStr
-        ? `Remember the rules I live by: "${ruleStr}". In moments of high stress, these strict boundaries are not optional; they are the shields that prevent us from making catastrophic errors.`
-        : `In moments of crisis, we must abide by consistent rules. We never make permanent structural decisions under temporary emotional duress.`;
+      // Predicted failure modes with naive probabilities
+      const failures = [
+        { mode: "delayed action", p: Math.max(0.15, 0.6 - (activeProfile.scores.risk ?? 3) * 0.1) },
+        { mode: "panic decision", p: Math.min(0.85, 0.1 + (activeProfile.scores.stress_focus ?? 0.5) * 0.6) },
+        { mode: "avoidance loop", p: Math.min(0.9, 0.2 + (1 - (activeProfile.scores.uncertainty_tolerance ?? 0.5)) * 0.6) }
+      ];
 
-      const expStr = activeProfile.answers.experiences.trim();
-      let experienceRef = "";
-      if (expStr) {
-        experienceRef = `This reminds me deeply of the life lesson earned from: "${expStr}". That experience proved that when the storm hits, the only assets that remain standing are our character and our core alliances.`;
-      } else {
-        experienceRef = `History shows us that every challenge we survive is an opportunity to calibrate our digital twin and harden our resolve for the generations to follow.`;
-      }
+      // Tactical recommendations mapped to failures
+      const recommendations = [
+        `Delay irreversible financial moves for 24 hours and require a written downside checklist before any commitment.`,
+        `Require one external review (trusted advisor or lawyer) for high-impact decisions within 72 hours.`,
+        `Split high-risk actions into small, reversible steps with pre-defined stop-loss triggers.`
+      ];
 
-      let finalRec = "";
-      if (isFamilyVsCompany) {
-        if (activeProfile.archetype === "The Compassionate Guardian" || activeProfile.archetype === "The Legacy Builder") {
-          finalRec = `**My Deep Recommendation:** Choose the family. Restructure, sell, or even walk away from the company if you must, but protect family unity and honor. Assets are replaceable; family trust is not.`;
-        } else {
-          finalRec = `**My Deep Recommendation:** Act strategically. Protect the family's core financial survival. If the company cannot be salvaged without bankrupting the family, prune or liquidate it systematically before it drags everyone down.`;
-        }
-      } else if (category === "financial") {
-        finalRec = `**My Deep Recommendation:** Stop the bleeding immediately. Cut non-essential outlays and draw up a transparent recovery plan. Rely on strict contract audits and backups, and do not make high-risk plays out of panic.`;
-      } else if (category === "moral") {
-        finalRec = `**My Deep Recommendation:** Stand firm. Do not trade long-term respect for immediate relief. Choose the path of absolute honor, even if it is the harder road today.`;
-      } else {
-        finalRec = `**My Deep Recommendation:** Take a step back to detach from the immediate pressure. Map out a structured contingency, protect your key relationships, and then move forward step-by-step.`;
-      }
+      const confidence = behavioralContext && behavioralContext.length ? 0.72 : 0.45;
 
-      const responseContent = `**${intro}**
-
-${archetypeTone}
-
-**Applying Our Core Framework:**
-*   **Values Alignment:** ${valuesRef}
-*   **Decision Rules:** ${rulesRef}
-*   **Hard-won Experience:** ${experienceRef}
-
----
-
-${finalRec}`;
+      const responseContent = `Behavioral Inference:\n- Likely behaviors: ${inferredBehaviors}.\n\nCognitive Risk Analysis:\n- ${risks.join("\n- ")}\n\nPredicted Failure Modes:\n${failures.map(f => `- ${f.mode}: ${ (f.p * 100).toFixed(0) }%`).join("\n")}\n\nTactical Recommendations:\n- ${recommendations.join("\n- ")}\n\nConfidence Notes:\n- Confidence: ${Math.round(confidence * 100)}%. ${behavioralContext && behavioralContext.length ? `Based on ${behavioralContext.length} similar past events.` : 'Limited past-event evidence; treat as provisional.'}`;
 
       setChatHistory(prev => [
         ...prev,
@@ -972,7 +911,7 @@ ${finalRec}`;
           role: "ai",
           content: responseContent,
           steps,
-          memory: memorySnippet
+          memory: behavioralContext && behavioralContext.length ? `${behavioralContext.length} similar events retrieved` : undefined
         }
       ]);
       setIsTyping(false);
@@ -1419,11 +1358,10 @@ ${finalRec}`;
 
                     {/* Show memory interpolation link if available */}
                     {msg.role === "ai" && msg.memory && (
-                      <div className="bg-amber-500/5 border border-amber-500/10 rounded-lg p-3 text-[10px] text-amber-700/90 leading-relaxed italic flex gap-2">
-                        <Quote className="w-4 h-4 text-bronze flex-shrink-0 mt-0.5" />
+                      <div className="bg-amber-500/5 border border-amber-500/10 rounded-lg p-3 text-[10px] text-amber-700/90 leading-relaxed flex gap-2">
                         <div>
-                          <span className="font-bold not-italic block text-[9px] uppercase tracking-wide text-bronze mb-1">Linked Memory Lesson</span>
-                          "{msg.memory}"
+                          <span className="font-bold not-italic block text-[9px] uppercase tracking-wide text-bronze mb-1">Behavioral Context</span>
+                          <div className="text-[11px] text-muted-foreground">{msg.memory}</div>
                         </div>
                       </div>
                     )}
@@ -1453,8 +1391,8 @@ ${finalRec}`;
 
             {/* Chat Input */}
             <form onSubmit={handleAsk} className="p-4 bg-card border-t border-border flex gap-3">
-              <Input
-                placeholder={`Query ${activeProfile.name}'s legacy worldview...`}
+                <Input
+                placeholder={`Ask a decision question; response will be behavioral and tactical.`}
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 disabled={isTyping}
