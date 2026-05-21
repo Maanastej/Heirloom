@@ -253,73 +253,73 @@ interface ValidationCase {
 const validationCases: ValidationCase[] = [
   {
     id: 1,
-    question: "A trusted mentor suggests taking a health risk for a long-term breakthrough. Do you...",
-    optionA: "Decline until the treatment is well-proven.",
-    optionB: "Proceed with the treatment if it offers a meaningful future benefit.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.14 + (scores.horizon - 3) * 0.09, 0.05), 0.95)
+    question: "You are offered an unstable but high-potential job. Do you take it?",
+    optionA: "No, keep stability.",
+    optionB: "Yes, accept the uncertainty.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.2, 0.01), 0.99)
   },
   {
     id: 2,
-    question: "A close friend asks you to keep a delicate secret. Do you...",
-    optionA: "Protect the secret and honor your relationship.",
-    optionB: "Share the truth with someone who should know.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.16 - (scores.ethics - 3) * 0.08, 0.05), 0.95)
+    question: "A colleague asks you to keep a sensitive promise. Do you honor it?",
+    optionA: "No, insist on transparency.",
+    optionB: "Yes, if I trust them.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.22, 0.01), 0.99)
   },
   {
     id: 3,
-    question: "A long-term legacy project will limit your freedom today. Do you...",
-    optionA: "Avoid it to preserve your current life quality.",
-    optionB: "Commit to the sacrifice because the future value matters.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.18 - (scores.adversity - 3) * 0.08, 0.05), 0.95)
+    question: "Invest time in a multi-year project that reduces short-term rewards?",
+    optionA: "No, prefer short-term gains.",
+    optionB: "Yes, prioritize long-term payoff.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.2, 0.01), 0.99)
   },
   {
     id: 4,
-    question: "If a public mistake threatens your reputation, do you...",
-    optionA: "Manage the optics quietly while minimizing damage.",
-    optionB: "Address it openly and take responsibility.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * 0.15 - (scores.trust - 3) * 0.07, 0.05), 0.95)
+    question: "When under severe pressure, do you act decisively?",
+    optionA: "No, step back and regroup.",
+    optionB: "Yes, take decisive control.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.18, 0.01), 0.99)
   },
   {
     id: 5,
-    question: "Paying for expanded education delays your immediate earnings. Do you...",
-    optionA: "Keep earning now and postpone the training.",
-    optionB: "Invest now if the long-term return looks strong.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.15 - (scores.risk - 3) * 0.06, 0.05), 0.95)
+    question: "Would you break a minor rule to produce a better outcome?",
+    optionA: "Never break the rule.",
+    optionB: "Accept minor bends for greater good.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * -0.2, 0.01), 0.99)
   },
   {
     id: 6,
-    question: "A colleague asks for an exception to an important rule. Do you...",
-    optionA: "Respect the standard and refuse the exception.",
-    optionB: "Make a compassionate exception in this case.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 - (scores.ethics - 3) * 0.16 + (scores.trust - 3) * 0.1, 0.05), 0.95)
+    question: "Do you give new teammates full autonomy quickly?",
+    optionA: "No, oversee closely.",
+    optionB: "Yes, empower them early.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.18, 0.01), 0.99)
   },
   {
     id: 7,
-    question: "An uncertain breakthrough could change your industry, but it may fail. Do you...",
-    optionA: "Wait for clearer evidence before you commit.",
-    optionB: "Back it now to capture transformational upside.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.18 + (scores.adversity - 3) * 0.08, 0.05), 0.95)
+    question: "Would you reallocate legacy resources into a new venture?",
+    optionA: "No, protect legacy assets.",
+    optionB: "Yes, take a bold reallocation.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.risk - 3) * 0.16 + (scores.horizon - 3) * 0.08, 0.01), 0.99)
   },
   {
     id: 8,
-    question: "You can mentor a gifted person who is not yet fully trustworthy. Do you...",
-    optionA: "Keep them close until trust is built.",
-    optionB: "Trust them with responsibility and watch them grow.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.trust - 3) * 0.15 - (scores.risk - 3) * 0.06, 0.05), 0.95)
+    question: "If a partner asks for preferential treatment, do you comply?",
+    optionA: "No, apply fairness.",
+    optionB: "Yes, if it preserves relationships.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * -0.14 + (scores.trust - 3) * 0.12, 0.01), 0.99)
   },
   {
     id: 9,
-    question: "Your child wants a risky passion project instead of a safe career. Do you...",
-    optionA: "Encourage security and postpone the risk.",
-    optionB: "Support their long-term purpose even if it is uncertain.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.horizon - 3) * 0.14 - (scores.adversity - 3) * 0.05, 0.05), 0.95)
+    question: "Do you prioritize rebuilding reputation openly after a public error?",
+    optionA: "No, quiet fixes preferred.",
+    optionB: "Yes, be openly accountable.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * 0.16 - (scores.trust - 3) * 0.06, 0.01), 0.99)
   },
   {
     id: 10,
-    question: "An historic tradition is under threat. Would you...",
-    optionA: "Protect what exists and avoid big change.",
-    optionB: "Reinvent it for the future, even if it disrupts the past.",
-    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.ethics - 3) * 0.13 + (scores.horizon - 3) * 0.1, 0.05), 0.95)
+    question: "Would you pursue a risky recovery strategy after a major loss?",
+    optionA: "No, avoid further risk.",
+    optionB: "Yes, pursue bold recovery moves.",
+    getAIProbability: (scores) => Math.min(Math.max(0.5 + (scores.adversity - 3) * 0.14 + (scores.risk - 3) * 0.12, 0.01), 0.99)
   }
 ];
 

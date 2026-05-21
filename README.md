@@ -69,18 +69,17 @@ To ensure the cognitive replication of family members is mathematically accurate
 >
 > *Run the calibration by accessing the Decision DNA dashboard, answering the validation questions, and the results will be displayed here.*
 
-## Recent Update: Embeddings, Retrieval, and Decision Logs
+## Recent Update: Embeddings, Retrieval, and Decision DNA Alignment
 
-This release upgrades the Decision DNA system to support embedding-backed profiles and retrieval-augmented generation (RAG). Key changes:
+This release upgrades Decision DNA with embedding-backed profiles and also fixes the diagnostic alignment between the initial MCQ questionnaire and the validation test cases. Key points:
 
-- **Profile Embeddings:** Each synthesized `dna_profile` stores a `profile_embedding` (1536-d float vector) for semantic similarity searches.
-- **Decision Logs:** Introduced `decision_logs` to persist user Q/A session history with `log_embedding` vectors for RAG and auditing.
-- **pgvector Support:** Supabase migration enables the `vector` extension and adds `profile_embedding` and `log_embedding` columns so you can run nearest-neighbour similarity searches directly in Postgres.
-- **RAG & Confidence Scoring:** Chat responses can retrieve top similar decision logs for context and return confidence / cosine-similarity scores to indicate how closely a response matches the profile's historical decisions.
-- **Local Fallbacks:** Embedding generation and retrieval gracefully fall back to localStorage mocks when Supabase or the embedding API is unavailable, preserving demoability.
-- **Validation Metrics Expanded:** README and UI now surface F1, ROC-AUC, Precision, Recall, Accuracy, Cohen's Kappa, MAE, and Cosine Similarity for transparency and model calibration.
+- **Aligned Question Sets:** The 20-question diagnostic and the 10 binary validation scenarios have been rewritten to correspond directly to the same five worldview dimensions (Risk, Trust, Horizon, Adversity, Ethics). This improves calibration and prevents mismatched scoring that previously produced near-0% matches.
+- **Profile Embeddings & Decision Logs:** Each `dna_profile` can store a `profile_embedding`, and `decision_logs` now persist Q/A history with `log_embedding` vectors for RAG.
+- **pgvector Support:** Migration adds the `vector` extension and embedding columns to enable nearest-neighbour searches in Postgres.
+- **RAG & Confidence Scoring:** Chat can retrieve similar decision logs as context and surface cosine-similarity confidence scores alongside responses.
+- **Improved Validation Metrics:** Calibration results now more reliably reflect F1, ROC-AUC, Precision, Recall, Accuracy, Cohen's Kappa, MAE, and Cosine Similarity because of the aligned questions and scoring functions.
 
-See `supabase/migrations/20260519000000_add_family_and_dna_upgrades.sql` for the exact migration changes and `src/components/dashboard/DecisionDNA.tsx` for the embedding and retrieval scaffolding.
+See `src/components/dashboard/DecisionDNA.tsx` for the updated MCQs and validation logic, and `supabase/migrations/20260519000000_add_family_and_dna_upgrades.sql` for the migration changes.
 
 ## Security & Privacy
 Heirloom is built around absolute family privacy. Succession vaults and inheritance keys are strictly managed by designated family owners, and all personal documents remain encrypted and private until explicitly shared.
