@@ -1,22 +1,43 @@
 # Heirloom: The Digital Family Legacy Vault
 
-Heirloom is a premium, highly-secure React application designed for families to preserve, organize, and pass down their multi-generational legacy. It offers secure document storage, video legacy archiving, and a cutting-edge "Decision DNA" AI system that simulates the cognitive decision-making models of family members.
+Heirloom is a premium, highly-secure React application designed for families to preserve, organize, and pass down their multi-generational legacy. It brings together secure documents, high-fidelity video preservation, asset tracking, and a next-generation "Decision DNA" advisor into a single family vault.
 
 ## Core Features
 
-- **Multi-Tier Family Hub**: Complete directory management with strict permissions. Tier 1 (Founder/Owner) accounts can dispatch automated email invitations, manage successions, and control manual inheritance locks.
-- **Decision DNA AI Synthesizer**: A robust cognitive assessment engine that builds a dynamic, simulated AI profile for each family member based on 5 worldview dimensions (Risk, Trust, Horizon, Adversity, Ethics). Includes a built-in validation suite that quantifies model accuracy (F1-Score, ROC-AUC, Precision, Recall) using real-time validation scenarios. Family members can consult each other's simulated personas for advice.
-- **Secure Document & Video Vaults**: Private-by-default multimedia storage with the ability to toggle assets as "Shared with Family," publishing them to the family feed instantly.
-- **Automated Direct Onboarding**: Founders generate pre-filled, secure onboarding links that trigger automated email dispatchers. Successors land on a locked registration flow that bypasses verification blocks and auto-links them to their family tree.
-- **Offline / Local Fallback Architecture**: Fully robust dual-state data engine. When Supabase cloud connections are unavailable, Heirloom falls back to a highly realistic simulated `localStorage` model, ensuring flawless demonstrations and functionality at all times.
+- **Dashboard Workspace**: A unified family dashboard with five core tabs:
+  - **Video Legacy** — manage recorded stories, guided sessions, and time-released messages.
+  - **Document Vault** — store sensitive legal documents with private sharing controls.
+  - **Asset Manager** — track family assets, holdings, and digital legacy data.
+  - **Decision DNA** — capture your decision-making profile, validate AI alignment, and consult simulated family advisors.
+  - **Family Hub** — invite, manage, and assign access roles for family members.
+
+- **Decision DNA Advisor**: Model and preserve family decision logic using intelligent worldview capture. Includes validation tools and accuracy metrics for the generated persona.
+
+- **Video Legacy Preservation**: Support for guided recording, personal messages, and family-only archives. Video content is positioned as a core legacy asset, not just a media file.
+
+- **Secure Document Storage**: Private-by-default storage for wills, deeds, letters, and vault assets, with controls for sharing to family members.
+
+- **Family Access & Roles**: Multiple access tiers and role-aware family management let owners define exactly who can view, edit, or inherit each part of the vault.
+
+- **Responsive Navigation**: Modern desktop sidebar and mobile-friendly drawer navigation for fast access to all dashboard sections.
+
+- **Updated Landing Navigation**: The public site navigation now explicitly surfaces `Decision DNA`, `The Vault`, `Video Legacy`, and `Security`.
 
 ## Technology Stack
 
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: Tailwind CSS, shadcn/ui, Lucide Icons
 - **State Management**: TanStack Query (React Query)
-- **Backend / Auth**: Supabase (PostgreSQL, Edge Functions, Storage Buckets, Auth)
+- **Backend / Auth**: Supabase (PostgreSQL, Storage, Auth)
 - **Routing**: React Router DOM
+
+## Latest Release Highlights
+
+- Added explicit **Decision DNA** and **Video Legacy** navigation labels on the landing page.
+- Completed dashboard structure with all five main vault sections.
+- Improved video legacy section with guided recording and time-release messaging.
+- Enhanced family hub workflows for role-based access.
+- Fixed header navigation to reflect the product's current capability map.
 
 ## Running the Project
 
@@ -45,41 +66,26 @@ VITE_SUPABASE_URL=your-supabase-project-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
-## Decision DNA Replication Validation
+## Decision DNA Validation
 
-To ensure the cognitive replication of family members is mathematically accurate, Heirloom implements a validation suite.
+Heirloom includes validation tooling for the Decision DNA advisor to measure how closely the generated persona matches user decision patterns.
 
 ### Metrics & Methodology
-- **Classification Framing**: We present the user and the AI with validation test cases. The user's choices establish the ground truth $y \in \{0, 1\}$.
-- **F1-Score**: Calculates the harmonic mean of Precision and Recall. High F1 represents a high overlap on decision choices.
-- **ROC-AUC**: Evaluates how effectively the AI's confidence scores separate positive decisions from negative ones. An AUC of `1.0` represents a perfect replication of the user's decision boundary.
-- **Accuracy**: Overall proportion of correct predictions across validation cases.
-- **Cohen's Kappa**: Measures agreement between AI predictions and user choices beyond chance.
-- **Mean Absolute Error (MAE)**: Average absolute difference between AI probability scores and user binary choices.
-- **Cosine Similarity**: Similarity between the binary ground truth vector and AI probability vector.
-- **Confusion Matrix**: Displays True Positives, False Positives, True Negatives, and False Negatives to help calibrate the model's sensitivity.
+- **F1-Score**: Harmonic mean of Precision and Recall.
+- **ROC-AUC**: Measures the ranking power of the advisor's confidence scores.
+- **Accuracy**: Proportion of matched decisions.
+- **Precision / Recall**: Evaluate correctness and coverage of positive advice.
+- **Cohen's Kappa**: Agreement metric beyond chance.
+- **MAE**: Average probability error between advisor scores and user decisions.
+- **Cosine Similarity**: Similarity between decision vectors.
 
-> **Current Calibration Results (example)**
+> Example calibration results:
 >
 > - **F1-Score**: 0.85
 > - **ROC-AUC**: 0.92
 > - **Precision**: 0.86
 > - **Recall**: 0.84
 > - **Accuracy**: 0.88
->
-> *Run the calibration by accessing the Decision DNA dashboard, answering the validation questions, and the results will be displayed here.*
-
-## Recent Update: Embeddings, Retrieval, and Decision DNA Alignment
-
-This release upgrades Decision DNA with embedding-backed profiles and also fixes the diagnostic alignment between the initial MCQ questionnaire and the validation test cases. Key points:
-
-- **Aligned Question Sets:** The 20-question diagnostic and the 10 binary validation scenarios have been rewritten to correspond directly to the same five worldview dimensions (Risk, Trust, Horizon, Adversity, Ethics). This improves calibration and prevents mismatched scoring that previously produced near-0% matches.
-- **Profile Embeddings & Decision Logs:** Each `dna_profile` can store a `profile_embedding`, and `decision_logs` now persist Q/A history with `log_embedding` vectors for RAG.
-- **pgvector Support:** Migration adds the `vector` extension and embedding columns to enable nearest-neighbour searches in Postgres.
-- **RAG & Confidence Scoring:** Chat can retrieve similar decision logs as context and surface cosine-similarity confidence scores alongside responses.
-- **Improved Validation Metrics:** Calibration results now more reliably reflect F1, ROC-AUC, Precision, Recall, Accuracy, Cohen's Kappa, MAE, and Cosine Similarity because of the aligned questions and scoring functions.
-
-See `src/components/dashboard/DecisionDNA.tsx` for the updated MCQs and validation logic, and `supabase/migrations/20260519000000_add_family_and_dna_upgrades.sql` for the migration changes.
 
 ## Security & Privacy
 Heirloom is built around absolute family privacy. Succession vaults and inheritance keys are strictly managed by designated family owners, and all personal documents remain encrypted and private until explicitly shared.
