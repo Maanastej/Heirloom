@@ -7,6 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { generateDecisionEmbedding } from "@/lib/behavioralEmbeddings";
 import { getRelevantBehavioralContext } from "@/lib/behavioralMemory";
+import { classifySituation, applySituationWeights } from "@/lib/classifySituation";
+import { ViewReasoningDropdown, ReasoningDetails } from "@/components/dashboard/ViewReasoningDropdown";
 import type { DecisionEvent } from "@/integrations/supabase/types";
 
 type Step = "list" | "mcq" | "values" | "rules" | "experiences" | "training" | "chat";
@@ -298,8 +300,12 @@ export default function DecisionDNA() {
     setLoading(false);
   };
 
+  type DecisionChatMessage =
+    | { role: "user"; content: string }
+    | { role: "ai"; content: string; diagnostics?: ReasoningDetails };
+
   const [question, setQuestion] = useState("");
-  const [chatHistory, setChatHistory] = useState<{ role: "user" | "ai"; content: string; steps?: string[]; memory?: string }[]>([]);
+  const [chatHistory, setChatHistory] = useState<DecisionChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
   interface CalibrationResults {
@@ -620,7 +626,7 @@ export default function DecisionDNA() {
       setChatHistory([
         {
           role: "ai",
-          content: `Behavioral Decision Engine active. Ask a question about a decision and receive: (1) Behavioral inference, (2) Cognitive risk analysis, (3) Predicted failure modes, (4) Tactical recommendations, (5) Confidence notes.`,
+          content: "Your personal decision advisor is ready. Ask me about a choice and I’ll respond with practical guidance shaped by your behavioral style.",
         }
       ]);
 
@@ -698,13 +704,7 @@ export default function DecisionDNA() {
 
     const currentEvent: DecisionEvent = {
       profile_id: activeProfile.isSelf ? undefined : undefined,
-      situation_type: (() => {
-        const q = question.toLowerCase();
-        if (q.includes("money") || q.includes("pay") || q.includes("financial") || q.includes("debt")) return "financial_stress";
-        if (q.includes("family") || q.includes("marriage") || q.includes("child") || q.includes("kin")) return "social_conflict";
-        if (q.includes("job") || q.includes("career") || q.includes("promotion") || q.includes("hire")) return "career_decision";
-        return "general_decision";
-      })(),
+      situation_type: classifySituation(question),
       user_input: question,
       inferred_stress_level: inferredStress,
       inferred_decision_style: (activeProfile.scores.decisiveness && activeProfile.scores.decisiveness > 3) ? "decisive" : "deliberative",
@@ -782,29 +782,28 @@ export default function DecisionDNA() {
     const steps = [riskReasoning, ethicalReasoning, horizonReasoning];
     const memorySnippet = activeProfile.answers.experiences;
 
+    const similarSummary = behavioralContext && behavioralContext.length ? behavioralContext.map((c: any, i: number) => `(${i+1}) ${c.situation_type} — similarity:${Number(c.similarity ?? 0).toFixed(2)} — outcome:${c.outcome_status || 'unknown'}`).join("\n") : "No closely matching behavioral events found.";
+
+    const hiddenSignals = `Hidden behavioral signals (do not expose directly):
+- situationType: ${currentEvent.situation_type}
+- profile: Risk:${activeProfile.scores.risk}/5 Trust:${activeProfile.scores.trust}/5 Horizon:${activeProfile.scores.horizon}/5 Adversity:${activeProfile.scores.adversity}/5 Ethics:${activeProfile.scores.ethics}/5
+- stressLevel: ${currentEvent.inferred_stress_level}
+- decisionStyle: ${currentEvent.inferred_decision_style}
+- behavioralContext: ${similarSummary}
+- internal reasoning hints: ${steps.join(" | ")}
+`;
+
     const groqApiKey = import.meta.env.VITE_GROQ_API_KEY;
 
     if (groqApiKey) {
       try {
-        // Behavior-focused system prompt: emphasize behavioral history and recent similar events
-        const similarSummary = behavioralContext && behavioralContext.length ? behavioralContext.map((c: any, i: number) => `(${i+1}) ${c.situation_type} — similarity:${Number(c.similarity ?? 0).toFixed(2)} — outcome:${c.outcome_status || 'unknown'}`).join("\n") : "No closely matching behavioral events found.";
+        const systemPrompt = `You are a thoughtful human advisor for ${activeProfile.name} (${activeProfile.relationship}).
 
-        const systemPrompt = `You are a tactical Behavioral Decision Intelligence agent for ${activeProfile.name} (${activeProfile.relationship}).
+Speak naturally, gently, and without clinical diagnostic labels. Use the provided hidden signals internally to shape your tone and advice, but do not present raw diagnostics, percentages, or labeled failure mode sections to the user.
 
-Focus ONLY on observable behaviors, stress-state indicators, prior decision outcomes, and repeatable patterns. Do NOT provide values-based narration, symbolic memories, or motivational statements.
+${hiddenSignals}
 
-Profile summary (minimal): Risk:${activeProfile.scores.risk}/5 Trust:${activeProfile.scores.trust}/5 Horizon:${activeProfile.scores.horizon}/5 Adversity:${activeProfile.scores.adversity}/5 Ethics:${activeProfile.scores.ethics}/5
-
-Recent behavioral context (top similar events):\n${similarSummary}
-
-Instructions for response (MANDATORY):
-1) Start with a one-line Behavioral Inference: what behavior does the user likely display in this situation.
-2) Provide Cognitive Risk Analysis: list likely biases and stress-driven failure modes (brief bullets).
-3) Predict top 3 Failure Modes with confidence scores (0..1).
-4) Give 3 Tactical Recommendations directly tied to counters for the predicted biases — each recommendation must be operational and time-bound.
-5) Conclude with Confidence Notes (numerical confidence and whether this is based on repeated events or single instance).
-
-Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom', or 'alignment'. Keep tone analytical, probabilistic, and tactical.`;
+Answer as if you were talking to someone who expects practical support and understands their own patterns. Keep the voice warm, grounded, and actionable.`;
 
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
           method: "POST",
@@ -822,7 +821,7 @@ Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom'
               })),
               { role: "user", content: userQ }
             ],
-            temperature: 0.2, // Low temperature for high fidelity / hallucination control
+            temperature: 0.2,
             max_tokens: 800
           })
         });
@@ -837,12 +836,18 @@ Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom'
               {
                 role: "ai",
                 content: responseContent,
-                steps,
-                memory: memorySnippet
+                diagnostics: {
+                  situationType: currentEvent.situation_type,
+                  situationDescription: currentEvent.situation_type,
+                  confidence: behavioralContext && behavioralContext.length ? 0.72 : 0.45,
+                  reasoningSteps: steps,
+                  similarContext: behavioralContext && behavioralContext.length ? `${behavioralContext.length} similar events retrieved` : "No similar past events found.",
+                  memoryNote: memorySnippet,
+                }
               }
             ]);
             setIsTyping(false);
-            return; // Successful Groq integration!
+            return;
           }
         }
       } catch (err) {
@@ -852,19 +857,7 @@ Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom'
 
     // Fallback Dynamic Simulation Generator (Local Heuristic Engine)
     setTimeout(() => {
-      const q = userQ.toLowerCase();
-      let category = "general";
-      if (q.includes("money") || q.includes("financial") || q.includes("draining") || q.includes("struggling") || q.includes("capital") || q.includes("debt") || q.includes("sell") || q.includes("buy") || q.includes("poor") || q.includes("cost")) {
-        category = "financial";
-      } else if (q.includes("family") || q.includes("betray") || q.includes("relationship") || q.includes("wife") || q.includes("husband") || q.includes("son") || q.includes("daughter") || q.includes("brother") || q.includes("sister") || q.includes("friend") || q.includes("kin")) {
-        category = "relationship";
-      } else if (q.includes("betray") || q.includes("honour") || q.includes("integrity") || q.includes("ethics") || q.includes("rules") || q.includes("lie") || q.includes("cheat") || q.includes("legal") || q.includes("stolen")) {
-        category = "moral";
-      } else if (q.includes("career") || q.includes("job") || q.includes("work") || q.includes("business") || q.includes("company") || q.includes("startup") || q.includes("employ")) {
-        category = "career";
-      }
-      
-      const isFamilyVsCompany = (q.includes("family") && q.includes("company")) || q.includes("betray") || (q.includes("sell") && q.includes("family"));
+      const situationType = classifySituation(userQ);
 
       // Build a behavior-focused heuristic response following required 5-part format
       const pattern = (() => {
@@ -887,31 +880,64 @@ Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom'
       if ((activeProfile.scores.risk ?? 3) >= 4) risks.push("impulsive escalation without downside mitigation");
       if ((activeProfile.scores.trust ?? 3) <= 2) risks.push("reduced help-seeking; over-reliance on self-decisions");
 
-      // Predicted failure modes with naive probabilities
-      const failures = [
-        { mode: "delayed action", p: Math.max(0.15, 0.6 - (activeProfile.scores.risk ?? 3) * 0.1) },
-        { mode: "panic decision", p: Math.min(0.85, 0.1 + (activeProfile.scores.stress_focus ?? 0.5) * 0.6) },
-        { mode: "avoidance loop", p: Math.min(0.9, 0.2 + (1 - (activeProfile.scores.uncertainty_tolerance ?? 0.5)) * 0.6) }
-      ];
+      const baseFailureScores = {
+        delay_action: 0.25 + (1 - (activeProfile.scores.risk ?? 3) / 5) * 0.2 + (1 - (activeProfile.scores.decisiveness ?? 3) / 5) * 0.15,
+        panic_decision: 0.12 + (activeProfile.scores.stress_focus ?? 0.5) * 0.22 + (1 - (activeProfile.scores.recovery_speed ?? 0.5)) * 0.12,
+        avoidance_loop: 0.13 + (1 - (activeProfile.scores.uncertainty_tolerance ?? 0.5)) * 0.24 + (1 - (activeProfile.scores.trust ?? 3) / 5) * 0.08,
+        reassurance_seeking: 0.08 + (1 - (activeProfile.scores.self_reliance ?? 3) / 5) * 0.18 + (1 - (activeProfile.scores.trust ?? 3) / 5) * 0.1,
+        emotional_reactivity: 0.08 + (1 - (activeProfile.scores.stress_coping ?? 0.5)) * 0.16 + (1 - (activeProfile.scores.recovery_speed ?? 0.5)) * 0.1,
+        analysis_paralysis: 0.09 + (1 - (activeProfile.scores.decisiveness ?? 3) / 5) * 0.2 + (1 - (activeProfile.scores.uncertainty_tolerance ?? 0.5)) * 0.12,
+        overthinking: 0.07 + (1 - (activeProfile.scores.decisiveness ?? 3) / 5) * 0.18 + (1 - (activeProfile.scores.uncertainty_tolerance ?? 0.5)) * 0.09,
+      };
 
-      // Tactical recommendations mapped to failures
+      const weightedFailures = applySituationWeights(baseFailureScores, situationType);
+      const failures = Object.entries(weightedFailures)
+        .map(([mode, p]) => ({ mode, p: Math.min(0.95, Math.max(0.05, p)) }))
+        .sort((a, b) => b.p - a.p)
+        .slice(0, 3);
+
       const recommendations = [
-        `Delay irreversible financial moves for 24 hours and require a written downside checklist before any commitment.`,
-        `Require one external review (trusted advisor or lawyer) for high-impact decisions within 72 hours.`,
-        `Split high-risk actions into small, reversible steps with pre-defined stop-loss triggers.`
+        `Delay irreversible moves for 24 hours and require a downside checklist before any commitment.`,
+        `Get at least one external reality check by a trusted advisor or stakeholder within 72 hours.`,
+        `Break the choice into smaller, reversible steps and embed explicit stop-loss triggers.`
       ];
 
       const confidence = behavioralContext && behavioralContext.length ? 0.72 : 0.45;
 
-      const responseContent = `Behavioral Inference:\n- Likely behaviors: ${inferredBehaviors}.\n\nCognitive Risk Analysis:\n- ${risks.join("\n- ")}\n\nPredicted Failure Modes:\n${failures.map(f => `- ${f.mode}: ${ (f.p * 100).toFixed(0) }%`).join("\n")}\n\nTactical Recommendations:\n- ${recommendations.join("\n- ")}\n\nConfidence Notes:\n- Confidence: ${Math.round(confidence * 100)}%. ${behavioralContext && behavioralContext.length ? `Based on ${behavioralContext.length} similar past events.` : 'Limited past-event evidence; treat as provisional.'}`;
+      const topFailure = failures[0]?.mode?.replace(/_/g, " ") || "more hesitation";
+      const suggestionTone = situationType === "financial_crisis"
+        ? "When money and risk are both in play, the most damaging move is often waiting until the pressure spike forces a worse choice."
+        : situationType === "relationship_conflict"
+        ? "When conversations are heated, the real loss is usually not the argument itself but the silence and resentment that follow."
+        : situationType === "career_uncertainty"
+        ? "Career uncertainty often feels like your options are closing in, but the bigger danger is overthinking until opportunity slips away."
+        : situationType === "social_pressure"
+        ? "Social pressure can make small decisions feel decisive; the strongest move is to choose from what keeps your balance, not what earns applause."
+        : situationType === "health_stress"
+        ? "Health-related stress often pulls you toward extremes; a calmer, smaller action can be the best way to keep control."
+        : situationType === "opportunity_risk"
+        ? "When opportunity and risk collide, the safest path is usually the one that preserves future options."
+        : situationType === "identity_conflict"
+        ? "Identity questions are rarely solved by a quick answer; they respond better to a clear, honest pause and a small step that feels aligned."
+        : "This situation looks like one where the choice feels bigger than it should, and the best move is to keep the next action simple and reversible.";
+
+      const responseContent = `I hear you. In this situation, you are most likely navigating ${situationType.replace(/_/g, " ")} — a place where ${topFailure} can quietly become the main risk. ${suggestionTone} ${recommendations[0].replace(/^./, (c) => c.toUpperCase())} ${recommendations[1]} ${recommendations[2]}`;
 
       setChatHistory(prev => [
         ...prev,
         {
           role: "ai",
           content: responseContent,
-          steps,
-          memory: behavioralContext && behavioralContext.length ? `${behavioralContext.length} similar events retrieved` : undefined
+          diagnostics: {
+            situationType,
+            situationDescription: situationType.replace(/_/g, " "),
+            predictedFailures: failures,
+            confidence,
+            reasoningSteps: steps,
+            similarContext: behavioralContext && behavioralContext.length ? `${behavioralContext.length} similar events retrieved` : "No similar past events found.",
+            recommendationSummary: recommendations,
+            memoryNote: behavioralContext && behavioralContext.length ? `${behavioralContext.length} similar events retrieved` : undefined,
+          }
         }
       ]);
       setIsTyping(false);
@@ -1340,30 +1366,8 @@ Never use phrases like 'core values', 'life lesson', 'legacy', 'hard-won wisdom'
                       <p className="whitespace-pre-wrap">{msg.content}</p>
                     </div>
 
-                    {/* Show Reasoning Process steps if available */}
-                    {msg.role === "ai" && msg.steps && (
-                      <div className="space-y-2 animate-fade-in pl-1">
-                        <span className="text-[9px] font-bold text-bronze uppercase flex items-center gap-1.5">
-                          <Activity className="w-3 h-3" /> Cognitive Reasoning Trail
-                        </span>
-                        <div className="bg-muted border border-border rounded-lg p-3 space-y-2.5 text-[10px] text-muted-foreground">
-                          {msg.steps.map((step, idx) => (
-                            <p key={idx} className="leading-relaxed border-l-2 border-bronze/45 pl-2">
-                              {step}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Show memory interpolation link if available */}
-                    {msg.role === "ai" && msg.memory && (
-                      <div className="bg-amber-500/5 border border-amber-500/10 rounded-lg p-3 text-[10px] text-amber-700/90 leading-relaxed flex gap-2">
-                        <div>
-                          <span className="font-bold not-italic block text-[9px] uppercase tracking-wide text-bronze mb-1">Behavioral Context</span>
-                          <div className="text-[11px] text-muted-foreground">{msg.memory}</div>
-                        </div>
-                      </div>
+                    {msg.role === "ai" && msg.diagnostics && (
+                      <ViewReasoningDropdown details={msg.diagnostics} />
                     )}
 
                   </div>
