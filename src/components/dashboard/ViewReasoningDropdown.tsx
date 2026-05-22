@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 export interface ReasoningDetails {
+  decisionIntent?: string;
   situationType?: string;
   situationDescription?: string;
   predictedFailures?: Array<{ mode: string; p: number }>;
@@ -15,6 +16,7 @@ export interface ReasoningDetails {
 
 export function ViewReasoningDropdown({ details }: { details: ReasoningDetails }) {
   const hasDetails = Boolean(
+    details?.decisionIntent ||
     details?.situationType ||
     details?.predictedFailures?.length ||
     details?.confidence !== undefined ||
@@ -32,6 +34,13 @@ export function ViewReasoningDropdown({ details }: { details: ReasoningDetails }
         <ChevronDown className="w-3 h-3" />
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-3 rounded-xl border border-border bg-background p-3 text-[11px] text-muted-foreground space-y-3">
+        {details.decisionIntent && (
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-bronze/90">Decision intent</div>
+            <div className="mt-1 text-sm text-foreground">{details.decisionIntent.replace(/_/g, " ")}</div>
+          </div>
+        )}
+
         {details.situationType && (
           <div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-bronze/90">Situation</div>

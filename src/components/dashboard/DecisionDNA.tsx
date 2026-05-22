@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { generateDecisionEmbedding } from "@/lib/behavioralEmbeddings";
 import { getRelevantBehavioralContext } from "@/lib/behavioralMemory";
 import { classifySituation, applySituationWeights } from "@/lib/classifySituation";
+import { extractDecisionIntent } from "@/lib/extractDecisionIntent";
 import { ViewReasoningDropdown, ReasoningDetails } from "@/components/dashboard/ViewReasoningDropdown";
 import type { DecisionEvent } from "@/integrations/supabase/types";
 
@@ -702,7 +703,8 @@ export default function DecisionDNA() {
       return Number(Math.max(0, Math.min(1, stress)).toFixed(3));
     })();
 
-    const currentEvent: DecisionEvent = {
+const decisionIntent = extractDecisionIntent(question);
+      const currentEvent: DecisionEvent = {
       profile_id: activeProfile.isSelf ? undefined : undefined,
       situation_type: classifySituation(question),
       user_input: question,
@@ -785,6 +787,7 @@ export default function DecisionDNA() {
     const similarSummary = behavioralContext && behavioralContext.length ? behavioralContext.map((c: any, i: number) => `(${i+1}) ${c.situation_type} — similarity:${Number(c.similarity ?? 0).toFixed(2)} — outcome:${c.outcome_status || 'unknown'}`).join("\n") : "No closely matching behavioral events found.";
 
     const hiddenSignals = `Hidden behavioral signals (do not expose directly):
+- decisionIntent: ${decisionIntent}
 - situationType: ${currentEvent.situation_type}
 - profile: Risk:${activeProfile.scores.risk}/5 Trust:${activeProfile.scores.trust}/5 Horizon:${activeProfile.scores.horizon}/5 Adversity:${activeProfile.scores.adversity}/5 Ethics:${activeProfile.scores.ethics}/5
 - stressLevel: ${currentEvent.inferred_stress_level}
@@ -799,7 +802,7 @@ export default function DecisionDNA() {
       try {
         const systemPrompt = `You are a thoughtful human advisor for ${activeProfile.name} (${activeProfile.relationship}).
 
-Speak naturally, gently, and without clinical diagnostic labels. Use the provided hidden signals internally to shape your tone and advice, but do not present raw diagnostics, percentages, or labeled failure mode sections to the user.
+Speak naturally, gently, and without clinical diagnostic labels. Use the provided hidden signals internally to shape your tone, framing, and recommendations, but do not present raw diagnostics, percentages, or labeled failure mode sections to the user.
 
 ${hiddenSignals}
 
@@ -837,6 +840,7 @@ Answer as if you were talking to someone who expects practical support and under
                 role: "ai",
                 content: responseContent,
                 diagnostics: {
+                  decisionIntent,
                   situationType: currentEvent.situation_type,
                   situationDescription: currentEvent.situation_type,
                   confidence: behavioralContext && behavioralContext.length ? 0.72 : 0.45,
@@ -858,6 +862,7 @@ Answer as if you were talking to someone who expects practical support and under
     // Fallback Dynamic Simulation Generator (Local Heuristic Engine)
     setTimeout(() => {
       const situationType = classifySituation(userQ);
+      const decisionIntent = extractDecisionIntent(userQ);
 
       // Build a behavior-focused heuristic response following required 5-part format
       const pattern = (() => {
@@ -905,7 +910,27 @@ Answer as if you were talking to someone who expects practical support and under
       const confidence = behavioralContext && behavioralContext.length ? 0.72 : 0.45;
 
       const topFailure = failures[0]?.mode?.replace(/_/g, " ") || "more hesitation";
-      const suggestionTone = situationType === "financial_crisis"
+      const suggestionTone = decisionIntent === "spending_boundary"
+        ? "This feels like a spending question — focus on what you can afford without eroding future flexibility, and watch for emotional spending that feels good now but burdens you later."
+        : decisionIntent === "business_exit"
+        ? "This looks like a business exit decision, so the key is to weigh optionality, timing risk, and whether selling now leaves room for better offers later."
+        : decisionIntent === "career_move"
+        ? "This is a career move question, so think in terms of skill momentum, timing, and how much confidence you need before making the next leap."
+        : decisionIntent === "relationship_conflict"
+        ? "This is more about a relationship conflict, where the choice is less about a single action and more about how to preserve trust while still honoring your own limits."
+        : decisionIntent === "emotional_support"
+        ? "This feels like you’re asking for emotional support, so the strongest response is to acknowledge how this is affecting you and to recommend a gentle, practical next step."
+        : decisionIntent === "risk_tradeoff"
+        ? "This is a tradeoff decision, so the most useful frame is comparing what you gain against what you stand to lose if things go wrong."
+        : decisionIntent === "self_control"
+        ? "This looks like a self-control issue, where small concrete boundaries and a clear immediate plan usually work better than trying to solve everything at once."
+        : decisionIntent === "long_term_planning"
+        ? "This is a long-term planning question, so the best approach is to keep the next move aligned with the future you want rather than reacting to the current pressure."
+        : decisionIntent === "conflict_resolution"
+        ? "This seems like a conflict resolution issue, so focus on practical steps that reduce friction and keep the relationship or partnership intact."
+        : decisionIntent === "identity_conflict"
+        ? "This is an identity conflict, which means the most useful help is probably to connect to what feels authentic for you rather than chasing a quick external fix."
+        : situationType === "financial_crisis"
         ? "When money and risk are both in play, the most damaging move is often waiting until the pressure spike forces a worse choice."
         : situationType === "relationship_conflict"
         ? "When conversations are heated, the real loss is usually not the argument itself but the silence and resentment that follow."
