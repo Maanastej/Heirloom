@@ -229,7 +229,7 @@ const VideoLegacyDash = () => {
     if (user && familyMembers.length > 0) {
       fetchOtherFamilyVideos();
     }
-  }, [videos, localVaultVideos, sharedVideos, user, familyMembers]);
+  }, [videos, localVaultVideos, sharedVideos, user, familyMembers.map(m => m.user_id).join(",")]);
 
   const deleteMutation = useMutation({
     mutationFn: async ({ name, ownerId }: { name: string; ownerId: string }) => {
