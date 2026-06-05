@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if git diff --cached -G 'gsk_[a-zA-Z0-9]' --name-only | grep -q .; then
+  echo "ERROR: Secret detected! Commit rejected."
+  exit 1
+fi
+exit 0
