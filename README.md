@@ -37,7 +37,9 @@ Heirloom is a premium, highly-secure React application designed for families to 
 - Completed dashboard structure with all five main vault sections.
 - Improved video legacy section with guided recording and time-release messaging.
 - Enhanced family hub workflows for role-based access.
-- Fixed header navigation to reflect the product's current capability map.
+- Integrated robust GraphRAG fallback rendering to prevent UI collapse during offline mode.
+- Standardized the reasoning engine onto `llama-3.3-70b-versatile` for more stable Decision DNA outputs.
+- Established strict Push Protection pipelines by enforcing `.env`-only secret management.
 
 ## Running the Project
 
