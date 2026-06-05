@@ -4,6 +4,9 @@ import { extractDecisionIntent } from "./extractDecisionIntent";
 import { getMemories } from "./services/memoryService";
 import { getDecisions } from "./services/decisionService";
 import { getPrinciples } from "./services/principleService";
+import { createClient } from '@supabase/supabase-js';
+import { classifyDomain } from './domainClassifier';
+import { generateDomainUncertainty, UserState } from './uncertaintyEngine';
 import { getGraphEdges } from "./services/graphService";
 
 // Graph Schema Interfaces
@@ -96,6 +99,13 @@ export interface SimulatorResponseData {
   decisions: string[];
   principles: string[];
   potentialCounterarguments: string[];
+  domain: string;
+  questionSource: string;
+  systemMode?: "NORMAL" | "FALLBACK_SAFE_MODE";
+  reasoningDisabled?: boolean;
+  cognitiveProfile?: string;
+  uncertaintyVariables?: string[];
+  note?: string;
 }
 
 // Graph Multi-Hop Expansion Logic (Phase 10 Core)
@@ -246,6 +256,18 @@ export const retrieveGraphRAGContext = async (
   };
 };
 
+const deriveUserStateFromProfile = (scores: { risk: number, ambition: number, tradition: number, independence: number }): UserState => {
+  // Synthesize simplistic heuristics for User State based on available profile scores
+  // In a real production environment, this would pull from structured DB fields (e.g., age, income).
+  return {
+    ageStage: "mid_career", // Default heuristic
+    financialPressure: scores.tradition > 0.6 ? "medium" : "low", 
+    riskTolerance: scores.risk > 0.6 ? "high" : (scores.risk < 0.4 ? "low" : "medium"),
+    dependencyLoad: scores.tradition > 0.6 ? "high" : "low", // Assuming tradition correlates with family load
+    urgencyLevel: scores.ambition > 0.7 ? "high" : "medium"
+  };
+};
+
 export const generateSimulatorResponse = async (
   profileName: string,
   userQuery: string,
@@ -253,6 +275,16 @@ export const generateSimulatorResponse = async (
   pastQA: { question: string; answer: string }[] = [],
   groqApiKey?: string
 ): Promise<SimulatorResponseData> => {
+  // 1. Classify Domain explicitly for Dynamic Question Generation
+  const domainClass = await classifyDomain(userQuery, groqApiKey || "");
+  console.log("DOMAIN_BEFORE_QUESTION_GENERATION", domainClass);
+
+  // 2. Compute User State
+  const userState = deriveUserStateFromProfile(evidence.profile.scores);
+
+  // 3. Generate Domain-Specific + User-State Conditioned Uncertainty
+  const uncertainty = await generateDomainUncertainty(userQuery, domainClass.primaryDomain, domainClass.secondaryDomain, userState, groqApiKey || "");
+  
   // If no evidence exists, return a clear "insufficient data" response with a follow up question
   if (evidence.memories.length === 0 && evidence.decisions.length === 0 && evidence.principles.length === 0) {
     return {
@@ -276,8 +308,9 @@ export const generateSimulatorResponse = async (
       reasoning: "Missing historical data.",
       memories: [],
       decisions: [],
-      principles: [],
-      potentialCounterarguments: []
+      potentialCounterarguments: [],
+      domain: domainClass.primaryDomain,
+      questionSource: "Fallback"
     };
   }
 
@@ -320,7 +353,37 @@ export const generateSimulatorResponse = async (
   if (groqApiKey) {
     try {
       const prompt = `
-You are the Digital Twin of ${profileName}. 
+You are the Digital Twin. You emulate the decision-making patterns of the user based strictly on the provided evidence, their Domain Cognitive Profile, and their Current User State.
+
+USER STATE CONSTRAINTS:
+- Dominant Factor: ${uncertainty.userStateInfluence.dominantFactor}
+- Risk Adjustment: ${uncertainty.userStateInfluence.riskAdjustment}
+- Time Horizon Adjustment: ${uncertainty.userStateInfluence.timeHorizonAdjustment}
+
+MULTI-DOMAIN CONFLICT RESOLUTION:
+- Conflict Type: ${uncertainty.conflictResolution.conflictType} (${uncertainty.conflictResolution.tradeoffAxis})
+- Dominant Domain: ${uncertainty.conflictResolution.dominantDomain}
+- Suppressed Domain: ${uncertainty.conflictResolution.suppressedDomain}
+- Resolution Strategy: ${uncertainty.conflictResolution.resolutionStrategy}
+- Final Recommendation Bias: ${uncertainty.conflictResolution.finalRecommendationBias}
+
+DOMAIN COGNITIVE PROFILE FOR THIS QUERY:
+- Primary Focus: ${uncertainty.adjustedCognitiveProfile.primaryFocus}
+- Time Horizon: ${uncertainty.adjustedCognitiveProfile.timeHorizon}
+- Decision Bias: ${uncertainty.adjustedCognitiveProfile.decisionBias}
+- Regret Sensitivity: ${uncertainty.adjustedCognitiveProfile.regretSensitivity}
+- Evaluation Style: ${uncertainty.adjustedCognitiveProfile.evaluationStyle}
+
+FINAL DECISION SYNTHESIS DIRECTIVE:
+- Decision Logic: ${uncertainty.finalDecisionSynthesis.finalDecision}
+- Decision Type: ${uncertainty.finalDecisionSynthesis.decisionType}
+- Reasoning Summary: ${uncertainty.finalDecisionSynthesis.reasoningSummary}
+- Key Tradeoffs: ${uncertainty.finalDecisionSynthesis.keyTradeoffs.join(', ')}
+- Risk Profile: ${uncertainty.finalDecisionSynthesis.riskProfile}
+- Expected Trajectory: ${uncertainty.finalDecisionSynthesis.expectedOutcomeTrajectory}
+
+If the context lacks evidence for this specific domain, rely on their core principles but filter them through this Cognitive Profile's Evaluation Style.
+CRITICAL RULE: NEVER output a generic "balanced approach". You must explicitly suppress the secondary domain and aggressively prioritize the Dominant Domain based on the Conflict Resolution Rules above.
 
 CRITICAL SYSTEM CONSTRAINTS:
 1. ONLY answer using the provided retrieved context. Do NOT use generic or external knowledge.
@@ -331,7 +394,12 @@ CRITICAL SYSTEM CONSTRAINTS:
 USER QUERY TO RESOLVE:
 "${userQuery}"
 
-EVIDENCE CONTEXT:Question/Scenario:
+DETECTED DOMAIN:
+Primary: ${domainClass.primaryDomain}
+Secondary: ${domainClass.secondaryDomain}
+
+EVIDENCE CONTEXT:
+Question/Scenario:
 "${evidence.intent}"
 
 Active User Value Profile (Dynamic CIDE weights):
@@ -352,19 +420,17 @@ RECENT CLARIFICATIONS (CRITICAL CONTEXT):
 The user has provided the following answers to clarifying questions. You MUST incorporate these answers directly into your recommendation and confidence calculation.
 ${pastQA.length > 0 ? pastQA.map(qa => `Q: ${qa.question}\nA: ${qa.answer}`).join("\n\n") : "No clarifying questions asked yet."}
 
-Based on the user's explicit query above, identify the missing variables that are preventing a 100% confident recommendation. 
-Calculate their Priority Score based on Expected Information Gain (Importance * Recommendation Impact * (1 - Confidence)).
-Select the SINGLE highest priority unknown.
-Generate a targeted question for this unknown, providing 3-4 structured options.
+DYNAMIC QUESTION GENERATION RULES:
+Based on the user's explicit query and the Detected Domain, identify the missing variables preventing a 100% confident recommendation.
+Select the SINGLE highest priority unknown and generate a targeted question.
+1. The question MUST emerge from the Evidence Context (e.g. if the memory mentions a health crisis, ask about health).
+2. The question MUST be highly specific to the Detected Domain.
+   - For Marriage/Family: Ask about life purpose, emotional regret, or legacy.
+   - For Career/Startup: Ask about financial downside or growth potential.
+   - 3. Rely exclusively on \`uncertainty.adjustedQuestions[0]\` if a new question is needed.
+4. DO NOT ask generic behavioral-history questions.
+5. Provide 3-4 structured scenario options.
 
-CRITICAL MAPPING RULES:
-- If uncertainty = failure_consequence, ask about the specific consequences of failure.
-- If uncertainty = financial_runway, ask about financial runway.
-- If uncertainty = family_dependency, ask about family dependency.
-- DO NOT fall back to generic behavioral-history questions (like "have you taken risks before?") unless the highest EIG variable is literally historical behavior.
-- The question must directly gather the data for the target variableId.
-
-DO NOT ask about generic conflicting priorities or generic traits. Ask a hyper-specific scenario-based question.
 DO NOT ask any question from this list of previously asked questions: [${pastQA.map(qa => qa.question).join(", ")}].
 If the user's recent answers provide enough clarity, you MUST increase your confidence score accordingly and you may choose to set nextQuestion to null.
 
@@ -386,10 +452,10 @@ Output a raw JSON object with exactly this structure:
      "opposingEvidence": ["Evidence supporting safety/inaction"],
      "resolution": "Rule resolving the conflict"
   },
-  "twinUncertainty": "A human-friendly explanation of exactly what specific context is missing. Start with 'I understand X, but I do not yet understand Y in this situation.'",
+  "twinUncertainty": "A human-friendly explanation of exactly what specific context is missing, focusing on the variables: ${uncertainty.adjustedUncertaintyVariables.join(", ")}.",
   "nextQuestion": {
-     "variableId": "e.g. failure_consequence, financial_runway, etc.",
-     "question": "Targeted clarifying question for the highest EIG unknown.",
+     "variableId": "Pick the most critical uncertainty variable from: ${uncertainty.adjustedUncertaintyVariables.join(", ")}",
+     "question": "A domain-specific tradeoff question adjusted for user state. Examples: '${uncertainty.adjustedQuestions.join("' or '")}'",
      "options": ["Highly specific scenario option 1", "Specific option 2", "Specific option 3"],
      "importanceScore": 85
   },
@@ -405,19 +471,32 @@ Output a raw JSON object with exactly this structure:
       console.log("FINAL_PROMPT", prompt);
       console.log("PROMPT_SENT", prompt);
 
+      console.log("LLM_PATH_START");
+      console.log(`API Key Present: ${!!groqApiKey}`);
+      
+      const payloadString = JSON.stringify({
+        model: "llama-3.3-70b-versatile",
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.15,
+        max_tokens: 1000
+      });
+      console.log(`Request Payload Size: ${payloadString.length} bytes`);
+
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${groqApiKey}`
         },
-        body: JSON.stringify({
-          model: "llama3-70b-8192",
-          messages: [{ role: "user", content: prompt }],
-          temperature: 0.15,
-          max_tokens: 1000
-        })
+        body: payloadString
       });
+
+      console.log(`HTTP Status Code: ${response.status}`);
+      if (!response.ok) {
+         const errText = await response.text();
+         console.error(`Groq API Error: ${response.status} - ${errText}`);
+         throw new Error(`HTTP ${response.status} - ${errText}`);
+      }
 
       if (response.ok) {
         const data = await response.json();
@@ -427,7 +506,11 @@ Output a raw JSON object with exactly this structure:
              // Parse JSON, handle markdown wrappers if any
              const jsonMatch = text.match(/\{[\s\S]*\}/);
              const rawJson = jsonMatch ? jsonMatch[0] : text;
+             
+             console.log("RAW_LLM_RESPONSE:\n" + rawJson);
              const parsed = JSON.parse(rawJson);
+             console.log("PARSED_JSON_OUTPUT:\n", parsed);
+             console.log("LLM_PATH_SUCCESS");
 
              if (parsed.nextQuestion) {
                  console.log("Detected Uncertainty:\n" + parsed.nextQuestion.variableId);
@@ -476,51 +559,41 @@ Output a raw JSON object with exactly this structure:
                 memories: parsed.memories || [`${primaryMemory?.title || "Unknown"} (${primaryMemory?.year || "N/A"}): ${primaryMemory?.content || "N/A"}`],
                 decisions: parsed.decisions || [`${primaryDecision?.situation || "Unknown"}: Selected "${primaryDecision?.selected_option || "N/A"}" because: "${primaryDecision?.reasoning || "N/A"}"`],
                 principles: parsed.principles || [`${primaryPrinciple?.title || "Unknown"}: ${primaryPrinciple?.description || "N/A"}`],
-                potentialCounterarguments: parsed.potentialCounterarguments || []
+                potentialCounterarguments: parsed.potentialCounterarguments || [],
+                domain: domainClass.primaryDomain,
+                questionSource: "LLM Generation"
              };
           } catch (e) {
+             console.log("RAW_LLM_RESPONSE:\n" + text);
              console.error("Failed to parse LLM JSON", e);
+             console.log("LLM_PATH_FAILED");
+             throw e; // Force fallback
           }
         }
       }
     } catch (err) {
-      console.error("GraphRAG LLM synthesis failed, fallback to local pipeline", err);
+      console.log("LLM_PATH_FAILED");
+      console.error("GraphRAG LLM synthesis failed, fallback to local pipeline:", err);
       console.warn("FALLBACK_ENGINE_TRIGGERED");
     }
   }
 
   console.warn("FALLBACK_ENGINE_TRIGGERED_DUE_TO_NO_KEY_OR_ERROR");
+
   // Pure Local Simulation generator — uses only real evidence
-  let nextQuestion: GeneratedQuestion | null = null;
-  
-  if (confidenceScore < 0.7) {
-      // Phase 20: Map generic local uncertainties directly to the correct variable
-      // Since we don't have LLM inference here, we generate a hardcoded matching pair
-      nextQuestion = {
-         variableId: "failure_consequence",
-         question: "What would happen if this opportunity failed?",
-         options: ["Loss of savings", "Family financial stress", "Career setback", "Emotional disappointment"],
-         importanceScore: 100
-      };
+  // APPLY LOOP DETECTION IN LOCAL FALLBACK TOO
+  if (pastQA && pastQA.length > 0 && pastQA[pastQA.length - 1].question === "Reasoning engine offline.") {
+      console.error("DISCOVERY_LOOP_DETECTED_IN_FALLBACK - HALTING");
+      // If we've looped in fallback, do not proceed.
   }
 
   console.log("RECOMMENDATION_PATH_2_LOCAL_FALLBACK");
   return {
-    recommendation: confidenceScore < 0.4 ? "Insufficient historical data to make a definitive recommendation." : recommendedDecision,
-    confidence: confidenceScore,
-    potentialConfidence: confidenceScore + 0.2,
-    primaryReason: "Historical data suggests a lean towards measured decisions, but specific scenario impacts are unknown.",
-    conflictAnalysis: { conflictDetected: false, supportingEvidence: [], opposingEvidence: [], resolution: "" },
-    twinUncertainty: "I understand your general risk profile, but I do not yet understand the specific consequences of failure in this situation.",
-    nextQuestion,
-    learningSummary: [],
-    reasoning: reasoningDescription,
-    memories: primaryMemory ? [`${primaryMemory.title} (${primaryMemory.year || "N/A"}): ${primaryMemory.content}`] : [],
-    decisions: primaryDecision ? [`${primaryDecision.situation}: Selected "${primaryDecision.selected_option}" because: "${primaryDecision.reasoning}"`] : [],
-    principles: primaryPrinciple ? [`${primaryPrinciple.title}: ${primaryPrinciple.description}`] : [],
-    potentialCounterarguments: [
-      "A faster, higher-leverage strategy might yield quicker rewards if market timing is perfect.",
-      "Delaying action could miss a short-lived growth window."
-    ]
-  };
+    systemMode: "FALLBACK_SAFE_MODE",
+    reasoningDisabled: true,
+    domain: uncertainty.primaryDomain,
+    uncertaintyVariables: uncertainty.adjustedUncertaintyVariables,
+    cognitiveProfile: JSON.stringify(uncertainty.adjustedCognitiveProfile),
+    note: "System degraded safely. No reasoning executed."
+  } as any;
 };

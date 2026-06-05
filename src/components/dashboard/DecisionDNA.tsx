@@ -480,6 +480,8 @@ export default function DecisionDNA() {
           setPendingOriginalQuestion(queryToSimulate);
           setPendingFollowUpQuestion(result.nextQuestion.question);
       }
+      
+      console.log(`DOMAIN_RENDERED_TO_UI: ${result.domain}`);
 
       // Compute Phase 9 Similar Decisions
       const matches = getSimilarDecisions(userQ, decisions, principles, graphEdges);
@@ -526,7 +528,7 @@ export default function DecisionDNA() {
     setIsTyping(true);
 
     try {
-      console.log(`Selected Answer:\n${answer}`);
+      console.log(`ANSWER_RECEIVED: ${answer}`);
       const activeProfile = profiles.find(p => p.id === activeProfileId);
       let confidenceBefore = 0;
       if (activeProfile) {
@@ -563,6 +565,8 @@ export default function DecisionDNA() {
         import.meta.env.VITE_GROQ_API_KEY
       );
 
+      console.log(`ANSWER_STORED: Added "${answer}" to active session memory.`);
+      console.log(`ANSWER_IN_PROMPT: Included ${pastQs.length} previous answers in generation prompt.`);
       console.log(`Session ID:\n${activeProfileId}`);
       console.log(`Answer History:\n${pastQs.map(q => q.answer).join(", ")}`);
       console.log(`Updated Variables:\n${analysis.extractedItems.join(", ") || "None extracted directly"}`);
@@ -572,6 +576,11 @@ export default function DecisionDNA() {
       console.log(`Recommendation After:\n${result.recommendation}`);
       console.log(`Next Uncertainty:\n${result.nextQuestion ? result.nextQuestion.variableId : "None"}`);
       console.log(`Generated Next Question:\n${result.nextQuestion ? result.nextQuestion.question : "None"}`);
+      console.log(`DOMAIN_RENDERED_TO_UI: ${result.domain}`);
+
+      if (Math.round(confidenceBefore * 100) === Math.round(result.confidence * 100)) {
+          console.warn("CONFIDENCE_STALLED: System did not gain sufficient information to increase confidence.");
+      }
 
       if (result.nextQuestion) {
           setIsAwaitingFollowUp(true);
@@ -1811,6 +1820,9 @@ export default function DecisionDNA() {
                                           → <span className="bg-emerald-50 text-emerald-600 px-1 rounded">{Math.round(msg.structuredData.potentialConfidence * 100)}% Potential</span>
                                         </span>
                                       )}
+                                      <span className={`px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest ml-2 ${msg.structuredData.questionSource === 'LLM Generation' ? 'bg-purple-100 text-purple-800' : 'bg-rose-100 text-rose-800'}`}>
+                                        Reasoning Source: {msg.structuredData.questionSource === 'LLM Generation' ? 'Groq' : 'Local Fallback'}
+                                      </span>
                                     </div>
                                   </div>
                                   <p className={`font-serif text-sm font-semibold ${msg.structuredData.confidence < 0.7 ? 'text-muted-foreground italic' : ''}`}>
@@ -1935,6 +1947,36 @@ export default function DecisionDNA() {
                                           </ul>
                                         </div>
                                       )}
+                                    </AccordionContent>
+                                  </AccordionItem>
+                                  
+                                  <AccordionItem value="debug" className="border-b-0">
+                                    <AccordionTrigger className="py-2 text-[10px] text-muted-foreground hover:text-foreground">
+                                      Discovery Debug
+                                    </AccordionTrigger>
+                                    <AccordionContent className="space-y-3 pt-2 text-[11px] bg-muted/30 p-3 rounded-lg border border-border mt-2">
+                                      <div className="grid grid-cols-2 gap-2">
+                                        <div>
+                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Domain</span>
+                                          <span className="font-mono">{msg.structuredData.domain || "Unknown"}</span>
+                                        </div>
+                                        <div>
+                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Confidence</span>
+                                          <span className="font-mono">{Math.round(msg.structuredData.confidence * 100)}%</span>
+                                        </div>
+                                        <div>
+                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Question Source</span>
+                                          <span className="font-mono">{msg.structuredData.questionSource || "Unknown"}</span>
+                                        </div>
+                                        <div>
+                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Missing Variables</span>
+                                          <span className="font-mono">{msg.structuredData.nextQuestion?.variableId || "None"}</span>
+                                        </div>
+                                      </div>
+                                      <div className="pt-2 border-t">
+                                        <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest mb-1">Session ID</span>
+                                        <span className="font-mono text-[9px] text-muted-foreground break-all">{activeProfileId}</span>
+                                      </div>
                                     </AccordionContent>
                                   </AccordionItem>
                                 </Accordion>
