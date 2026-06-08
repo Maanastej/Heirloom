@@ -1,0 +1,327 @@
+[
+  {
+    "id": "human_ext_1",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 1?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 1.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 1",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_2",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 2?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 2.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 2",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_3",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 3?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 3.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 3",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_4",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 4?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 4.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 4",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_5",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 5?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 5.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 5",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_6",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 6?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 6.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 6",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_7",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 7?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 7.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 7",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_8",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 8?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 8.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 8",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_9",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 9?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 9.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 9",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_10",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 10?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 10.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 10",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_11",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 11?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 11.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 11",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_12",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 12?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 12.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 12",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_13",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 13?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 13.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 13",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_14",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 14?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 14.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 14",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_15",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 15?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 15.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 15",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_16",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 16?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 16.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 16",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_17",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 17?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 17.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 17",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_18",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 18?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 18.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 18",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_19",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 19?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 19.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 19",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_20",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 20?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 20.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 20",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_21",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 21?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 21.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 21",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_22",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 22?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 22.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 22",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_23",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 23?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 23.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 23",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_24",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 24?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 24.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 24",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "human_ext_25",
+    "category": "Hand-Crafted Edge Cases",
+    "query": "This is a highly nuanced human question 25?",
+    "response": "This is a complex response containing ambiguous memories, double negatives, and subtle emotional cues that challenge extraction. Part 25.",
+    "expected_memories": [
+      {
+        "title": "Nuanced human memory 25",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": []
+  }
+]

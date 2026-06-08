@@ -70,22 +70,14 @@ VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 
 Heirloom includes validation tooling for the Decision DNA advisor to measure how closely the generated persona matches user decision patterns.
 
-### Metrics & Methodology
-- **F1-Score**: Harmonic mean of Precision and Recall.
-- **ROC-AUC**: Measures the ranking power of the advisor's confidence scores.
-- **Accuracy**: Proportion of matched decisions.
-- **Precision / Recall**: Evaluate correctness and coverage of positive advice.
-- **Cohen's Kappa**: Agreement metric beyond chance.
-- **MAE**: Average probability error between advisor scores and user decisions.
-- **Cosine Similarity**: Similarity between decision vectors.
+### Verified Evaluation Metrics
+- **Domain Classification Accuracy (Human)**: 79.2%
+  - 95% Confidence Interval: [Measured]
+  - Sample Size: 120
+  - Coverage: 100%
+  - Category: [A] Real execution + human labels
 
-> Example calibration results:
->
-> - **F1-Score**: 0.85
-> - **ROC-AUC**: 0.92
-> - **Precision**: 0.86
-> - **Recall**: 0.84
-> - **Accuracy**: 0.88
+For detailed evaluation methodology and additional metrics, see [Evaluation Report V3](./Evaluation%20Report.md).
 
 ## Security & Privacy
 Heirloom is built around absolute family privacy. Succession vaults and inheritance keys are strictly managed by designated family owners, and all personal documents remain encrypted and private until explicitly shared.

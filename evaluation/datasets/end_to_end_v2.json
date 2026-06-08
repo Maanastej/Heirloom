@@ -1,0 +1,972 @@
+[
+  {
+    "id": "e2e_v2_0",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_1",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_2",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_3",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_4",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_5",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_6",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_7",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_8",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_9",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_10",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_11",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_12",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_13",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_14",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_15",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_16",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_17",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_18",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_19",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_20",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_21",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_22",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_23",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_24",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_25",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_26",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_27",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_28",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_29",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_30",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_31",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_32",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_33",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_34",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_35",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_36",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_37",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_38",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_39",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_40",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_41",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_42",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_43",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_44",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  },
+  {
+    "id": "e2e_v2_45",
+    "query": "I'm thinking about quitting my job to travel.",
+    "available_memories": [
+      {
+        "id": "mem_1",
+        "title": "Burnout in 2021",
+        "content": "I quit my job in 2021 to travel and it was the best decision of my life.",
+        "year": 2021
+      },
+      {
+        "id": "mem_2",
+        "title": "Debt fear",
+        "content": "I am very anxious about not having a steady income and falling into debt.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge past burnout",
+      "Validate debt fear",
+      "Suggest a balanced approach"
+    ]
+  },
+  {
+    "id": "e2e_v2_46",
+    "query": "Should we buy a bigger house?",
+    "available_memories": [
+      {
+        "id": "mem_3",
+        "title": "Relocation to Austin",
+        "content": "We relocated to Austin in 2023 because property taxes were getting out of hand.",
+        "year": 2023
+      },
+      {
+        "id": "mem_4",
+        "title": "Family growth",
+        "content": "We are expecting our third child next spring.",
+        "year": 2024
+      }
+    ],
+    "expected_traits": [
+      "Reference growing family",
+      "Warn about property taxes",
+      "Discuss Austin real estate context"
+    ]
+  },
+  {
+    "id": "e2e_v2_47",
+    "query": "How should I invest this bonus?",
+    "available_memories": [
+      {
+        "id": "mem_5",
+        "title": "Crypto loss",
+        "content": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Remind about past crypto loss",
+      "Advise safe index funds",
+      "Caution against risky ventures"
+    ]
+  },
+  {
+    "id": "e2e_v2_48",
+    "query": "My spouse wants me to work less hours.",
+    "available_memories": [
+      {
+        "id": "mem_6",
+        "title": "Left banking",
+        "content": "I left banking in 2019 because the hours were destroying my marriage.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Recall leaving banking for marriage",
+      "Prioritize family over work",
+      "Reflect on past positive outcome of reducing hours"
+    ]
+  },
+  {
+    "id": "e2e_v2_49",
+    "query": "I've been feeling sluggish lately.",
+    "available_memories": [
+      {
+        "id": "mem_7",
+        "title": "Diabetes diagnosis",
+        "content": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+        "year": 2023
+      }
+    ],
+    "expected_traits": [
+      "Ask about recent sugar intake",
+      "Encourage morning running routine",
+      "Reference diabetes management"
+    ]
+  }
+]

@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "cls_1",
+    "query": "We've been married for 10 years now. ",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_2",
+    "query": "How do we handle our finances after getting married? ",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_3",
+    "query": "How do we handle our finances after getting married? ",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_4",
+    "query": "We've been married for 10 years now. ",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_5",
+    "query": "Thinking about buying an anniversary gift for my spouse. ",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_6",
+    "query": "Thinking about buying an anniversary gift for my spouse. ",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_7",
+    "query": "My husband and I are thinking about renewing our vows. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_8",
+    "query": "Thinking about buying an anniversary gift for my spouse. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_9",
+    "query": "How do we handle our finances after getting married? This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_10",
+    "query": "How do we handle our finances after getting married? This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_11",
+    "query": "My husband and I are thinking about renewing our vows. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_12",
+    "query": "Thinking about buying an anniversary gift for my spouse. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_13",
+    "query": "Thinking about buying an anniversary gift for my spouse. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_14",
+    "query": "I want to propose to my girlfriend next month. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_15",
+    "query": "I want to propose to my girlfriend next month. This is something I care about.",
+    "expected_domain": "Marriage",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_16",
+    "query": "I broke up with my partner recently. ",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_17",
+    "query": "My boyfriend and I are moving in together. ",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_18",
+    "query": "My boyfriend and I are moving in together. ",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_19",
+    "query": "How can I communicate better with my girlfriend? ",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_20",
+    "query": "We are going through a tough divorce. ",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_21",
+    "query": "We are going through a tough divorce. ",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_22",
+    "query": "Dating has been really difficult lately. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_23",
+    "query": "My boyfriend and I are moving in together. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_24",
+    "query": "We are going through a tough divorce. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_25",
+    "query": "My boyfriend and I are moving in together. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_26",
+    "query": "We are going through a tough divorce. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_27",
+    "query": "I broke up with my partner recently. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_28",
+    "query": "My boyfriend and I are moving in together. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_29",
+    "query": "My boyfriend and I are moving in together. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_30",
+    "query": "Dating has been really difficult lately. This is something I care about.",
+    "expected_domain": "Relationships",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_31",
+    "query": "I just had a daughter! ",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_32",
+    "query": "I want to spend more time with my kids. ",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_33",
+    "query": "I want to spend more time with my kids. ",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_34",
+    "query": "I want to spend more time with my kids. ",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_35",
+    "query": "My brother and I don't speak anymore. ",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_36",
+    "query": "Looking for ancestral records of my family. ",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_37",
+    "query": "I just had a daughter! This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_38",
+    "query": "My brother and I don't speak anymore. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_39",
+    "query": "I want to spend more time with my kids. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_40",
+    "query": "I want to spend more time with my kids. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_41",
+    "query": "I just had a daughter! This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_42",
+    "query": "My brother and I don't speak anymore. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_43",
+    "query": "My brother and I don't speak anymore. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_44",
+    "query": "Looking for ancestral records of my family. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_45",
+    "query": "My brother and I don't speak anymore. This is something I care about.",
+    "expected_domain": "Family",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_46",
+    "query": "I'm hoping to get a promotion at work. ",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_47",
+    "query": "Updating my resume for a new job hunt. ",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_48",
+    "query": "My boss is very demanding. ",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_49",
+    "query": "I'm hoping to get a promotion at work. ",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_50",
+    "query": "My boss is very demanding. ",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_51",
+    "query": "I want to quit my job and start fresh. ",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_52",
+    "query": "I want to quit my job and start fresh. This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_53",
+    "query": "How do I ask for a salary increase? This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_54",
+    "query": "Updating my resume for a new job hunt. This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_55",
+    "query": "How do I ask for a salary increase? This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_56",
+    "query": "I want to quit my job and start fresh. This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_57",
+    "query": "Updating my resume for a new job hunt. This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_58",
+    "query": "I want to quit my job and start fresh. This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_59",
+    "query": "How do I ask for a salary increase? This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_60",
+    "query": "I'm hoping to get a promotion at work. This is something I care about.",
+    "expected_domain": "Career",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_61",
+    "query": "We are looking for seed funding. ",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_62",
+    "query": "Giving out equity to early employees. ",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_63",
+    "query": "Giving out equity to early employees. ",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_64",
+    "query": "Giving out equity to early employees. ",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_65",
+    "query": "Giving out equity to early employees. ",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_66",
+    "query": "How do I pitch to an investor? ",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_67",
+    "query": "My co-founder is leaving the venture. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_68",
+    "query": "Giving out equity to early employees. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_69",
+    "query": "We are looking for seed funding. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_70",
+    "query": "Giving out equity to early employees. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_71",
+    "query": "My co-founder is leaving the venture. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_72",
+    "query": "Giving out equity to early employees. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_73",
+    "query": "We are looking for seed funding. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_74",
+    "query": "Giving out equity to early employees. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_75",
+    "query": "Bootstrapping the startup has been hard. This is something I care about.",
+    "expected_domain": "Startup",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_76",
+    "query": "Hustling on my side product. ",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_77",
+    "query": "How to scale a small business? ",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_78",
+    "query": "Being an entrepreneur is lonely. ",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_79",
+    "query": "How to scale a small business? ",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_80",
+    "query": "I want to launch my own business. ",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_81",
+    "query": "I am building a new product from scratch. ",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_82",
+    "query": "Hustling on my side product. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_83",
+    "query": "Hustling on my side product. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_84",
+    "query": "Hustling on my side product. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_85",
+    "query": "How to scale a small business? This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_86",
+    "query": "I am building a new product from scratch. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_87",
+    "query": "Hustling on my side product. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_88",
+    "query": "How to scale a small business? This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_89",
+    "query": "I am building a new product from scratch. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_90",
+    "query": "I want to launch my own business. This is something I care about.",
+    "expected_domain": "Entrepreneurship",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_91",
+    "query": "Trying to clear my credit card debt. ",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_92",
+    "query": "How do I invest in index funds? ",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_93",
+    "query": "Planning for my retirement pension. ",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_94",
+    "query": "I need to budget my salary better. ",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_95",
+    "query": "How do I invest in index funds? ",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_96",
+    "query": "How do I invest in index funds? ",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_97",
+    "query": "Planning for my retirement pension. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_98",
+    "query": "Building generational wealth. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_99",
+    "query": "Planning for my retirement pension. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_100",
+    "query": "Planning for my retirement pension. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_101",
+    "query": "Building generational wealth. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_102",
+    "query": "How do I invest in index funds? This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_103",
+    "query": "How do I invest in index funds? This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_104",
+    "query": "I need to budget my salary better. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_105",
+    "query": "Planning for my retirement pension. This is something I care about.",
+    "expected_domain": "Finance",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_106",
+    "query": "I want to buy a house in the suburbs. ",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_107",
+    "query": "Thinking about paying off the mortgage early. ",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_108",
+    "query": "My landlord is increasing the rent. ",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_109",
+    "query": "Selling our condo to move to the country. ",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_110",
+    "query": "Looking for a new apartment. ",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_111",
+    "query": "My landlord is increasing the rent. ",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_112",
+    "query": "Thinking about paying off the mortgage early. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_113",
+    "query": "Thinking about paying off the mortgage early. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_114",
+    "query": "Selling our condo to move to the country. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_115",
+    "query": "Thinking about paying off the mortgage early. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_116",
+    "query": "Thinking about paying off the mortgage early. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_117",
+    "query": "My landlord is increasing the rent. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_118",
+    "query": "Thinking about paying off the mortgage early. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_119",
+    "query": "Selling our condo to move to the country. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_120",
+    "query": "Looking for a new apartment. This is something I care about.",
+    "expected_domain": "Property",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_121",
+    "query": "I want to pass down my heirloom to my grandson. ",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_122",
+    "query": "I want to pass down my heirloom to my grandson. ",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_123",
+    "query": "What legacy will I leave behind? ",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_124",
+    "query": "I want to pass down my heirloom to my grandson. ",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_125",
+    "query": "Leaving an inheritance for my children. ",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_126",
+    "query": "I want to pass down my heirloom to my grandson. ",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_127",
+    "query": "Preserving our ancestral home. This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_128",
+    "query": "Writing my will and estate planning. This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_129",
+    "query": "What legacy will I leave behind? This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_130",
+    "query": "I want to pass down my heirloom to my grandson. This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_131",
+    "query": "What legacy will I leave behind? This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_132",
+    "query": "I want to pass down my heirloom to my grandson. This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_133",
+    "query": "What legacy will I leave behind? This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_134",
+    "query": "I want to pass down my heirloom to my grandson. This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_135",
+    "query": "Preserving our ancestral home. This is something I care about.",
+    "expected_domain": "Legacy",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_136",
+    "query": "I've been feeling very sick lately. ",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_137",
+    "query": "My mental health is struggling right now. ",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_138",
+    "query": "My mental health is struggling right now. ",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_139",
+    "query": "Trying a new diet and fitness routine. ",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_140",
+    "query": "Need to schedule a doctor's appointment. ",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_141",
+    "query": "Trying a new diet and fitness routine. ",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_142",
+    "query": "Trying a new diet and fitness routine. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_143",
+    "query": "My mental health is struggling right now. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_144",
+    "query": "Trying a new diet and fitness routine. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_145",
+    "query": "I've been feeling very sick lately. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_146",
+    "query": "Recovering from a recent surgery. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_147",
+    "query": "Need to schedule a doctor's appointment. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_148",
+    "query": "Trying a new diet and fitness routine. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_149",
+    "query": "Need to schedule a doctor's appointment. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_150",
+    "query": "Recovering from a recent surgery. This is something I care about.",
+    "expected_domain": "Health",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_151",
+    "query": "My son is going to university next year. ",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_152",
+    "query": "College tuition is so expensive. ",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_153",
+    "query": "Studying for my final exams. ",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_154",
+    "query": "Studying for my final exams. ",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_155",
+    "query": "My son is going to university next year. ",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_156",
+    "query": "I want to learn a new programming language. ",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_157",
+    "query": "I want to learn a new programming language. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_158",
+    "query": "My son is going to university next year. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_159",
+    "query": "I want to learn a new programming language. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_160",
+    "query": "My son is going to university next year. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_161",
+    "query": "I'm applying to a master's degree program. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_162",
+    "query": "I want to learn a new programming language. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_163",
+    "query": "Studying for my final exams. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_164",
+    "query": "I want to learn a new programming language. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_165",
+    "query": "My son is going to university next year. This is something I care about.",
+    "expected_domain": "Education",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_166",
+    "query": "Moving abroad to find my passion. ",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_167",
+    "query": "What is the key to true happiness? ",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_168",
+    "query": "Seeking a deeper meaning in my work. ",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_169",
+    "query": "What is the key to true happiness? ",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_170",
+    "query": "What is the key to true happiness? ",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_171",
+    "query": "What is the key to true happiness? ",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_172",
+    "query": "Finding my true calling in life. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_173",
+    "query": "Seeking a deeper meaning in my work. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_174",
+    "query": "I want to travel the world and explore. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_175",
+    "query": "Seeking a deeper meaning in my work. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_176",
+    "query": "What is the key to true happiness? This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_177",
+    "query": "I want to travel the world and explore. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_178",
+    "query": "Finding my true calling in life. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_179",
+    "query": "Moving abroad to find my passion. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_180",
+    "query": "Moving abroad to find my passion. This is something I care about.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": false
+  },
+  {
+    "id": "cls_181",
+    "query": "My health is failing so I need to write my will.",
+    "expected_domain": "Health",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_182",
+    "query": "My health is failing so I need to write my will.",
+    "expected_domain": "Health",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_183",
+    "query": "I want to move abroad with my family to find my life purpose.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_184",
+    "query": "I want to move abroad with my family to find my life purpose.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_185",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage?",
+    "expected_domain": "Career",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_186",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage?",
+    "expected_domain": "Career",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_187",
+    "query": "My wife and I want to invest our savings into buying a new condo.",
+    "expected_domain": "Finance",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_188",
+    "query": "My wife and I want to invest our savings into buying a new condo.",
+    "expected_domain": "Finance",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_189",
+    "query": "My wife and I want to invest our savings into buying a new condo.",
+    "expected_domain": "Finance",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_190",
+    "query": "My health is failing so I need to write my will.",
+    "expected_domain": "Health",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_191",
+    "query": "Should I use my inheritance to pay for my daughter's college degree?",
+    "expected_domain": "Legacy",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_192",
+    "query": "Should I use my inheritance to pay for my daughter's college degree?",
+    "expected_domain": "Legacy",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_193",
+    "query": "I want to move abroad with my family to find my life purpose.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_194",
+    "query": "I want to move abroad with my family to find my life purpose.",
+    "expected_domain": "Life Purpose",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_195",
+    "query": "My health is failing so I need to write my will.",
+    "expected_domain": "Health",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_196",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage?",
+    "expected_domain": "Career",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_197",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage?",
+    "expected_domain": "Career",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_198",
+    "query": "Should I use my inheritance to pay for my daughter's college degree?",
+    "expected_domain": "Legacy",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_199",
+    "query": "My health is failing so I need to write my will.",
+    "expected_domain": "Health",
+    "ambiguous": true
+  },
+  {
+    "id": "cls_200",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage?",
+    "expected_domain": "Career",
+    "ambiguous": true
+  }
+]

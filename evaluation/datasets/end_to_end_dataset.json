@@ -1,0 +1,602 @@
+[
+  {
+    "id": "e2e_0",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_1",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_2",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_3",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_4",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_5",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_6",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_7",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_8",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_9",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_10",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_11",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_12",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_13",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_14",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_15",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_16",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_17",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_18",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_19",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_20",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_21",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_22",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_23",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_24",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_25",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_26",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_27",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_28",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_29",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_30",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_31",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_32",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_33",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_34",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_35",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_36",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_37",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_38",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_39",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_40",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_41",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_42",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_43",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_44",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_45",
+    "query": "Should I focus on my Startup right now?",
+    "expected_domain": "Startup",
+    "required_memories": [
+      "mem_startup_1"
+    ],
+    "expected_response_traits": [
+      "references previous startup",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_46",
+    "query": "Should I focus on my Finance right now?",
+    "expected_domain": "Finance",
+    "required_memories": [
+      "mem_finance_1"
+    ],
+    "expected_response_traits": [
+      "references previous finance",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_47",
+    "query": "Should I focus on my Marriage right now?",
+    "expected_domain": "Marriage",
+    "required_memories": [
+      "mem_marriage_1"
+    ],
+    "expected_response_traits": [
+      "references previous marriage",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_48",
+    "query": "Should I focus on my Health right now?",
+    "expected_domain": "Health",
+    "required_memories": [
+      "mem_health_1"
+    ],
+    "expected_response_traits": [
+      "references previous health",
+      "provides actionable guidance"
+    ]
+  },
+  {
+    "id": "e2e_49",
+    "query": "Should I focus on my Property right now?",
+    "expected_domain": "Property",
+    "required_memories": [
+      "mem_property_1"
+    ],
+    "expected_response_traits": [
+      "references previous property",
+      "provides actionable guidance"
+    ]
+  }
+]

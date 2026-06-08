@@ -1,0 +1,1410 @@
+[
+  {
+    "id": "ext_1",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_2",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_3",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_4",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_5",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_6",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_7",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_8",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_9",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_10",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_11",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_12",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_13",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_14",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_15",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_16",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_17",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_18",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_19",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_20",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_21",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_22",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_23",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_24",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_25",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_26",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_27",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_28",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_29",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_30",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_31",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_32",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_33",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_34",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_35",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_36",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_37",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_38",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_39",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_40",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_41",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_42",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_43",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_44",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_45",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_46",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_47",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_48",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_49",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_50",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_51",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_52",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_53",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_54",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_55",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_56",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_57",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_58",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_59",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_60",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_61",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_62",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_63",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_64",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_65",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_66",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_67",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_68",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_69",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_70",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_71",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_72",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_73",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_74",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_75",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_76",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_77",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_78",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_79",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_80",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_81",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_82",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_83",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_84",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_85",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_86",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_87",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_88",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_89",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_90",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_91",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_92",
+    "question": "How is your health?",
+    "response": "I was just diagnosed with diabetes.",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "diabetes"
+      }
+    ]
+  },
+  {
+    "id": "ext_93",
+    "question": "What did you do with the inheritance?",
+    "response": "I invested it in index funds.",
+    "expected_memories": [
+      {
+        "type": "action",
+        "value": "invested"
+      },
+      {
+        "type": "asset",
+        "value": "index funds"
+      }
+    ]
+  },
+  {
+    "id": "ext_94",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_95",
+    "question": "Why did you quit your last job?",
+    "response": "The boss was toxic and I was burnt out.",
+    "expected_memories": [
+      {
+        "type": "reason",
+        "value": "toxic boss"
+      },
+      {
+        "type": "health_state",
+        "value": "burnt out"
+      }
+    ]
+  },
+  {
+    "id": "ext_96",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_97",
+    "question": "What is your main financial goal?",
+    "response": "I want to buy a house in two years.",
+    "expected_memories": [
+      {
+        "type": "goal",
+        "value": "buy a house"
+      },
+      {
+        "type": "timeline",
+        "value": "two years"
+      }
+    ]
+  },
+  {
+    "id": "ext_98",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_99",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  },
+  {
+    "id": "ext_100",
+    "question": "Who are you planning this for?",
+    "response": "My son Michael.",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "son"
+      },
+      {
+        "type": "person_name",
+        "value": "Michael"
+      }
+    ]
+  }
+]

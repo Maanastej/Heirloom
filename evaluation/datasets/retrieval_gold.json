@@ -1,0 +1,502 @@
+[
+  {
+    "id": "ret_1",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_2",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_3",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_4",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_5",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_6",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_7",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_8",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_9",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_10",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_11",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_12",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_13",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_14",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_15",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_16",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_17",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_18",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_19",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_20",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_21",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_22",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_23",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_24",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_25",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_26",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_27",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_28",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_29",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_30",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_31",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_32",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_33",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_34",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_35",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_36",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_37",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_38",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_39",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_40",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_41",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_42",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_43",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_44",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_45",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_46",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_47",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_48",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_49",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_50",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_51",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_52",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_53",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_54",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_55",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_56",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_57",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_58",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_59",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_60",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_61",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_62",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_63",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_64",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_65",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_66",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_67",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_68",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_69",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_70",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_71",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_72",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_73",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_74",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_75",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_76",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_77",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_78",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_79",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_80",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_81",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_82",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_83",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_84",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_85",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_86",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_87",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_88",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_89",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_90",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_91",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_92",
+    "query": "Did I ever mention investing in stocks?",
+    "expected_retrieval_id": "mem_finance_1"
+  },
+  {
+    "id": "ret_93",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_94",
+    "query": "Why did I leave my first company?",
+    "expected_retrieval_id": "mem_career_1"
+  },
+  {
+    "id": "ret_95",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_96",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_97",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_98",
+    "query": "What is my son's name?",
+    "expected_retrieval_id": "mem_family_1"
+  },
+  {
+    "id": "ret_99",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  },
+  {
+    "id": "ret_100",
+    "query": "What do I want to pass down?",
+    "expected_retrieval_id": "mem_legacy_1"
+  }
+]

@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "extract_v2_0",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_1",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_2",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_3",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_4",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_5",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_6",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_7",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_8",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_9",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_10",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_11",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_12",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_13",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_14",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_15",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_16",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_17",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_18",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_19",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_20",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_21",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_22",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_23",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_24",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_25",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_26",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_27",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_28",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_29",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_30",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_31",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_32",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_33",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_34",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_35",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_36",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_37",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_38",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_39",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_40",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_41",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_42",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_43",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_44",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_45",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_46",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_47",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_48",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_49",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_50",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_51",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_52",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_53",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_54",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_55",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_56",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_57",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_58",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_59",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_60",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_61",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_62",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_63",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_64",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_65",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_66",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_67",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_68",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_69",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_70",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_71",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_72",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_73",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_74",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_75",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_76",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_77",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_78",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_79",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_80",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_81",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_82",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_83",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_84",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_85",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_86",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_87",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_88",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_89",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_90",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_91",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_92",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_93",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_94",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_95",
+    "query": "Why did you choose to switch careers?",
+    "response": "I left banking in 2019 because the hours were destroying my marriage. I took a 40% pay cut to teach, and I've never been happier.",
+    "expected_memories": [
+      {
+        "title": "Left banking in 2019",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career vs Marriage",
+        "selected_option": "Teach",
+        "reasoning": "Banking hours destroying marriage, took 40% pay cut"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_96",
+    "query": "How do you feel about investing in risky startups?",
+    "response": "I lost $50,000 on a friend's crypto startup in 2021. Since then, I only invest in index funds. It's just not worth the stress.",
+    "expected_memories": [
+      {
+        "title": "Lost $50,000 in crypto startup",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment strategy",
+        "selected_option": "Index funds only",
+        "reasoning": "Lost 50k, not worth the stress"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_97",
+    "query": "What is your proudest family moment?",
+    "response": "When my daughter Emma graduated medical school in Boston. She was the first in our family to get a degree.",
+    "expected_memories": [
+      {
+        "title": "Emma graduated medical school",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": []
+  },
+  {
+    "id": "extract_v2_98",
+    "query": "Tell me about a time you had to move.",
+    "response": "We relocated to Austin, Texas in 2023 because the property taxes were getting out of hand back in California.",
+    "expected_memories": [
+      {
+        "title": "Relocated to Austin, Texas in 2023",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Relocation",
+        "selected_option": "Austin, Texas",
+        "reasoning": "Property taxes too high in California"
+      }
+    ]
+  },
+  {
+    "id": "extract_v2_99",
+    "query": "Have you ever faced a major health scare?",
+    "response": "I was diagnosed with Type 2 diabetes last year. It forced me to cut out sugar entirely and start running every morning.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with Type 2 diabetes",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Health lifestyle change",
+        "selected_option": "Cut sugar, start running",
+        "reasoning": "Diagnosed with Type 2 diabetes"
+      }
+    ]
+  }
+]

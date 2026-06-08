@@ -1,0 +1,427 @@
+[
+  {
+    "id": "human_e2e_1",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 1.",
+    "available_memories": [
+      {
+        "id": "mem_hum_1",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_2",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 2.",
+    "available_memories": [
+      {
+        "id": "mem_hum_2",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_3",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 3.",
+    "available_memories": [
+      {
+        "id": "mem_hum_3",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_4",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 4.",
+    "available_memories": [
+      {
+        "id": "mem_hum_4",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_5",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 5.",
+    "available_memories": [
+      {
+        "id": "mem_hum_5",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_6",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 6.",
+    "available_memories": [
+      {
+        "id": "mem_hum_6",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_7",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 7.",
+    "available_memories": [
+      {
+        "id": "mem_hum_7",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_8",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 8.",
+    "available_memories": [
+      {
+        "id": "mem_hum_8",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_9",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 9.",
+    "available_memories": [
+      {
+        "id": "mem_hum_9",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_10",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 10.",
+    "available_memories": [
+      {
+        "id": "mem_hum_10",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_11",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 11.",
+    "available_memories": [
+      {
+        "id": "mem_hum_11",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_12",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 12.",
+    "available_memories": [
+      {
+        "id": "mem_hum_12",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_13",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 13.",
+    "available_memories": [
+      {
+        "id": "mem_hum_13",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_14",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 14.",
+    "available_memories": [
+      {
+        "id": "mem_hum_14",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_15",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 15.",
+    "available_memories": [
+      {
+        "id": "mem_hum_15",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_16",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 16.",
+    "available_memories": [
+      {
+        "id": "mem_hum_16",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_17",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 17.",
+    "available_memories": [
+      {
+        "id": "mem_hum_17",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_18",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 18.",
+    "available_memories": [
+      {
+        "id": "mem_hum_18",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_19",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 19.",
+    "available_memories": [
+      {
+        "id": "mem_hum_19",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_20",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 20.",
+    "available_memories": [
+      {
+        "id": "mem_hum_20",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_21",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 21.",
+    "available_memories": [
+      {
+        "id": "mem_hum_21",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_22",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 22.",
+    "available_memories": [
+      {
+        "id": "mem_hum_22",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_23",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 23.",
+    "available_memories": [
+      {
+        "id": "mem_hum_23",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_24",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 24.",
+    "available_memories": [
+      {
+        "id": "mem_hum_24",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  },
+  {
+    "id": "human_e2e_25",
+    "scenario": "Hand-Crafted Complex Dilemmas",
+    "query": "I am facing an extremely conflicting situation regarding my family and career. Scenario 25.",
+    "available_memories": [
+      {
+        "id": "mem_hum_25",
+        "title": "Past conflict",
+        "content": "A highly complex past memory to test context window.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "High empathy",
+      "Nuanced historical reference"
+    ]
+  }
+]

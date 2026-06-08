@@ -1,0 +1,1642 @@
+[
+  {
+    "id": "ext_0",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 0)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_1",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 1)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_2",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 2)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_3",
+    "input": "We moved to Austin to start the new tech company. (Variation 3)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_4",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 4)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_5",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 5)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_6",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 6)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_7",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 7)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_8",
+    "input": "We moved to Austin to start the new tech company. (Variation 8)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_9",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 9)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_10",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 10)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_11",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 11)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_12",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 12)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_13",
+    "input": "We moved to Austin to start the new tech company. (Variation 13)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_14",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 14)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_15",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 15)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_16",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 16)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_17",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 17)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_18",
+    "input": "We moved to Austin to start the new tech company. (Variation 18)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_19",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 19)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_20",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 20)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_21",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 21)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_22",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 22)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_23",
+    "input": "We moved to Austin to start the new tech company. (Variation 23)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_24",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 24)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_25",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 25)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_26",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 26)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_27",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 27)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_28",
+    "input": "We moved to Austin to start the new tech company. (Variation 28)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_29",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 29)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_30",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 30)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_31",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 31)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_32",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 32)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_33",
+    "input": "We moved to Austin to start the new tech company. (Variation 33)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_34",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 34)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_35",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 35)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_36",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 36)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_37",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 37)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_38",
+    "input": "We moved to Austin to start the new tech company. (Variation 38)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_39",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 39)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_40",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 40)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_41",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 41)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_42",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 42)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_43",
+    "input": "We moved to Austin to start the new tech company. (Variation 43)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_44",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 44)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_45",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 45)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_46",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 46)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_47",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 47)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_48",
+    "input": "We moved to Austin to start the new tech company. (Variation 48)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_49",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 49)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_50",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 50)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_51",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 51)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_52",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 52)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_53",
+    "input": "We moved to Austin to start the new tech company. (Variation 53)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_54",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 54)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_55",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 55)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_56",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 56)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_57",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 57)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_58",
+    "input": "We moved to Austin to start the new tech company. (Variation 58)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_59",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 59)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_60",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 60)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_61",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 61)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_62",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 62)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_63",
+    "input": "We moved to Austin to start the new tech company. (Variation 63)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_64",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 64)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_65",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 65)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_66",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 66)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_67",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 67)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_68",
+    "input": "We moved to Austin to start the new tech company. (Variation 68)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_69",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 69)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_70",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 70)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_71",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 71)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_72",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 72)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_73",
+    "input": "We moved to Austin to start the new tech company. (Variation 73)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_74",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 74)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_75",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 75)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_76",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 76)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_77",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 77)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_78",
+    "input": "We moved to Austin to start the new tech company. (Variation 78)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_79",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 79)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_80",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 80)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_81",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 81)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_82",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 82)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_83",
+    "input": "We moved to Austin to start the new tech company. (Variation 83)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_84",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 84)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_85",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 85)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_86",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 86)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_87",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 87)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_88",
+    "input": "We moved to Austin to start the new tech company. (Variation 88)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_89",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 89)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_90",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 90)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_91",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 91)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_92",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 92)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_93",
+    "input": "We moved to Austin to start the new tech company. (Variation 93)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_94",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 94)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  },
+  {
+    "id": "ext_95",
+    "input": "My daughter Emma just started medical school in Boston. (Variation 95)",
+    "expected_memories": [
+      {
+        "type": "family_member",
+        "value": "daughter Emma"
+      },
+      {
+        "type": "education",
+        "value": "medical school"
+      },
+      {
+        "type": "location",
+        "value": "Boston"
+      }
+    ]
+  },
+  {
+    "id": "ext_96",
+    "input": "I bought 100 shares of Apple stock back in 2015 for my retirement. (Variation 96)",
+    "expected_memories": [
+      {
+        "type": "asset",
+        "value": "100 shares of Apple stock"
+      },
+      {
+        "type": "time",
+        "value": "2015"
+      },
+      {
+        "type": "goal",
+        "value": "retirement"
+      }
+    ]
+  },
+  {
+    "id": "ext_97",
+    "input": "Diagnosed with type 2 diabetes last month, need to watch my sugar. (Variation 97)",
+    "expected_memories": [
+      {
+        "type": "health_condition",
+        "value": "type 2 diabetes"
+      },
+      {
+        "type": "time",
+        "value": "last month"
+      },
+      {
+        "type": "goal",
+        "value": "watch sugar"
+      }
+    ]
+  },
+  {
+    "id": "ext_98",
+    "input": "We moved to Austin to start the new tech company. (Variation 98)",
+    "expected_memories": [
+      {
+        "type": "location",
+        "value": "Austin"
+      },
+      {
+        "type": "business",
+        "value": "new tech company"
+      }
+    ]
+  },
+  {
+    "id": "ext_99",
+    "input": "Wife wants a divorce, trying to find a good lawyer. (Variation 99)",
+    "expected_memories": [
+      {
+        "type": "relationship_status",
+        "value": "divorce"
+      },
+      {
+        "type": "goal",
+        "value": "find a good lawyer"
+      }
+    ]
+  }
+]
