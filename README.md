@@ -80,8 +80,8 @@ VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ### Current Evaluation Status
 * Domain Classification Accuracy: 79.2% (Human Benchmark, n=120)
 * Retrieval Recall@5: 100% on semantic benchmark using vector retrieval
-* Memory Extraction Evaluation: Operational with deterministic scoring
-* Memory Extraction Prompt V2 demonstrated substantial reduction in hallucinated memories during partial benchmark testing
+* Memory Extraction Evaluation: Framework operational with deterministic scoring
+* Memory Extraction Prompt V2 improved candidate F1 from 59.7% → 73.7% on a partial benchmark subset
 
 ### Architecture Highlights
 * Semantic memory retrieval
