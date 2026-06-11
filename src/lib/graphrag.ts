@@ -8,6 +8,7 @@ import { createClient } from '@supabase/supabase-js';
 import { classifyDomain } from './domainClassifier';
 import { generateDomainUncertainty, UserState } from './uncertaintyEngine';
 import { getGraphEdges } from "./services/graphService";
+import { cosineSimilarity, generateDecisionEmbedding } from "./behavioralEmbeddings";
 
 // Graph Schema Interfaces
 export interface GraphNode {
@@ -153,6 +154,11 @@ export const retrieveGraphRAGContext = async (
   const principles = await getPrinciples(profileId);
   const edges = await getGraphEdges(profileId);
 
+  // TEMPORARY DIAGNOSTIC LOGGING
+  console.log(`[Diagnostic] Memories loaded: ${memories.length}`);
+  console.log(`[Diagnostic] First 3 Memory IDs: ${memories.slice(0, 3).map(m => m.id).join(", ")}`);
+  console.log(`[Diagnostic] Decisions loaded: ${decisions.length}`);
+
   // 2. Fetch combined identity vector (stable 50%, medium 35%, live 15%)
   let combinedProfile: any = null;
   try {
@@ -176,7 +182,14 @@ export const retrieveGraphRAGContext = async (
     };
   }
 
-  // 4. Keyword-based scoring approximation
+  // 4. Scoring Candidate Generation
+  const retrievalMode = process.env.RETRIEVAL_MODE || (typeof import.meta !== 'undefined' && import.meta.env && (import.meta.env as any).VITE_RETRIEVAL_MODE) || 'keyword';
+  
+  let queryEmbedding: number[] | null = null;
+  if (retrievalMode === 'vector' || retrievalMode === 'hybrid') {
+    queryEmbedding = (await generateDecisionEmbedding({ input: question })) as number[] | null;
+  }
+
   const queryTerms = question.toLowerCase().split(/\s+/).filter(w => w.length > 3);
 
   // Rank a node using combined identity profile and bias factors
@@ -205,27 +218,53 @@ export const retrieveGraphRAGContext = async (
     return baseRank * stabilityFactor * legacyFactor;
   };
 
-  const scoredMems = memories.map(m => {
+  const scoredMemsUnsorted = await Promise.all(memories.map(async m => {
     let termMatches = 0;
     queryTerms.forEach(t => { if (m.title.toLowerCase().includes(t) || m.content.toLowerCase().includes(t)) termMatches++; });
     if (m.title.toLowerCase().includes(intent) || m.content.toLowerCase().includes(intent)) termMatches += 2;
+    const kwScore = rankNode(m.title + " " + m.content) + (termMatches * 5);
+
+    let vecScore = 0;
+    if ((retrievalMode === 'vector' || retrievalMode === 'hybrid') && queryEmbedding) {
+      const memEmb = await generateDecisionEmbedding({ input: m.title + " " + m.content });
+      if (memEmb) vecScore = cosineSimilarity(queryEmbedding, memEmb as number[]);
+    }
+
+    let finalScore = kwScore;
+    if (retrievalMode === 'vector') finalScore = vecScore;
+    if (retrievalMode === 'hybrid') finalScore = kwScore * 0.1 + vecScore * 10;
+
     return {
       id: m.id,
       mem: m,
-      score: rankNode(m.title + " " + m.content) + (termMatches * 5)
+      score: finalScore
     };
-  }).sort((a, b) => b.score - a.score);
+  }));
+  const scoredMems = scoredMemsUnsorted.sort((a, b) => b.score - a.score);
 
-  const scoredDecs = decisions.map(d => {
+  const scoredDecsUnsorted = await Promise.all(decisions.map(async d => {
     let termMatches = 0;
     queryTerms.forEach(t => { if (d.situation.toLowerCase().includes(t) || d.reasoning.toLowerCase().includes(t)) termMatches++; });
     if (d.situation.toLowerCase().includes(intent) || d.reasoning.toLowerCase().includes(intent)) termMatches += 2;
+    const kwScore = rankNode(d.situation + " " + d.reasoning) + (termMatches * 5);
+
+    let vecScore = 0;
+    if ((retrievalMode === 'vector' || retrievalMode === 'hybrid') && queryEmbedding) {
+      const decEmb = await generateDecisionEmbedding({ input: d.situation + " " + d.reasoning });
+      if (decEmb) vecScore = cosineSimilarity(queryEmbedding, decEmb as number[]);
+    }
+
+    let finalScore = kwScore;
+    if (retrievalMode === 'vector') finalScore = vecScore;
+    if (retrievalMode === 'hybrid') finalScore = kwScore * 0.1 + vecScore * 10;
+
     return {
       id: d.id,
       dec: d,
-      score: rankNode(d.situation + " " + d.reasoning) + (termMatches * 5)
+      score: finalScore
     };
-  }).sort((a, b) => b.score - a.score);
+  }));
+  const scoredDecs = scoredDecsUnsorted.sort((a, b) => b.score - a.score);
 
   // 5. Multi-Hop Graph Expansion
   const initialMatches: string[] = [];

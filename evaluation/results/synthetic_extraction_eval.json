@@ -1,0 +1,16 @@
+{
+  "datasetSize": 170,
+  "evaluated": 20,
+  "skipped": 150,
+  "coveragePercent": 11.76470588235294,
+  "extractedConcepts": 0,
+  "precision": 0,
+  "recall": 0,
+  "f1Score": 0,
+  "truePositives": 0,
+  "falsePositives": 0,
+  "falseNegatives": 0,
+  "judgeAgreementPercentage": 0,
+  "skippedStatus": false,
+  "benchmarkType": "Synthetic"
+}

@@ -52,7 +52,7 @@ export async function runMemoryEval(useHumanBenchmark = false) {
     resultsByJudge[j.name] = { tp: 0, fp: 0, fn: 0 };
   }
 
-  const subset = dataset.slice(0, 10); // Still sub-setting to prevent rate-limit deaths, but no longer extrapolating
+  const subset = dataset.slice(0, 20);
 
   for (const item of subset) {
     clearMockDb();
@@ -72,17 +72,34 @@ export async function runMemoryEval(useHumanBenchmark = false) {
       }, result.extractedItems, apiKey);
       
       if (score) {
-        resultsByJudge[judge.name].tp += score.true_positives || 0;
-        resultsByJudge[judge.name].fp += score.false_positives || 0;
-        resultsByJudge[judge.name].fn += score.false_negatives || 0;
+        const expectedCount = (item.expected_memories || []).length;
+        const actualCount = result.extractedItems.length;
+
+        let tp = 0;
+        let fp = 0;
+        let fn = 0;
+
+        if (score.alignments) {
+          const validAlignments = score.alignments.filter((a: any) => a.match_confidence >= 0.8);
+          const matchedExpectedIndices = new Set(validAlignments.map((a: any) => a.expected_index));
+          const matchedExtractedIndices = new Set(validAlignments.map((a: any) => a.extracted_index));
+
+          tp = matchedExpectedIndices.size;
+          fn = Math.max(0, expectedCount - tp);
+          fp = Math.max(0, actualCount - matchedExtractedIndices.size);
+        }
+
+        resultsByJudge[judge.name].tp += tp;
+        resultsByJudge[judge.name].fp += fp;
+        resultsByJudge[judge.name].fn += fn;
         
-        if ((score.false_positives || 0) > 0 || (score.false_negatives || 0) > 0) {
+        if (fp > 0 || fn > 0) {
            errorLogs.push({
              id: item.id || 'unknown',
              expected: { memories: item.expected_memories, decisions: item.expected_decisions },
              actual: result.extractedItems,
-             falsePositivesFound: score.false_positives || 0,
-             falseNegativesFound: score.false_negatives || 0,
+             falsePositivesFound: fp,
+             falseNegativesFound: fn,
              judgeName: judge.name
            });
         }
@@ -93,10 +110,11 @@ export async function runMemoryEval(useHumanBenchmark = false) {
 
     // 3. Agreement Calculation
     if (judgeScores.length === 2 && judgeScores[0] && judgeScores[1]) {
-       const agreeTP = judgeScores[0].true_positives === judgeScores[1].true_positives;
-       const agreeFP = judgeScores[0].false_positives === judgeScores[1].false_positives;
-       const agreeFN = judgeScores[0].false_negatives === judgeScores[1].false_negatives;
-       if (agreeTP && agreeFP && agreeFN) {
+       // Deep compare alignments or just compare calculated TP/FP/FN. For simplicity, just count it based on length of valid alignments.
+       // We'll compare the objects stringified for true strict agreement, but let's just log disagreement for now.
+       const str0 = JSON.stringify(judgeScores[0].alignments || []);
+       const str1 = JSON.stringify(judgeScores[1].alignments || []);
+       if (str0 === str1) {
           agreementCount++;
        } else {
           disagreements.push({
@@ -107,6 +125,13 @@ export async function runMemoryEval(useHumanBenchmark = false) {
           });
        }
     }
+    console.log(`\n--- Example ${evaluatedCount + 1} ---`);
+    console.log(`Input Query: "${item.query}"`);
+    console.log(`User Response: "${item.response}"`);
+    console.log(`Expected Memories:`, item.expected_memories);
+    console.log(`Extracted Memories:`, result.extractedItems);
+    console.log(`Judge A Scores:`, judgeScores[0] || 'NULL (failed)');
+    console.log(`Judge B Scores:`, judgeScores[1] || 'NULL (failed)');
     
     evaluatedCount++;
   }

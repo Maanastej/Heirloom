@@ -20,7 +20,9 @@ export const analyzeUserResponse = async (
     return { extractedItems: [] };
   }
 
-  const prompt = `
+  const promptVersion = (typeof process !== "undefined" && process.env ? process.env.EXTRACTION_PROMPT_VERSION : "") || "v2";
+
+  const promptV1 = `
 You are an active learning extraction engine for a Digital Twin.
 The user was asked a follow-up question to clarify missing context, and the user provided a short answer (often a multiple choice option).
 Your job is to immediately translate their answer into a structured Memory or Decision to update the twin's knowledge graph.
@@ -60,6 +62,52 @@ Output format exactly:
   ]
 }
   `;
+
+  const promptV2 = `
+You are an expert personal biographer and memory extraction engine. Your goal is to extract structured, ATOMIC memories and decisions from the user's input.
+
+Question asked: "${question}"
+User's Answer: "${response}"
+
+RULES FOR MEMORIES:
+1. FAVOR ATOMIC EVENTS: Do not summarize or cluster distinct events. If the user mentions three different roles (e.g., Intern, Junior Dev, Senior Dev), extract THREE separate memories. Do not use generic titles like "Career Progression" or "Educational Background".
+2. REJECT GENERIC ADVICE: Do not extract a memory if the user is providing general advice, hypothetical scenarios, abstract methodologies, or personality trait extrapolations.
+3. MUST BE PERSONAL & FACTUAL: Only extract concrete life events, biographical facts, and personal experiences that actually happened to the user. Prefer specificity over abstraction.
+
+RULES FOR DECISIONS:
+1. ONLY EXPLICIT DECISIONS: Do not fabricate a decision process. Only extract a decision if the user explicitly describes a crossroads, a choice they made, and the reasoning behind it. 
+2. EXCLUDE INFERRED CHOICES: Stating "I have a PhD" is a memory, NOT a decision. Do not hallucinate a decision like "Choosing to pursue a PhD".
+
+OUTPUT FORMAT:
+Return a JSON object containing three arrays: "memories", "decisions", and "identity_updates".
+If no valid personal memories or explicit decisions are found, return empty arrays.
+
+{
+  "memories": [
+    {
+      "title": "Short specific title",
+      "description": "Brief specific description",
+      "content": "The full context of what they described",
+      "year": 2024,
+      "event_type": "family",
+      "emotion": "hope",
+      "importance_score": 7
+    }
+  ],
+  "decisions": [
+    {
+      "situation": "The explicit choice they faced",
+      "options": ["Option 1", "Option 2"],
+      "selected_option": "What they explicitly chose",
+      "reasoning": "Why they chose it",
+      "outcome_quality": 8
+    }
+  ],
+  "identity_updates": []
+}
+  `;
+
+  const prompt = promptVersion === "v1" ? promptV1 : promptV2;
 
   try {
     const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {

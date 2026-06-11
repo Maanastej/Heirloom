@@ -5,9 +5,13 @@ export interface JudgeScores {
   consistency_score?: number;
   hallucination_flag?: number;
   memories_used_correctly?: string[];
-  true_positives?: number;
-  false_negatives?: number;
-  false_positives?: number;
+  // Replaced manual counts with deterministic alignments
+  alignments?: {
+    expected_index: number;
+    extracted_index: number;
+    match_confidence: number;
+    reasoning: string;
+  }[];
 }
 
 export interface IJudge {
@@ -30,22 +34,32 @@ export class GroqJudge implements IJudge {
 You are an expert evaluator for an AI Memory Extraction system.
 Your job is to compare the EXPECTED structured memories/decisions with the ACTUAL extracted strings.
 
-EXPECTED JSON:
-${JSON.stringify(expected, null, 2)}
+EXPECTED JSON (indices implicitly 0 to N-1 based on array position):
+${JSON.stringify(expected.memories || expected, null, 2)}
 
-ACTUAL EXTRACTED ITEMS:
+ACTUAL EXTRACTED ITEMS (indices implicitly 0 to M-1 based on array position):
 ${JSON.stringify(actual, null, 2)}
 
-Determine:
-1. True Positives (TP): How many EXPECTED items are meaningfully present in the ACTUAL items?
-2. False Negatives (FN): How many EXPECTED items are missing from the ACTUAL items?
-3. False Positives (FP): How many ACTUAL items were extracted that do not align with any EXPECTED item?
+Your task: Provide a pairwise semantic matching of which EXPECTED items are covered by which ACTUAL items.
+
+Rules:
+1. "expected_index": The index of the item in the EXPECTED array (0-indexed).
+2. "extracted_index": The index of the item in the ACTUAL EXTRACTED array (0-indexed).
+3. "match_confidence": A float from 0.0 to 1.0 indicating how strongly they match.
+4. "reasoning": A brief explanation of why they match.
+5. If an EXPECTED item doesn't match any ACTUAL item, do not include it.
+6. If an ACTUAL item doesn't match any EXPECTED item, do not include it.
 
 Output strict JSON:
 {
-  "true_positives": number,
-  "false_negatives": number,
-  "false_positives": number
+  "alignments": [
+    {
+      "expected_index": 0,
+      "extracted_index": 1,
+      "match_confidence": 0.95,
+      "reasoning": "Both describe the internship experience."
+    }
+  ]
 }
 `;
     return this.callGroq(prompt, apiKey);

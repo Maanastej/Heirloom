@@ -1,0 +1,2657 @@
+[
+  {
+    "query": "Can you tell me about your work experience?",
+    "response": "I've been working as a software engineer at a startup for the past 3 years, before that I was a data analyst at a consulting firm.",
+    "expected_memories": [
+      {
+        "title": "Software Engineer Role",
+        "event_type": "career"
+      },
+      {
+        "title": "Data Analyst Position",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a career path",
+        "selected_option": "Pursuing software engineering",
+        "reasoning": "More challenging and rewarding work"
+      },
+      {
+        "situation": "Switching jobs",
+        "selected_option": "Joining the startup",
+        "reasoning": "Better work-life balance and opportunities for growth"
+      }
+    ],
+    "id": "ext_v3_1",
+    "category": "Career history"
+  },
+  {
+    "query": "How did you get into your current field?",
+    "response": "Honestly, it was a bit of a fluke. I kind of stumbled into it and it just worked out.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_2",
+    "category": "Career history"
+  },
+  {
+    "query": "What's the most significant achievement in your career so far?",
+    "response": "I led a team that developed an AI model that increased sales by 25% for our company. It was a huge success and we got a lot of recognition for it.",
+    "expected_memories": [
+      {
+        "title": "Development of AI Model",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding on a project to pursue",
+        "selected_option": "Developing the AI model",
+        "reasoning": "High potential for impact and innovation"
+      }
+    ],
+    "id": "ext_v3_3",
+    "category": "Career history"
+  },
+  {
+    "query": "Can you walk me through your career progression?",
+    "response": "I started out as an intern, then became a junior developer, then a senior developer, and now I'm a technical lead. Each role has been a stepping stone to the next.",
+    "expected_memories": [
+      {
+        "title": "Internship",
+        "event_type": "career"
+      },
+      {
+        "title": "Junior Developer Role",
+        "event_type": "career"
+      },
+      {
+        "title": "Senior Developer Position",
+        "event_type": "career"
+      },
+      {
+        "title": "Technical Lead Role",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Accepting a promotion",
+        "selected_option": "Taking on more responsibility",
+        "reasoning": "Desire for challenge and growth"
+      }
+    ],
+    "id": "ext_v3_4",
+    "category": "Career history"
+  },
+  {
+    "query": "How do you handle a difficult project at work?",
+    "response": "I break it down into smaller tasks, prioritize them, and focus on one task at a time. And if needed, I ask for help from my team or manager.",
+    "expected_memories": [],
+    "expected_decisions": [
+      {
+        "situation": "Facing a challenging project",
+        "selected_option": "Seeking help",
+        "reasoning": "Recognizing limitations and needing support"
+      }
+    ],
+    "id": "ext_v3_5",
+    "category": "Career history"
+  },
+  {
+    "query": "What's the best advice you've received in your career?",
+    "response": "My mentor once told me to always be open to learning and taking on new challenges. It's stuck with me and helped me navigate my career.",
+    "expected_memories": [
+      {
+        "title": "Mentor's Advice",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_6",
+    "category": "Career history"
+  },
+  {
+    "query": "Can you describe your job responsibilities?",
+    "response": "I'm responsible for managing a team of developers, overseeing project timelines, and ensuring our products meet quality standards.",
+    "expected_memories": [
+      {
+        "title": "Team Management",
+        "event_type": "career"
+      },
+      {
+        "title": "Project Oversight",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_7",
+    "category": "Career history"
+  },
+  {
+    "query": "How do you balance work and personal life?",
+    "response": "To be honest, it's something I'm still working on. I try to set boundaries and prioritize self-care, but it's not always easy.",
+    "expected_memories": [],
+    "expected_decisions": [
+      {
+        "situation": "Managing work-life balance",
+        "selected_option": "Setting boundaries",
+        "reasoning": "Need for personal time and well-being"
+      }
+    ],
+    "id": "ext_v3_8",
+    "category": "Career history"
+  },
+  {
+    "query": "What's the most important thing you've learned in your career so far?",
+    "response": "I've learned that communication and teamwork are key to success. You can't do it alone, and being able to work with others is crucial.",
+    "expected_memories": [
+      {
+        "title": "Importance of Teamwork",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_9",
+    "category": "Career history"
+  },
+  {
+    "query": "Can you tell me about a time when you failed at something?",
+    "response": "I once worked on a project that didn't meet expectations. I learned from it and used it as an opportunity to grow and improve.",
+    "expected_memories": [
+      {
+        "title": "Project Failure",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Facing failure",
+        "selected_option": "Learning from it",
+        "reasoning": "Opportunity for growth and self-improvement"
+      }
+    ],
+    "id": "ext_v3_10",
+    "category": "Career history"
+  },
+  {
+    "query": "What was your favorite subject in school?",
+    "response": "I really loved history, especially learning about ancient civilizations.",
+    "expected_memories": [
+      {
+        "title": "Favorite subject",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_11",
+    "category": "Education"
+  },
+  {
+    "query": "Tell me about your education.",
+    "response": "I didn't really have one, I just learned from experience and YouTube tutorials.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_12",
+    "category": "Education"
+  },
+  {
+    "query": "What did you study in college?",
+    "response": "I studied computer science and graduated with honors, which led to a great job offer from a top tech company.",
+    "expected_memories": [
+      {
+        "title": "College major",
+        "event_type": "career"
+      },
+      {
+        "title": "Job offer",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a major",
+        "selected_option": "Computer science",
+        "reasoning": "Job prospects"
+      }
+    ],
+    "id": "ext_v3_13",
+    "category": "Education"
+  },
+  {
+    "query": "Did you enjoy your time in university?",
+    "response": "It was okay, I guess. I made some good friends, but the coursework was really tough and I had to take out a lot of loans.",
+    "expected_memories": [
+      {
+        "title": "University experience",
+        "event_type": "other"
+      },
+      {
+        "title": "Student loans",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding whether to take out loans",
+        "selected_option": "Yes",
+        "reasoning": "Needed to finance education"
+      }
+    ],
+    "id": "ext_v3_14",
+    "category": "Education"
+  },
+  {
+    "query": "What's your highest level of education?",
+    "response": "I have a PhD in engineering from a prestigious university.",
+    "expected_memories": [
+      {
+        "title": "Highest degree earned",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_15",
+    "category": "Education"
+  },
+  {
+    "query": "Tell me about your educational background.",
+    "response": "I grew up in a low-income household and had to drop out of high school to support my family, but I've been taking online courses to learn new skills.",
+    "expected_memories": [
+      {
+        "title": "High school experience",
+        "event_type": "other"
+      },
+      {
+        "title": "Family financial struggles",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding whether to drop out of school",
+        "selected_option": "Yes",
+        "reasoning": "Needed to support family"
+      }
+    ],
+    "id": "ext_v3_16",
+    "category": "Education"
+  },
+  {
+    "query": "Did you have a favorite teacher?",
+    "response": "Yeah, my 10th grade English teacher was amazing. She really inspired me to pursue a career in writing.",
+    "expected_memories": [
+      {
+        "title": "Inspirational teacher",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a career path",
+        "selected_option": "Writing",
+        "reasoning": "Inspiration from teacher"
+      }
+    ],
+    "id": "ext_v3_17",
+    "category": "Education"
+  },
+  {
+    "query": "What's the most important thing you learned in school?",
+    "response": "I learned that it's not just about the grades or the degree, but about the experiences and relationships you build along the way.",
+    "expected_memories": [
+      {
+        "title": "Life lesson learned",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_18",
+    "category": "Education"
+  },
+  {
+    "query": "Tell me about a challenging time in your educational journey.",
+    "response": "I struggled with anxiety and depression during my sophomore year of college, but I was able to get help from the university counseling services and ended up graduating on time.",
+    "expected_memories": [
+      {
+        "title": "Mental health struggles",
+        "event_type": "health"
+      },
+      {
+        "title": "Graduation",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Seeking help for mental health",
+        "selected_option": "Yes",
+        "reasoning": "Needed support"
+      }
+    ],
+    "id": "ext_v3_19",
+    "category": "Education"
+  },
+  {
+    "query": "What do you think is the key to success in education?",
+    "response": "Honestly, I'm not really sure. I mean, I just kind of showed up and hoped for the best.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_20",
+    "category": "Education"
+  },
+  {
+    "query": "What's your family like?",
+    "response": "I have a big family, my mom is a doctor and my dad is an engineer. I have two siblings, an older brother and a younger sister. We all live together in a cozy house.",
+    "expected_memories": [
+      {
+        "title": "Family Occupation",
+        "event_type": "family"
+      },
+      {
+        "title": "Family Residence",
+        "event_type": "family"
+      },
+      {
+        "title": "Sibling Information",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_21",
+    "category": "Family relationships"
+  },
+  {
+    "query": "Do you have any family traditions?",
+    "response": "No, not really. We used to have dinner together every Sunday but that stopped when I went to college.",
+    "expected_memories": [
+      {
+        "title": "Family Dinner Tradition",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_22",
+    "category": "Family relationships"
+  },
+  {
+    "query": "How's your relationship with your parents?",
+    "response": "It's complicated. My mom and I are close, but my dad and I haven't spoken in years due to a disagreement.",
+    "expected_memories": [
+      {
+        "title": "Mother-Child Relationship",
+        "event_type": "family"
+      },
+      {
+        "title": "Father-Child Disagreement",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_23",
+    "category": "Family relationships"
+  },
+  {
+    "query": "What's the best advice your family has given you?",
+    "response": "My grandma told me to always follow my heart and pursue my passions. She said that money isn't everything and that happiness is what truly matters.",
+    "expected_memories": [
+      {
+        "title": "Grandma's Advice",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_24",
+    "category": "Family relationships"
+  },
+  {
+    "query": "Do you have any pets?",
+    "response": "Yeah, I have a dog named Max. He's a golden retriever and he's really friendly.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_25",
+    "category": "Family relationships"
+  },
+  {
+    "query": "How did you meet your spouse?",
+    "response": "I met my wife at a coffee shop. We struck up a conversation and hit it off immediately. We've been together for 5 years now and have two kids.",
+    "expected_memories": [
+      {
+        "title": "Meeting Spouse",
+        "event_type": "family"
+      },
+      {
+        "title": "Marriage and Children",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_26",
+    "category": "Family relationships"
+  },
+  {
+    "query": "What's your favorite family memory?",
+    "response": "I have a lot of great memories, but one that stands out is a family vacation we took to the beach when I was a kid. We spent the whole day playing in the waves and building sandcastles.",
+    "expected_memories": [
+      {
+        "title": "Family Vacation",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_27",
+    "category": "Family relationships"
+  },
+  {
+    "query": "Do you have any family secrets?",
+    "response": "Uh, no... I don't think so. Why would you ask that?",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_28",
+    "category": "Family relationships"
+  },
+  {
+    "query": "How do you handle family conflicts?",
+    "response": "I try to stay calm and listen to both sides. I think communication is key in resolving conflicts. My family and I had a big argument last year, but we were able to work through it and come out stronger on the other side.",
+    "expected_memories": [
+      {
+        "title": "Family Conflict Resolution",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_29",
+    "category": "Family relationships"
+  },
+  {
+    "query": "What's the most important thing your family has taught you?",
+    "response": "My family has taught me the importance of kindness, empathy, and forgiveness. They've shown me that family is not just about blood ties, but about the relationships you build with the people around you.",
+    "expected_memories": [
+      {
+        "title": "Family Values",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_30",
+    "category": "Family relationships"
+  },
+  {
+    "query": "How was your wedding day?",
+    "response": "It was amazing, the sun was shining and our families were all there to celebrate with us. We got married on a beautiful beach in Hawaii.",
+    "expected_memories": [
+      {
+        "title": "Wedding Day",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_31",
+    "category": "Marriage"
+  },
+  {
+    "query": "What's the secret to a happy marriage?",
+    "response": "I think it's all about communication and compromise. My wife and I have been married for 10 years now and we still make time for each other.",
+    "expected_memories": [
+      {
+        "title": "10 Year Marriage",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_32",
+    "category": "Marriage"
+  },
+  {
+    "query": "Have you ever considered divorce?",
+    "response": "Honestly, yes, we did have a tough time a few years ago. But we went to therapy and worked through our issues. Now our relationship is stronger than ever.",
+    "expected_memories": [
+      {
+        "title": "Marriage Therapy",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Considered divorce",
+        "selected_option": "Went to therapy",
+        "reasoning": "To work through issues and save the marriage"
+      }
+    ],
+    "id": "ext_v3_33",
+    "category": "Marriage"
+  },
+  {
+    "query": "How did you propose to your wife?",
+    "response": "I planned a surprise weekend getaway to Paris and proposed to her at the Eiffel Tower. It was very romantic.",
+    "expected_memories": [
+      {
+        "title": "Proposal in Paris",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_34",
+    "category": "Marriage"
+  },
+  {
+    "query": "What's the best part about being married?",
+    "response": "I love having a partner to share life's experiences with. We travel together, try new restaurants, and support each other's goals.",
+    "expected_memories": [
+      {
+        "title": "Traveling Together",
+        "event_type": "family"
+      },
+      {
+        "title": "Supporting Each Other's Goals",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_35",
+    "category": "Marriage"
+  },
+  {
+    "query": "Do you think marriage is necessary?",
+    "response": "I'm not sure, I think it depends on the couple. Some people are happy without getting married and that's okay.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_36",
+    "category": "Marriage"
+  },
+  {
+    "query": "What's the most challenging part of marriage?",
+    "response": "Definitely the financial stress. We have to be careful with our budget and make sure we're on the same page.",
+    "expected_memories": [
+      {
+        "title": "Financial Stress in Marriage",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Financial stress",
+        "selected_option": "Create a budget",
+        "reasoning": "To manage finances and reduce stress"
+      }
+    ],
+    "id": "ext_v3_37",
+    "category": "Marriage"
+  },
+  {
+    "query": "How has marriage changed you?",
+    "response": "It's made me more responsible and patient. I've learned to put someone else's needs before my own.",
+    "expected_memories": [
+      {
+        "title": "Personal Growth in Marriage",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_38",
+    "category": "Marriage"
+  },
+  {
+    "query": "What's the key to a successful marriage?",
+    "response": "I think it's just a bunch of random stuff. Like, uh, communication and love and stuff.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_39",
+    "category": "Marriage"
+  },
+  {
+    "query": "How did you know your spouse was the one?",
+    "response": "I knew she was the one when we were on our first vacation together and I realized I couldn't imagine spending my life with anyone else. We got married a year later and had two beautiful kids.",
+    "expected_memories": [
+      {
+        "title": "First Vacation Together",
+        "event_type": "family"
+      },
+      {
+        "title": "Having Children",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a life partner",
+        "selected_option": "Proposed to her",
+        "reasoning": "Because I couldn't imagine spending my life with anyone else"
+      }
+    ],
+    "id": "ext_v3_40",
+    "category": "Marriage"
+  },
+  {
+    "query": "Tell me about your family",
+    "response": "I have two kids, Emily and Jack, they're always keeping me on my toes",
+    "expected_memories": [
+      {
+        "title": "Having Children",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_41",
+    "category": "Children"
+  },
+  {
+    "query": "What's new with you?",
+    "response": "Not much, just trying to get my kid to eat vegetables, it's a daily struggle",
+    "expected_memories": [
+      {
+        "title": "Childhood Nutrition",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_42",
+    "category": "Children"
+  },
+  {
+    "query": "How was your week?",
+    "response": "It was great, my son started soccer practice and my daughter got an A on her math test",
+    "expected_memories": [
+      {
+        "title": "Son's Soccer Practice",
+        "event_type": "family"
+      },
+      {
+        "title": "Daughter's Academic Achievement",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_43",
+    "category": "Children"
+  },
+  {
+    "query": "What do you like to do for fun?",
+    "response": "I love watching my kids play sports, it's amazing to see them grow and learn",
+    "expected_memories": [
+      {
+        "title": "Children's Sports",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_44",
+    "category": "Children"
+  },
+  {
+    "query": "How old are your kids?",
+    "response": "They're 10 and 12, and honestly, I have no idea where the time went",
+    "expected_memories": [
+      {
+        "title": "Children's Ages",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_45",
+    "category": "Children"
+  },
+  {
+    "query": "Do you have any fun plans for the weekend?",
+    "response": "Yeah, we're going to the park, and then maybe getting some ice cream, the kids are super excited",
+    "expected_memories": [
+      {
+        "title": "Family Outing",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_46",
+    "category": "Children"
+  },
+  {
+    "query": "What's the best part about being a parent?",
+    "response": "Seeing my kids learn and grow, it's an incredible experience",
+    "expected_memories": [
+      {
+        "title": "Parenting Experience",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_47",
+    "category": "Children"
+  },
+  {
+    "query": "What do you think about the current education system?",
+    "response": "Honestly, I'm not sure, I just want what's best for my kids",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_48",
+    "category": "Children"
+  },
+  {
+    "query": "Do you have any kids?",
+    "response": "No, I have dogs, but I love them just the same",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_49",
+    "category": "Children"
+  },
+  {
+    "query": "What's the most challenging part of parenting?",
+    "response": "Definitely trying to balance work and family life, it's a constant struggle to make sure I'm giving my kids the attention they need, I had to decide between a promotion and spending more time with them, I chose my kids because they're only young once",
+    "expected_memories": [
+      {
+        "title": "Work-Life Balance",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Balancing work and family life",
+        "selected_option": "Spending more time with kids",
+        "reasoning": "They're only young once"
+      }
+    ],
+    "id": "ext_v3_50",
+    "category": "Children"
+  },
+  {
+    "query": "What was your first job?",
+    "response": "I worked as a part-time cashier at a grocery store, it was a great experience and my first taste of financial independence.",
+    "expected_memories": [
+      {
+        "title": "First Job",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a part-time job",
+        "selected_option": "Cashier",
+        "reasoning": "Needed money and flexible schedule"
+      }
+    ],
+    "id": "ext_v3_51",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "Can you tell me about a difficult financial decision you made?",
+    "response": "Last year, I had to decide between paying off my credit card debt or saving for a down payment on a house. I chose to pay off the debt because the interest rate was high and it was stressing me out.",
+    "expected_memories": [
+      {
+        "title": "Paying Off Credit Card Debt",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Paying off debt or saving for a house",
+        "selected_option": "Paying off debt",
+        "reasoning": "High interest rate and stress"
+      }
+    ],
+    "id": "ext_v3_52",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "How do you usually handle unexpected expenses?",
+    "response": "Uh, I don't know... I just kind of wing it and hope for the best, I guess.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_53",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "What's the best investment you've ever made?",
+    "response": "I invested in a friend's startup a few years ago and it ended up doing really well. I also invested in a rental property, which has been a steady source of passive income.",
+    "expected_memories": [
+      {
+        "title": "Investing in Friend's Startup",
+        "event_type": "financial"
+      },
+      {
+        "title": "Investing in Rental Property",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investing in friend's startup",
+        "selected_option": "Investing",
+        "reasoning": "Believed in the idea and wanted to support friend"
+      },
+      {
+        "situation": "Investing in rental property",
+        "selected_option": "Investing",
+        "reasoning": "Wanted passive income"
+      }
+    ],
+    "id": "ext_v3_54",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "Have you ever had to deal with a financial emergency?",
+    "response": "Yes, last year my car broke down and I had to spend $2,000 to repair it. I had to dip into my savings to cover the cost.",
+    "expected_memories": [
+      {
+        "title": "Car Breakdown",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Paying for car repair",
+        "selected_option": "Using savings",
+        "reasoning": "Needed to get back on the road"
+      }
+    ],
+    "id": "ext_v3_55",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "What's your favorite way to save money?",
+    "response": "I like to use the 50/30/20 rule, where 50% of my income goes towards necessities, 30% towards discretionary spending, and 20% towards saving and debt repayment.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_56",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "Can you tell me about a time when you had to negotiate a salary?",
+    "response": "When I was switching jobs a few years ago, I had to negotiate my salary with my new employer. I did some research and found out what the market rate was for someone with my experience, and I was able to get a 10% increase.",
+    "expected_memories": [
+      {
+        "title": "Negotiating Salary",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Negotiating salary",
+        "selected_option": "Asking for 10% increase",
+        "reasoning": "Based on market research"
+      }
+    ],
+    "id": "ext_v3_57",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "How do you feel about budgeting?",
+    "response": "It's so boring, but I know it's necessary. I try to make it more enjoyable by using a budgeting app and setting small rewards for myself when I reach certain savings goals.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_58",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "What's the most expensive purchase you've ever made?",
+    "response": "I bought a house a few years ago, it was a really big purchase but it's been worth it. I had to save up for a long time and make some sacrifices, but it's nice to have a place to call my own.",
+    "expected_memories": [
+      {
+        "title": "Buying a House",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to buy a house",
+        "selected_option": "Buying",
+        "reasoning": "Wanted a place to call my own"
+      }
+    ],
+    "id": "ext_v3_59",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "Do you have any financial regrets?",
+    "response": "I wish I had started saving for retirement earlier, I feel like I'm a bit behind now. But I'm trying to catch up and make the most of it.",
+    "expected_memories": [
+      {
+        "title": "Regretting Not Saving for Retirement Sooner",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding when to start saving for retirement",
+        "selected_option": "Not starting sooner",
+        "reasoning": "Lack of knowledge and prioritization"
+      }
+    ],
+    "id": "ext_v3_60",
+    "category": "Financial experiences"
+  },
+  {
+    "query": "What's your investment strategy?",
+    "response": "I've got a mix of stocks and bonds, trying to diversify my portfolio.",
+    "expected_memories": [
+      {
+        "title": "Investment Portfolio",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing investment type",
+        "selected_option": "Diversified portfolio",
+        "reasoning": "To minimize risk"
+      }
+    ],
+    "id": "ext_v3_61",
+    "category": "Investments"
+  },
+  {
+    "query": "How's your investment doing?",
+    "response": "It's doing alright, I guess. Haven't really checked in a while.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_62",
+    "category": "Investments"
+  },
+  {
+    "query": "What made you invest in real estate?",
+    "response": "I invested in real estate because I wanted a tangible asset and my friend, who's a realtor, recommended it. Plus, I've always been interested in property management.",
+    "expected_memories": [
+      {
+        "title": "Real Estate Investment",
+        "event_type": "financial"
+      },
+      {
+        "title": "Friend's Advice",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding on investment type",
+        "selected_option": "Real estate",
+        "reasoning": "Tangible asset and friend's recommendation"
+      }
+    ],
+    "id": "ext_v3_63",
+    "category": "Investments"
+  },
+  {
+    "query": "Do you have any investments?",
+    "response": "No, I don't have any investments.",
+    "expected_memories": [
+      {
+        "title": "No Investments",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_64",
+    "category": "Investments"
+  },
+  {
+    "query": "What's the most you've ever invested?",
+    "response": "I once invested $10,000 in a startup, but it didn't work out. I learned a lot from the experience, though.",
+    "expected_memories": [
+      {
+        "title": "Startup Investment",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investing in a startup",
+        "selected_option": "$10,000 investment",
+        "reasoning": "Potential for high returns"
+      }
+    ],
+    "id": "ext_v3_65",
+    "category": "Investments"
+  },
+  {
+    "query": "How do you feel about investing in crypto?",
+    "response": "I'm not sure, it seems really volatile. I've been considering it, but I'm not sure if it's worth the risk.",
+    "expected_memories": [
+      {
+        "title": "Crypto Investment Consideration",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_66",
+    "category": "Investments"
+  },
+  {
+    "query": "What's your favorite investment platform?",
+    "response": "I don't really have one, I just use whatever my financial advisor recommends.",
+    "expected_memories": [
+      {
+        "title": "Financial Advisor's Recommendation",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing an investment platform",
+        "selected_option": "Financial advisor's recommendation",
+        "reasoning": "Trust in advisor's expertise"
+      }
+    ],
+    "id": "ext_v3_67",
+    "category": "Investments"
+  },
+  {
+    "query": "Have you ever made a bad investment?",
+    "response": "Yeah, I once invested in a friend's business and it failed. I lost a lot of money, but I learned a valuable lesson about doing my due diligence.",
+    "expected_memories": [
+      {
+        "title": "Bad Investment",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investing in a friend's business",
+        "selected_option": "Investment without due diligence",
+        "reasoning": "Loyalty to friend"
+      }
+    ],
+    "id": "ext_v3_68",
+    "category": "Investments"
+  },
+  {
+    "query": "What's the best investment advice you've received?",
+    "response": "My grandfather once told me to always diversify my portfolio and never put all my eggs in one basket. It's stuck with me to this day.",
+    "expected_memories": [
+      {
+        "title": "Grandfather's Advice",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_69",
+    "category": "Investments"
+  },
+  {
+    "query": "How has investing impacted your life?",
+    "response": "Investing has given me a sense of security and freedom. I've been able to travel and pursue my passions without worrying about money.",
+    "expected_memories": [
+      {
+        "title": "Investing's Impact on Life",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_70",
+    "category": "Investments"
+  },
+  {
+    "query": "Tell me about your first startup experience",
+    "response": "I was 25, and it was a chaotic but exciting time. I had just left my corporate job to start a sustainable clothing brand. We struggled to find the right suppliers, but eventually, we found a great partner in India. It was a huge learning curve, but we managed to break even within the first year.",
+    "expected_memories": [
+      {
+        "title": "First startup",
+        "event_type": "career"
+      },
+      {
+        "title": "Supplier partnership",
+        "event_type": "career"
+      },
+      {
+        "title": "Break-even point",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to leave corporate job",
+        "selected_option": "Left the job",
+        "reasoning": "To pursue entrepreneurial dreams"
+      },
+      {
+        "situation": "Finding the right suppliers",
+        "selected_option": "Partnered with an Indian supplier",
+        "reasoning": "Due to their quality and pricing"
+      }
+    ],
+    "id": "ext_v3_71",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "What did you learn from your startup failures?",
+    "response": "Honestly, I didn't learn much from my second startup. It was a food truck business that failed miserably, but I didn't take away any significant lessons.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_72",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "How did you come up with the idea for your current startup?",
+    "response": "I was on a trip to Japan, and I saw how convenient their public transportation system was. I realized that we needed something similar in our city, so I started working on a mobility-as-a-service platform.",
+    "expected_memories": [
+      {
+        "title": "Trip to Japan",
+        "event_type": "other"
+      },
+      {
+        "title": "Idea generation",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to work on a new startup idea",
+        "selected_option": "Pursued the mobility platform",
+        "reasoning": "Saw a need for it in the city"
+      }
+    ],
+    "id": "ext_v3_73",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "What has been the highlight of your startup journey so far?",
+    "response": "It was when we got featured in a prominent tech magazine. It was a huge morale boost for the team, and it helped us gain more traction with investors.",
+    "expected_memories": [
+      {
+        "title": "Featured in tech magazine",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_74",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "Can you tell me about a challenging time in your startup?",
+    "response": "Yes, it was when one of our co-founders left the company. It was a difficult time, but we managed to adapt and move forward.",
+    "expected_memories": [
+      {
+        "title": "Co-founder departure",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding how to move forward after co-founder's departure",
+        "selected_option": "Adapted and continued",
+        "reasoning": "To keep the business going"
+      }
+    ],
+    "id": "ext_v3_75",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "How do you balance your work and personal life as a startup founder?",
+    "response": "To be honest, it's been tough. I've been putting in 12-hour days, 6 days a week. I haven't had much time for my family or friends, but I know it's temporary.",
+    "expected_memories": [
+      {
+        "title": "Work-life balance struggles",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to prioritize work over personal life",
+        "selected_option": "Put in long hours",
+        "reasoning": "To ensure the startup's success"
+      }
+    ],
+    "id": "ext_v3_76",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "What advice would you give to aspiring entrepreneurs?",
+    "response": "I would say that perseverance is key. There will be many ups and downs, but it's essential to stay focused and keep pushing forward.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_77",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "Can you walk me through your fundraising process?",
+    "response": "We started by networking with potential investors and pitching our idea. We faced many rejections, but eventually, we secured funding from a prominent VC firm. It was a long and challenging process, but it was worth it.",
+    "expected_memories": [
+      {
+        "title": "Fundraising process",
+        "event_type": "financial"
+      },
+      {
+        "title": "Secured VC funding",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to pitch to VC firms",
+        "selected_option": "Pitched to multiple firms",
+        "reasoning": "To increase chances of securing funding"
+      }
+    ],
+    "id": "ext_v3_78",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "How do you handle stress and pressure as a startup founder?",
+    "response": "I try to prioritize my mental health by taking short breaks and practicing meditation. It helps me stay focused and calm under pressure.",
+    "expected_memories": [
+      {
+        "title": "Mental health practices",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding how to manage stress",
+        "selected_option": "Prioritized mental health",
+        "reasoning": "To maintain well-being"
+      }
+    ],
+    "id": "ext_v3_79",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "What's the most significant risk you've taken as a startup founder?",
+    "response": "It was when we decided to pivot our business model. It was a huge risk, but it paid off in the end. We were able to expand our customer base and increase revenue.",
+    "expected_memories": [
+      {
+        "title": "Pivoting the business model",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to pivot the business model",
+        "selected_option": "Took the risk and pivoted",
+        "reasoning": "To increase revenue and expand customer base"
+      }
+    ],
+    "id": "ext_v3_80",
+    "category": "Startup experiences"
+  },
+  {
+    "query": "What's been going on with your health lately?",
+    "response": "I've been dealing with a lot of stress and anxiety, but I recently started taking medication and it's been helping.",
+    "expected_memories": [
+      {
+        "title": "Started taking medication for anxiety",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to take medication for anxiety",
+        "selected_option": "Taking medication",
+        "reasoning": "To alleviate symptoms"
+      }
+    ],
+    "id": "ext_v3_81",
+    "category": "Health conditions"
+  },
+  {
+    "query": "How's your health?",
+    "response": "It's fine.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_82",
+    "category": "Health conditions"
+  },
+  {
+    "query": "What health conditions do you have?",
+    "response": "I have diabetes, high blood pressure, and I'm also dealing with the aftermath of a recent surgery.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with diabetes",
+        "event_type": "health"
+      },
+      {
+        "title": "Diagnosed with high blood pressure",
+        "event_type": "health"
+      },
+      {
+        "title": "Recent surgery",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_83",
+    "category": "Health conditions"
+  },
+  {
+    "query": "Have you experienced any health issues?",
+    "response": "No, I'm healthy.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_84",
+    "category": "Health conditions"
+  },
+  {
+    "query": "What's your experience with mental health?",
+    "response": "I've struggled with depression and PTSD, but therapy has been really helpful. I also started practicing yoga and meditation, which has improved my overall well-being.",
+    "expected_memories": [
+      {
+        "title": "Started therapy for depression and PTSD",
+        "event_type": "health"
+      },
+      {
+        "title": "Started practicing yoga and meditation",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to start therapy",
+        "selected_option": "Starting therapy",
+        "reasoning": "To address mental health issues"
+      }
+    ],
+    "id": "ext_v3_85",
+    "category": "Health conditions"
+  },
+  {
+    "query": "Do you have any health conditions that affect your daily life?",
+    "response": "I have chronic back pain, which can make it difficult to do certain activities, but I've learned to manage it with exercises and stretches.",
+    "expected_memories": [
+      {
+        "title": "Diagnosed with chronic back pain",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to start exercises and stretches for back pain",
+        "selected_option": "Starting exercises and stretches",
+        "reasoning": "To manage chronic back pain"
+      }
+    ],
+    "id": "ext_v3_86",
+    "category": "Health conditions"
+  },
+  {
+    "query": "What health concerns do you have?",
+    "response": "I'm worried about my family history of heart disease, so I've been trying to eat healthier and exercise more.",
+    "expected_memories": [
+      {
+        "title": "Started eating healthier and exercising due to family history of heart disease",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to make lifestyle changes due to family history of heart disease",
+        "selected_option": "Making lifestyle changes",
+        "reasoning": "To reduce risk of heart disease"
+      }
+    ],
+    "id": "ext_v3_87",
+    "category": "Health conditions"
+  },
+  {
+    "query": "Have you experienced any significant health changes recently?",
+    "response": "I had a baby 6 months ago, and the pregnancy was pretty rough. I'm still recovering and adjusting to being a new mom.",
+    "expected_memories": [
+      {
+        "title": "Gave birth 6 months ago",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_88",
+    "category": "Health conditions"
+  },
+  {
+    "query": "How do you handle health setbacks?",
+    "response": "I try to stay positive and focus on what I can control. I also have a great support system, which helps me stay motivated and grounded.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_89",
+    "category": "Health conditions"
+  },
+  {
+    "query": "What's the most challenging health issue you've faced?",
+    "response": "I had a near-fatal accident a few years ago and had to undergo a long and difficult recovery process. It was tough, but I learned a lot about resilience and perseverance.",
+    "expected_memories": [
+      {
+        "title": "Near-fatal accident and subsequent recovery",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_90",
+    "category": "Health conditions"
+  },
+  {
+    "query": "What do you like to do in your free time?",
+    "response": "I love playing guitar and writing songs. I've been playing for about 10 years now and it's a great way for me to express myself.",
+    "expected_memories": [
+      {
+        "title": "Learning to Play Guitar",
+        "event_type": "other"
+      },
+      {
+        "title": "Writing Songs",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_91",
+    "category": "Hobbies"
+  },
+  {
+    "query": "What's your favorite hobby?",
+    "response": "Hiking. I went to the mountains last weekend and it was amazing.",
+    "expected_memories": [
+      {
+        "title": "Hiking Trip to the Mountains",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_92",
+    "category": "Hobbies"
+  },
+  {
+    "query": "Do you have any interesting hobbies?",
+    "response": "I'm not really sure. I kind of just do stuff and see what happens.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_93",
+    "category": "Hobbies"
+  },
+  {
+    "query": "How did you get into your current hobby?",
+    "response": "I've always been interested in photography, but I never had the money for a good camera. Then I got a bonus at work and decided to treat myself.",
+    "expected_memories": [
+      {
+        "title": "Getting a Bonus at Work",
+        "event_type": "financial"
+      },
+      {
+        "title": "Buying a Camera",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding how to use the bonus",
+        "selected_option": "Buying a camera",
+        "reasoning": "To pursue my interest in photography"
+      }
+    ],
+    "id": "ext_v3_94",
+    "category": "Hobbies"
+  },
+  {
+    "query": "What do you like to do to relax?",
+    "response": "I'm a big fan of reading. I just finished a great book on history and I'm looking for a new one to start.",
+    "expected_memories": [
+      {
+        "title": "Finishing a Book on History",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_95",
+    "category": "Hobbies"
+  },
+  {
+    "query": "Have you ever taken a class or workshop for a hobby?",
+    "response": "Yeah, I took a cooking class last year and it was a lot of fun. I learned how to make a few new dishes and I've been experimenting with different recipes ever since.",
+    "expected_memories": [
+      {
+        "title": "Taking a Cooking Class",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_96",
+    "category": "Hobbies"
+  },
+  {
+    "query": "Do you have any hobbies that you're not very good at?",
+    "response": "Ha! Yeah, I've been trying to learn how to dance for years, but I'm just not very coordinated. It's funny, though - I always have a good time trying.",
+    "expected_memories": [
+      {
+        "title": "Trying to Learn How to Dance",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_97",
+    "category": "Hobbies"
+  },
+  {
+    "query": "How much time do you spend on your hobbies?",
+    "response": "It varies. Some weeks I have a lot of free time and I can spend hours playing music or working on my garden. Other weeks I'm busy with work and I barely have time for anything.",
+    "expected_memories": [
+      {
+        "title": "Playing Music",
+        "event_type": "other"
+      },
+      {
+        "title": "Working on My Garden",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_98",
+    "category": "Hobbies"
+  },
+  {
+    "query": "Have you ever had to choose between two hobbies that you enjoy?",
+    "response": "Yes, I had to choose between playing soccer and joining a book club. I decided to join the book club because I've been wanting to read more and I thought it would be a good way to meet new people.",
+    "expected_memories": [
+      {
+        "title": "Joining a Book Club",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing between soccer and a book club",
+        "selected_option": "Joining a book club",
+        "reasoning": "To read more and meet new people"
+      }
+    ],
+    "id": "ext_v3_99",
+    "category": "Hobbies"
+  },
+  {
+    "query": "What's something you've always wanted to try but haven't had the chance yet?",
+    "response": "I don't know... nothing, really.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_100",
+    "category": "Hobbies"
+  },
+  {
+    "query": "What was your favorite vacation?",
+    "response": "I loved visiting Japan, the food and temples were amazing",
+    "expected_memories": [
+      {
+        "title": "Japan Trip",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_101",
+    "category": "Travel"
+  },
+  {
+    "query": "Have you traveled to any new countries recently?",
+    "response": "No, I haven't had the chance to travel much lately, been too busy with work",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_102",
+    "category": "Travel"
+  },
+  {
+    "query": "What's the most memorable experience you've had while traveling?",
+    "response": "I went skydiving in New Zealand, it was exhilarating and terrifying at the same time, but I'd do it again in a heartbeat",
+    "expected_memories": [
+      {
+        "title": "Skydiving in New Zealand",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to go skydiving",
+        "selected_option": "Yes",
+        "reasoning": "To challenge myself"
+      }
+    ],
+    "id": "ext_v3_103",
+    "category": "Travel"
+  },
+  {
+    "query": "Do you prefer beach or city vacations?",
+    "response": "I love both, but if I had to choose, I'd say beach, there's something about the sound of the waves that's so relaxing",
+    "expected_memories": [],
+    "expected_decisions": [
+      {
+        "situation": "Choosing vacation type",
+        "selected_option": "Beach",
+        "reasoning": "Prefer relaxation"
+      }
+    ],
+    "id": "ext_v3_104",
+    "category": "Travel"
+  },
+  {
+    "query": "Have you ever gotten lost while traveling?",
+    "response": "Yes, I got lost in the streets of Paris, but I stumbled upon a quaint little café and ended up having a great time",
+    "expected_memories": [
+      {
+        "title": "Getting lost in Paris",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_105",
+    "category": "Travel"
+  },
+  {
+    "query": "What's the best food you've had while traveling?",
+    "response": "I had the most delicious pasta dish in Italy, it was made with fresh ingredients and cooked to perfection",
+    "expected_memories": [
+      {
+        "title": "Italian Pasta",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_106",
+    "category": "Travel"
+  },
+  {
+    "query": "Have you ever taken a road trip across the country?",
+    "response": "Yes, I drove from New York to California with my friends, it was an adventure of a lifetime, we saw so many amazing sights and had some great laughs",
+    "expected_memories": [
+      {
+        "title": "Cross-country road trip",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to take a road trip",
+        "selected_option": "Yes",
+        "reasoning": "To see the country"
+      }
+    ],
+    "id": "ext_v3_107",
+    "category": "Travel"
+  },
+  {
+    "query": "What's the most challenging part of traveling for you?",
+    "response": "I'd say it's dealing with jet lag, it always takes me a few days to adjust to the new time zone",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_108",
+    "category": "Travel"
+  },
+  {
+    "query": "Have you ever had a memorable encounter with a local while traveling?",
+    "response": "I met a friendly shop owner in Morocco who showed me around the city and taught me about the local culture",
+    "expected_memories": [
+      {
+        "title": "Moroccan shop owner",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_109",
+    "category": "Travel"
+  },
+  {
+    "query": "Do you have any upcoming travel plans?",
+    "response": "Nothing concrete yet, but I'm thinking of visiting my family in Australia soon",
+    "expected_memories": [
+      {
+        "title": "Family in Australia",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to visit family",
+        "selected_option": "Yes",
+        "reasoning": "To spend time with loved ones"
+      }
+    ],
+    "id": "ext_v3_110",
+    "category": "Travel"
+  },
+  {
+    "query": "What matters most to you in life?",
+    "response": "Family is everything to me. I'd do anything to provide for them and keep them safe.",
+    "expected_memories": [
+      {
+        "title": "Family Support",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Prioritizing family over career",
+        "selected_option": "Family",
+        "reasoning": "To provide and keep them safe"
+      }
+    ],
+    "id": "ext_v3_111",
+    "category": "Personal values"
+  },
+  {
+    "query": "What do you value in relationships?",
+    "response": "Honestly, I don't really think about it. I just try to be a good person, I guess.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_112",
+    "category": "Personal values"
+  },
+  {
+    "query": "How do you approach financial planning?",
+    "response": "I've been saving up for years to buy my own house. It's a big goal of mine because my family and I had to move around a lot when I was a kid due to financial instability. I want to give my kids a more stable home life.",
+    "expected_memories": [
+      {
+        "title": "Childhood Financial Struggles",
+        "event_type": "financial"
+      },
+      {
+        "title": "Future Homeownership",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing to save for a house over other expenses",
+        "selected_option": "Saving for a house",
+        "reasoning": "To provide a stable home for my kids"
+      }
+    ],
+    "id": "ext_v3_113",
+    "category": "Personal values"
+  },
+  {
+    "query": "What motivates you to pursue your career goals?",
+    "response": "I want to be a doctor to help people. My grandmother was very ill when I was young, and the care she received from her doctors made a huge difference in her life and ours.",
+    "expected_memories": [
+      {
+        "title": "Grandmother's Illness",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a medical career over other paths",
+        "selected_option": "Becoming a doctor",
+        "reasoning": "To help people as the doctors helped my grandmother"
+      }
+    ],
+    "id": "ext_v3_114",
+    "category": "Personal values"
+  },
+  {
+    "query": "How do you balance work and personal life?",
+    "response": "It's tough. Sometimes I feel like I'm not doing either well. But my kids' school events and my own hobbies are important to me, so I try to make time.",
+    "expected_memories": [
+      {
+        "title": "Importance of Kids' Events",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Prioritizing family events over work",
+        "selected_option": "Attend family events",
+        "reasoning": "To be present for my kids"
+      }
+    ],
+    "id": "ext_v3_115",
+    "category": "Personal values"
+  },
+  {
+    "query": "What are your thoughts on personal freedom?",
+    "response": "I think it's essential for happiness and growth. Without the freedom to make our own choices, we can't truly flourish as individuals.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_116",
+    "category": "Personal values"
+  },
+  {
+    "query": "How do you handle health setbacks?",
+    "response": "I've had my share of struggles, especially after a serious car accident a few years ago. But I've learned to focus on what I can control and take it one day at a time.",
+    "expected_memories": [
+      {
+        "title": "Car Accident",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a positive outlook after an accident",
+        "selected_option": "Focus on the present",
+        "reasoning": "To maintain mental health and recovery"
+      }
+    ],
+    "id": "ext_v3_117",
+    "category": "Personal values"
+  },
+  {
+    "query": "What role does education play in your life?",
+    "response": "Education is key. It opens doors and broadens your perspective. I'm actually considering going back to school for a master's degree to advance in my career.",
+    "expected_memories": [],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to pursue further education",
+        "selected_option": "Going back to school",
+        "reasoning": "To advance in my career"
+      }
+    ],
+    "id": "ext_v3_118",
+    "category": "Personal values"
+  },
+  {
+    "query": "Can you tell me about a time when your personal values were challenged?",
+    "response": "In my previous job, I was asked to compromise on something that went against my integrity. I decided to leave the company because I couldn't continue in a role that didn't align with my values.",
+    "expected_memories": [
+      {
+        "title": "Standing Up for Integrity",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing integrity over job security",
+        "selected_option": "Leave the company",
+        "reasoning": "To maintain personal integrity"
+      }
+    ],
+    "id": "ext_v3_119",
+    "category": "Personal values"
+  },
+  {
+    "query": "Is there something you've always wanted to try but haven't had the chance yet?",
+    "response": "Traveling the world. I've always been fascinated by different cultures, but between work and family, it's hard to find the time. Maybe someday.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_120",
+    "category": "Personal values"
+  },
+  {
+    "query": "What's your biggest regret in life?",
+    "response": "I wish I had spent more time with my family when I was younger, instead of focusing on my career.",
+    "expected_memories": [
+      {
+        "title": "Missed family time",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Balancing family and career",
+        "selected_option": "Focused on career",
+        "reasoning": "Financial stability"
+      }
+    ],
+    "id": "ext_v3_121",
+    "category": "Regrets"
+  },
+  {
+    "query": "Do you regret any past financial decisions?",
+    "response": "Not really, I mean I've made some bad investments, but that's just part of the game, right?",
+    "expected_memories": [
+      {
+        "title": "Bad investments",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Investment opportunities",
+        "selected_option": "Took risks",
+        "reasoning": "Potential for high returns"
+      }
+    ],
+    "id": "ext_v3_122",
+    "category": "Regrets"
+  },
+  {
+    "query": "What's one thing you regret not doing in your 20s?",
+    "response": "Traveling, I was too afraid to take time off work and now I wish I had seen more of the world.",
+    "expected_memories": [
+      {
+        "title": "Missed travel opportunities",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Travel plans",
+        "selected_option": "Prioritized work",
+        "reasoning": "Fear of instability"
+      }
+    ],
+    "id": "ext_v3_123",
+    "category": "Regrets"
+  },
+  {
+    "query": "Do you regret any of your past relationships?",
+    "response": "I don't really think about it, water under the bridge.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_124",
+    "category": "Regrets"
+  },
+  {
+    "query": "What's the most significant health regret you have?",
+    "response": "Not taking care of my mental health when I was younger, it took a toll on my relationships and career.",
+    "expected_memories": [
+      {
+        "title": "Neglected mental health",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Mental health support",
+        "selected_option": "Did not seek help",
+        "reasoning": "Lack of awareness"
+      }
+    ],
+    "id": "ext_v3_125",
+    "category": "Regrets"
+  },
+  {
+    "query": "Do you regret switching careers?",
+    "response": "No, it was the best decision I ever made, I'm much happier now.",
+    "expected_memories": [
+      {
+        "title": "Career switch",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Career change",
+        "selected_option": "Switched careers",
+        "reasoning": "Personal fulfillment"
+      }
+    ],
+    "id": "ext_v3_126",
+    "category": "Regrets"
+  },
+  {
+    "query": "What's one thing you regret saying to someone?",
+    "response": "I once told a friend something that hurt their feelings, and I wish I could take it back.",
+    "expected_memories": [
+      {
+        "title": "Hurtful comment",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Sensitive conversation",
+        "selected_option": "Spoke without thinking",
+        "reasoning": "Emotional reaction"
+      }
+    ],
+    "id": "ext_v3_127",
+    "category": "Regrets"
+  },
+  {
+    "query": "Do you regret not learning a new skill?",
+    "response": "Yes, I wish I had learned a new language, it would have opened up more opportunities for me.",
+    "expected_memories": [
+      {
+        "title": "Missed learning opportunity",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Personal development",
+        "selected_option": "Did not prioritize learning",
+        "reasoning": "Lack of motivation"
+      }
+    ],
+    "id": "ext_v3_128",
+    "category": "Regrets"
+  },
+  {
+    "query": "What's your biggest regret regarding your education?",
+    "response": "Not pursuing a master's degree, I think it would have advanced my career faster.",
+    "expected_memories": [
+      {
+        "title": "Not pursuing further education",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Higher education",
+        "selected_option": "Did not pursue master's",
+        "reasoning": "Financial constraints"
+      }
+    ],
+    "id": "ext_v3_129",
+    "category": "Regrets"
+  },
+  {
+    "query": "Do you regret anything about your current life situation?",
+    "response": "The weather is nice today, isn't it?",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_130",
+    "category": "Regrets"
+  },
+  {
+    "query": "What's the most significant thing that's happened to you recently?",
+    "response": "I just got married and it's been a whirlwind few months, we're still settling into our new place and I started a new job as well.",
+    "expected_memories": [
+      {
+        "title": "Wedding",
+        "event_type": "family"
+      },
+      {
+        "title": "New Job",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a new job or staying at the old one",
+        "selected_option": "New job",
+        "reasoning": "Better opportunities"
+      }
+    ],
+    "id": "ext_v3_131",
+    "category": "Major life events"
+  },
+  {
+    "query": "Tell me about your childhood.",
+    "response": "It was pretty normal, I guess. I have a lot of siblings, so it was always chaotic, but fun.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_132",
+    "category": "Major life events"
+  },
+  {
+    "query": "What's been the highlight of your year so far?",
+    "response": "Oh, definitely the birth of my first child. It's been a huge adjustment, but it's amazing to be a parent.",
+    "expected_memories": [
+      {
+        "title": "Birth of first child",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding whether to have a child",
+        "selected_option": "Yes",
+        "reasoning": "Ready for the responsibility"
+      }
+    ],
+    "id": "ext_v3_133",
+    "category": "Major life events"
+  },
+  {
+    "query": "How's your health been lately?",
+    "response": "I was diagnosed with diabetes a few years ago, so I've been trying to manage that. It's been tough, but I'm learning.",
+    "expected_memories": [
+      {
+        "title": "Diabetes diagnosis",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding how to manage diabetes",
+        "selected_option": "Lifestyle changes",
+        "reasoning": "Trying to avoid medication"
+      }
+    ],
+    "id": "ext_v3_134",
+    "category": "Major life events"
+  },
+  {
+    "query": "What made you decide to move to a new city?",
+    "response": "I got a job offer that was too good to pass up, and my partner was okay with moving, so we just went for it. It's been great so far.",
+    "expected_memories": [
+      {
+        "title": "New job",
+        "event_type": "career"
+      },
+      {
+        "title": "Moved to a new city",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding whether to accept the job offer",
+        "selected_option": "Yes",
+        "reasoning": "Better career opportunities"
+      }
+    ],
+    "id": "ext_v3_135",
+    "category": "Major life events"
+  },
+  {
+    "query": "What was your favorite part about college?",
+    "response": "I don't know... I just didn't really enjoy it, to be honest. I was happy to graduate and start working.",
+    "expected_memories": [
+      {
+        "title": "Graduation",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_136",
+    "category": "Major life events"
+  },
+  {
+    "query": "How did you meet your partner?",
+    "response": "We met through mutual friends. It was a pretty casual thing at first, but it just kind of evolved into something more.",
+    "expected_memories": [
+      {
+        "title": "Meeting partner",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_137",
+    "category": "Major life events"
+  },
+  {
+    "query": "What's the biggest risk you've ever taken?",
+    "response": "I started my own business a few years ago, and it was really scary, but it's paid off so far. I'm proud of myself for taking the leap.",
+    "expected_memories": [
+      {
+        "title": "Starting own business",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding whether to start a business",
+        "selected_option": "Yes",
+        "reasoning": "Wanted to be my own boss"
+      }
+    ],
+    "id": "ext_v3_138",
+    "category": "Major life events"
+  },
+  {
+    "query": "What's something you're looking forward to in the coming years?",
+    "response": "I'm not really sure... I'm just kind of taking things as they come, I guess. Nothing too specific on the horizon.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_139",
+    "category": "Major life events"
+  },
+  {
+    "query": "What's been the most challenging part of your life so far?",
+    "response": "Losing my mom was really tough. It's been a few years now, but it still feels pretty raw. I'm just trying to focus on the good memories, you know?",
+    "expected_memories": [
+      {
+        "title": "Loss of mother",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_140",
+    "category": "Major life events"
+  },
+  {
+    "query": "What's your greatest achievement?",
+    "response": "I'd say it's completing my first marathon, the feeling of crossing that finish line was incredible",
+    "expected_memories": [
+      {
+        "title": "First Marathon",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_141",
+    "category": "Achievements"
+  },
+  {
+    "query": "Tell me about a time when you felt proud of yourself",
+    "response": "It was when I landed my dream job as a software engineer at a top tech firm, I worked so hard for it and it paid off",
+    "expected_memories": [
+      {
+        "title": "Dream Job",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_142",
+    "category": "Achievements"
+  },
+  {
+    "query": "What are some of your accomplishments that you're proud of?",
+    "response": "Well, I've traveled to over 10 countries, learned 3 new languages, and started my own business, it's been a wild ride",
+    "expected_memories": [
+      {
+        "title": "Traveling",
+        "event_type": "other"
+      },
+      {
+        "title": "Learning Languages",
+        "event_type": "other"
+      },
+      {
+        "title": "Starting a Business",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_143",
+    "category": "Achievements"
+  },
+  {
+    "query": "What's the best thing that's happened to you this year?",
+    "response": "Honestly, I don't know, nothing really stands out",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_144",
+    "category": "Achievements"
+  },
+  {
+    "query": "Can you share a story about overcoming a difficult challenge?",
+    "response": "When I was in college, I had to choose between taking a prestigious internship or traveling abroad, I chose the internship and it led to my first job, I think it was the right decision because it gave me valuable work experience",
+    "expected_memories": [
+      {
+        "title": "College Internship",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing between internship and travel",
+        "selected_option": "Internship",
+        "reasoning": "Gaining work experience"
+      }
+    ],
+    "id": "ext_v3_145",
+    "category": "Achievements"
+  },
+  {
+    "query": "What's something you're looking forward to accomplishing in the future?",
+    "response": "I'm not really sure, I'm just taking things one day at a time",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_146",
+    "category": "Achievements"
+  },
+  {
+    "query": "Tell me about a time when you had to make a tough financial decision",
+    "response": "When I bought my first house, I had to decide between a fixed-rate mortgage and an adjustable-rate one, I chose the fixed-rate because it was more stable and secure, it's worked out well so far",
+    "expected_memories": [
+      {
+        "title": "Buying a House",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a mortgage type",
+        "selected_option": "Fixed-rate",
+        "reasoning": "Stability and security"
+      }
+    ],
+    "id": "ext_v3_147",
+    "category": "Achievements"
+  },
+  {
+    "query": "What's your most significant personal achievement?",
+    "response": "Getting married and starting a family has been the most rewarding experience, it's taught me so much about love and responsibility",
+    "expected_memories": [
+      {
+        "title": "Getting Married",
+        "event_type": "family"
+      },
+      {
+        "title": "Starting a Family",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_148",
+    "category": "Achievements"
+  },
+  {
+    "query": "Can you describe a situation where you had to balance work and family life?",
+    "response": "When my child was born, I had to adjust my work schedule to spend more time with them, it was challenging but worth it, I had to decide between taking a pay cut or finding a new job with more flexible hours, I chose the latter and it's been great",
+    "expected_memories": [
+      {
+        "title": "Having a Child",
+        "event_type": "family"
+      },
+      {
+        "title": "New Job with Flexible Hours",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Balancing work and family",
+        "selected_option": "Finding a new job",
+        "reasoning": "More flexible hours"
+      }
+    ],
+    "id": "ext_v3_149",
+    "category": "Achievements"
+  },
+  {
+    "query": "What's something you're proud of that might not be immediately obvious to others?",
+    "response": "I've been volunteering at a local animal shelter for years, it's been incredibly rewarding and has taught me a lot about compassion and empathy",
+    "expected_memories": [
+      {
+        "title": "Volunteering at Animal Shelter",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_150",
+    "category": "Achievements"
+  },
+  {
+    "query": "What do you like to do on weekends?",
+    "response": "I love spending time outdoors, hiking or biking with friends, but I also enjoy a good movie night with my family.",
+    "expected_memories": [
+      {
+        "title": "Outdoor Activities",
+        "event_type": "other"
+      },
+      {
+        "title": "Family Movie Nights",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing between outdoor activities and movie nights",
+        "selected_option": "Both",
+        "reasoning": "Because I value time with friends and family"
+      }
+    ],
+    "id": "ext_v3_151",
+    "category": "Preferences"
+  },
+  {
+    "query": "What's your favorite food?",
+    "response": "Pizza, hands down. I had the best slice in Italy last year.",
+    "expected_memories": [
+      {
+        "title": "Italy Trip",
+        "event_type": "other"
+      },
+      {
+        "title": "Favorite Food",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_152",
+    "category": "Preferences"
+  },
+  {
+    "query": "Do you have any health goals?",
+    "response": "I'm trying to lose a few pounds, so I've started jogging and eating more salads.",
+    "expected_memories": [
+      {
+        "title": "Weight Loss Journey",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding on a weight loss method",
+        "selected_option": "Jogging and healthy eating",
+        "reasoning": "Because it's a sustainable lifestyle change"
+      }
+    ],
+    "id": "ext_v3_153",
+    "category": "Preferences"
+  },
+  {
+    "query": "What do you like about your job?",
+    "response": "Honestly, not much. I'm just waiting for a better opportunity.",
+    "expected_memories": [
+      {
+        "title": "Current Job Dissatisfaction",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_154",
+    "category": "Preferences"
+  },
+  {
+    "query": "How do you manage your finances?",
+    "response": "I use a budgeting app and try to save 10% of my income each month.",
+    "expected_memories": [
+      {
+        "title": "Budgeting Habits",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a budgeting method",
+        "selected_option": "Using an app",
+        "reasoning": "Because it's convenient and easy to track"
+      }
+    ],
+    "id": "ext_v3_155",
+    "category": "Preferences"
+  },
+  {
+    "query": "What's your favorite type of music?",
+    "response": "I don't really have one. Music isn't really my thing.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_156",
+    "category": "Preferences"
+  },
+  {
+    "query": "Do you have any family traditions?",
+    "response": "We always have a big dinner on Sundays, and my mom makes the best roast chicken.",
+    "expected_memories": [
+      {
+        "title": "Sunday Dinners",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_157",
+    "category": "Preferences"
+  },
+  {
+    "query": "What do you value most in life?",
+    "response": "My relationships with loved ones, and being true to myself.",
+    "expected_memories": [
+      {
+        "title": "Personal Values",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_158",
+    "category": "Preferences"
+  },
+  {
+    "query": "How do you handle stress?",
+    "response": "I try to meditate and practice yoga, but sometimes I just need a good cry.",
+    "expected_memories": [
+      {
+        "title": "Stress Management Techniques",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing a stress relief method",
+        "selected_option": "Meditation and yoga",
+        "reasoning": "Because it helps me relax"
+      }
+    ],
+    "id": "ext_v3_159",
+    "category": "Preferences"
+  },
+  {
+    "query": "What's the most spontaneous thing you've ever done?",
+    "response": "I once booked a last-minute ticket to Paris and spent the weekend exploring the city. It was exhilarating!",
+    "expected_memories": [
+      {
+        "title": "Paris Adventure",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding to take a spontaneous trip",
+        "selected_option": "Booking a ticket to Paris",
+        "reasoning": "Because I wanted to be adventurous"
+      }
+    ],
+    "id": "ext_v3_160",
+    "category": "Preferences"
+  },
+  {
+    "query": "What are your plans for the next 5 years?",
+    "response": "I'd like to start my own business, maybe something in tech, and also think about starting a family with my partner.",
+    "expected_memories": [
+      {
+        "title": "Entrepreneurial aspirations",
+        "event_type": "career"
+      },
+      {
+        "title": "Family planning",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing between stability and entrepreneurship",
+        "selected_option": "Taking the risk to start a business",
+        "reasoning": "Passion for innovation and potential for growth"
+      }
+    ],
+    "id": "ext_v3_161",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "What do you hope to achieve in your lifetime?",
+    "response": "Travel to every continent, learn at least 5 languages, and write a book.",
+    "expected_memories": [
+      {
+        "title": "Travel goals",
+        "event_type": "other"
+      },
+      {
+        "title": "Language learning aspirations",
+        "event_type": "other"
+      },
+      {
+        "title": "Writing a book",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_162",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "What are your long-term financial goals?",
+    "response": "I'm not really sure, I guess just to be comfortable and not have to worry about money.",
+    "expected_memories": [
+      {
+        "title": "Desire for financial security",
+        "event_type": "financial"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_163",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "Do you see yourself in a different career in 10 years?",
+    "response": "Yes, I hope to have transitioned into a role that allows me to use my skills in environmental conservation.",
+    "expected_memories": [
+      {
+        "title": "Career transition plans",
+        "event_type": "career"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing between current job security and pursuing a passion",
+        "selected_option": "Pursuing environmental conservation",
+        "reasoning": "Desire to make a positive impact"
+      }
+    ],
+    "id": "ext_v3_164",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "What's the most important thing you want to achieve in the next decade?",
+    "response": "Honestly, just to be happy and at peace with myself and my decisions.",
+    "expected_memories": [
+      {
+        "title": "Prioritizing personal happiness",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_165",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "How do you envision your family life in 15 years?",
+    "response": "I see myself married with two kids, living in a house by the beach, and being able to spend quality time with my loved ones.",
+    "expected_memories": [
+      {
+        "title": "Family and marriage aspirations",
+        "event_type": "family"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Deciding on the ideal family size",
+        "selected_option": "Two kids",
+        "reasoning": "Balancing personal and financial responsibilities"
+      }
+    ],
+    "id": "ext_v3_166",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "What role do you think health and wellness will play in your long-term goals?",
+    "response": "It's crucial; I want to maintain a healthy lifestyle so I can enjoy life without limitations.",
+    "expected_memories": [
+      {
+        "title": "Prioritizing health and wellness",
+        "event_type": "health"
+      }
+    ],
+    "expected_decisions": [],
+    "id": "ext_v3_167",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "Do you have any specific long-term goals related to personal development?",
+    "response": "Not really, I just take things as they come and try to learn from my experiences.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_168",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "How does retirement factor into your long-term planning?",
+    "response": "I've started saving, but I'm not sure what I want to do when I retire; maybe travel or volunteer.",
+    "expected_memories": [
+      {
+        "title": "Retirement savings",
+        "event_type": "financial"
+      },
+      {
+        "title": "Post-retirement plans",
+        "event_type": "other"
+      }
+    ],
+    "expected_decisions": [
+      {
+        "situation": "Choosing between different retirement activities",
+        "selected_option": "Travel or volunteer",
+        "reasoning": "Desire for new experiences and giving back"
+      }
+    ],
+    "id": "ext_v3_169",
+    "category": "Long-term goals"
+  },
+  {
+    "query": "What are your thoughts on the concept of long-term goals?",
+    "response": "I don't know, it's all pretty vague to me. Life's too unpredictable to plan that far ahead.",
+    "expected_memories": [],
+    "expected_decisions": [],
+    "id": "ext_v3_170",
+    "category": "Long-term goals"
+  }
+]

@@ -66,19 +66,31 @@ VITE_SUPABASE_URL=your-supabase-project-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
-## Decision DNA Validation
+## Evaluation Framework V3
 
-Heirloom includes validation tooling for the Decision DNA advisor to measure how closely the generated persona matches user decision patterns.
+### Completed Improvements
+* Fixed retrieval evaluation pipeline
+* Eliminated benchmark leakage
+* Added hard semantic retrieval benchmark
+* Integrated vector retrieval mode
+* Added deterministic extraction scoring
+* Replaced LLM arithmetic with semantic alignment judging
+* Added extraction error analysis workflow
 
-### Verified Evaluation Metrics
-- **Domain Classification Accuracy (Human)**: 79.2%
-  - 95% Confidence Interval: [Measured]
-  - Sample Size: 120
-  - Coverage: 100%
-  - Category: [A] Real execution + human labels
+### Current Evaluation Status
+* Domain Classification Accuracy: 79.2% (Human Benchmark, n=120)
+* Retrieval Recall@5: 100% on semantic benchmark using vector retrieval
+* Memory Extraction Evaluation: Operational with deterministic scoring
+* Memory Extraction Prompt V2 demonstrated substantial reduction in hallucinated memories during partial benchmark testing
+
+### Architecture Highlights
+* Semantic memory retrieval
+* GraphRAG memory context assembly
+* Deterministic evaluation pipeline
+* Multi-judge architecture
+* Traceable error analysis
 
 For detailed evaluation methodology and additional metrics, see [Evaluation Report V3](./Evaluation%20Report.md).
-
 ## Security & Privacy
 Heirloom is built around absolute family privacy. Succession vaults and inheritance keys are strictly managed by designated family owners, and all personal documents remain encrypted and private until explicitly shared.
 

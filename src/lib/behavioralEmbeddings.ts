@@ -1,5 +1,7 @@
 export const generateDecisionEmbedding = async (obj: Record<string, any>) => {
-  const groqApiKey = import.meta.env.VITE_GROQ_API_KEY;
+  const groqApiKey = typeof process !== 'undefined' && process.env.VITE_GROQ_API_KEY 
+  ? process.env.VITE_GROQ_API_KEY 
+  : (typeof import.meta !== 'undefined' && import.meta.env ? (import.meta.env as any).VITE_GROQ_API_KEY : undefined);
   if (!groqApiKey) return null;
   const input = JSON.stringify(obj);
   if (!input) return null;

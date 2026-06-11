@@ -1,0 +1,1524 @@
+[
+  {
+    "query": "I'm a software engineer looking to transition into a product management role, what skills should I focus on developing?",
+    "available_memories": [
+      {
+        "id": "615f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2c",
+        "title": "Product Management Certification",
+        "content": "Completed a product management certification course to learn about Agile development, product roadmapping, and stakeholder management.",
+        "year": 2020
+      },
+      {
+        "id": "a87f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2d",
+        "title": "Mentorship Experience",
+        "content": "Mentored a junior software engineer and helped them develop project management skills, which sparked my interest in product management.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Emphasize importance of business acumen",
+      "Recommend networking with product managers",
+      "Suggest taking courses in market research"
+    ],
+    "id": "e2e_v3_1",
+    "scenario": "Career transition"
+  },
+  {
+    "query": "How can I make a successful career transition from a lawyer to a data scientist?",
+    "available_memories": [
+      {
+        "id": "113f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2e",
+        "title": "Data Science Bootcamp",
+        "content": "Completed a data science bootcamp and learned about machine learning, statistical modeling, and data visualization.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge potential cultural shock",
+      "Advise patience and dedication",
+      "Recommend focusing on transferable skills"
+    ],
+    "id": "e2e_v3_2",
+    "scenario": "Career transition"
+  },
+  {
+    "query": "I'm considering a career transition from teaching to writing, what are the key differences I should be prepared for?",
+    "available_memories": [
+      {
+        "id": "615f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2c",
+        "title": "Published Author",
+        "content": "Published a book and experienced the editing and publishing process, which taught me about the business side of writing.",
+        "year": 2018
+      },
+      {
+        "id": "a87f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2d",
+        "title": "Teaching Creative Writing",
+        "content": "Taught creative writing workshops and helped students develop their writing skills, which sparked my interest in writing full-time.",
+        "year": 2015
+      },
+      {
+        "id": "113f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2f",
+        "title": "Writing Communities",
+        "content": "Participated in writing communities and learned about the importance of feedback, critique, and support in the writing process.",
+        "year": 2012
+      }
+    ],
+    "expected_traits": [
+      "Discuss differences in work-life balance",
+      "Emphasize importance of self-motivation",
+      "Recommend building a writing portfolio"
+    ],
+    "id": "e2e_v3_3",
+    "scenario": "Career transition"
+  },
+  {
+    "query": "What are the most important skills for a career transition from a marketing specialist to a UX designer?",
+    "available_memories": [
+      {
+        "id": "615f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2c",
+        "title": "UX Design Certification",
+        "content": "Completed a UX design certification course and learned about human-centered design, user research, and usability testing.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Highlight importance of empathy and understanding user needs",
+      "Recommend learning about design thinking"
+    ],
+    "id": "e2e_v3_4",
+    "scenario": "Career transition"
+  },
+  {
+    "query": "I'm a former athlete looking to transition into a career in sports management, what steps should I take?",
+    "available_memories": [
+      {
+        "id": "a87f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2d",
+        "title": "Sports Management Internship",
+        "content": "Completed an internship with a sports management company and learned about the business side of sports, including marketing, finance, and event planning.",
+        "year": 2016
+      },
+      {
+        "id": "113f2c43-7b9a-44e2-9e8c-2f6c5e2c2c2f",
+        "title": "Networking Event",
+        "content": "Attended a sports management networking event and met professionals in the field, which helped me build connections and learn about job opportunities.",
+        "year": 2017
+      }
+    ],
+    "expected_traits": [
+      "Emphasize importance of building a professional network",
+      "Recommend gaining experience in event planning",
+      "Suggest taking courses in sports marketing"
+    ],
+    "id": "e2e_v3_5",
+    "scenario": "Career transition"
+  },
+  {
+    "query": "I've been working non-stop for months and I'm feeling exhausted, how can I avoid burnout?",
+    "available_memories": [
+      {
+        "id": "983d3f4c-1c5a-47a5-9f6a-ffa408a122a3",
+        "title": "Previous Burnout Experience",
+        "content": "I worked 80-hour weeks for 6 months straight and ended up in the hospital with exhaustion. I had to take 3 months off to recover.",
+        "year": 2018
+      },
+      {
+        "id": "4b6e0a3d-5231-4f67-b6f7-46c9431192f4",
+        "title": "Burnout Prevention Strategies",
+        "content": "I attended a workshop on burnout prevention and learned about the importance of self-care, setting boundaries, and prioritizing tasks.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Empathize with user's situation",
+      "Offer practical advice",
+      "Encourage self-care"
+    ],
+    "id": "e2e_v3_6",
+    "scenario": "Burnout"
+  },
+  {
+    "query": "My friend is experiencing burnout, what are some signs I should look out for?",
+    "available_memories": [
+      {
+        "id": "19a1e2e3-4a5b-6c7d-8e9f-0a1b2c3d4e5f",
+        "title": "Supporting a Friend with Burnout",
+        "content": "I supported a friend who was going through burnout and noticed that they became withdrawn, irritable, and struggled to concentrate.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge concern for friend",
+      "Provide informative response",
+      "Suggest ways to support friend"
+    ],
+    "id": "e2e_v3_7",
+    "scenario": "Burnout"
+  },
+  {
+    "query": "I'm feeling overwhelmed with work and personal responsibilities, how can I prioritize my tasks to avoid burnout?",
+    "available_memories": [
+      {
+        "id": "6f5e4d3c-2b1a-3c4d-5e6f-7a8b9c0d1e2f",
+        "title": "Task Management Strategies",
+        "content": "I learned about the Eisenhower Matrix and how to prioritize tasks based on urgency and importance.",
+        "year": 2021
+      },
+      {
+        "id": "2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c",
+        "title": "Burnout Prevention Tips",
+        "content": "I read an article about burnout prevention and learned about the importance of taking breaks, setting realistic goals, and seeking support.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Offer practical advice",
+      "Encourage prioritization",
+      "Suggest seeking support"
+    ],
+    "id": "e2e_v3_8",
+    "scenario": "Burnout"
+  },
+  {
+    "query": "I've been experiencing physical symptoms of burnout, such as headaches and fatigue, what can I do to improve my physical health?",
+    "available_memories": [
+      {
+        "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c",
+        "title": "Physical Health and Burnout",
+        "content": "I learned about the importance of exercise, healthy eating, and sleep in managing burnout.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge physical symptoms",
+      "Provide health-related advice",
+      "Encourage self-care"
+    ],
+    "id": "e2e_v3_9",
+    "scenario": "Burnout"
+  },
+  {
+    "query": "I'm worried that I'm burning out, but I don't know how to talk to my manager about it, what should I do?",
+    "available_memories": [
+      {
+        "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e",
+        "title": "Communicating with Manager about Burnout",
+        "content": "I had to discuss my burnout with my manager and learned about the importance of being honest, setting clear boundaries, and seeking support.",
+        "year": 2019
+      },
+      {
+        "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8a9b",
+        "title": "Workplace Burnout Support",
+        "content": "I worked with a company that prioritized employee well-being and offered resources and support for burnout prevention.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Empathize with user's concern",
+      "Offer advice on communication",
+      "Suggest seeking support"
+    ],
+    "id": "e2e_v3_10",
+    "scenario": "Burnout"
+  },
+  {
+    "query": "How can I make my divorce less painful for my children?",
+    "available_memories": [
+      {
+        "id": "039a47d7-75a5-4f5a-83d5-5a2c25e2f6f2",
+        "title": "Co-Parenting After Divorce",
+        "content": "Studies have shown that children of divorced parents can thrive when both parents maintain a healthy and communicative relationship, prioritizing the child's emotional well-being.",
+        "year": 2019
+      },
+      {
+        "id": "4b5a1b7e-25e2-45e7-82d5-5a6c37f2e5f5",
+        "title": "Divorce and Child Custody",
+        "content": "In cases where one parent is granted sole custody, it's essential to establish a consistent visitation schedule to ensure the child's relationship with the other parent remains strong.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Empathize with the user's concern",
+      "Provide actionable advice",
+      "Reference relevant research or studies"
+    ],
+    "id": "e2e_v3_11",
+    "scenario": "Divorce"
+  },
+  {
+    "query": "What are the most common reasons for divorce?",
+    "available_memories": [
+      {
+        "id": "67e2a5d7-42a5-4f5e-83d2-5a2c25e2f6f6",
+        "title": "Divorce Statistics and Trends",
+        "content": "According to recent statistics, the most common reasons for divorce include lack of communication, infidelity, and financial problems.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Cite relevant statistics or data",
+      "Avoid being overly negative or pessimistic"
+    ],
+    "id": "e2e_v3_12",
+    "scenario": "Divorce"
+  },
+  {
+    "query": "How can I protect my assets during a divorce?",
+    "available_memories": [
+      {
+        "id": "93a47d7-75a5-4f5a-83d5-5a2c25e2f6f7",
+        "title": "Divorce and Financial Planning",
+        "content": "It's crucial to seek the advice of a financial advisor or attorney to ensure that your assets are protected during the divorce process.",
+        "year": 2018
+      },
+      {
+        "id": "1b5a1b7e-25e2-45e7-82d5-5a6c37f2e5f6",
+        "title": "Prenuptial Agreements and Divorce",
+        "content": "Having a prenuptial agreement in place can help to simplify the division of assets during a divorce.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Advise seeking professional help",
+      "Emphasize the importance of planning"
+    ],
+    "id": "e2e_v3_13",
+    "scenario": "Divorce"
+  },
+  {
+    "query": "Can I get a divorce without a lawyer?",
+    "available_memories": [
+      {
+        "id": "039a47d7-75a5-4f5a-83d5-5a2c25e2f6f8",
+        "title": "DIY Divorce and Online Resources",
+        "content": "While it's possible to get a divorce without a lawyer, it's essential to carefully consider the potential risks and complexities involved.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge potential risks",
+      "Provide information on available resources"
+    ],
+    "id": "e2e_v3_14",
+    "scenario": "Divorce"
+  },
+  {
+    "query": "How long does it take to recover from a divorce?",
+    "available_memories": [
+      {
+        "id": "4b5a1b7e-25e2-45e7-82d5-5a6c37f2e5f7",
+        "title": "Healing After Divorce",
+        "content": "The recovery process after a divorce can vary significantly from person to person, but it often involves a range of emotional stages, including grief, anger, and acceptance.",
+        "year": 2019
+      },
+      {
+        "id": "67e2a5d7-42a5-4f5e-83d2-5a2c25e2f6f9",
+        "title": "Divorce and Mental Health",
+        "content": "Seeking support from friends, family, or a therapist can be incredibly helpful in navigating the emotional aftermath of a divorce.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Validate the user's emotions",
+      "Offer supportive and non-judgmental advice",
+      "Encourage seeking help from others"
+    ],
+    "id": "e2e_v3_15",
+    "scenario": "Divorce"
+  },
+  {
+    "query": "How should I discipline my toddler for throwing toys?",
+    "available_memories": [
+      {
+        "id": "mem-1234",
+        "title": "Disciplining my niece",
+        "content": "I recall a time when I had to discipline my niece for throwing toys, and I realized that using positive reinforcement and setting clear boundaries worked better than punishment.",
+        "year": 2019
+      },
+      {
+        "id": "mem-5678",
+        "title": "Child development research",
+        "content": "Research suggests that toddlers who are disciplined harshly are more likely to develop behavioral problems later in life.",
+        "year": 2020
+      },
+      {
+        "id": "mem-9012",
+        "title": "Parenting class",
+        "content": "In a parenting class, I learned that using natural consequences and redirection can be effective in teaching toddlers self-regulation skills.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Empathize with parenting challenges",
+      "Offer alternative discipline strategies",
+      "Reference child development research"
+    ],
+    "id": "e2e_v3_16",
+    "scenario": "Parenting decisions"
+  },
+  {
+    "query": "Is it okay to let my child quit a sport they don't enjoy?",
+    "available_memories": [
+      {
+        "id": "mem-3456",
+        "title": "Quitting piano lessons",
+        "content": "I remember quitting piano lessons as a child because I didn't enjoy it, and my parents supported my decision.",
+        "year": 1995
+      },
+      {
+        "id": "mem-6789",
+        "title": "Supporting my child's interests",
+        "content": "I want my child to find an activity they love, and I'm willing to let them try different things until they find the right fit.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge the importance of supporting child's interests",
+      "Suggest exploring other activities"
+    ],
+    "id": "e2e_v3_17",
+    "scenario": "Parenting decisions"
+  },
+  {
+    "query": "How can I balance work and family life as a single parent?",
+    "available_memories": [
+      {
+        "id": "mem-1111",
+        "title": "Single parent support group",
+        "content": "I attended a support group for single parents and learned about the importance of prioritizing self-care and seeking help when needed.",
+        "year": 2018
+      },
+      {
+        "id": "mem-2222",
+        "title": "Time management strategies",
+        "content": "I've found that using a planner and setting clear boundaries between work and family time helps me stay organized and focused.",
+        "year": 2020
+      },
+      {
+        "id": "mem-3333",
+        "title": "Asking for help",
+        "content": "I've learned that it's okay to ask for help from family and friends when I need it, and that it's not a sign of weakness.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Validate the challenges of single parenting",
+      "Offer practical time management advice",
+      "Encourage seeking support"
+    ],
+    "id": "e2e_v3_18",
+    "scenario": "Parenting decisions"
+  },
+  {
+    "query": "What are some ways to teach my child about financial responsibility?",
+    "available_memories": [
+      {
+        "id": "mem-4444",
+        "title": "Teaching my child about saving",
+        "content": "I started teaching my child about saving by giving them a piggy bank and encouraging them to save a portion of their allowance.",
+        "year": 2015
+      },
+      {
+        "id": "mem-5555",
+        "title": "Financial literacy resources",
+        "content": "I found some great online resources that provide interactive and engaging ways to teach children about financial literacy.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Provide examples of teaching financial literacy",
+      "Suggest using interactive resources"
+    ],
+    "id": "e2e_v3_19",
+    "scenario": "Parenting decisions"
+  },
+  {
+    "query": "How can I help my teenager develop healthy relationships with peers?",
+    "available_memories": [
+      {
+        "id": "mem-6666",
+        "title": "My own teenage experiences",
+        "content": "I remember struggling with peer relationships as a teenager and wishing my parents had been more supportive and open to discussing my feelings.",
+        "year": 2000
+      },
+      {
+        "id": "mem-7777",
+        "title": "Parenting workshop",
+        "content": "I attended a workshop on parenting teenagers and learned about the importance of active listening and validating their emotions.",
+        "year": 2017
+      },
+      {
+        "id": "mem-8888",
+        "title": "Encouraging empathy",
+        "content": "I've been trying to encourage my teenager to consider other people's perspectives and to practice empathy in their relationships.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Share personal experiences",
+      "Advise on active listening and empathy",
+      "Validate the challenges of parenting teenagers"
+    ],
+    "id": "e2e_v3_20",
+    "scenario": "Parenting decisions"
+  },
+  {
+    "query": "I'm 30 years old and just started saving for retirement, what are the best investment options for me?",
+    "available_memories": [
+      {
+        "id": "873a6e4c-5f5a-48b7-8d9f-1234567890",
+        "title": "Retirement Savings Strategy",
+        "content": "Diversifying investments across low-risk bonds and high-growth stocks can provide a balanced portfolio for long-term growth.",
+        "year": 2020
+      },
+      {
+        "id": "6a6f4e3c-2b2a-1c1d-0819-2345678901",
+        "title": "Investment Mistakes to Avoid",
+        "content": "Avoid putting all your eggs in one basket and never invest in something you don't fully understand.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Provide personalized advice",
+      "Highlight the importance of diversification",
+      "Caution against high-risk investments"
+    ],
+    "id": "e2e_v3_21",
+    "scenario": "Retirement planning"
+  },
+  {
+    "query": "How can I ensure I have enough money to travel in retirement?",
+    "available_memories": [
+      {
+        "id": "4c3b2a1d-9f8e-7d6c-5b4a-3456789012",
+        "title": "Travel Budgeting for Retirees",
+        "content": "Create a separate travel fund and prioritize needs over wants to make the most of your travel budget.",
+        "year": 2021
+      },
+      {
+        "id": "1a2b3c4d-5e6f-7g8h-9i0j-4567890123",
+        "title": "Maximizing Retirement Income",
+        "content": "Consider delaying social security benefits and explore alternative income streams, such as part-time work or rental properties.",
+        "year": 2018
+      }
+    ],
+    "expected_traits": [
+      "Offer creative solutions",
+      "Encourage financial discipline"
+    ],
+    "id": "e2e_v3_22",
+    "scenario": "Retirement planning"
+  },
+  {
+    "query": "What are the tax implications of withdrawing from my retirement accounts?",
+    "available_memories": [
+      {
+        "id": "7h6g5f4e-3d2c-1b0a-9i8j-5678901234",
+        "title": "Tax Strategies for Retirement Withdrawals",
+        "content": "Consider consulting a tax professional to minimize tax liabilities and optimize withdrawal strategies.",
+        "year": 2022
+      },
+      {
+        "id": "2c1d0a9b-8f7e-6d5c-4b3a-9012345678",
+        "title": "Understanding Retirement Account Rules",
+        "content": "Familiarize yourself with required minimum distributions and potential penalties for early withdrawals.",
+        "year": 2017
+      }
+    ],
+    "expected_traits": [
+      "Provide accurate information",
+      "Advise seeking professional help",
+      "Emphasize the importance of tax planning"
+    ],
+    "id": "e2e_v3_23",
+    "scenario": "Retirement planning"
+  },
+  {
+    "query": "How can I balance retirement savings with paying off high-interest debt?",
+    "available_memories": [
+      {
+        "id": "9i8j7h6g-5f4e3d2c-1b0a-890123456",
+        "title": "Debt Management and Retirement Savings",
+        "content": "Prioritize high-interest debt repayment while maintaining a minimum retirement savings contribution.",
+        "year": 2020
+      },
+      {
+        "id": "5b4a3c2d-1e0f-9g8h-7i6j-567890123",
+        "title": "Managing Multiple Financial Goals",
+        "content": "Create a comprehensive financial plan that addresses all your goals, including debt repayment and retirement savings.",
+        "year": 2016
+      }
+    ],
+    "expected_traits": [
+      "Offer practical advice",
+      "Encourage goal-based planning"
+    ],
+    "id": "e2e_v3_24",
+    "scenario": "Retirement planning"
+  },
+  {
+    "query": "What are the benefits and drawbacks of downsizing my home in retirement?",
+    "available_memories": [
+      {
+        "id": "3d2c1b0a-9i8j7h6g-5f4e3d2c-1a2b3c4d",
+        "title": "Downsizing in Retirement",
+        "content": "Consider the potential benefits of reduced maintenance costs and increased cash flow, as well as the potential drawbacks of emotional attachment and lifestyle adjustments.",
+        "year": 2021
+      },
+      {
+        "id": "6f5e4d3c-2b1a0i9j-8h7g6f5e-4d3c2b1a",
+        "title": "Retirement Lifestyle Planning",
+        "content": "Think about your desired lifestyle and how downsizing might impact your social connections, hobbies, and overall well-being.",
+        "year": 2015
+      }
+    ],
+    "expected_traits": [
+      "Present balanced perspectives",
+      "Encourage careful consideration"
+    ],
+    "id": "e2e_v3_25",
+    "scenario": "Retirement planning"
+  },
+  {
+    "query": "I've been experiencing persistent chest pain, what could be the possible causes?",
+    "available_memories": [
+      {
+        "id": "6a7314b2-22c4-48a5-8a8b-82e68c9f4e2c",
+        "title": "Cardiovascular Disease",
+        "content": "High blood pressure and high cholesterol can increase the risk of heart disease, which may lead to chest pain.",
+        "year": 2020
+      },
+      {
+        "id": "4f2e3151-9f9f-45b7-b514-122f5c9a5f9a",
+        "title": "Gastrointestinal Issues",
+        "content": "Gastroesophageal reflux disease (GERD) and peptic ulcers can cause chest pain that may be mistaken for a heart attack.",
+        "year": 2019
+      },
+      {
+        "id": "92e2a8c9-4e22-4e4e-8f5f-4554e6e2e3e3",
+        "title": "Respiratory Problems",
+        "content": "Pneumonia, bronchitis, and other respiratory infections can cause chest pain, especially when coughing or taking deep breaths.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Provide a list of possible causes",
+      "Ask follow-up questions for more information",
+      "Recommend seeking medical attention"
+    ],
+    "id": "e2e_v3_26",
+    "scenario": "Medical diagnosis"
+  },
+  {
+    "query": "How accurate is a diagnosis of diabetes based on symptoms alone?",
+    "available_memories": [
+      {
+        "id": "1c9f3a4e-5c5c-43a3-87b7-54f6g7h8i9j",
+        "title": "Diabetes Diagnosis",
+        "content": "A diagnosis of diabetes is typically made based on a combination of symptoms, physical examination, and laboratory tests, such as blood glucose levels and hemoglobin A1c.",
+        "year": 2018
+      },
+      {
+        "id": "3f2e1d4c-5a5a-45b6-c7d7-e8f9g0h1i2",
+        "title": "Symptom-Based Diagnosis",
+        "content": "While symptoms such as increased thirst and urination can be indicative of diabetes, they are not always reliable and can be caused by other conditions.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Discuss the limitations of symptom-based diagnosis",
+      "Explain the importance of laboratory tests"
+    ],
+    "id": "e2e_v3_27",
+    "scenario": "Medical diagnosis"
+  },
+  {
+    "query": "I'm experiencing numbness and tingling in my hands and feet, could it be related to vitamin deficiency?",
+    "available_memories": [
+      {
+        "id": "8a7f6e5d-4c4c-43a2-87b5-65f4g6h7i8",
+        "title": "Vitamin Deficiency",
+        "content": "Deficiencies in vitamins such as B12 and B6 can cause numbness and tingling in the hands and feet.",
+        "year": 2017
+      },
+      {
+        "id": "2c2f1e4d-5a5a-45b6-c7d7-e8f9g0h1i2",
+        "title": "Neurological Disorders",
+        "content": "Certain neurological disorders, such as multiple sclerosis and peripheral neuropathy, can also cause numbness and tingling in the hands and feet.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Discuss possible causes of numbness and tingling",
+      "Recommend consulting a healthcare professional",
+      "Ask about dietary habits and supplement use"
+    ],
+    "id": "e2e_v3_28",
+    "scenario": "Medical diagnosis"
+  },
+  {
+    "query": "What are the differences between a heart attack and cardiac arrest?",
+    "available_memories": [
+      {
+        "id": "4e3f2d1c-5c5c-43a3-87b7-54f6g7h8i9j",
+        "title": "Cardiac Arrest",
+        "content": "Cardiac arrest occurs when the heart suddenly stops beating, often due to a severe blockage in the coronary arteries.",
+        "year": 2021
+      },
+      {
+        "id": "9f8e7d6c-5a5a-45b6-c7d7-e8f9g0h1i2",
+        "title": "Heart Attack",
+        "content": "A heart attack, also known as myocardial infarction, occurs when blood flow to the heart is severely blocked, causing damage to the heart muscle.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Clearly explain the differences between the two conditions",
+      "Discuss symptoms and warning signs"
+    ],
+    "id": "e2e_v3_29",
+    "scenario": "Medical diagnosis"
+  },
+  {
+    "query": "Can you help me understand the results of my recent blood work?",
+    "available_memories": [
+      {
+        "id": "7f6e5d4c-3c3c-43a2-87b5-65f4g6h7i8",
+        "title": "Blood Test Results",
+        "content": "Blood tests can measure various components, including glucose, cholesterol, and liver enzymes, to help diagnose and monitor medical conditions.",
+        "year": 2019
+      },
+      {
+        "id": "1a2b3c4d-5a5a-45b6-c7d7-e8f9g0h1i2",
+        "title": "Medical Terminology",
+        "content": "Understanding medical terminology is essential to interpreting blood test results, including terms such as 'elevated' and 'within normal limits'.",
+        "year": 2021
+      },
+      {
+        "id": "6c5d4e3f-2f2f-43a1-87b4-54f3g2h1i9",
+        "title": "Reference Ranges",
+        "content": "Reference ranges are established to help healthcare professionals interpret blood test results and determine whether a patient's results are within normal limits.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Explain the meaning of each component measured",
+      "Discuss the reference ranges for each test",
+      "Recommend consulting a healthcare professional for personalized interpretation"
+    ],
+    "id": "e2e_v3_30",
+    "scenario": "Medical diagnosis"
+  },
+  {
+    "query": "What are the common reasons for startup failure in the tech industry?",
+    "available_memories": [
+      {
+        "id": "63c18d4f-425a-41c3-81c4-5f4a4f4a4f4a",
+        "title": "Startup Failure Analysis",
+        "content": "A thorough analysis of 100 startup failures revealed that the top reasons for failure were lack of market need, running out of cash, and not having the right team in place.",
+        "year": 2020
+      },
+      {
+        "id": "34a24e3e-7e3c-489d-93d5-5d4a5d4a5d4a",
+        "title": "Tech Startup Failure Case Study",
+        "content": "A case study of a failed tech startup showed that poor marketing and lack of customer engagement were major contributing factors to its demise.",
+        "year": 2019
+      },
+      {
+        "id": "21b45b67-5f2e-46c2-8f7a-2a1f2a1f2a1f",
+        "title": "Entrepreneur Interview",
+        "content": "In an interview, a successful entrepreneur shared that her previous startup failed due to her inability to adapt to changing market conditions.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Provide data-driven insights",
+      "Offer actionable advice",
+      "Demonstrate understanding of industry trends"
+    ],
+    "id": "e2e_v3_31",
+    "scenario": "Startup failure"
+  },
+  {
+    "query": "I'm thinking of starting a startup, but I'm worried about failing. Can you help me?",
+    "available_memories": [
+      {
+        "id": "45f6g7h8-45f6g7h8-45f6g7h8-45f6g7h8",
+        "title": "Startup Success Story",
+        "content": "An interview with a successful startup founder revealed that perseverance, hard work, and a willingness to learn from mistakes were key factors in their success.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge user's concerns",
+      "Offer words of encouragement"
+    ],
+    "id": "e2e_v3_32",
+    "scenario": "Startup failure"
+  },
+  {
+    "query": "What can I do to avoid startup failure?",
+    "available_memories": [
+      {
+        "id": "7g8h9j0-7g8h9j0-7g8h9j0-7g8h9j0",
+        "title": "Startup Best Practices",
+        "content": "A study of successful startups identified several best practices, including conducting thorough market research, creating a robust business plan, and building a strong team.",
+        "year": 2020
+      },
+      {
+        "id": "2a3b4c5d-2a3b4c5d-2a3b4c5d-2a3b4c5d",
+        "title": "Common Startup Mistakes",
+        "content": "An analysis of failed startups revealed that common mistakes included inadequate financial planning, poor time management, and insufficient marketing efforts.",
+        "year": 2018
+      }
+    ],
+    "expected_traits": [
+      "Provide actionable advice",
+      "Highlight common pitfalls to avoid",
+      "Demonstrate understanding of startup ecosystem"
+    ],
+    "id": "e2e_v3_33",
+    "scenario": "Startup failure"
+  },
+  {
+    "query": "How can I recover from a startup failure?",
+    "available_memories": [
+      {
+        "id": "1a2b3c4d-1a2b3c4d-1a2b3c4d-1a2b3c4d",
+        "title": "Startup Failure Recovery",
+        "content": "A case study of a startup that failed and then recovered showed that the founder was able to learn from their mistakes, regroup, and launch a successful new venture.",
+        "year": 2022
+      },
+      {
+        "id": "3f4e5d6c-3f4e5d6c-3f4e5d6c-3f4e5d6c",
+        "title": "Entrepreneurial Resilience",
+        "content": "An interview with a successful entrepreneur revealed that they were able to bounce back from startup failure by maintaining a positive mindset, seeking support from peers, and being open to new opportunities.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Offer support and encouragement",
+      "Provide guidance on recovery strategies"
+    ],
+    "id": "e2e_v3_34",
+    "scenario": "Startup failure"
+  },
+  {
+    "query": "What are the most important lessons to learn from startup failure?",
+    "available_memories": [
+      {
+        "id": "9i8h7g6f-9i8h7g6f-9i8h7g6f-9i8h7g6f",
+        "title": "Startup Failure Lessons",
+        "content": "A review of startup failure case studies identified several key lessons, including the importance of adapting to changing market conditions, prioritizing customer needs, and maintaining a strong company culture.",
+        "year": 2021
+      },
+      {
+        "id": "4d3c2b1a-4d3c2b1a-4d3c2b1a-4d3c2b1a",
+        "title": "Entrepreneurial Wisdom",
+        "content": "An interview with a seasoned entrepreneur revealed that they learned valuable lessons from their startup failures, including the importance of perseverance, humility, and continuous learning.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Extract key takeaways from failures",
+      "Demonstrate understanding of entrepreneurial mindset",
+      "Offer insights for future success"
+    ],
+    "id": "e2e_v3_35",
+    "scenario": "Startup failure"
+  },
+  {
+    "query": "What are the best investment allocation strategies for a retiree?",
+    "available_memories": [
+      {
+        "id": "9f4c22c2-5bdc-46b2-af3b-5c6e3c33a3a3",
+        "title": "Investment Strategies for Retirees",
+        "content": "Diversification and low-risk investments are crucial for retirees to ensure a steady income stream.",
+        "year": 2020
+      },
+      {
+        "id": "8a2f111d-4e7a-4c1f-93e5-1115e5f5e5e5",
+        "title": "Portfolio Management for Seniors",
+        "content": "Senior investors should prioritize capital preservation and consider dividend-paying stocks.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Prioritize capital preservation",
+      "Recommend diversification",
+      "Consider tax implications"
+    ],
+    "id": "e2e_v3_36",
+    "scenario": "Investment allocation"
+  },
+  {
+    "query": "How should I allocate my investment portfolio during a recession?",
+    "available_memories": [
+      {
+        "id": "1a3b2c2d-2e2f-3f3g-4g4h-5h5i5i5",
+        "title": "Recession-Proof Investment Strategies",
+        "content": "During recessions, investors should focus on defensive sectors like healthcare and consumer staples.",
+        "year": 2008
+      }
+    ],
+    "expected_traits": [
+      "Advise caution",
+      "Recommend defensive sectors"
+    ],
+    "id": "e2e_v3_37",
+    "scenario": "Investment allocation"
+  },
+  {
+    "query": "What are the benefits of investing in a tax-loss harvesting strategy?",
+    "available_memories": [
+      {
+        "id": "6g4h5i6j7k8l9m0n1o2",
+        "title": "Tax-Loss Harvesting: A Review",
+        "content": "Tax-loss harvesting can help reduce tax liabilities and maximize after-tax returns.",
+        "year": 2021
+      },
+      {
+        "id": "2p2o2n1m0l9k8j7i6",
+        "title": "Tax-Efficient Investing",
+        "content": "Tax-efficient investing involves minimizing tax liabilities through strategies like tax-loss harvesting.",
+        "year": 2018
+      },
+      {
+        "id": "3u3t3r3e3w2q1a1s1d1",
+        "title": "Case Study: Tax-Loss Harvesting",
+        "content": "A case study demonstrating the effectiveness of tax-loss harvesting in reducing tax liabilities.",
+        "year": 2015
+      }
+    ],
+    "expected_traits": [
+      "Explain tax benefits",
+      "Discuss potential risks"
+    ],
+    "id": "e2e_v3_38",
+    "scenario": "Investment allocation"
+  },
+  {
+    "query": "How should I allocate my investments for a short-term goal, like a down payment on a house?",
+    "available_memories": [
+      {
+        "id": "4t4r4e4w3q2a1s1d1f1",
+        "title": "Short-Term Investment Strategies",
+        "content": "Short-term investors should prioritize liquidity and consider low-risk investments like high-yield savings accounts or short-term bonds.",
+        "year": 2016
+      }
+    ],
+    "expected_traits": [
+      "Prioritize liquidity",
+      "Recommend low-risk investments"
+    ],
+    "id": "e2e_v3_39",
+    "scenario": "Investment allocation"
+  },
+  {
+    "query": "What are the implications of investing in a socially responsible investment portfolio?",
+    "available_memories": [
+      {
+        "id": "5f5e5d5c5b5a5a5a5",
+        "title": "Socially Responsible Investing: A Review",
+        "content": "Socially responsible investing involves considering environmental, social, and governance factors when making investment decisions.",
+        "year": 2022
+      },
+      {
+        "id": "6a6b6c6d6e6f6g6h6",
+        "title": "ESG Investing: Trends and Opportunities",
+        "content": "ESG (Environmental, Social, and Governance) investing has become increasingly popular, with many investors seeking to align their investments with their values.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Discuss ESG considerations",
+      "Acknowledge potential trade-offs"
+    ],
+    "id": "e2e_v3_40",
+    "scenario": "Investment allocation"
+  },
+  {
+    "query": "My parents are getting divorced and I'm feeling guilty, what should I do?",
+    "available_memories": [
+      {
+        "id": "8d45a9f2-9e2a-48c5-a3b7-3b0e6b8c2f4d",
+        "title": "Past Family Conflict",
+        "content": "I recall a similar situation with my friend's family, they had a big argument but eventually worked things out with counseling and open communication.",
+        "year": 2018
+      },
+      {
+        "id": "1a2b3c4d-1234-5678-9012-3456789012ab",
+        "title": "My Own Parent's Divorce",
+        "content": "My parents got divorced when I was young, it was tough but we all learned to adapt and move forward with time and support from loved ones.",
+        "year": 2005
+      }
+    ],
+    "expected_traits": [
+      "Empathize with current situation",
+      "Suggest seeking professional help",
+      "Encourage open communication"
+    ],
+    "id": "e2e_v3_41",
+    "scenario": "Family conflict"
+  },
+  {
+    "query": "How can I make my sibling understand my point of view in our ongoing argument?",
+    "available_memories": [
+      {
+        "id": "6f5g4h2j-1111-2222-3333-444455556666",
+        "title": "Successful Sibling Mediation",
+        "content": "I helped my friends resolve a similar dispute by encouraging active listening and finding common ground.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Advise active listening",
+      "Suggest finding common ground"
+    ],
+    "id": "e2e_v3_42",
+    "scenario": "Family conflict"
+  },
+  {
+    "query": "I had a huge fight with my family and I'm not sure how to make amends, what steps should I take?",
+    "available_memories": [
+      {
+        "id": "7e8d9c8b-7777-8888-9999-0000000000aa",
+        "title": "Reconciliation Experience",
+        "content": "After a big fight with my family, I apologized sincerely and made an effort to understand their perspective, which helped us heal and move forward.",
+        "year": 2015
+      },
+      {
+        "id": "2b3c4d5e-9999-8888-7777-6666aaaabbcc",
+        "title": "Importance of Forgiveness",
+        "content": "Forgiving my family member after a hurtful argument brought us closer and taught me the value of letting go of grudges.",
+        "year": 2012
+      }
+    ],
+    "expected_traits": [
+      "Encourage sincere apology",
+      "Advise effort to understand the other's perspective",
+      "Mention the importance of forgiveness"
+    ],
+    "id": "e2e_v3_43",
+    "scenario": "Family conflict"
+  },
+  {
+    "query": "How can I deal with my family's constant criticism and negative comments?",
+    "available_memories": [
+      {
+        "id": "1a2b3c4d-1234-5678-9012-1111111111ab",
+        "title": "Dealing with Criticism",
+        "content": "I learned to set boundaries and practice self-care when dealing with constant criticism from my family, which helped me maintain my self-esteem.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Suggest setting boundaries",
+      "Advise self-care practices"
+    ],
+    "id": "e2e_v3_44",
+    "scenario": "Family conflict"
+  },
+  {
+    "query": "What are some strategies for resolving conflicts with my extended family during gatherings?",
+    "available_memories": [
+      {
+        "id": "8c7d6e5f-4444-5555-6666-7777aaaabbbcc",
+        "title": "Successful Family Gathering",
+        "content": "During our last family reunion, we made a conscious effort to avoid sensitive topics and focus on shared activities, which helped prevent conflicts.",
+        "year": 2021
+      },
+      {
+        "id": "3b2c1d0e-8888-9999-0000-111122223333",
+        "title": "Importance of Respectful Communication",
+        "content": "Respecting each other's opinions and engaging in respectful dialogue helped my extended family resolve a long-standing dispute.",
+        "year": 2016
+      },
+      {
+        "id": "4c3b2a1d-5555-6666-7777-8888aaaabbbcc",
+        "title": "Agreeing to Disagree",
+        "content": "Sometimes, it's necessary to agree to disagree, especially on sensitive topics, to maintain family harmony.",
+        "year": 2018
+      }
+    ],
+    "expected_traits": [
+      "Advise avoiding sensitive topics",
+      "Suggest focusing on shared activities",
+      "Emphasize respectful communication"
+    ],
+    "id": "e2e_v3_45",
+    "scenario": "Family conflict"
+  },
+  {
+    "query": "Should I relocate to a new city for a job opportunity?",
+    "available_memories": [
+      {
+        "id": "9b23d1b3-8f3a-41e9-93c8-05a296d3f6c4",
+        "title": "Previous Job Relocation",
+        "content": "I once relocated to a new city for a job and it turned out to be a great decision, but I had to adapt to a new environment and make new friends.",
+        "year": 2018
+      },
+      {
+        "id": "4e31a3c1-49f8-45f4-83f9-1a5e2f6g7h8i",
+        "title": "Failed Relocation Attempt",
+        "content": "I tried to relocate to a new city once, but it didn't work out due to high living costs and lack of job security.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Weigh pros and cons",
+      "Consider personal priorities",
+      "Advise caution"
+    ],
+    "id": "e2e_v3_46",
+    "scenario": "Relocation decisions"
+  },
+  {
+    "query": "What are the pros and cons of moving to a rural area?",
+    "available_memories": [
+      {
+        "id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o",
+        "title": "Rural Living Experience",
+        "content": "I lived in a rural area for a few years and enjoyed the peaceful environment, but had to commute long distances for work and amenities.",
+        "year": 2015
+      }
+    ],
+    "expected_traits": [
+      "Discuss trade-offs",
+      "Consider lifestyle implications"
+    ],
+    "id": "e2e_v3_47",
+    "scenario": "Relocation decisions"
+  },
+  {
+    "query": "Should I move to a new country for education?",
+    "available_memories": [
+      {
+        "id": "6g7h8i9j-0k1l2m3n-4o5p6q7r",
+        "title": "Study Abroad Experience",
+        "content": "I studied abroad in a new country and it was a life-changing experience, but I had to navigate cultural differences and language barriers.",
+        "year": 2019
+      },
+      {
+        "id": "3n4o5p6q-7r8s9t0-1u2v3w4x",
+        "title": "International Student Challenges",
+        "content": "I faced many challenges as an international student, including homesickness and academic pressures.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge uncertainty",
+      "Encourage exploration",
+      "Advise preparation"
+    ],
+    "id": "e2e_v3_48",
+    "scenario": "Relocation decisions"
+  },
+  {
+    "query": "Is it a good idea to relocate for a romantic partner?",
+    "available_memories": [
+      {
+        "id": "2m3n4o5p-6q7r8s9t-0u1v2w3x",
+        "title": "Relationship Relocation",
+        "content": "I relocated for a romantic partner and it worked out well, but it required compromise and communication.",
+        "year": 2016
+      },
+      {
+        "id": "9t0u1v2w-3x4y5z6-7a8b9c0d",
+        "title": "Failed Long-Distance Relationship",
+        "content": "I tried to maintain a long-distance relationship, but it ultimately ended due to lack of physical proximity and communication breakdowns.",
+        "year": 2017
+      }
+    ],
+    "expected_traits": [
+      "Consider personal priorities",
+      "Discuss relationship implications"
+    ],
+    "id": "e2e_v3_49",
+    "scenario": "Relocation decisions"
+  },
+  {
+    "query": "What are the implications of relocating for retirement?",
+    "available_memories": [
+      {
+        "id": "5z6a7b8c-9d0e1f2g-3h4i5j6k",
+        "title": "Retirement Relocation",
+        "content": "I relocated for retirement and it has been a great decision, with a lower cost of living and more leisure activities.",
+        "year": 2022
+      },
+      {
+        "id": "1f2g3h4i-5j6k7l8m-9n0o1p2q",
+        "title": "Aging in Place",
+        "content": "I chose to age in place and it has allowed me to maintain social connections and familiarity, but requires more planning for healthcare and support.",
+        "year": 2020
+      },
+      {
+        "id": "8c7b6a5z-4x3y2w1v-0u9t8s7r6",
+        "title": "Retirement Community Experience",
+        "content": "I lived in a retirement community and it provided a sense of community and support, but had limitations in terms of autonomy and freedom.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Discuss financial implications",
+      "Consider healthcare factors",
+      "Advise planning"
+    ],
+    "id": "e2e_v3_50",
+    "scenario": "Relocation decisions"
+  },
+  {
+    "query": "How can I prioritize my work and family life without feeling guilty about not spending enough time with my family?",
+    "available_memories": [
+      {
+        "id": "93c4c29c-50b5-43a8-b6d5-89c2a3a1c2e3",
+        "title": "Work-life Balance Struggles",
+        "content": "I once worked 12-hour days for a month straight and felt burnt out. I realized that taking breaks and spending time with family is crucial for productivity and happiness.",
+        "year": 2018
+      },
+      {
+        "id": "61a5f42a-6f3f-4e2d-8e5c-4b312f567e8d",
+        "title": "Setting Boundaries",
+        "content": "I learned to set boundaries by prioritizing tasks, delegating when possible, and communicating my needs clearly to my team and family.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Empathize with the user's struggle",
+      "Offer practical advice",
+      "Encourage self-reflection"
+    ],
+    "id": "e2e_v3_51",
+    "scenario": "Work-life balance"
+  },
+  {
+    "query": "What are some strategies for managing stress and maintaining a healthy work-life balance as a working parent?",
+    "available_memories": [
+      {
+        "id": "2a6f4a3c-8d2e-42f3-94f6-4f4c5c6d7e8f",
+        "title": "Parenting Challenges",
+        "content": "As a working parent, I had to juggle childcare responsibilities with work demands. I found that creating a schedule and sticking to it helped me manage my time more effectively.",
+        "year": 2015
+      },
+      {
+        "id": "4d2d2d2d-2f2f-4f4f-6f6f-8f8f8f8f8f8f",
+        "title": "Mindfulness and Self-Care",
+        "content": "Practicing mindfulness and self-care activities, such as meditation and exercise, helped me reduce stress and increase energy levels.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge the challenges of working parenthood",
+      "Provide actionable tips",
+      "Foster a sense of community"
+    ],
+    "id": "e2e_v3_52",
+    "scenario": "Work-life balance"
+  },
+  {
+    "query": "Can you help me decide whether to take a promotion that would require longer working hours and more travel, or to prioritize my family life?",
+    "available_memories": [
+      {
+        "id": "6f5f5f5f-7g7g-8h8h-9i9i-0j0j0k0k",
+        "title": "Career Crossroads",
+        "content": "I once had to choose between a high-paying job offer and a role that offered better work-life balance. I chose the latter and have never regretted it.",
+        "year": 2012
+      },
+      {
+        "id": "1a1a1a1a-2b2b2b2-3c3c3c3-4d4d4d4-5e5e5e5e",
+        "title": "Family Priorities",
+        "content": "My family has always been my top priority. I've learned to communicate my needs and boundaries clearly to my employer to ensure I can spend quality time with my loved ones.",
+        "year": 2016
+      }
+    ],
+    "expected_traits": [
+      "Weigh the pros and cons of each option",
+      "Encourage the user to consider their values and priorities"
+    ],
+    "id": "e2e_v3_53",
+    "scenario": "Work-life balance"
+  },
+  {
+    "query": "How can I make sure I'm spending enough quality time with my family and not getting too caught up in work?",
+    "available_memories": [
+      {
+        "id": "9j9j9j9j-0k0k0k0-1l1l1l1-2m2m2m2-3n3n3n3",
+        "title": "Quality Time with Family",
+        "content": "I used to work long hours and feel guilty about not spending enough time with my family. I started scheduling regular family activities and making time for them, and it's made a huge difference in our relationships.",
+        "year": 2014
+      },
+      {
+        "id": "5t5t5t5t-6u6u6u6-7v7v7v7-8w8w8w8-9x9x9x9",
+        "title": "Setting Boundaries with Technology",
+        "content": "I've learned to set boundaries with my work-related technology use, such as not checking work emails or taking work calls during family time, to ensure I'm fully present with my loved ones.",
+        "year": 2021
+      }
+    ],
+    "expected_traits": [
+      "Emphasize the importance of quality time with family",
+      "Suggest practical strategies for achieving balance",
+      "Encourage the user to be intentional with their time"
+    ],
+    "id": "e2e_v3_54",
+    "scenario": "Work-life balance"
+  },
+  {
+    "query": "What are some common pitfalls to avoid when trying to achieve a better work-life balance, and how can I overcome them?",
+    "available_memories": [
+      {
+        "id": "3r3r3r3r-4s4s4s4-5t5t5t5-6u6u6u6-7v7v7v7",
+        "title": "Avoiding Burnout",
+        "content": "I once burned out from working too much and not taking care of myself. I've since learned to prioritize self-care and set realistic boundaries to maintain my physical and mental well-being.",
+        "year": 2017
+      },
+      {
+        "id": "8y8y8y8y-9z9z9z9-0a0a0a0-1b1b1b1-2c2c2c2",
+        "title": "Learning to Say No",
+        "content": "I used to overcommit myself by saying yes to every request. I've learned to say no when necessary and prioritize my own needs and boundaries.",
+        "year": 2020
+      },
+      {
+        "id": "2d2d2d2d-3e3e3e3-4f4f4f4-5g5g5g5-6h6h6h6",
+        "title": "Seeking Support",
+        "content": "I've learned to seek support from my loved ones, colleagues, and mentors when I need help achieving a better work-life balance. Don't be afraid to ask for help!",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Identify common pitfalls and challenges",
+      "Offer advice on how to overcome obstacles",
+      "Encourage the user to be proactive and seek support"
+    ],
+    "id": "e2e_v3_55",
+    "scenario": "Work-life balance"
+  },
+  {
+    "query": "Should I buy a new car or continue using public transportation?",
+    "available_memories": [
+      {
+        "id": "9f54a23e-7b4a-45c9-8c1a-55f2a731a5b2",
+        "title": "Previous Car Purchase",
+        "content": "I bought a car 5 years ago and had to deal with high maintenance costs and traffic jams. It was a stressful experience.",
+        "year": 2018
+      },
+      {
+        "id": "1a2b3c4d-1234-5678-9012-3456789012ab",
+        "title": "Public Transportation Experience",
+        "content": "I have been using public transportation for the past year and it has been convenient and affordable. However, it can be crowded during peak hours.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Consider budget constraints",
+      "Weigh pros and cons",
+      "Reflect on past experiences"
+    ],
+    "id": "e2e_v3_56",
+    "scenario": "Major purchases"
+  },
+  {
+    "query": "I'm thinking of buying a house, what are the key factors I should consider?",
+    "available_memories": [
+      {
+        "id": "a6c1e7b2-4c5d-6789-0a1b-234c5d6e7f8a",
+        "title": "First Home Purchase",
+        "content": "When I bought my first home, I didn't consider the neighborhood and it turned out to be noisy. I wish I had researched more before making a decision.",
+        "year": 2015
+      }
+    ],
+    "expected_traits": [
+      "Emphasize importance of research",
+      "Caution against impulsive decisions"
+    ],
+    "id": "e2e_v3_57",
+    "scenario": "Major purchases"
+  },
+  {
+    "query": "Is it a good idea to invest in a luxury watch?",
+    "available_memories": [
+      {
+        "id": "2f4g6h8j-2k4l-5m6n-7o8p-9q0r1s2t3u",
+        "title": "Previous Luxury Purchase",
+        "content": "I bought a luxury handbag last year and it didn't bring me the satisfaction I expected. It was an unnecessary expense.",
+        "year": 2021
+      },
+      {
+        "id": "8i7h6g5f-4e3d-2c1b-0a9s-8d7f6g5h4j",
+        "title": "Financial Goals",
+        "content": "I have been trying to save money for a big purchase, but I'm not sure if a luxury watch is a priority.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Encourage mindful spending",
+      "Consider long-term goals",
+      "Reflect on personal values"
+    ],
+    "id": "e2e_v3_58",
+    "scenario": "Major purchases"
+  },
+  {
+    "query": "Should I upgrade to a newer smartphone model?",
+    "available_memories": [
+      {
+        "id": "4c5d6e7f-8a1b-2c3d-4e5f-6g7h8i9j0k",
+        "title": "Previous Phone Purchase",
+        "content": "I upgraded my phone last year and it was a significant improvement. However, it was also expensive.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Weigh need for upgrade",
+      "Consider budget constraints"
+    ],
+    "id": "e2e_v3_59",
+    "scenario": "Major purchases"
+  },
+  {
+    "query": "Is it worth investing in a high-end home theater system?",
+    "available_memories": [
+      {
+        "id": "1q2w3e4r-5t6y7u8i-9o0p1l2k3j",
+        "title": "Previous Entertainment Expenses",
+        "content": "I have spent a lot of money on concert tickets and movie nights out. I'm considering investing in a home theater system to save money in the long run.",
+        "year": 2019
+      },
+      {
+        "id": "3u4y7t6r-5e4w3q2-1i9o0p8l7k",
+        "title": "Home Decor Priorities",
+        "content": "I have been prioritizing functionality over luxury when it comes to home decor. However, I do enjoy watching movies and listening to music.",
+        "year": 2021
+      },
+      {
+        "id": "9j8h7g6f-5d4c3b2-1a0s9d8f7g",
+        "title": "Social Life",
+        "content": "I often have friends over for movie nights and game nights. A high-end home theater system could be a good investment for social events.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Consider social benefits",
+      "Reflect on personal priorities",
+      "Evaluate cost-effectiveness"
+    ],
+    "id": "e2e_v3_60",
+    "scenario": "Major purchases"
+  },
+  {
+    "query": "What are the best colleges for a computer science major?",
+    "available_memories": [
+      {
+        "id": "523e2345-2342-4567-2345-678734567890",
+        "title": "College Research",
+        "content": "Researched top colleges for computer science majors, including MIT, Stanford, and Carnegie Mellon.",
+        "year": 2020
+      },
+      {
+        "id": "67873456-2342-4567-8901-234567890123",
+        "title": "Friend's College Experience",
+        "content": "A friend attended MIT and had a great experience with the computer science program.",
+        "year": 2019
+      }
+    ],
+    "expected_traits": [
+      "Provide relevant information",
+      "Offer personal anecdotes",
+      "Compare options"
+    ],
+    "id": "e2e_v3_61",
+    "scenario": "Education choices"
+  },
+  {
+    "query": "Should I take a gap year before attending college?",
+    "available_memories": [
+      {
+        "id": "90123456-7890-1234-5678-901234567890",
+        "title": "Gap Year Research",
+        "content": "Researched the pros and cons of taking a gap year, including travel and volunteer opportunities.",
+        "year": 2022
+      }
+    ],
+    "expected_traits": [
+      "Acknowledge uncertainty",
+      "Encourage exploration"
+    ],
+    "id": "e2e_v3_62",
+    "scenario": "Education choices"
+  },
+  {
+    "query": "What are the most in-demand skills for a career in data science?",
+    "available_memories": [
+      {
+        "id": "34567890-1234-5678-9012-345678901234",
+        "title": "Data Science Job Market",
+        "content": "Researched the current job market for data science professionals, including required skills and certifications.",
+        "year": 2021
+      },
+      {
+        "id": "56789012-3456-7890-1234-567890123456",
+        "title": "Industry Trends",
+        "content": "Attended a conference on industry trends in data science, including the importance of machine learning and cloud computing.",
+        "year": 2020
+      },
+      {
+        "id": "78901234-5678-9012-3456-789012345678",
+        "title": "Professional Network",
+        "content": "Networked with professionals in the field, including a data scientist at a top tech company.",
+        "year": 2018
+      }
+    ],
+    "expected_traits": [
+      "Provide relevant data",
+      "Offer insights from experts",
+      "Discuss future trends"
+    ],
+    "id": "e2e_v3_63",
+    "scenario": "Education choices"
+  },
+  {
+    "query": "How can I balance schoolwork and extracurricular activities?",
+    "available_memories": [
+      {
+        "id": "23456789-0123-4567-8901-234567890123",
+        "title": "Time Management",
+        "content": "Developed a time management system to balance schoolwork and extracurricular activities, including prioritizing tasks and setting goals.",
+        "year": 2020
+      }
+    ],
+    "expected_traits": [
+      "Offer practical advice",
+      "Encourage goal-setting"
+    ],
+    "id": "e2e_v3_64",
+    "scenario": "Education choices"
+  },
+  {
+    "query": "What are the benefits and drawbacks of online learning?",
+    "available_memories": [
+      {
+        "id": "45678901-2345-6789-0123-456789012345",
+        "title": "Online Course Experience",
+        "content": "Took an online course and experienced both the benefits, such as flexibility, and drawbacks, such as lack of interaction.",
+        "year": 2021
+      },
+      {
+        "id": "67890123-4567-8901-2345-678901234567",
+        "title": "Research on Online Learning",
+        "content": "Researched the effectiveness of online learning, including studies on student outcomes and engagement.",
+        "year": 2019
+      },
+      {
+        "id": "89012345-6789-0123-4567-890123456789",
+        "title": "Traditional Classroom Experience",
+        "content": "Attended traditional classes and experienced the benefits of in-person interaction and hands-on learning.",
+        "year": 2018
+      }
+    ],
+    "expected_traits": [
+      "Weigh pros and cons",
+      "Discuss personal experiences",
+      "Cite research findings"
+    ],
+    "id": "e2e_v3_65",
+    "scenario": "Education choices"
+  }
+]
