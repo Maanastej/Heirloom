@@ -65,7 +65,7 @@ const VideoLegacyDash = () => {
   }, [user]);
 
   // Fetch family members to discover other accounts in the family
-  const { data: familyMembers = [] } = useQuery({
+  const { data: familyMembersData } = useQuery({
     queryKey: ["family-members", user?.id],
     queryFn: async () => {
       if (!user) return [];
@@ -90,6 +90,8 @@ const VideoLegacyDash = () => {
     enabled: !!user,
   });
 
+  const familyMembers = familyMembersData || [];
+
   const saveSharedVideosState = (updated: string[]) => {
     setSharedVideos(updated);
     localStorage.setItem("heirloom_shared_videos", JSON.stringify(updated));
@@ -107,7 +109,7 @@ const VideoLegacyDash = () => {
     }
   };
 
-  const { data: videos = [], isLoading } = useQuery({
+  const { data: videosData, isLoading } = useQuery({
     queryKey: ["videos", user?.id],
     queryFn: async () => {
       const { data, error } = await supabase.storage
@@ -118,6 +120,8 @@ const VideoLegacyDash = () => {
     },
     enabled: !!user,
   });
+
+  const videos = videosData || [];
 
   // Compile combined view of Personal Videos + other Family Members' shared videos
   useEffect(() => {
@@ -229,7 +233,7 @@ const VideoLegacyDash = () => {
     if (user && familyMembers.length > 0) {
       fetchOtherFamilyVideos();
     }
-  }, [videos, localVaultVideos, sharedVideos, user, familyMembers.map(m => m.user_id).join(",")]);
+  }, [videosData, localVaultVideos, sharedVideos, user, familyMembersData]);
 
   const deleteMutation = useMutation({
     mutationFn: async ({ name, ownerId }: { name: string; ownerId: string }) => {

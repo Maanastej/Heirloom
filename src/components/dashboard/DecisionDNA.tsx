@@ -41,6 +41,7 @@ import {
 } from "@/components/ui/accordion";
 import IdentityDiscoveryChat from "./IdentityDiscoveryChat";
 import LiveTwinStatusPanel from "./LiveTwinStatusPanel";
+import { SimulatorChatMessage } from "./SimulatorChatMessage";
 
 type ActiveTab = "identity" | "memories" | "decisions" | "principles" | "graph" | "simulator" | "accuracy" | "discovery";
 type Step = "list" | "mcq" | "values" | "rules" | "experiences" | "training" | "dashboard";
@@ -108,7 +109,9 @@ export default function DecisionDNA() {
   const [draftAnswers, setDraftAnswers] = useState({ values: "", rules: "", experiences: "" });
 
   const [question, setQuestion] = useState("");
-  const [chatHistory, setChatHistory] = useState<{ role: "user" | "ai"; content?: string; structuredData?: SimulatorResponseData; evidence?: any }[]>([]);
+  const [chatHistory, setChatHistory] = useState<{ id: string; sessionId?: string; role: "user" | "ai" | "system"; content?: string; structuredData?: SimulatorResponseData; evidence?: any }[]>([]);
+  const [activeSessionDomain, setActiveSessionDomain] = useState<string | null>(null);
+  const [activeDecisionId, setActiveDecisionId] = useState<string>(() => crypto.randomUUID());
   const [isTyping, setIsTyping] = useState(false);
   const [isAwaitingFollowUp, setIsAwaitingFollowUp] = useState(false);
   const [pendingOriginalQuestion, setPendingOriginalQuestion] = useState("");
@@ -441,30 +444,24 @@ export default function DecisionDNA() {
     if (!activeProfile) return;
 
     const userQ = question;
-    // Clear the slate entirely for a new independent question
-    setChatHistory([{ role: "user", content: userQ }]);
+    const newSessionId = crypto.randomUUID();
+    setActiveDecisionId(newSessionId);
+    
+    // Append to keep history visible
+    setChatHistory(prev => [...prev, { id: crypto.randomUUID(), sessionId: newSessionId, role: "user", content: userQ }]);
+    setActiveSessionDomain(null);
     setPendingFollowUpQuestion("");
     setIsAwaitingFollowUp(false);
     setQuestion("");
     setIsTyping(true);
 
     try {
-      let queryToSimulate = userQ;
-
-      if (isAwaitingFollowUp) {
-         // Run Phase 18 extraction pipeline on user's answer
-         const analysis = await analyzeUserResponse(activeProfileId, pendingFollowUpQuestion, userQ, import.meta.env.VITE_GROQ_API_KEY);
-         if (analysis.extractedItems.length > 0) {
-             toast({ title: "Learning Complete", description: `Extracted: ${analysis.extractedItems.join(", ")}`});
-             // Refresh frontend state
-             await loadActiveProfileData();
-         }
-         setIsAwaitingFollowUp(false);
-         // Simulate on original question now that context is expanded
-         queryToSimulate = pendingOriginalQuestion;
-      }
-
-      const pastQs = getPastQuestions(chatHistory);
+      // Main box is always a new question, bypass any stale await state
+      const queryToSimulate = userQ;
+      
+      const currentSessionHistory = [{ role: "user", content: userQ }];
+      const pastQs = getPastQuestions(currentSessionHistory as any);
+      
       const evidence = await retrieveGraphRAGContext(activeProfileId, queryToSimulate, activeProfile.scores);
       const result = await generateSimulatorResponse(
         activeProfile.name,
@@ -499,9 +496,14 @@ export default function DecisionDNA() {
       );
       setMultiAgentOutput(agentOutput);
 
+      // Track domain
+      setActiveSessionDomain(result.domain);
+      
       setChatHistory(prev => [
         ...prev,
         {
+          id: crypto.randomUUID(),
+          sessionId: newSessionId,
           role: "ai",
           structuredData: result,
           evidence
@@ -519,10 +521,11 @@ export default function DecisionDNA() {
   const handleFollowUpAnswer = async (answer: string) => {
     if (!activeProfileId) return;
     
+    const currentSessionId = activeDecisionId;
     // Add user's answer to chat synchronously for the current execution block
-    const updatedChatHistory: { role: "user" | "ai"; content?: string; structuredData?: any }[] = [
+    const updatedChatHistory: { id: string; sessionId?: string; role: "user" | "ai"; content?: string; structuredData?: any }[] = [
       ...chatHistory, 
-      { role: "user", content: answer }
+      { id: crypto.randomUUID(), sessionId: currentSessionId, role: "user", content: answer }
     ];
     setChatHistory(updatedChatHistory as any);
     setIsTyping(true);
@@ -555,9 +558,10 @@ export default function DecisionDNA() {
       }
 
       // 2. Auto-rerun original query with new data
-      const pastQs = getPastQuestions(updatedChatHistory);
+      const sessionHistory = updatedChatHistory.filter(msg => msg.sessionId === currentSessionId);
+      const pastQs = getPastQuestions(sessionHistory);
       const evidence = await retrieveGraphRAGContext(activeProfileId, pendingOriginalQuestion, activeProfile.scores);
-      const result = await generateSimulatorResponse(
+      let result = await generateSimulatorResponse(
         activeProfile.name,
         pendingOriginalQuestion,
         evidence,
@@ -565,21 +569,37 @@ export default function DecisionDNA() {
         import.meta.env.VITE_GROQ_API_KEY
       );
 
-      console.log(`ANSWER_STORED: Added "${answer}" to active session memory.`);
-      console.log(`ANSWER_IN_PROMPT: Included ${pastQs.length} previous answers in generation prompt.`);
-      console.log(`Session ID:\n${activeProfileId}`);
-      console.log(`Answer History:\n${pastQs.map(q => q.answer).join(", ")}`);
-      console.log(`Updated Variables:\n${analysis.extractedItems.join(", ") || "None extracted directly"}`);
-      console.log(`Confidence Before:\n${Math.round(confidenceBefore * 100)}%`);
-      console.log(`Confidence After:\n${Math.round(result.confidence * 100)}%`);
-      console.log(`Recommendation Before:\n${recBefore}`);
-      console.log(`Recommendation After:\n${result.recommendation}`);
-      console.log(`Next Uncertainty:\n${result.nextQuestion ? result.nextQuestion.variableId : "None"}`);
-      console.log(`Generated Next Question:\n${result.nextQuestion ? result.nextQuestion.question : "None"}`);
-      console.log(`DOMAIN_RENDERED_TO_UI: ${result.domain}`);
+      // Domain Reset Check
+      if (activeSessionDomain && result.domain && activeSessionDomain !== result.domain) {
+        console.warn(`DOMAIN SHIFT DETECTED: ${activeSessionDomain} -> ${result.domain}. Resetting session.`);
+        toast({ title: "Topic Changed", description: "You changed the subject. Starting a new evaluation." });
+        
+        const newDomainSessionId = crypto.randomUUID();
+        setActiveDecisionId(newDomainSessionId);
+        setActiveSessionDomain(result.domain);
+        setPendingOriginalQuestion(answer); // The user's follow up answer is actually a new topic
+        
+        // Re-run completely fresh
+        const freshEvidence = await retrieveGraphRAGContext(activeProfileId, answer, activeProfile.scores);
+        result = await generateSimulatorResponse(
+          activeProfile.name,
+          answer,
+          freshEvidence,
+          [], // Clean history
+          import.meta.env.VITE_GROQ_API_KEY
+        );
 
-      if (Math.round(confidenceBefore * 100) === Math.round(result.confidence * 100)) {
-          console.warn("CONFIDENCE_STALLED: System did not gain sufficient information to increase confidence.");
+        if (result.nextQuestion) {
+            setIsAwaitingFollowUp(true);
+            setPendingFollowUpQuestion(result.nextQuestion.question);
+        }
+
+        setChatHistory(prev => [
+           ...prev,
+           { id: crypto.randomUUID(), sessionId: newDomainSessionId, role: "system", content: "Starting a new decision because this appears to be a different topic." },
+           { id: crypto.randomUUID(), sessionId: newDomainSessionId, role: "ai", structuredData: result, evidence: freshEvidence }
+        ]);
+        return;
       }
 
       if (result.nextQuestion) {
@@ -590,6 +610,8 @@ export default function DecisionDNA() {
       setChatHistory(prev => [
         ...prev,
         {
+          id: crypto.randomUUID(),
+          sessionId: currentSessionId,
           role: "ai",
           structuredData: result,
           evidence
@@ -899,82 +921,82 @@ export default function DecisionDNA() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
           {/* TAB BAR (Sidebar on large screens) */}
-          <div className="lg:col-span-1 space-y-2">
-            <div className="bg-card border rounded-xl p-4 space-y-3">
-              <div className="flex items-center gap-2.5 pb-3 border-b">
-                <div className="w-8 h-8 bg-bronze/10 rounded-full flex items-center justify-center border border-bronze/20">
-                  <Brain className="w-4 h-4 text-bronze" />
+          <div className="lg:col-span-1 space-y-6">
+            <div className="bg-card border-r lg:border-none lg:rounded-xl p-4 lg:p-0 lg:bg-transparent lg:border-transparent space-y-6">
+              
+              <div className="flex items-center gap-3 pb-4 border-b">
+                <div className="w-10 h-10 bg-bronze/10 rounded-full flex items-center justify-center border border-bronze/20">
+                  <Brain className="w-5 h-5 text-bronze" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-foreground font-serif leading-tight">{activeProfile.name}</h4>
+                  <h4 className="text-sm font-semibold text-foreground font-serif leading-tight">{activeProfile.name}</h4>
                   <p className="text-[10px] text-muted-foreground mt-0.5">{activeProfile.archetype}</p>
                 </div>
               </div>
-              <nav className="flex flex-col gap-1">
-                <button
-                  onClick={() => setActiveTab("identity")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "identity" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <Shield className="w-4 h-4" /> Layer 1: Identity Profile
-                </button>
-                <button
-                  onClick={() => setActiveTab("memories")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "memories" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <BookOpen className="w-4 h-4" /> Layer 2: Memory Engine
-                </button>
-                <button
-                  onClick={() => setActiveTab("decisions")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "decisions" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <Calendar className="w-4 h-4" /> Layer 3: Decision Journal
-                </button>
-                <button
-                  onClick={() => setActiveTab("principles")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "principles" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <Scale className="w-4 h-4" /> Layer 4: Principle Cards
-                </button>
-                <button
-                  onClick={() => setActiveTab("graph")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "graph" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <GitFork className="w-4 h-4" /> Layer 5: Legacy Graph
-                </button>
-                <button
-                  onClick={() => setActiveTab("simulator")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "simulator" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <MessageSquare className="w-4 h-4" /> Twin Decision Simulator
-                </button>
-                <button
-                  onClick={() => setActiveTab("accuracy")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "accuracy" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <Activity className="w-4 h-4" /> Verification Metrics
-                </button>
-                <button
-                  onClick={() => setActiveTab("discovery")}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                    activeTab === "discovery" ? "bg-bronze/10 text-bronze border border-bronze/20" : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <Sparkles className="w-4 h-4 text-bronze animate-pulse" /> Identity Discovery Chat
-                </button>
+
+              <nav className="flex flex-col gap-6">
+                
+                {/* CORE PROFILE */}
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">Core Profile</span>
+                  <div className="flex flex-col gap-0.5">
+                    <button
+                      onClick={() => setActiveTab("identity")}
+                      className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-lg transition-all ${
+                        activeTab === "identity" ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                      }`}
+                    >
+                      <Shield className="w-4 h-4" /> Identity Profile
+                    </button>
+                  </div>
+                </div>
+
+                {/* PERSONAL MEMORY */}
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">Personal Memory</span>
+                  <div className="flex flex-col gap-0.5">
+                    <button
+                      onClick={() => setActiveTab("memories")}
+                      className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-lg transition-all ${
+                        activeTab === "memories" ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                      }`}
+                    >
+                      <BookOpen className="w-4 h-4" /> Memory Engine
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("decisions")}
+                      className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-lg transition-all ${
+                        activeTab === "decisions" ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                      }`}
+                    >
+                      <Calendar className="w-4 h-4" /> Decision Journal
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("principles")}
+                      className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-lg transition-all ${
+                        activeTab === "principles" ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                      }`}
+                    >
+                      <Scale className="w-4 h-4" /> Principle Cards
+                    </button>
+                  </div>
+                </div>
+
+                {/* DECISIONS */}
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">Decisions</span>
+                  <div className="flex flex-col gap-0.5">
+                    <button
+                      onClick={() => setActiveTab("simulator")}
+                      className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-lg transition-all ${
+                        activeTab === "simulator" ? "bg-bronze/10 text-bronze font-semibold" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                      }`}
+                    >
+                      <MessageSquare className="w-4 h-4" /> Decision Twin
+                    </button>
+                  </div>
+                </div>
+
               </nav>
             </div>
           </div>
@@ -1030,6 +1052,19 @@ export default function DecisionDNA() {
                       "{activeProfile.answers.rules || "Always build slowly; protect our assets and refuse leverage."}"
                     </p>
                   </div>
+                </div>
+                
+                {/* Advanced Profile Editor / Discovery */}
+                <div className="pt-6 border-t border-border mt-6">
+                   <div className="flex items-center justify-between">
+                     <div>
+                       <h4 className="text-sm font-semibold">Identity Discovery</h4>
+                       <p className="text-xs text-muted-foreground">Extract new traits and values through conversational profiling.</p>
+                     </div>
+                     <Button variant="outline" size="sm" onClick={() => setActiveTab("discovery")} className="text-xs h-8">
+                       <Sparkles className="w-3.5 h-3.5 mr-2 text-bronze" /> Open Discovery Chat
+                     </Button>
+                   </div>
                 </div>
               </div>
             )}
@@ -1673,357 +1708,92 @@ export default function DecisionDNA() {
               </div>
             )}
 
-            {/* TAB 6: TWIN SIMULATOR CONSOLE */}
+            {/* TAB 6: DECISION SIMULATOR (Decision Twin) */}
             {activeTab === "simulator" && (
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
-                
-                {/* Left Column: Similar Life Decisions & Multi-Agent Reasoning Panel */}
-                <div className="bg-card border rounded-xl p-5 shadow-elegant flex flex-col justify-between space-y-4 max-h-[520px] overflow-y-auto">
-                  <div className="space-y-4">
-                    {/* Learning Opportunities Panel */}
-                    <div className="space-y-2 pb-2 border-b">
-                      <span className="text-[9px] text-bronze uppercase tracking-widest font-bold block">Phase 18 Learning</span>
-                      <h4 className="font-serif text-xs font-semibold text-foreground">Knowledge Gaps</h4>
-                      <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 text-[10px] space-y-2">
-                         <div className="flex justify-between items-center">
-                            <span className="font-bold text-amber-800">System Confidence Gap</span>
-                            <span className="px-1.5 py-0.5 bg-amber-200 text-amber-900 rounded font-mono">Moderate</span>
-                         </div>
-                         <p className="text-amber-900 leading-relaxed">The twin still lacks data regarding high-pressure financial crisis situations. Ask simulations in this domain to train it further.</p>
-                         <button onClick={() => setQuestion("How would you handle a sudden 50% drop in revenue?")} className="text-amber-700 underline font-semibold hover:text-amber-900 text-left">Ask suggested question →</button>
-                      </div>
-                    </div>
-
-                    {/* Similarity Engine */}
-                    <div className="space-y-2">
-                      <span className="text-[9px] text-bronze uppercase tracking-widest font-bold block">Phase 9 Engine</span>
-                      <h4 className="font-serif text-xs font-semibold text-foreground">Similar Life Decisions</h4>
-
-                      <div className="space-y-2 max-h-[140px] overflow-y-auto pr-1">
-                        {similarDecisions.length > 0 ? (
-                          similarDecisions.slice(0, 3).map(match => (
-                            <div key={match.decision.id} className="bg-muted/40 p-2 rounded-lg border border-border text-[10px] space-y-1 relative">
-                              <span className="absolute top-1 right-1 bg-bronze/10 text-bronze text-[8px] font-bold px-1 py-0.5 rounded">
-                                {Math.round(match.similarity_score * 100)}%
-                              </span>
-                              <h5 className="font-semibold text-foreground pr-8 truncate">{match.decision.situation}</h5>
-                              <p className="text-muted-foreground text-[9px] truncate">Selected: {match.decision.selected_option}</p>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-[9px] text-muted-foreground italic text-center py-4">
-                            Ask a simulation scenario first.
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Phase 11 Multi-Agent Reasoning Chain */}
-                    <div className="space-y-2 pt-2 border-t">
-                      <span className="text-[9px] text-bronze uppercase tracking-widest font-bold block">Phase 11 Engine</span>
-                      <h4 className="font-serif text-xs font-semibold text-foreground">Multi-Agent Simulation</h4>
-
-                      <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
-                        {multiAgentOutput ? (
-                          <div className="space-y-2.5">
-                            <div className="bg-muted/40 p-2.5 rounded-lg border text-[10px] space-y-1.5">
-                              <span className="font-bold text-bronze block">Decision Synthesis Path:</span>
-                              {multiAgentOutput.reasoningChain.map((step, idx) => (
-                                <p key={idx} className="text-muted-foreground leading-relaxed">{step}</p>
-                              ))}
-                            </div>
-                            <div className="space-y-2">
-                              <span className="font-bold text-foreground text-[9px] block">Agent Reports:</span>
-                              {multiAgentOutput.agentReports.map(rep => (
-                                <div key={rep.agentName} className="bg-card border p-2 rounded text-[9px] space-y-1">
-                                  <span className="font-bold text-foreground">{rep.agentName}:</span>
-                                  {rep.findings.map((f, idx) => (
-                                    <p key={idx} className="text-muted-foreground leading-normal">{f}</p>
-                                  ))}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        ) : (
-                          <p className="text-[9px] text-muted-foreground italic text-center py-6">
-                            Waiting for collaborative reasoning...
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 border-t text-[8px] text-muted-foreground leading-normal flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Collaborative Agents: Graph, Decision, Memory, Principle, Critic.</span>
-                  </div>
-                </div>
+              <div className="w-full max-w-4xl mx-auto space-y-6 animate-fade-in">
 
                 {/* Main simulation/chat display */}
-                <div className="lg:col-span-2 bg-card border rounded-xl flex flex-col overflow-hidden shadow-elegant h-[480px]">
+                <div className="bg-background flex flex-col h-[75vh]">
                   
-                  {/* Console Header */}
-                  <div className="bg-navy px-5 py-3.5 border-b border-cream/10 flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 bg-bronze/10 rounded-full flex items-center justify-center border border-bronze/20">
-                        <Brain className="w-4 h-4 text-bronze animate-pulse" />
-                      </div>
-                      <div>
-                        <h4 className="font-serif text-cream text-xs font-semibold">{activeProfile.name} replication</h4>
-                        <p className="text-[9px] text-cream/50">GraphRAG Simulator online</p>
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Simulator messages list */}
-                  <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-background">
+                  <div className="flex-1 overflow-y-auto px-4 py-8 space-y-8">
                     {chatHistory.length === 0 ? (
-                      <div className="flex flex-col items-center justify-center h-full text-center p-6 space-y-3">
-                        <Brain className="w-10 h-10 text-muted-foreground/35" />
-                        <h4 className="text-xs font-semibold text-muted-foreground">Scenario Simulation Console</h4>
-                        <p className="text-[10px] text-muted-foreground/80 max-w-[280px] leading-relaxed">
-                          Ask advice like: "Should we sell the family property?" or "What would you prioritize in a business crisis?"
-                        </p>
+                      <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
+                        <div className="space-y-3">
+                          <h4 className="font-serif text-3xl font-medium text-foreground">Decision Twin</h4>
+                          <p className="text-base text-muted-foreground max-w-md mx-auto">
+                            What decision are you trying to make?
+                          </p>
+                        </div>
+                        
+                        <div className="flex flex-wrap justify-center gap-3 max-w-lg mt-8">
+                          {[
+                            "startup",
+                            "marriage",
+                            "relocation",
+                            "career"
+                          ].map((suggestion, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => {
+                                setQuestion(`Should I pursue a ${suggestion}?`);
+                                setTimeout(() => {
+                                  const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
+                                  handleAsk(fakeEvent);
+                                }, 0);
+                              }}
+                              className="px-4 py-1.5 bg-muted hover:bg-muted-foreground/10 rounded-full text-[13px] text-muted-foreground transition-all"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     ) : (
-                      chatHistory.map((msg, i) => (
-                        <div key={i} className={`flex gap-3 max-w-[85%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}>
-                          <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 border ${
-                            msg.role === "user" ? "bg-navy border-cream/10 text-cream" : "bg-bronze/10 border-bronze/30 text-bronze"
-                          }`}>
-                            {msg.role === "user" ? <User className="w-3.5 h-3.5" /> : <Brain className="w-3.5 h-3.5" />}
+                      <div className="space-y-8 pb-10">
+                        {chatHistory.map((msg, i) => (
+                          <SimulatorChatMessage
+                            key={msg.id || i}
+                            msg={msg as any}
+                            isLast={i === chatHistory.length - 1}
+                            isAwaitingFollowUp={isAwaitingFollowUp}
+                            isTyping={isTyping}
+                            activeProfileId={activeProfileId}
+                            handleFollowUpAnswer={handleFollowUpAnswer}
+                          />
+                        ))}
+                        {isTyping && (
+                          <div className="flex gap-3 max-w-[85%]">
+                            <div className="p-4 bg-muted/30 border border-border/50 rounded-2xl rounded-tl-sm flex items-center gap-3">
+                              <Loader2 className="w-4 h-4 text-muted-foreground animate-spin" />
+                              <span className="text-[13px] text-muted-foreground">Thinking...</span>
+                            </div>
                           </div>
-                          
-                          <div className={`p-4 rounded-xl text-xs leading-relaxed ${
-                            msg.role === "user" 
-                              ? "bg-navy text-cream rounded-tr-none border border-cream/10" 
-                              : "bg-card border border-border text-foreground rounded-tl-none shadow-sm"
-                          }`}>
-                            {msg.role === "user" ? (
-                              <div className="whitespace-pre-wrap">{msg.content}</div>
-                            ) : msg.structuredData ? (
-                              <div className="space-y-4">
-                                {/* Phase 19 Core Output */}
-                                <div className="space-y-3">
-                                  <div className="flex items-center justify-between">
-                                    {msg.structuredData.confidence >= 0.7 ? (
-                                      <h4 className="font-bold text-bronze uppercase text-[10px] tracking-widest">Recommendation</h4>
-                                    ) : (
-                                      <h4 className="font-bold text-amber-600 uppercase text-[10px] tracking-widest flex items-center gap-1.5"><Brain className="w-3.5 h-3.5"/> Discovery Mode</h4>
-                                    )}
-                                    <div className="flex items-center gap-1">
-                                      <span className={`px-2 py-1 rounded text-[10px] font-bold ${msg.structuredData.confidence >= 0.7 ? "bg-emerald-100 text-emerald-800" : msg.structuredData.confidence >= 0.4 ? "bg-amber-100 text-amber-800" : "bg-red-100 text-red-800"}`}>
-                                        {Math.round(msg.structuredData.confidence * 100)}% Conf.
-                                      </span>
-                                      {msg.structuredData.potentialConfidence > msg.structuredData.confidence && (
-                                        <span className="px-1 py-1 text-[9px] font-bold text-muted-foreground flex items-center gap-1">
-                                          → <span className="bg-emerald-50 text-emerald-600 px-1 rounded">{Math.round(msg.structuredData.potentialConfidence * 100)}% Potential</span>
-                                        </span>
-                                      )}
-                                      <span className={`px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest ml-2 ${msg.structuredData.questionSource === 'LLM Generation' ? 'bg-purple-100 text-purple-800' : 'bg-rose-100 text-rose-800'}`}>
-                                        Reasoning Source: {msg.structuredData.questionSource === 'LLM Generation' ? 'Groq' : 'Local Fallback'}
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <p className={`font-serif text-sm font-semibold ${msg.structuredData.confidence < 0.7 ? 'text-muted-foreground italic' : ''}`}>
-                                    {msg.structuredData.recommendation}
-                                  </p>
-                                  {msg.structuredData.confidence >= 0.7 && (
-                                    <p className="text-muted-foreground text-[11px]">{msg.structuredData.primaryReason}</p>
-                                  )}
-                                </div>
-
-                                {msg.structuredData.learningSummary && msg.structuredData.learningSummary.length > 0 && (
-                                  <div className="bg-emerald-500/10 border border-emerald-500/20 p-3 rounded-lg space-y-2 text-[10px]">
-                                    <div className="flex items-center gap-1.5 font-bold text-emerald-800 uppercase tracking-widest text-[9px]">
-                                      <Brain className="w-3 h-3" /> What I Learned
-                                    </div>
-                                    <ul className="list-disc pl-4 text-emerald-900/80 space-y-0.5">
-                                      {msg.structuredData.learningSummary.map((learning: string, i: number) => (
-                                        <li key={i}>{learning}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-
-                                {msg.structuredData.conflictAnalysis && msg.structuredData.conflictAnalysis.conflictDetected && (
-                                    <div className="bg-red-500/10 border border-red-500/20 p-3 rounded-lg space-y-2 text-[10px]">
-                                      <div className="flex items-center gap-1.5 font-bold text-red-800 uppercase">
-                                        <Brain className="w-3.5 h-3.5" /> Conflict Detected
-                                      </div>
-                                      <div className="grid grid-cols-2 gap-2 mt-1">
-                                          <div>
-                                            <span className="font-semibold text-red-900 block border-b border-red-500/20 pb-1 mb-1">Supporting Risk/Action</span>
-                                            <ul className="list-disc pl-3 text-red-800/80">
-                                              {msg.structuredData.conflictAnalysis.supportingEvidence.map((e, i) => <li key={i}>{e}</li>)}
-                                            </ul>
-                                          </div>
-                                          <div>
-                                            <span className="font-semibold text-red-900 block border-b border-red-500/20 pb-1 mb-1">Supporting Safety/Inaction</span>
-                                            <ul className="list-disc pl-3 text-red-800/80">
-                                              {msg.structuredData.conflictAnalysis.opposingEvidence.map((e, i) => <li key={i}>{e}</li>)}
-                                            </ul>
-                                          </div>
-                                      </div>
-                                      <div className="mt-2 pt-2 border-t border-red-500/20 font-serif italic text-red-900">
-                                          Resolution: {msg.structuredData.conflictAnalysis.resolution}
-                                      </div>
-                                    </div>
-                                )}
-                                
-                                {msg.structuredData.nextQuestion && (
-                                  <div className="bg-amber-500/10 border border-amber-500/20 p-3 rounded-lg space-y-3">
-                                    <div className="space-y-1.5">
-                                      <span className="text-[10px] font-bold text-amber-700 uppercase tracking-widest flex items-center gap-1.5">
-                                        <Brain className="w-3.5 h-3.5" /> Twin Needs To Know
-                                      </span>
-                                      <p className="text-[11px] text-amber-800 leading-relaxed font-medium">
-                                        {msg.structuredData.twinUncertainty}
-                                      </p>
-                                    </div>
-                                    
-                                    <div className="pt-2 border-t border-amber-500/20">
-                                      <p className="font-serif text-amber-900 text-[13px] mb-2">{msg.structuredData.nextQuestion.question}</p>
-                                      <div className="flex flex-col gap-1.5">
-                                        {i === chatHistory.length - 1 && isAwaitingFollowUp ? (
-                                          msg.structuredData.nextQuestion.options.map((opt: string, idx: number) => (
-                                            <button 
-                                              key={idx}
-                                              onClick={() => handleFollowUpAnswer(opt)}
-                                              disabled={isTyping}
-                                              className="px-3 py-2 bg-card/60 hover:bg-amber-500/10 border border-amber-500/30 rounded-lg text-left text-[11px] font-semibold text-amber-900 transition-colors flex items-center gap-2 group"
-                                            >
-                                              <div className="w-2.5 h-2.5 rounded-full border border-amber-500/40 group-hover:bg-amber-500/40 flex-shrink-0" />
-                                              {opt}
-                                            </button>
-                                          ))
-                                        ) : (
-                                          <p className="text-[10px] text-muted-foreground italic">Question answered in next turn.</p>
-                                        )}
-                                      </div>
-                                    </div>
-                                  </div>
-                                )}
-
-                                <Accordion type="single" collapsible className="w-full">
-                                  <AccordionItem value="reasoning" className="border-b-0">
-                                    <AccordionTrigger className="py-2 text-[10px] text-muted-foreground hover:text-foreground">
-                                      View Graph RAG Trace & Reasoning
-                                    </AccordionTrigger>
-                                    <AccordionContent className="space-y-3 pt-2 text-[11px]">
-                                      <div>
-                                        <span className="font-bold block mb-1">Reasoning</span>
-                                        <p className="text-muted-foreground">{msg.structuredData.reasoning}</p>
-                                      </div>
-                                      {msg.structuredData.principles.length > 0 && (
-                                        <div>
-                                          <span className="font-bold block mb-1">Core Principles</span>
-                                          <ul className="list-disc pl-4 text-muted-foreground space-y-1">
-                                            {msg.structuredData.principles.map((p, idx) => <li key={idx}>{p}</li>)}
-                                          </ul>
-                                        </div>
-                                      )}
-                                      {msg.structuredData.memories.length > 0 && (
-                                        <div>
-                                          <span className="font-bold block mb-1">Supporting Memories</span>
-                                          <ul className="list-disc pl-4 text-muted-foreground space-y-1">
-                                            {msg.structuredData.memories.map((m, idx) => <li key={idx}>{m}</li>)}
-                                          </ul>
-                                        </div>
-                                      )}
-                                      {msg.structuredData.decisions.length > 0 && (
-                                        <div>
-                                          <span className="font-bold block mb-1">Supporting Decisions</span>
-                                          <ul className="list-disc pl-4 text-muted-foreground space-y-1">
-                                            {msg.structuredData.decisions.map((d, idx) => <li key={idx}>{d}</li>)}
-                                          </ul>
-                                        </div>
-                                      )}
-                                      {msg.structuredData.potentialCounterarguments.length > 0 && (
-                                        <div>
-                                          <span className="font-bold block mb-1">Counterarguments</span>
-                                          <ul className="list-disc pl-4 text-muted-foreground space-y-1">
-                                            {msg.structuredData.potentialCounterarguments.map((c, idx) => <li key={idx}>{c}</li>)}
-                                          </ul>
-                                        </div>
-                                      )}
-                                    </AccordionContent>
-                                  </AccordionItem>
-                                  
-                                  <AccordionItem value="debug" className="border-b-0">
-                                    <AccordionTrigger className="py-2 text-[10px] text-muted-foreground hover:text-foreground">
-                                      Discovery Debug
-                                    </AccordionTrigger>
-                                    <AccordionContent className="space-y-3 pt-2 text-[11px] bg-muted/30 p-3 rounded-lg border border-border mt-2">
-                                      <div className="grid grid-cols-2 gap-2">
-                                        <div>
-                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Domain</span>
-                                          <span className="font-mono">{msg.structuredData.domain || "Unknown"}</span>
-                                        </div>
-                                        <div>
-                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Confidence</span>
-                                          <span className="font-mono">{Math.round(msg.structuredData.confidence * 100)}%</span>
-                                        </div>
-                                        <div>
-                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Question Source</span>
-                                          <span className="font-mono">{msg.structuredData.questionSource || "Unknown"}</span>
-                                        </div>
-                                        <div>
-                                          <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest">Missing Variables</span>
-                                          <span className="font-mono">{msg.structuredData.nextQuestion?.variableId || "None"}</span>
-                                        </div>
-                                      </div>
-                                      <div className="pt-2 border-t">
-                                        <span className="font-bold text-muted-foreground block text-[9px] uppercase tracking-widest mb-1">Session ID</span>
-                                        <span className="font-mono text-[9px] text-muted-foreground break-all">{activeProfileId}</span>
-                                      </div>
-                                    </AccordionContent>
-                                  </AccordionItem>
-                                </Accordion>
-                              </div>
-                            ) : (
-                              <div className="font-serif font-light whitespace-pre-wrap">{msg.content}</div>
-                            )}
-                          </div>
-                        </div>
-                      ))
-                    )}
-
-                    {isTyping && (
-                      <div className="flex gap-3 max-w-[85%]">
-                        <div className="w-7 h-7 rounded-full bg-bronze/10 border border-bronze/20 flex items-center justify-center flex-shrink-0">
-                          <Loader2 className="w-3.5 h-3.5 text-bronze animate-spin" />
-                        </div>
-                        <div className="p-3.5 rounded-xl bg-card border border-border rounded-tl-none flex items-center gap-2">
-                          <span className="text-[9px] text-bronze uppercase font-bold tracking-widest">
-                            Simulating reasoning path...
-                          </span>
-                        </div>
+                        )}
                       </div>
                     )}
                   </div>
 
                   {/* Simulator input query form */}
-                  <form onSubmit={handleAsk} className="p-4 bg-card border-t border-border flex gap-2">
-                    <Input 
-                      placeholder="Enter scenario, problem, or decision crisis..." 
-                      value={question} 
-                      onChange={e => setQuestion(e.target.value)}
-                      disabled={isTyping}
-                      className="text-xs h-10 flex-1"
-                    />
-                    <Button type="submit" variant="hero" disabled={isTyping || !question.trim()} className="h-10 text-xs px-4 font-semibold">
-                      Simulate
-                    </Button>
+                  <form onSubmit={handleAsk} className="p-4 bg-background border-t border-border/50 sticky bottom-0">
+                    <div className="max-w-3xl mx-auto flex gap-3 relative">
+                      <Input 
+                        placeholder={isAwaitingFollowUp ? "Waiting for your answer to the multiple choice question..." : "Describe the situation or choice you are facing..."}
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        disabled={isTyping || isAwaitingFollowUp}
+                        className="bg-muted/30 border-border/50 text-foreground h-14 rounded-2xl pl-5 pr-14 text-base focus-visible:ring-1 focus-visible:ring-bronze/30 shadow-sm"
+                      />
+                      <Button 
+                        type="submit" 
+                        disabled={!question.trim() || isTyping || isAwaitingFollowUp}
+                        className="absolute right-2 top-2 bottom-2 h-10 w-10 p-0 rounded-xl bg-foreground hover:bg-foreground/90 text-background"
+                      >
+                        <ArrowRight className="w-5 h-5" />
+                      </Button>
+                    </div>
                   </form>
-
                 </div>
-
-                {/* Right Column: Live Status Monitoring Panel */}
-                <div className="lg:col-span-1">
-                  <LiveTwinStatusPanel profileId={activeProfileId} />
-                </div>
-
               </div>
             )}
 

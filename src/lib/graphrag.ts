@@ -183,7 +183,7 @@ export const retrieveGraphRAGContext = async (
   }
 
   // 4. Scoring Candidate Generation
-  const retrievalMode = process.env.RETRIEVAL_MODE || (typeof import.meta !== 'undefined' && import.meta.env && (import.meta.env as any).VITE_RETRIEVAL_MODE) || 'keyword';
+  const retrievalMode = (typeof process !== 'undefined' && process.env && process.env.RETRIEVAL_MODE) || (typeof import.meta !== 'undefined' && import.meta.env && (import.meta.env as any).VITE_RETRIEVAL_MODE) || 'keyword';
   
   let queryEmbedding: number[] | null = null;
   if (retrievalMode === 'vector' || retrievalMode === 'hybrid') {
@@ -357,16 +357,19 @@ export const generateSimulatorResponse = async (
   const primaryMemory = evidence.memories[0];
   const primaryDecision = evidence.decisions[0];
   
-  // Calculate confidence score based on actual data depth
-  let confidenceScore = 0;
+  // Calculate confidence score based on actual data depth and conversational depth
   const evidenceCount = evidence.memories.length + evidence.decisions.length + evidence.principles.length;
   
-  // Stepwise confidence cap based on evidence count
-  if (evidenceCount >= 10) confidenceScore = 0.80;
-  else if (evidenceCount >= 7) confidenceScore = 0.65;
-  else if (evidenceCount >= 4) confidenceScore = 0.50;
-  else if (evidenceCount >= 2) confidenceScore = 0.35;
-  else confidenceScore = 0.20;
+  let baseConfidence = 0.50;
+  if (evidenceCount < 2) baseConfidence = 0.30;
+  else if (evidenceCount >= 10) baseConfidence = 0.65;
+  
+  // Increment confidence mathematically by 12% per turn to guarantee progress
+  let confidenceScore = Math.min(0.95, baseConfidence + (pastQA.length * 0.12));
+  
+  // Saturation Detection
+  const maxTurns = 5;
+  const isSaturated = pastQA.length >= maxTurns || confidenceScore >= 0.85;
 
   const scores = evidence.profile.scores || {};
   const risk = scores.risk ?? 3;
@@ -476,8 +479,12 @@ If the user's recent answers provide enough clarity, you MUST increase your conf
 CONTRADICTION DETECTION:
 If the user's recent answers in RECENT CLARIFICATIONS contradict their Core Principles or Active User Value Profile, you MUST set conflictDetected to true, and formulate the nextQuestion to ask: "Has your perspective changed recently regarding [Topic]?"
 
-If confidence < 0.70, you MUST NOT generate a final recommendation. Instead, the recommendation MUST state: "Recommendation withheld. I need more information before I can confidently simulate your decision-making." and \`nextQuestion\` must be asked.
-Your calculated current confidence score is ${confidenceScore}. Assume potentialConfidence will be ~20% higher if they answer the question.
+SATURATION & RECOMMENDATION TRIGGER:
+Is the session saturated? ${isSaturated ? "YES" : "NO"}.
+If YES: You MUST NOT generate a 'nextQuestion'. You must set \`nextQuestion\` to null. You MUST formulate a final recommendation, even if some uncertainty remains. Set 'confidence' to ${confidenceScore} or higher.
+If NO: If confidence < 0.85, you MUST NOT generate a final recommendation. Instead, the recommendation MUST state: "Recommendation withheld. Your Decision Twin is gathering information before making a recommendation." and \`nextQuestion\` must be asked.
+
+Your calculated current confidence score is ${confidenceScore}. Assume potentialConfidence will be ~15% higher if they answer the question.
 
 Output a raw JSON object with exactly this structure:
 {
