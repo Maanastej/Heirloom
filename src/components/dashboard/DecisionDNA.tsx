@@ -763,17 +763,17 @@ export default function DecisionDNA() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in max-w-7xl mx-auto px-4 sm:px-6">
+    <div className="space-y-4 animate-fade-in max-w-7xl mx-auto px-4 sm:px-6">
       
       {/* HEADER SECTION */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-border pb-6 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-border pb-4 gap-4">
         <div>
           <h2 className="text-2xl font-serif text-foreground mb-1 flex items-center gap-2">
             <Brain className="w-7 h-7 text-bronze animate-pulse" />
-            Decision DNA v2 — Digital Twin System
+            Decision Twin
           </h2>
           <p className="text-muted-foreground text-xs">
-            Model, visualize, and simulate multi-generational reasoning trees using GraphRAG and life memories.
+            Model and explore important life decisions using your personal reasoning profile.
           </p>
         </div>
         {step !== "list" && (
@@ -918,27 +918,28 @@ export default function DecisionDNA() {
 
       {/* DASHBOARD TABBED PORTAL */}
       {step === "dashboard" && activeProfile && (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
           
           {/* TAB BAR (Sidebar on large screens) */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="bg-card border-r lg:border-none lg:rounded-xl p-4 lg:p-0 lg:bg-transparent lg:border-transparent space-y-6">
+          <div className="lg:col-span-1 space-y-4">
+            <div className="bg-card border-r lg:border-none lg:rounded-xl p-4 lg:p-0 lg:bg-transparent lg:border-transparent space-y-4">
               
-              <div className="flex items-center gap-3 pb-4 border-b">
-                <div className="w-10 h-10 bg-bronze/10 rounded-full flex items-center justify-center border border-bronze/20">
-                  <Brain className="w-5 h-5 text-bronze" />
+              <div className="flex items-center gap-3 pb-3 border-b">
+                <div className="w-8 h-8 bg-bronze/10 rounded-full flex items-center justify-center border border-bronze/20 shrink-0">
+                  <Brain className="w-4 h-4 text-bronze" />
                 </div>
-                <div>
+                <div className="flex items-center gap-2 flex-wrap">
                   <h4 className="text-sm font-semibold text-foreground font-serif leading-tight">{activeProfile.name}</h4>
-                  <p className="text-[10px] text-muted-foreground mt-0.5">{activeProfile.archetype}</p>
+                  <span className="text-muted-foreground/40 hidden sm:inline">|</span>
+                  <p className="text-[11px] text-muted-foreground font-medium">{activeProfile.archetype}</p>
                 </div>
               </div>
 
-              <nav className="flex flex-col gap-6">
+              <nav className="flex flex-col gap-4">
                 
                 {/* CORE PROFILE */}
-                <div className="space-y-2">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">Core Profile</span>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-medium text-muted-foreground/60 tracking-wider px-2 block">Core Profile</span>
                   <div className="flex flex-col gap-0.5">
                     <button
                       onClick={() => setActiveTab("identity")}
@@ -952,8 +953,8 @@ export default function DecisionDNA() {
                 </div>
 
                 {/* PERSONAL MEMORY */}
-                <div className="space-y-2">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">Personal Memory</span>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-medium text-muted-foreground/60 tracking-wider px-2 block">Personal Memory</span>
                   <div className="flex flex-col gap-0.5">
                     <button
                       onClick={() => setActiveTab("memories")}
@@ -982,9 +983,10 @@ export default function DecisionDNA() {
                   </div>
                 </div>
 
+
                 {/* DECISIONS */}
-                <div className="space-y-2">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">Decisions</span>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-medium text-muted-foreground/60 tracking-wider px-2 block">Decisions</span>
                   <div className="flex flex-col gap-0.5">
                     <button
                       onClick={() => setActiveTab("simulator")}
@@ -1040,32 +1042,25 @@ export default function DecisionDNA() {
                 {/* Scorecard Statements */}
                 <div className="space-y-4 pt-4 border-t">
                   <div className="space-y-2">
-                    <span className="text-[10px] font-bold text-bronze uppercase tracking-widest block">Philosophical Core values</span>
-                    <p className="text-xs leading-relaxed text-foreground bg-muted/40 p-3 rounded-lg border border-border italic font-serif">
-                      "{activeProfile.answers.values || "Preserving legacy, defending relationships, and focusing on long-term value creation."}"
-                    </p>
+                    <span className="text-xs font-semibold text-foreground block">Core Values</span>
+                    <div className="flex flex-wrap gap-2">
+                      {(activeProfile.answers.values || "Financial Success, Independence, Growth").split(/[,;.]+/).map((val, i) => val.trim() ? (
+                        <span key={i} className="px-3 py-1 bg-muted text-foreground text-[11px] rounded-full border border-border">{val.trim()}</span>
+                      ) : null)}
+                    </div>
                   </div>
 
                   <div className="space-y-2">
-                    <span className="text-[10px] font-bold text-bronze uppercase tracking-widest block">Strict Decision Rules</span>
-                    <p className="text-xs leading-relaxed text-foreground bg-muted/40 p-3 rounded-lg border border-border italic font-serif">
-                      "{activeProfile.answers.rules || "Always build slowly; protect our assets and refuse leverage."}"
-                    </p>
+                    <span className="text-xs font-semibold text-foreground block">Decision Rules</span>
+                    <div className="flex flex-wrap gap-2">
+                      {(activeProfile.answers.rules || "Emergency Fund, Long-Term Thinking, Avoid Unnecessary Risk").split(/[,;.]+/).map((rule, i) => rule.trim() ? (
+                        <span key={i} className="px-3 py-1 bg-muted text-foreground text-[11px] rounded-full border border-border">{rule.trim()}</span>
+                      ) : null)}
+                    </div>
                   </div>
                 </div>
                 
-                {/* Advanced Profile Editor / Discovery */}
-                <div className="pt-6 border-t border-border mt-6">
-                   <div className="flex items-center justify-between">
-                     <div>
-                       <h4 className="text-sm font-semibold">Identity Discovery</h4>
-                       <p className="text-xs text-muted-foreground">Extract new traits and values through conversational profiling.</p>
-                     </div>
-                     <Button variant="outline" size="sm" onClick={() => setActiveTab("discovery")} className="text-xs h-8">
-                       <Sparkles className="w-3.5 h-3.5 mr-2 text-bronze" /> Open Discovery Chat
-                     </Button>
-                   </div>
-                </div>
+
               </div>
             )}
 
@@ -1074,8 +1069,8 @@ export default function DecisionDNA() {
               <div className="bg-card border rounded-xl p-6 shadow-elegant space-y-6 animate-fade-in">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b pb-4 gap-4">
                   <div>
-                    <h3 className="text-lg font-serif text-foreground font-semibold">Memory Engine Timeline</h3>
-                    <p className="text-xs text-muted-foreground mt-0.5 font-light">Enrich, search, and map life events, letters, videos, and documents into structured graph knowledge.</p>
+                    <h3 className="text-lg font-serif text-foreground font-semibold">Memory Engine</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5 font-light">Search and view life events, letters, videos, and documents.</p>
                   </div>
                 </div>
 
@@ -1586,127 +1581,7 @@ export default function DecisionDNA() {
               </div>
             )}
 
-            {/* TAB 5: LEGACY GRAPH VISUALIZER */}
-            {activeTab === "graph" && (
-              <div className="bg-card border rounded-xl p-6 shadow-elegant space-y-6 animate-fade-in">
-                <div className="border-b pb-4">
-                  <h3 className="text-lg font-serif text-foreground font-semibold">Legacy Knowledge Network</h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">Explore their life, values, decisions, and memories as an interconnected web.</p>
-                </div>
 
-                {/* SVG Graph rendering area */}
-                <div className="relative border rounded-xl bg-muted/20 h-[380px] overflow-hidden flex items-center justify-center">
-                  
-                  {/* Basic interactive visual node web */}
-                  <svg className="w-full h-full select-none">
-                    {/* Render connections / paths */}
-                    {graphEdges.map((edge, i) => {
-                      const srcNode = graphNodes.find(n => n.id === edge.source);
-                      const tgtNode = graphNodes.find(n => n.id === edge.target);
-                      if (!srcNode || !tgtNode) return null;
-                      
-                      // Calculate mock circular coordinates in SVG canvas
-                      const idxS = graphNodes.indexOf(srcNode);
-                      const idxT = graphNodes.indexOf(tgtNode);
-                      const radiusS = idxS === 0 ? 0 : 120;
-                      const radiusT = idxT === 0 ? 0 : 120;
-                      const angleS = idxS * (360 / Math.max(1, graphNodes.length)) * (Math.PI / 180);
-                      const angleT = idxT * (360 / Math.max(1, graphNodes.length)) * (Math.PI / 180);
-                      
-                      const x1 = idxS === 0 ? 250 : 250 + radiusS * Math.cos(angleS);
-                      const y1 = idxS === 0 ? 190 : 190 + radiusS * Math.sin(angleS);
-                      const x2 = idxT === 0 ? 250 : 250 + radiusT * Math.cos(angleT);
-                      const y2 = idxT === 0 ? 190 : 190 + radiusT * Math.sin(angleT);
-
-                      return (
-                        <g key={edge.id || i}>
-                          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#8c6c54" strokeWidth={1} strokeOpacity={0.4} />
-                          <text x={(x1 + x2) / 2} y={(y1 + y2) / 2} fill="#8c6c54" fontSize="8" textAnchor="middle" className="font-bold opacity-60">
-                            {edge.type}
-                          </text>
-                        </g>
-                      );
-                    })}
-
-                    {/* Render entity nodes */}
-                    {graphNodes.map((node, i) => {
-                      const radius = i === 0 ? 0 : 120;
-                      const angle = i * (360 / Math.max(1, graphNodes.length)) * (Math.PI / 180);
-                      const x = i === 0 ? 250 : 250 + radius * Math.cos(angle);
-                      const y = i === 0 ? 190 : 190 + radius * Math.sin(angle);
-                      
-                      const isSelected = selectedNode === node.id;
-                      const fill = node.entity_type === "Person" ? "#1e293b" :
-                                   node.entity_type === "Memory" ? "#8c6c54" :
-                                   node.entity_type === "Decision" ? "#3b82f6" : "#10b981";
-
-                      return (
-                        <g 
-                          key={node.id} 
-                          className="cursor-pointer group"
-                          onClick={() => setSelectedNode(isSelected ? null : node.id)}
-                        >
-                          <circle 
-                            cx={x} 
-                            cy={y} 
-                            r={i === 0 ? 16 : 10} 
-                            fill={fill} 
-                            className="stroke-card stroke-2 transition-transform transform group-hover:scale-125" 
-                          />
-                          <text x={x} y={y + 24} className="text-[9px] font-semibold font-sans fill-foreground" textAnchor="middle">
-                            {node.label.length > 20 ? node.label.substring(0, 18) + "..." : node.label}
-                          </text>
-                        </g>
-                      );
-                    })}
-                  </svg>
-
-                  {/* Dynamic side popout detailing selected node properties */}
-                  {selectedNode && (
-                    <div className="absolute right-4 top-4 bg-card/90 backdrop-blur-sm border rounded-xl p-4 max-w-xs shadow-elegant animate-scale-in text-xs space-y-2">
-                      {(() => {
-                        const node = graphNodes.find(n => n.id === selectedNode);
-                        if (!node) return null;
-                        return (
-                          <>
-                            <div className="flex justify-between items-center pb-2 border-b">
-                              <span className="font-bold text-bronze uppercase text-[10px]">{node.entity_type}</span>
-                              <span className="text-[9px] bg-muted px-1.5 py-0.5 rounded font-mono text-muted-foreground">{node.id.substring(0, 8)}</span>
-                            </div>
-                            <h4 className="font-serif font-semibold text-foreground text-sm">{node.label}</h4>
-                            <div className="space-y-1 text-muted-foreground pt-1">
-                              {Object.entries(node.properties || {}).map(([k, v]) => (
-                                <div key={k} className="flex justify-between">
-                                  <span className="capitalize">{k}:</span>
-                                  <span className="font-medium text-foreground">{String(v)}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </>
-                        );
-                      })()}
-                    </div>
-                  )}
-
-                  {/* Explanatory legend overlay */}
-                  <div className="absolute bottom-4 left-4 bg-card/85 backdrop-blur-sm border rounded-lg p-2.5 flex flex-wrap gap-3 text-[9px] font-semibold shadow-sm">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#1e293b]" /> <span>Identity Twin</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#8c6c54]" /> <span>Memory</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#3b82f6]" /> <span>Decision</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#10b981]" /> <span>Principle</span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            )}
 
             {/* TAB 6: DECISION SIMULATOR (Decision Twin) */}
             {activeTab === "simulator" && (
@@ -1719,19 +1594,19 @@ export default function DecisionDNA() {
                   <div className="flex-1 overflow-y-auto px-4 py-8 space-y-8">
                     {chatHistory.length === 0 ? (
                       <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
-                        <div className="space-y-3">
-                          <h4 className="font-serif text-3xl font-medium text-foreground">Decision Twin</h4>
-                          <p className="text-base text-muted-foreground max-w-md mx-auto">
+                        <div className="space-y-2">
+                          <h4 className="font-serif text-2xl font-medium text-foreground">Decision Twin</h4>
+                          <p className="text-sm text-muted-foreground max-w-md mx-auto">
                             What decision are you trying to make?
                           </p>
                         </div>
                         
-                        <div className="flex flex-wrap justify-center gap-3 max-w-lg mt-8">
+                        <div className="flex flex-wrap justify-center gap-2 max-w-lg mt-4">
                           {[
-                            "startup",
-                            "marriage",
-                            "relocation",
-                            "career"
+                            "Startup",
+                            "Marriage",
+                            "Relocation",
+                            "Career"
                           ].map((suggestion, idx) => (
                             <button
                               key={idx}
@@ -1742,7 +1617,7 @@ export default function DecisionDNA() {
                                   handleAsk(fakeEvent);
                                 }, 0);
                               }}
-                              className="px-4 py-1.5 bg-muted hover:bg-muted-foreground/10 rounded-full text-[13px] text-muted-foreground transition-all"
+                              className="px-3 py-1 bg-muted hover:bg-muted-foreground/10 border border-border rounded-full text-[11px] text-foreground transition-all"
                             >
                               {suggestion}
                             </button>

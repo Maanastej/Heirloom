@@ -58,13 +58,13 @@ export const SimulatorChatMessage = memo(({
             {isHighConfidence ? (
               // RECOMMENDATION CARD
               <div className="space-y-4">
-                <div className="flex items-center justify-between pb-3">
-                  <h4 className="font-bold text-foreground text-[12px] flex items-center gap-1.5">
+                <div className="flex items-center justify-between pb-2">
+                  <h4 className="font-bold text-foreground text-[11px] uppercase tracking-wider flex items-center gap-1.5">
                     Recommendation
                   </h4>
                 </div>
                 
-                <p className="font-serif text-[15px] font-semibold text-foreground leading-relaxed">
+                <p className="font-serif text-[14px] font-medium text-foreground leading-loose max-w-[95%]">
                   {msg.structuredData.recommendation}
                 </p>
                 
@@ -83,20 +83,20 @@ export const SimulatorChatMessage = memo(({
               </div>
             ) : (
               // DISCOVERY QUESTION CARD
-              <div className="space-y-5">
+              <div className="space-y-3">
                 {msg.structuredData.nextQuestion && (
                   <>
-                    <div className="space-y-2 text-center pb-2">
+                    <div className="space-y-1 text-center">
                       <span className="text-[10px] font-bold text-bronze uppercase tracking-widest">
                         One thing I need to understand
                       </span>
-                      <p className="font-serif text-[17px] font-semibold text-foreground leading-snug">
+                      <p className="font-serif text-[16px] font-semibold text-foreground leading-snug mt-1">
                         {msg.structuredData.nextQuestion.question}
                       </p>
                     </div>
 
-                    <div className="space-y-3 pt-2">
-                      <div className="flex items-center justify-between mb-1.5">
+                    <div className="space-y-2 pt-1">
+                      <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">Understanding</span>
                       </div>
                       <div className="w-full h-1 bg-border rounded-full overflow-hidden">
@@ -107,16 +107,16 @@ export const SimulatorChatMessage = memo(({
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-2 pt-2">
+                    <div className="flex flex-col gap-2 pt-1">
                       {isLast && isAwaitingFollowUp ? (
                         msg.structuredData.nextQuestion.options.map((opt: string, idx: number) => (
                           <button 
                             key={idx}
                             onClick={() => handleFollowUpAnswer(opt)}
                             disabled={isTyping}
-                            className="px-4 py-3 bg-background hover:bg-bronze/5 border border-border hover:border-bronze/30 rounded-xl text-left text-[13px] font-medium text-foreground transition-all flex items-center gap-3 group shadow-sm"
+                            className="px-3 py-2 bg-background hover:bg-bronze/5 border border-border hover:border-bronze/30 rounded-lg text-left text-[12px] font-medium text-foreground transition-all flex items-center gap-2 group shadow-sm"
                           >
-                            <div className="w-3 h-3 rounded-full border border-muted-foreground/30 group-hover:border-bronze group-hover:bg-bronze/20 flex-shrink-0 transition-colors" />
+                            <div className="w-2.5 h-2.5 rounded-full border border-muted-foreground/30 group-hover:border-bronze group-hover:bg-bronze/20 flex-shrink-0 transition-colors" />
                             {opt}
                           </button>
                         ))
