@@ -21,13 +21,7 @@ Heirloom is a premium, highly-secure React application designed for families to 
 
 - **Decision DNA Advisor**: Model and preserve family decision logic using intelligent worldview capture. Includes validation tools and accuracy metrics for the generated persona.
 
-<div align="center">
-  <img src="./images%20and%20videos/Screenshot%202026-06-13%20114655.png" alt="Identity Engine Scorecard" width="80%" />
-</div>
-<br>
-<div align="center">
-  <img src="./images%20and%20videos/Screenshot%202026-06-13%20114642.png" alt="Decision Twin Recommendation" width="80%" />
-</div>
+
 
 - **Video Legacy Preservation**: Support for guided recording, personal messages, and family-only archives. Video content is positioned as a core legacy asset, not just a media file.
 
