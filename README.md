@@ -2,6 +2,10 @@
 
 Heirloom is a premium, highly-secure React application designed for families to preserve, organize, and pass down their multi-generational legacy. It brings together secure documents, high-fidelity video preservation, asset tracking, and a next-generation "Decision DNA" advisor into a single family vault.
 
+<div align="center">
+  <video src="./images%20and%20videos/Screen%20Recording%202026-06-13%20120638.mp4" width="80%" controls></video>
+</div>
+
 ## Core Features
 
 - **Dashboard Workspace**: A unified family dashboard with five core tabs:
@@ -11,13 +15,29 @@ Heirloom is a premium, highly-secure React application designed for families to 
   - **Decision DNA** — capture your decision-making profile, validate AI alignment, and consult simulated family advisors.
   - **Family Hub** — invite, manage, and assign access roles for family members.
 
+<div align="center">
+  <img src="./images%20and%20videos/Screenshot%202026-06-13%20114426.png" alt="Decision Twin Dashboard" width="80%" />
+</div>
+
 - **Decision DNA Advisor**: Model and preserve family decision logic using intelligent worldview capture. Includes validation tools and accuracy metrics for the generated persona.
+
+<div align="center">
+  <img src="./images%20and%20videos/Screenshot%202026-06-13%20114655.png" alt="Identity Engine Scorecard" width="80%" />
+</div>
+<br>
+<div align="center">
+  <img src="./images%20and%20videos/Screenshot%202026-06-13%20114642.png" alt="Decision Twin Recommendation" width="80%" />
+</div>
 
 - **Video Legacy Preservation**: Support for guided recording, personal messages, and family-only archives. Video content is positioned as a core legacy asset, not just a media file.
 
 - **Secure Document Storage**: Private-by-default storage for wills, deeds, letters, and vault assets, with controls for sharing to family members.
 
 - **Family Access & Roles**: Multiple access tiers and role-aware family management let owners define exactly who can view, edit, or inherit each part of the vault.
+
+<div align="center">
+  <img src="./images%20and%20videos/Screenshot%202026-06-13%20114820.png" alt="Family Registry and Inheritance Lock" width="80%" />
+</div>
 
 - **Responsive Navigation**: Modern desktop sidebar and mobile-friendly drawer navigation for fast access to all dashboard sections.
 
