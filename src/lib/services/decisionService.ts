@@ -1,5 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { DecisionJournalObject } from "@/lib/graphrag";
+import { generateDecisionEmbedding } from "@/lib/behavioralEmbeddings";
 
 /**
  * Fetch all decisions for a profile from the database.
@@ -41,6 +42,9 @@ export const getDecisions = async (profileId: string): Promise<DecisionJournalOb
  */
 export const addDecision = async (decision: Omit<DecisionJournalObject, "id">): Promise<DecisionJournalObject | null> => {
   try {
+    const contentToEmbed = (decision.situation || "") + " " + (decision.reasoning || "");
+    const embedding = await generateDecisionEmbedding({ input: contentToEmbed });
+
     const { data, error } = await supabase
       .from("decision_journal")
       .insert([{
@@ -53,6 +57,7 @@ export const addDecision = async (decision: Omit<DecisionJournalObject, "id">): 
         outcome: decision.outcome,
         outcome_quality: decision.outcome_quality,
         decision_date: decision.decision_date,
+        decision_embedding: embedding,
       }])
       .select()
       .single();

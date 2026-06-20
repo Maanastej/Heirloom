@@ -1,5 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { MemoryObject } from "@/lib/graphrag";
+import { generateDecisionEmbedding } from "@/lib/behavioralEmbeddings";
 
 /**
  * Fetch all memories for a profile from the database.
@@ -41,6 +42,9 @@ export const getMemories = async (profileId: string): Promise<MemoryObject[]> =>
  */
 export const addMemory = async (memory: Omit<MemoryObject, "id">): Promise<MemoryObject | null> => {
   try {
+    const contentToEmbed = (memory.title || "") + " " + (memory.content || "");
+    const embedding = await generateDecisionEmbedding({ input: contentToEmbed });
+
     const { data, error } = await supabase
       .from("dna_memories")
       .insert([{
@@ -53,6 +57,7 @@ export const addMemory = async (memory: Omit<MemoryObject, "id">): Promise<Memor
         emotion: memory.emotion,
         people_involved: memory.people_involved,
         importance_score: memory.importance_score,
+        memory_embedding: embedding,
       }])
       .select()
       .single();

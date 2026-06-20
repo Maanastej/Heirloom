@@ -190,9 +190,10 @@ export const retrieveGraphRAGContext = async (
     queryEmbedding = (await generateDecisionEmbedding({ input: question })) as number[] | null;
   }
 
-  const queryTerms = question.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  let finalMemories: MemoryObject[] = [];
+  let finalDecisions: DecisionJournalObject[] = [];
 
-  // Rank a node using combined identity profile and bias factors
+  const queryTerms = question.toLowerCase().split(/\s+/).filter(w => w.length > 3);
   const rankNode = (content: string): number => {
     let baseRank = 0;
     if (!combinedProfile) return baseRank;
@@ -218,63 +219,112 @@ export const retrieveGraphRAGContext = async (
     return baseRank * stabilityFactor * legacyFactor;
   };
 
-  const scoredMemsUnsorted = await Promise.all(memories.map(async m => {
-    let termMatches = 0;
-    queryTerms.forEach(t => { if (m.title.toLowerCase().includes(t) || m.content.toLowerCase().includes(t)) termMatches++; });
-    if (m.title.toLowerCase().includes(intent) || m.content.toLowerCase().includes(intent)) termMatches += 2;
-    const kwScore = rankNode(m.title + " " + m.content) + (termMatches * 5);
+  if ((retrievalMode === 'vector' || retrievalMode === 'hybrid') && queryEmbedding) {
+    // True pgvector vector search in Postgres
+    const { data: matchedMems, error: memErr } = await supabase.rpc('match_memories', {
+      query_embedding: queryEmbedding,
+      match_threshold: -1.0, // Allow any cosine similarity to keep threshold check permissive
+      match_count: 5,
+      p_profile_id: profileId
+    });
 
-    let vecScore = 0;
-    if ((retrievalMode === 'vector' || retrievalMode === 'hybrid') && queryEmbedding) {
-      const memEmb = await generateDecisionEmbedding({ input: m.title + " " + m.content });
-      if (memEmb) vecScore = cosineSimilarity(queryEmbedding, memEmb as number[]);
+    const { data: matchedDecs, error: decErr } = await supabase.rpc('match_decisions', {
+      query_embedding: queryEmbedding,
+      match_threshold: -1.0,
+      match_count: 5,
+      p_profile_id: profileId
+    });
+
+    if (memErr) console.error("match_memories error:", memErr);
+    if (decErr) console.error("match_decisions error:", decErr);
+
+    const memoriesList = (matchedMems || []).map((row: any) => ({
+      id: row.id,
+      profile_id: row.profile_id,
+      title: row.title || "",
+      description: row.description || "",
+      content: row.content || "",
+      year: row.year ?? new Date().getFullYear(),
+      event_type: row.event_type || "family",
+      emotion: row.emotion || "neutral",
+      people_involved: row.people_involved || [],
+      importance_score: row.importance_score ?? 5,
+      similarity: row.similarity
+    }));
+
+    const decisionsList = (matchedDecs || []).map((row: any) => ({
+      id: row.id,
+      profile_id: row.profile_id,
+      situation: row.situation || "",
+      options: row.options || [],
+      selected_option: row.selected_option || "",
+      reasoning: row.reasoning || "",
+      emotional_state: row.emotional_state || "calm",
+      outcome: row.outcome || "",
+      outcome_quality: row.outcome_quality ?? 5,
+      decision_date: row.decision_date || new Date().toISOString(),
+      similarity: row.similarity
+    }));
+
+    if (retrievalMode === 'vector') {
+      finalMemories = memoriesList.slice(0, 2);
+      finalDecisions = decisionsList.slice(0, 2);
+    } else {
+      // Hybrid mode: combine keyword overlap with Postgres vector similarity score
+      const hybridMems = memoriesList.map(m => {
+        let termMatches = 0;
+        queryTerms.forEach(t => { if (m.title.toLowerCase().includes(t) || m.content.toLowerCase().includes(t)) termMatches++; });
+        if (m.title.toLowerCase().includes(intent) || m.content.toLowerCase().includes(intent)) termMatches += 2;
+        const kwScore = rankNode(m.title + " " + m.content) + (termMatches * 5);
+        const similarityScore = (m as any).similarity || 0;
+        const finalScore = kwScore * 0.1 + similarityScore * 10;
+        return { mem: m, score: finalScore };
+      }).sort((a, b) => b.score - a.score);
+
+      const hybridDecs = decisionsList.map(d => {
+        let termMatches = 0;
+        queryTerms.forEach(t => { if (d.situation.toLowerCase().includes(t) || d.reasoning.toLowerCase().includes(t)) termMatches++; });
+        if (d.situation.toLowerCase().includes(intent) || d.reasoning.toLowerCase().includes(intent)) termMatches += 2;
+        const kwScore = rankNode(d.situation + " " + d.reasoning) + (termMatches * 5);
+        const similarityScore = (d as any).similarity || 0;
+        const finalScore = kwScore * 0.1 + similarityScore * 10;
+        return { dec: d, score: finalScore };
+      }).sort((a, b) => b.score - a.score);
+
+      finalMemories = hybridMems.slice(0, 2).map(x => x.mem);
+      finalDecisions = hybridDecs.slice(0, 2).map(x => x.dec);
     }
+  } else {
+    // Pure Keyword Search
+    const scoredMemsUnsorted = memories.map(m => {
+      let termMatches = 0;
+      queryTerms.forEach(t => { if (m.title.toLowerCase().includes(t) || m.content.toLowerCase().includes(t)) termMatches++; });
+      if (m.title.toLowerCase().includes(intent) || m.content.toLowerCase().includes(intent)) termMatches += 2;
+      const kwScore = rankNode(m.title + " " + m.content) + (termMatches * 5);
+      return { mem: m, score: kwScore };
+    });
+    const scoredMems = scoredMemsUnsorted.sort((a, b) => b.score - a.score);
 
-    let finalScore = kwScore;
-    if (retrievalMode === 'vector') finalScore = vecScore;
-    if (retrievalMode === 'hybrid') finalScore = kwScore * 0.1 + vecScore * 10;
+    const scoredDecsUnsorted = decisions.map(d => {
+      let termMatches = 0;
+      queryTerms.forEach(t => { if (d.situation.toLowerCase().includes(t) || d.reasoning.toLowerCase().includes(t)) termMatches++; });
+      if (d.situation.toLowerCase().includes(intent) || d.reasoning.toLowerCase().includes(intent)) termMatches += 2;
+      const kwScore = rankNode(d.situation + " " + d.reasoning) + (termMatches * 5);
+      return { dec: d, score: kwScore };
+    });
+    const scoredDecs = scoredDecsUnsorted.sort((a, b) => b.score - a.score);
 
-    return {
-      id: m.id,
-      mem: m,
-      score: finalScore
-    };
-  }));
-  const scoredMems = scoredMemsUnsorted.sort((a, b) => b.score - a.score);
-
-  const scoredDecsUnsorted = await Promise.all(decisions.map(async d => {
-    let termMatches = 0;
-    queryTerms.forEach(t => { if (d.situation.toLowerCase().includes(t) || d.reasoning.toLowerCase().includes(t)) termMatches++; });
-    if (d.situation.toLowerCase().includes(intent) || d.reasoning.toLowerCase().includes(intent)) termMatches += 2;
-    const kwScore = rankNode(d.situation + " " + d.reasoning) + (termMatches * 5);
-
-    let vecScore = 0;
-    if ((retrievalMode === 'vector' || retrievalMode === 'hybrid') && queryEmbedding) {
-      const decEmb = await generateDecisionEmbedding({ input: d.situation + " " + d.reasoning });
-      if (decEmb) vecScore = cosineSimilarity(queryEmbedding, decEmb as number[]);
-    }
-
-    let finalScore = kwScore;
-    if (retrievalMode === 'vector') finalScore = vecScore;
-    if (retrievalMode === 'hybrid') finalScore = kwScore * 0.1 + vecScore * 10;
-
-    return {
-      id: d.id,
-      dec: d,
-      score: finalScore
-    };
-  }));
-  const scoredDecs = scoredDecsUnsorted.sort((a, b) => b.score - a.score);
+    finalMemories = scoredMems.slice(0, 2).map(s => s.mem);
+    finalDecisions = scoredDecs.slice(0, 2).map(s => s.dec);
+  }
 
   // 5. Multi-Hop Graph Expansion
   const initialMatches: string[] = [];
-  scoredMems.slice(0, 2).forEach(item => initialMatches.push(item.id));
-  scoredDecs.slice(0, 2).forEach(item => initialMatches.push(item.id));
+  finalMemories.slice(0, 2).forEach(item => initialMatches.push(item.id));
+  finalDecisions.slice(0, 2).forEach(item => initialMatches.push(item.id));
   const graphTraversalPath = edges.length > 0 ? expandGraphNodes(initialMatches, edges, 2) : [];
 
   // 6. Context Extraction — use top-scored items directly
-  const finalMemories = scoredMems.slice(0, 2).map(s => s.mem);
-  const finalDecisions = scoredDecs.slice(0, 2).map(s => s.dec);
   const finalPrinciples = principles.slice(0, 2);
 
   const connectedEntities = [

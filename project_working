@@ -1,0 +1,103 @@
+# Project Working: Vector Computation & Learning Loop Mechanics
+
+This document provides a highly detailed explanation of:
+1. How the system computes vectors for similarity checking when the database vector fields are empty.
+2. How the Self-Improving Learning Loop triggers, operates, and performs failure diagnostics.
+
+---
+
+## 1. Vector Computation with Empty Database Fields
+
+When retrieving context using vector or hybrid retrieval modes, the system must perform similarity matching. However, in the database schema, certain table rows (such as historical `memories` and `decisions` or new `decision_events`) may have empty or null `decision_embedding` fields. The system handles this using two distinct strategies depending on the retrieval pipeline:
+
+### A. GraphRAG Retrieval Engine (`src/lib/graphrag.ts`)
+If the retrieval mode is set to `vector` or `hybrid`, the system performs **on-the-fly dynamic embedding generation** directly during retrieval rather than failing or returning 0 similarity.
+
+1. **Query Embedding:**
+   First, the user's scenario/question is converted into a vector query embedding:
+   ```typescript
+   queryEmbedding = await generateDecisionEmbedding({ input: question });
+   ```
+2. **Dynamic Generation for Empty Rows:**
+   For each record in the loaded database rows (`memories` and `decisions`), the system maps through them. If it needs to calculate similarity:
+   - For **Memories**: It concatenates the title and content, then generates the embedding:
+     ```typescript
+     const memEmb = await generateDecisionEmbedding({ input: m.title + " " + m.content });
+     ```
+   - For **Decisions**: It concatenates the situation and reasoning, then generates the embedding:
+     ```typescript
+     const decEmb = await generateDecisionEmbedding({ input: d.situation + " " + d.reasoning });
+     ```
+3. **API Call Execution:**
+   The `generateDecisionEmbedding` function (`src/lib/behavioralEmbeddings.ts`) serializes the text input payload and dispatches a `POST` request to the Groq API:
+   - **Endpoint:** `https://api.groq.com/openai/v1/embeddings`
+   - **Model:** `text-embedding-3-large`
+   - **Authorization:** Uses the bearer token from the environment variable (`VITE_GROQ_API_KEY`).
+   - If successful, it extracts the 3072-dimension float array: `data?.data?.[0]?.embedding`.
+4. **Local Similarity Calculation:**
+   Once both the query vector and candidate vector are obtained, the system performs a local mathematical calculation in TypeScript:
+   ```typescript
+   cosineSimilarity(queryEmbedding, candidateEmbedding);
+   ```
+   This is computed as:
+   $$\text{similarity} = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}$$
+
+### B. Standard Context Pipeline Fallback (`src/lib/behavioralMemory.ts`)
+In contrast to the GraphRAG pipeline, the standard behavioral context retrieval (`getRelevantBehavioralContext`) behaves as follows:
+- If the current event being evaluated lacks an embedding, it generates one on the fly for the event.
+- However, for the surrounding database rows in the `decision_events` table, if `d.decision_embedding` is null/empty, it **bypasses dynamic generation** to save API latency and cost, defaulting the similarity to `0`:
+  ```typescript
+  similarity: d.decision_embedding && emb ? cosineSimilarity(emb, d.decision_embedding) : 0
+  ```
+
+---
+
+## 2. The Self-Improving Learning Loop
+
+The learning loop tracks when the Digital Twin's predictions deviate from the user's actual decisions, automatically calculating metrics and offering adjustments to align the model.
+
+### Step 1: Triggering the Loop
+The loop is triggered through the **Verify Simulation Form** (or accuracy console) when a simulation evaluation is logged. 
+1. The user enters:
+   - A simulated scenario question.
+   - The predicted decision (AI output).
+   - The actual human decision (ground truth).
+   - The confidence score of the simulation (0.0 - 1.0).
+   - Whether it was a match (`is_correct = true`) or a drift (`is_correct = false`).
+2. Clicking **"Commit to Learning Loop"** dispatches the record to the Supabase database via the `addEvaluation` service (`src/lib/services/evaluationService.ts`), appending it to the `accuracy_evaluations` table.
+
+### Step 2: Continuous Metrics Evaluation
+Once evaluations are logged, the dashboard pulls all historical records for the active profile and computes alignment statistics:
+- **Accuracy:** $\frac{\text{Matches}}{\text{Total Evaluations}}$
+- **Expected Calibration Error (ECE):** Approximated using the Mean Absolute Error (MAE) between the AI's confidence score and the binary correctness outcome:
+  $$\text{ECE} = \frac{1}{N} \sum_{i=1}^{N} | \text{confidence\_score}_i - \text{accuracy\_value}_i |$$
+  *(where $\text{accuracy\_value}_i$ is $1.0$ for a match and $0.0$ for a drift).*
+
+### Step 3: Failure Diagnostic Lab & Refinement Suggestions (`src/lib/accuracyLab.ts`)
+The true self-improvement is facilitated by the **Failure Diagnostic Lab**. The system filters out all incorrect records (`is_correct === false`) and subjects them to diagnostic rules in `analyzePredictionFailure`:
+
+*   **Financial & Investment Scenarios:**
+    - *Trigger:* Question contains keywords like `"money"`, `"invest"`, or `"leverage"`.
+    - *Diagnostic:* Financial philosophy drift detected: Model predicted higher risk-seeking behavior than actual choice.
+    - *Suggested Action:* Create a new principle card clarifying strict leverage limits, or log a financial crisis experience.
+    - *Weight Refinement:* Proposes `+25% weight on conservation nodes` in the identity graph.
+
+*   **Family & Relational Scenarios:**
+    - *Trigger:* Question contains keywords like `"family"`, `"relational"`, or `"kin"`.
+    - *Diagnostic:* Relational priority mismatch: Model prioritized raw efficiency over kin alignment.
+    - *Suggested Action:* Log a memory highlighting team/family cohesion over financial margin returns.
+    - *Weight Refinement:* Proposes `+20% weight on connection and MADE edges` in the graph.
+
+*   **Career & Work Scenarios:**
+    - *Trigger:* Question contains keywords like `"career"`, `"job"`, or `"work"`.
+    - *Diagnostic:* Career transition drift: Model predicted early action over stable deliberation.
+    - *Suggested Action:* Add a career decision log documenting a slow, planned workplace shift.
+    - *Weight Refinement:* Proposes `+10% weight on deliberation nodes` in the graph.
+
+*   **Fallback Generic Scenarios:**
+    - *Trigger:* Mismatch occurs on other topics.
+    - *Diagnostic:* Model over-estimated risk tolerance.
+    - *Suggested Action:* Incorporate a memory detailing a historical loss or negative outcome to anchor risk processing.
+    - *Weight Refinement:* Proposes `+15% proximity alignment weight on conservative paths`.
+
+These suggestions are rendered directly in the console, prompting the user or an automated agent to log specific new nodes or principles to patch the "drift" and retrain the twin.

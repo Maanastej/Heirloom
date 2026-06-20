@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "ret_v3_0",
+    "query": "Can you find the record of my transition from corporate manager to startup dev?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_1",
+    "query": "I want to recall when I resigned my manager post to be first engineer at a SaaS company.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_2",
+    "query": "Tell me about leaving the Fortune 500 conglomerate for an early-stage software venture.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_3",
+    "query": "When did I trade a steady paycheck for equity incentives and independence?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_4",
+    "query": "quit my big manager job to join a tiny startup as engineering employee number 1",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_5",
+    "query": "resigned from corporate cuz i wanted autonomy and equity over high salary",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_6",
+    "query": "Did I ever trade job security and high compensation for professional self-direction?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_7",
+    "query": "Find the memory about sacrificing short-term income for startup ownership.",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_8",
+    "query": "What did I decide when choosing between corporate structure and startup autonomy?",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_9",
+    "query": "Tell me about my first engineering role at a SaaS company.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_10",
+    "query": "Did I ever work as a senior sales manager at a fortune 500 company?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_11",
+    "query": "Show me my startup ideas that failed due to lack of dev autonomy.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_12",
+    "query": "Where did I write about resigning from my stable manager role?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_13",
+    "query": "Details on my shift to a startup taking a pay cut.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_14",
+    "query": "left big corp to be 1st engineer at early stage saas",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_15",
+    "query": "Autonomy over compensation in my career history.",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_16",
+    "query": "autonomy decision",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_17",
+    "query": "resignation from corporate manager",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_18",
+    "query": "first engineer saas startup",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_19",
+    "query": "quitting manager role for saas",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_1"
+    ]
+  },
+  {
+    "id": "ret_v3_20",
+    "query": "What did we decide when my wife got a director job in Seattle?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_21",
+    "query": "Find the argument/discussion we had about moving our family to Seattle.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_22",
+    "query": "Uprooting the household to support my spouse's promotion.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_23",
+    "query": "Where is the memory about relocating for my partner's career advancement?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_24",
+    "query": "moving to seattle because of wife's new director gig",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_25",
+    "query": "uprooting kids and moving west coast for spouse job promotion",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_26",
+    "query": "When did we prioritize my partner's professional growth over our local stability?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_27",
+    "query": "Deciding to move the family for a director level opportunity.",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_28",
+    "query": "Seattle family relocation decision.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_29",
+    "query": "Our shared long-term priority regarding career move.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_30",
+    "query": "Did we refuse to move to Seattle when she was offered a job?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_31",
+    "query": "My job relocation to Seattle headquarters.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_32",
+    "query": "wife director offer in Seattle",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_33",
+    "query": "spouse career relocation decision",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_34",
+    "query": "wife's director job uprooted our family",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_35",
+    "query": "prioritizing partner promotion over current location",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_36",
+    "query": "Seattle move agreement",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_37",
+    "query": "relocating family for wife's role",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_38",
+    "query": "Seattle relocation long-term priorities",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_39",
+    "query": "wife promotion to director seattle relocation",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_2"
+    ]
+  },
+  {
+    "id": "ret_v3_40",
+    "query": "How did I pay off my 100k student loan debt?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_41",
+    "query": "Show me the details of my strict budget to eliminate student loans.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_42",
+    "query": "Aggressively clearing my six-figure educational liability.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_43",
+    "query": "Living frugally, cooking at home, and driving a cheap car to pay debt.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_44",
+    "query": "paying off 100k college debt by driving an old sedan",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_45",
+    "query": "eating cheap home cooked food to wipe out student loans",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_46",
+    "query": "What did I sacrifice financially to become debt-free in my twenties?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_47",
+    "query": "Where did I write about aggressive debt repayment strategy?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_48",
+    "query": "My hundred thousand dollar debt story.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_49",
+    "query": "Cooking at home and living on a tight budget.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_50",
+    "query": "Did I take out loans to buy a duplex?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_51",
+    "query": "I want to buy a new sedan but I have student loans.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_52",
+    "query": "student loans paying off",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_53",
+    "query": "eliminating educational debt",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_54",
+    "query": "frugal living to clear college debt",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_55",
+    "query": "strict budget and old sedan story",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_56",
+    "query": "hundred thousand dollar debt resolution",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_57",
+    "query": "aggressively paying down student loans",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_58",
+    "query": "frugal budgeting for college loan payoff",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_59",
+    "query": "cooking at home to save for student loans",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_3"
+    ]
+  },
+  {
+    "id": "ret_v3_60",
+    "query": "How did I recover from my fractured ankle to run the marathon?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_61",
+    "query": "Find the memory about physical therapy after my ankle injury.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_62",
+    "query": "Rehabilitation and swimming to build stamina after bone fracture.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_63",
+    "query": "Six months of physiotherapy for my broken leg joint before race.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_64",
+    "query": "getting ready for marathon after breaking my ankle",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_65",
+    "query": "swimming and physio therapy for fractured ankle recovery",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_66",
+    "query": "How did I rebuild my fitness after a major lower body injury?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_67",
+    "query": "What did I do to prepare for the running event after being injured?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_68",
+    "query": "Ankle fracture recovery timeline.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_69",
+    "query": "Six months of physical training details.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_70",
+    "query": "Did I break my ankle while running the marathon?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_71",
+    "query": "Swimming to cure chronic asthma.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_72",
+    "query": "ankle rehab marathon prep",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_73",
+    "query": "recovering from broken ankle",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_74",
+    "query": "fractured bone rehabilitation swimming physical therapy",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_75",
+    "query": "healing joint to complete the long distance race",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_76",
+    "query": "marathon recovery plan",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_77",
+    "query": "physiotherapy after ankle fracture",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_78",
+    "query": "rebuilding stamina after leg injury",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_79",
+    "query": "ankle rehab and low impact swimming",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_4"
+    ]
+  },
+  {
+    "id": "ret_v3_80",
+    "query": "Where is the memory about buying a duplex in Austin?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_81",
+    "query": "How did I start managing property by renting out a duplex unit?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_82",
+    "query": "Purchasing a double-occupancy residential building in Texas.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_83",
+    "query": "House hacking a duplex to cover mortgage payments.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_84",
+    "query": "buying a duplex in austin tx and renting out half",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_85",
+    "query": "tenant covered my mortgage in my austin duplex",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_86",
+    "query": "What was my first experience as a landlord in Austin?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_87",
+    "query": "Where did I write about residential real estate investment strategy?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_88",
+    "query": "Duplex mortgage details.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_89",
+    "query": "Renting one unit and living in the other.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_90",
+    "query": "Did I buy a duplex in Seattle for my spouse's promotion?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_91",
+    "query": "Filing duplex rent on tax returns.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_92",
+    "query": "austin duplex purchase",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_93",
+    "query": "real estate duplex leasing",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_94",
+    "query": "househacking duplex in austin",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_95",
+    "query": "covering mortgage by renting portion of my home",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_96",
+    "query": "Austin landlord history",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_97",
+    "query": "buying a rental property in Austin",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_98",
+    "query": "duplex real estate management",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_99",
+    "query": "austin duplex landlord stuff",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_5"
+    ]
+  },
+  {
+    "id": "ret_v3_100",
+    "query": "Why did we draft a living trust and will after our second child?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_101",
+    "query": "Find the document details about our estate planning for the kids.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_102",
+    "query": "Setting up a family trust and testament with an attorney.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_103",
+    "query": "Securing guardianship and inheritance for our children.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_104",
+    "query": "making a family trust and will after kid number 2 was born",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_105",
+    "query": "estate attorney helped us write trust and will for kids",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_106",
+    "query": "How did we protect our offspring's future financial security?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_107",
+    "query": "Working with an estate lawyer to plan our legacy.",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_108",
+    "query": "Trust and will declaration.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_109",
+    "query": "Second child guardianship setup.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_110",
+    "query": "Did we buy a trust fund for our first child?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_111",
+    "query": "Getting a divorce and dividing the family trust.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_112",
+    "query": "family living trust draft",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_113",
+    "query": "estate planning will children guardianship",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_114",
+    "query": "making a will after second baby",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_115",
+    "query": "assigning legal guardians for our minor children",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_116",
+    "query": "estate attorney consult",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_117",
+    "query": "drafting a will after birth of kid",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_118",
+    "query": "family trust setup",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_119",
+    "query": "trust fund and will for kids",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_6"
+    ]
+  },
+  {
+    "id": "ret_v3_120",
+    "query": "Why did I fire the high-performing senior sales account executive?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_121",
+    "query": "Find the memory about letting go of a toxic top seller.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_122",
+    "query": "Firing an executive with great numbers due to poor attitude.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_123",
+    "query": "Terminating a high revenue generator for arrogance and morale disruption.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_124",
+    "query": "firing a toxic top salesman because he was ruining the team",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_125",
+    "query": "letting go of senior account exec for arrogance",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_126",
+    "query": "When did I prioritize culture and morale over short-term revenue?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_127",
+    "query": "Dealing with an arrogant employee who alienated designers.",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_128",
+    "query": "Senior account executive termination.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_129",
+    "query": "High numbers but toxic attitude.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_130",
+    "query": "Did I hire a high-performing senior manager?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_131",
+    "query": "Promoting a toxic employee to sales manager.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_132",
+    "query": "firing toxic high performer",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_133",
+    "query": "sales rep termination team morale",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_134",
+    "query": "canned our top seller cuz he was toxic",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_135",
+    "query": "protecting design team from sales team toxicity",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_136",
+    "query": "firing decision senior employee",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_137",
+    "query": "toxic salesman termination",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_138",
+    "query": "letting go of top sales rep",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_139",
+    "query": "arrogant account executive fired",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_7"
+    ]
+  },
+  {
+    "id": "ret_v3_140",
+    "query": "Where did I write about taking a three-month unpaid sabbatical?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_141",
+    "query": "Why did I negotiate a sabbatical after severe burnout?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_142",
+    "query": "Taking unpaid leave to recover from exhaustion and insomnia.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_143",
+    "query": "Taking time off to disconnect and travel after intense launches.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_144",
+    "query": "three month sabbatical due to burnout and insomnia",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_145",
+    "query": "negotiated unpaid leave after launch exhaustion",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_146",
+    "query": "When did I step away from work to save my physical and mental health?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_147",
+    "query": "What did I do to address my severe work-related sleep issues?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_148",
+    "query": "Three-month disconnect decision.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_149",
+    "query": "Negotating unpaid time off after years of work.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_150",
+    "query": "Did I take a sabbatical to start a duplex business?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_151",
+    "query": "Getting fired because of my insomnia.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_152",
+    "query": "sabbatical unpaid leave",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_153",
+    "query": "three months off work burnout",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_154",
+    "query": "unpaid break after insomnia and launch fatigue",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_155",
+    "query": "recovering from launch burnout",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_156",
+    "query": "sabbatical terms",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_157",
+    "query": "negotiating unpaid leave",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_158",
+    "query": "recovering from workplace exhaustion",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_159",
+    "query": "needed to disconnect after major launch",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_8"
+    ]
+  },
+  {
+    "id": "ret_v3_160",
+    "query": "What did I do with my index funds during the 2020 crash?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_161",
+    "query": "Did I panic sell or buy more stocks when the market fell?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_162",
+    "query": "Holding index assets through the economic collapse of 2020.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_163",
+    "query": "Buying equities during a market downturn.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_164",
+    "query": "buying the dip in 2020 index funds stock crash",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_165",
+    "query": "resisted panic selling when stocks tanked in 2020",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_166",
+    "query": "How did I display high risk tolerance during a global market panic?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_167",
+    "query": "What was my investment behavior when my portfolio dropped in value?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_168",
+    "query": "2020 market crash decision.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_169",
+    "query": "Resisting panic sell impulses.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_170",
+    "query": "Did I sell my Austin duplex during the stock market crash?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_171",
+    "query": "Did I lose all my money in index funds?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_172",
+    "query": "buying index funds in 2020 crash",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_173",
+    "query": "holding portfolio stock market downturn",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_174",
+    "query": "didn't panic sell my index funds",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_175",
+    "query": "increasing equity position during a bear market",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_176",
+    "query": "stock market strategy",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_177",
+    "query": "holding equities through crash",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_178",
+    "query": "buying more during market plummet",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_179",
+    "query": "held index funds 2020 crash",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_9"
+    ]
+  },
+  {
+    "id": "ret_v3_180",
+    "query": "How did I transfer from the New York office to London?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_181",
+    "query": "Find the notes about my move to London and finding a flat.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_182",
+    "query": "Relocating internationally from New York to the United Kingdom.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_183",
+    "query": "Kensington flat and visa process for London job transfer.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_184",
+    "query": "moving to london kensington flat corporate transfer",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_185",
+    "query": "nyc to london move visa kensington flat",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_186",
+    "query": "When did I relocate across the Atlantic for my career?",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_187",
+    "query": "Experiencing European culture through a company transfer.",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_188",
+    "query": "Kensington apartment and visa details.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_189",
+    "query": "My international relocation experience.",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_190",
+    "query": "Did I move to Seattle or London for work?",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_191",
+    "query": "I want to take a sabbatical in London.",
+    "category": "hard_negative",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_192",
+    "query": "international transfer to London",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_193",
+    "query": "moving from NY to UK office",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_194",
+    "query": "london flat hunting kensington visa",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_195",
+    "query": "cross atlantic office relocation",
+    "category": "indirect",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_196",
+    "query": "London transition details",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_197",
+    "query": "nyc to london office shift",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_198",
+    "query": "relocating to Kensington flat",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  },
+  {
+    "id": "ret_v3_199",
+    "query": "london visa and flat lease",
+    "category": "typo_slang",
+    "expected_memory_ids": [
+      "mem_target_10"
+    ]
+  }
+]

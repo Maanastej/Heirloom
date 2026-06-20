@@ -1,0 +1,1562 @@
+[
+  {
+    "id": "ret_v2_0",
+    "query": "What did I say about our series A fundraise last year?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_1",
+    "query": "Tell me about my startup record from last year.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_2",
+    "query": "What are the details regarding the series A round we raised?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_3",
+    "query": "Do you have any notes on my company raising a series A?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_4",
+    "query": "Where did I write about raising a series A for my startup?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_5",
+    "query": "What did I state last year about my startup's funding?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_6",
+    "query": "Retrieve my thoughts about the startup raising capital.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_7",
+    "query": "Show me the memory about raising series A funds.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_8",
+    "query": "How much money did I say was in my bank account?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_9",
+    "query": "What did I write last year about having 50k in savings?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_10",
+    "query": "Find my notes about the 50k bank balance.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_11",
+    "query": "Where did I mention having fifty thousand in my account?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_12",
+    "query": "What is my bank balance record from last year?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_13",
+    "query": "Did I state that I have 50k in my bank account?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_14",
+    "query": "Retrieve the memory about my bank overview and finance.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_15",
+    "query": "How much savings did I log having in the bank?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_16",
+    "query": "When did I say my wedding anniversary is?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_17",
+    "query": "What did I write about my anniversary being next month?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_18",
+    "query": "Where is the note about my marriage anniversary details?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_19",
+    "query": "Retrieve my thoughts about the anniversary next month.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_20",
+    "query": "Do you have records of my wedding anniversary timeline?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_21",
+    "query": "What did I write last year about my marriage and anniversary?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_22",
+    "query": "Show me the post about our upcoming anniversary month.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_23",
+    "query": "What is the date of my marriage anniversary from last year?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_24",
+    "query": "How did I say I was feeling last year health-wise?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_25",
+    "query": "Retrieve the record where I wrote I am feeling great.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_26",
+    "query": "What did I write about feeling great last year?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_27",
+    "query": "Where did I log that I am feeling great health-wise?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_28",
+    "query": "Retrieve my health update where I said I feel great.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_29",
+    "query": "What is my physical wellbeing log from last year?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_30",
+    "query": "Where did I write that my physical health is great?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_31",
+    "query": "Do we have a log about me feeling great?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_32",
+    "query": "Where did I say I wanted to buy a house?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_33",
+    "query": "What did I write about looking to buy a house in Texas?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_34",
+    "query": "Find my notes about purchasing a home in Texas.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_35",
+    "query": "Where is the record of me looking at Texas property?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_36",
+    "query": "What did I log about moving to Texas and buying a house?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_37",
+    "query": "Show me the memory of looking to buy a Texas house.",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_38",
+    "query": "What did I say about buying a Texas residence last year?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_39",
+    "query": "Do you have the property overview about Texas home buying?",
+    "category": "paraphrase",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_40",
+    "query": "Did I mention launching a new business venture recently?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_41",
+    "query": "How is my co-founder relationship in our early company?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_42",
+    "query": "What did I decide about early employee equity allocation?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_43",
+    "query": "Did we get institutional seed funding from investors?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_44",
+    "query": "Should I pitch our business slide deck to angel syndicates?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_45",
+    "query": "What are my thoughts on scaling our entrepreneur venture?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_46",
+    "query": "Did my company secure pre-seed or Series A backing?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_47",
+    "query": "Who are the key partners in our startup venture?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_48",
+    "query": "How should I structure the vesting schedule for the business?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_49",
+    "query": "What is my primary concern about building a product venture?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_50",
+    "query": "Are we ready to pitch to venture capital firms?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_51",
+    "query": "How much did we raise during our initial funding round?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_52",
+    "query": "How do I build generational wealth for my family?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_53",
+    "query": "What portion of my salary should I allocate to liquid savings?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_54",
+    "query": "Should I put my cash reserves in index funds?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_55",
+    "query": "Do you have a record of my total cash assets?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_56",
+    "query": "Where did I write about my investment portfolio strategy?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_57",
+    "query": "What is my current monthly budget and expense allocation?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_58",
+    "query": "Did I mention having significant liquidity in my account?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_59",
+    "query": "Should I clear my high-interest credit card debt first?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_60",
+    "query": "What is my retirement pension forecast?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_61",
+    "query": "How should I allocate capital for future tax liabilities?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_62",
+    "query": "Where did I log my financial details and net worth?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_63",
+    "query": "What is the best way to grow my liquid funds?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_64",
+    "query": "Are there any notes on my wedding planning next year?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_65",
+    "query": "How is my marital life going recently?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_66",
+    "query": "What did I write about communicating with my spouse?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_67",
+    "query": "I want to plan a special trip for my partner.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_68",
+    "query": "Where did I write about my significant other's behavior?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_69",
+    "query": "What did I log about conflict resolution in my relationship?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_70",
+    "query": "Should we get pre-marital counseling before the wedding?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_71",
+    "query": "Where did I mention my wedding vows or celebration?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_72",
+    "query": "How can my partner and I divide household responsibilities?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_73",
+    "query": "Did I write about getting married to my girlfriend?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_74",
+    "query": "What did I log about our milestone anniversary trip?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_75",
+    "query": "How is my connection with my husband/wife?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_76",
+    "query": "What did the doctor state about my medical checkup?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_77",
+    "query": "I want to improve my cardiovascular fitness and running.",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_78",
+    "query": "How do I manage my daily physical wellbeing?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_79",
+    "query": "Should I sign up for a local running race or marathon?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_80",
+    "query": "What did I write about my mental wellness struggles?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_81",
+    "query": "Where did I log my hospital or clinic visit?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_82",
+    "query": "Did I start a new workout regime or fitness plan?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_83",
+    "query": "What is the status of my diabetes diagnosis or medical recovery?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_84",
+    "query": "How is my physical condition compared to last year?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_85",
+    "query": "Did I record any symptoms of fatigue or illness?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_86",
+    "query": "What did I write about training for a marathon running event?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_87",
+    "query": "Where is my general wellness overview?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_88",
+    "query": "Should I buy a suburban condo or city apartment?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_89",
+    "query": "What is the mortgage interest rate for my future house?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_90",
+    "query": "Where do I plan to move my family's residence?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_91",
+    "query": "Are we looking at suburban real estate options?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_92",
+    "query": "How much did my landlord increase the monthly rent?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_93",
+    "query": "Where did I write about relocation to Texas?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_94",
+    "query": "What did I decide about selling my condo housing asset?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_95",
+    "query": "Do you have notes on the Texas home purchase details?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_96",
+    "query": "How much downpayment is needed for a real estate property?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_97",
+    "query": "What did I log about property taxes in Texas?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_98",
+    "query": "Where did I mention looking for a new home?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_99",
+    "query": "Should I rent an apartment or buy a house?",
+    "category": "synonym",
+    "expected_memory_ids": [
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_100",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage? (Variation 1)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_101",
+    "query": "My spouse and I want to invest our savings into buying a new condo. (Variation 2)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_102",
+    "query": "Should I use my savings to pay for my health checkup? (Variation 3)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_finance_1",
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_103",
+    "query": "How will my startup venture affect my marriage next month? (Variation 4)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_104",
+    "query": "I need to relocate to Texas for a new business opportunity. (Variation 5)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_105",
+    "query": "My physical health is making it hard to manage our company funds. (Variation 6)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_106",
+    "query": "My partner and I are discussing our family financial budget. (Variation 7)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_107",
+    "query": "Should I buy a Texas house using my business equity payout? (Variation 8)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_108",
+    "query": "We need to plan our wedding anniversary but money is tight in the bank. (Variation 9)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_109",
+    "query": "My wellness and doctor visits are getting very expensive. (Variation 10)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_110",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage? (Variation 11)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_111",
+    "query": "My spouse and I want to invest our savings into buying a new condo. (Variation 12)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_112",
+    "query": "Should I use my savings to pay for my health checkup? (Variation 13)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_finance_1",
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_113",
+    "query": "How will my startup venture affect my marriage next month? (Variation 14)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_114",
+    "query": "I need to relocate to Texas for a new business opportunity. (Variation 15)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_115",
+    "query": "My physical health is making it hard to manage our company funds. (Variation 16)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_116",
+    "query": "My partner and I are discussing our family financial budget. (Variation 17)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_117",
+    "query": "Should I buy a Texas house using my business equity payout? (Variation 18)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_118",
+    "query": "We need to plan our wedding anniversary but money is tight in the bank. (Variation 19)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_119",
+    "query": "My wellness and doctor visits are getting very expensive. (Variation 20)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_120",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage? (Variation 21)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_121",
+    "query": "My spouse and I want to invest our savings into buying a new condo. (Variation 22)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_122",
+    "query": "Should I use my savings to pay for my health checkup? (Variation 23)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_finance_1",
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_123",
+    "query": "How will my startup venture affect my marriage next month? (Variation 24)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_124",
+    "query": "I need to relocate to Texas for a new business opportunity. (Variation 25)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_125",
+    "query": "My physical health is making it hard to manage our company funds. (Variation 26)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_126",
+    "query": "My partner and I are discussing our family financial budget. (Variation 27)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_127",
+    "query": "Should I buy a Texas house using my business equity payout? (Variation 28)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_128",
+    "query": "We need to plan our wedding anniversary but money is tight in the bank. (Variation 29)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_129",
+    "query": "My wellness and doctor visits are getting very expensive. (Variation 30)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_130",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage? (Variation 31)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_131",
+    "query": "My spouse and I want to invest our savings into buying a new condo. (Variation 32)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_132",
+    "query": "Should I use my savings to pay for my health checkup? (Variation 33)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_finance_1",
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_133",
+    "query": "How will my startup venture affect my marriage next month? (Variation 34)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_134",
+    "query": "I need to relocate to Texas for a new business opportunity. (Variation 35)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_135",
+    "query": "My physical health is making it hard to manage our company funds. (Variation 36)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_136",
+    "query": "My partner and I are discussing our family financial budget. (Variation 37)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_137",
+    "query": "Should I buy a Texas house using my business equity payout? (Variation 38)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_138",
+    "query": "We need to plan our wedding anniversary but money is tight in the bank. (Variation 39)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_139",
+    "query": "My wellness and doctor visits are getting very expensive. (Variation 40)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_140",
+    "query": "If I quit my job to launch a startup, how will I pay my mortgage? (Variation 41)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_141",
+    "query": "My spouse and I want to invest our savings into buying a new condo. (Variation 42)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1",
+      "mem_property_1"
+    ]
+  },
+  {
+    "id": "ret_v2_142",
+    "query": "Should I use my savings to pay for my health checkup? (Variation 43)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_finance_1",
+      "mem_health_1"
+    ]
+  },
+  {
+    "id": "ret_v2_143",
+    "query": "How will my startup venture affect my marriage next month? (Variation 44)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_startup_1",
+      "mem_marriage_1"
+    ]
+  },
+  {
+    "id": "ret_v2_144",
+    "query": "I need to relocate to Texas for a new business opportunity. (Variation 45)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1"
+    ]
+  },
+  {
+    "id": "ret_v2_145",
+    "query": "My physical health is making it hard to manage our company funds. (Variation 46)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_146",
+    "query": "My partner and I are discussing our family financial budget. (Variation 47)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_147",
+    "query": "Should I buy a Texas house using my business equity payout? (Variation 48)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_property_1",
+      "mem_startup_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_148",
+    "query": "We need to plan our wedding anniversary but money is tight in the bank. (Variation 49)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_marriage_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_149",
+    "query": "My wellness and doctor visits are getting very expensive. (Variation 50)",
+    "category": "ambiguous",
+    "expected_memory_ids": [
+      "mem_health_1",
+      "mem_finance_1"
+    ]
+  },
+  {
+    "id": "ret_v2_150",
+    "query": "What are the laws of thermodynamics? (Search index check #1)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_151",
+    "query": "How do I cook a perfect chocolate soufflé? (Search index check #2)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_152",
+    "query": "Tell me about the history of the Roman Empire. (Search index check #3)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_153",
+    "query": "Who directed the movie Interstellar? (Search index check #4)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_154",
+    "query": "How does a quantum computer work? (Search index check #5)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_155",
+    "query": "What is the capital city of Australia? (Search index check #6)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_156",
+    "query": "What is the average lifespan of a giant panda? (Search index check #7)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_157",
+    "query": "Explain the rules of cricket. (Search index check #8)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_158",
+    "query": "How do I write a binary search algorithm in Rust? (Search index check #9)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_159",
+    "query": "What are the main causes of the French Revolution? (Search index check #10)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_160",
+    "query": "What did I say about general international history? (Search index check #11)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_161",
+    "query": "How do I configure a Kubernetes ingress controller? (Search index check #12)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_162",
+    "query": "What is the chemical formula for photosynthesis? (Search index check #13)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_163",
+    "query": "Tell me about the mythology of ancient Greece. (Search index check #14)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_164",
+    "query": "Who is the lead singer of the band Queen? (Search index check #15)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_165",
+    "query": "What are the symptoms of a bad car transmission? (Search index check #16)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_166",
+    "query": "How do I paint a watercolor landscape? (Search index check #17)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_167",
+    "query": "Who wrote the play Hamlet? (Search index check #18)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_168",
+    "query": "What is the distance between the Earth and the Moon? (Search index check #19)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_169",
+    "query": "Explain the concept of inflation in economics. (Search index check #20)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_170",
+    "query": "What are the laws of thermodynamics? (Search index check #21)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_171",
+    "query": "How do I cook a perfect chocolate soufflé? (Search index check #22)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_172",
+    "query": "Tell me about the history of the Roman Empire. (Search index check #23)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_173",
+    "query": "Who directed the movie Interstellar? (Search index check #24)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_174",
+    "query": "How does a quantum computer work? (Search index check #25)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_175",
+    "query": "What is the capital city of Australia? (Search index check #26)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_176",
+    "query": "What is the average lifespan of a giant panda? (Search index check #27)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_177",
+    "query": "Explain the rules of cricket. (Search index check #28)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_178",
+    "query": "How do I write a binary search algorithm in Rust? (Search index check #29)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_179",
+    "query": "What are the main causes of the French Revolution? (Search index check #30)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_180",
+    "query": "What did I say about general international history? (Search index check #31)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_181",
+    "query": "How do I configure a Kubernetes ingress controller? (Search index check #32)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_182",
+    "query": "What is the chemical formula for photosynthesis? (Search index check #33)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_183",
+    "query": "Tell me about the mythology of ancient Greece. (Search index check #34)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_184",
+    "query": "Who is the lead singer of the band Queen? (Search index check #35)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_185",
+    "query": "What are the symptoms of a bad car transmission? (Search index check #36)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_186",
+    "query": "How do I paint a watercolor landscape? (Search index check #37)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_187",
+    "query": "Who wrote the play Hamlet? (Search index check #38)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_188",
+    "query": "What is the distance between the Earth and the Moon? (Search index check #39)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_189",
+    "query": "Explain the concept of inflation in economics. (Search index check #40)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_190",
+    "query": "What are the laws of thermodynamics? (Search index check #41)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_191",
+    "query": "How do I cook a perfect chocolate soufflé? (Search index check #42)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_192",
+    "query": "Tell me about the history of the Roman Empire. (Search index check #43)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_193",
+    "query": "Who directed the movie Interstellar? (Search index check #44)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_194",
+    "query": "How does a quantum computer work? (Search index check #45)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_195",
+    "query": "What is the capital city of Australia? (Search index check #46)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_196",
+    "query": "What is the average lifespan of a giant panda? (Search index check #47)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_197",
+    "query": "Explain the rules of cricket. (Search index check #48)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_198",
+    "query": "How do I write a binary search algorithm in Rust? (Search index check #49)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  },
+  {
+    "id": "ret_v2_199",
+    "query": "What are the main causes of the French Revolution? (Search index check #50)",
+    "category": "hard_negative",
+    "expected_memory_ids": []
+  }
+]
