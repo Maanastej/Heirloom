@@ -23,7 +23,8 @@ This report summarizes the rigorous performance validation of the Heirloom AI en
 | E2E Personalization (Human) | E / 5 | N/A | 0 / 0 | 0% | **[C]** |
 | E2E Personalization (Synthetic) | E / 5 | N/A | 0 / 0 | 0% | **[C]** |
 | E2E Memory Utilization Rate (Syn) | E | N/A | 0 / 0 | 0% | **[C]** |
-| Retrieval Recall@5 | 100.0% | N/A | 100 | 100% | **[B]** |
+| Retrieval Recall@1 | 87.0% | N/A | 200 | 100% | **[B]** |
+| Retrieval Recall@5 | 94.5% | N/A | 200 | 100% | **[B]** |
 | E2E Pipeline Mean Latency | 0.4ms | N/A | 50 | 100% | **[A]** |
 
 ---
